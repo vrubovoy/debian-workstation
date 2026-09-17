@@ -1,0 +1,15 @@
+# X11
+xserver-xorg
+xinit
+x11-xserver-utils
+
+# Window manager
+i3-wm
+i3status
+
+# Terminal
+kitty
+
+# Display manager
+lightdm
+lightdm-gtk-greeter
