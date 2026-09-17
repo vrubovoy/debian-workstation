@@ -1,0 +1,462 @@
+/* =============================================================================
+ * Graphite Blue — LightDM GTK Greeter
+ * =============================================================================
+ *
+ * Minimal GTK3 theme used exclusively by lightdm-gtk-greeter.
+ *
+ * Palette:
+ *
+ *   background   #111318
+ *   surface      #1A1D24
+ *   surface-alt  #222630
+ *   border       #303744
+ *   foreground   #E6E9EF
+ *   muted        #8E98A8
+ *   accent       #7AA2F7
+ *   accent-hover #89B4FA
+ *   urgent       #E06C75
+ *
+ * =============================================================================
+ */
+
+
+/* =============================================================================
+ * Base
+ * ============================================================================= */
+
+/*
+ * Start from GTK's built-in Adwaita theme.
+ *
+ * This gives generic GTK widgets sane defaults while the rules below override
+ * everything visually important for the greeter.
+ */
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+
+
+/* Shared palette */
+
+@define-color gb_bg          #111318;
+@define-color gb_surface     #1A1D24;
+@define-color gb_surface_alt #222630;
+@define-color gb_border      #303744;
+@define-color gb_fg          #E6E9EF;
+@define-color gb_muted       #8E98A8;
+@define-color gb_accent      #7AA2F7;
+@define-color gb_accent_hi   #89B4FA;
+@define-color gb_urgent      #E06C75;
+
+
+/* Entire greeter */
+
+.lightdm-gtk-greeter {
+    background-color: @gb_bg;
+    color: @gb_fg;
+}
+
+
+/* =============================================================================
+ * Top panel
+ * ============================================================================= */
+
+#panel_window {
+    background-color: @gb_bg;
+    color: @gb_fg;
+
+    border: none;
+    border-bottom: 1px solid @gb_border;
+
+    box-shadow: none;
+}
+
+
+/*
+ * The greeter implements its indicators as menu items.
+ */
+
+#panel_window menubar,
+#panel_window .menubar {
+    background-color: transparent;
+    color: @gb_fg;
+
+    border: none;
+    box-shadow: none;
+}
+
+
+/* Individual panel items */
+
+#panel_window menubar > menuitem,
+#panel_window .menubar > .menuitem {
+    background-color: transparent;
+    color: @gb_fg;
+
+    padding: 7px 12px;
+
+    border-radius: 8px;
+    border: none;
+
+    box-shadow: none;
+
+    transition: 120ms ease;
+}
+
+
+/* Hovered panel items */
+
+#panel_window menubar > menuitem:hover,
+#panel_window .menubar > .menuitem:hover {
+    background-color: @gb_surface_alt;
+    color: @gb_accent_hi;
+}
+
+
+/* Disabled items */
+
+#panel_window menuitem:disabled,
+#panel_window .menuitem:insensitive {
+    color: @gb_muted;
+}
+
+
+/* =============================================================================
+ * Popup menus
+ * ============================================================================= */
+
+menu,
+.menu {
+    background-color: @gb_surface;
+    color: @gb_fg;
+
+    border: 1px solid @gb_border;
+    border-radius: 10px;
+
+    padding: 5px;
+}
+
+
+/* Menu entries */
+
+menuitem,
+.menuitem {
+    color: @gb_fg;
+
+    padding: 7px 12px;
+
+    border-radius: 7px;
+
+    transition: 100ms ease;
+}
+
+
+menuitem:hover,
+.menuitem:hover {
+    background-color: @gb_accent;
+    color: @gb_bg;
+}
+
+
+/* =============================================================================
+ * Login card
+ * ============================================================================= */
+
+#login_window {
+    background-color: @gb_surface;
+    color: @gb_fg;
+
+    border: 1px solid @gb_border;
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 38px rgba(0, 0, 0, 0.40);
+
+    padding: 0;
+}
+
+
+/* Main area containing user/password controls */
+
+#content_frame {
+    background-color: transparent;
+
+    padding: 26px 30px 14px 30px;
+
+    border: none;
+    border-radius: 16px 16px 0 0;
+}
+
+
+/* Bottom area containing action buttons */
+
+#buttonbox_frame {
+    background-color: transparent;
+
+    padding: 10px 30px 26px 30px;
+
+    border: none;
+    border-radius: 0 0 16px 16px;
+
+    box-shadow: none;
+}
+
+
+/* =============================================================================
+ * User selector
+ * ============================================================================= */
+
+#user_combobox {
+    color: @gb_fg;
+
+    background-color: @gb_surface_alt;
+
+    border: 1px solid @gb_border;
+    border-radius: 10px;
+
+    padding: 7px 11px;
+
+    box-shadow: none;
+}
+
+
+#user_combobox:hover {
+    border-color: @gb_accent;
+}
+
+
+/*
+ * Remove the excessive button styling inherited by the ComboBox.
+ */
+
+#login_window combobox button,
+#login_window GtkComboBox .button {
+    background: transparent;
+
+    color: @gb_fg;
+
+    border: none;
+    box-shadow: none;
+}
+
+
+/* =============================================================================
+ * Text / password fields
+ * ============================================================================= */
+
+#login_window entry,
+#login_window .entry,
+#username_entry,
+#password_entry {
+    background-color: @gb_bg;
+    color: @gb_fg;
+
+    caret-color: @gb_accent;
+
+    border: 2px solid @gb_border;
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    box-shadow: none;
+
+    transition: 120ms ease;
+}
+
+
+/* Hover */
+
+#login_window entry:hover,
+#login_window .entry:hover {
+    border-color: #465064;
+}
+
+
+/* Keyboard focus */
+
+#login_window entry:focus,
+#login_window .entry:focus,
+#username_entry:focus,
+#password_entry:focus {
+    background-color: @gb_bg;
+
+    border-color: @gb_accent;
+
+    box-shadow:
+        0 0 0 1px rgba(122, 162, 247, 0.18);
+}
+
+
+/* Placeholder / insensitive text */
+
+#login_window entry:disabled {
+    color: @gb_muted;
+}
+
+
+/* =============================================================================
+ * Buttons
+ * ============================================================================= */
+
+#login_window button,
+#login_window .button,
+#shutdown_dialog button,
+#restart_dialog button {
+    background-image: none;
+    background-color: @gb_surface_alt;
+
+    color: @gb_fg;
+
+    border: 1px solid @gb_border;
+    border-radius: 10px;
+
+    padding: 9px 18px;
+
+    box-shadow: none;
+
+    transition: 120ms ease;
+}
+
+
+/* Hover */
+
+#login_window button:hover,
+#login_window .button:hover,
+#shutdown_dialog button:hover,
+#restart_dialog button:hover {
+    background-color: #2A3040;
+
+    border-color: #465064;
+}
+
+
+/*
+ * The default/focused button is normally the Login button.
+ *
+ * Make it the only strongly accented control on the card.
+ */
+
+#login_window button:default,
+#login_window button:focus,
+#login_window .button.default,
+#login_window .button:focus {
+    background-image: none;
+    background-color: @gb_accent;
+
+    color: @gb_bg;
+
+    border-color: @gb_accent;
+
+    box-shadow: none;
+}
+
+
+#login_window button:default:hover,
+#login_window button:focus:hover,
+#login_window .button.default:hover {
+    background-color: @gb_accent_hi;
+    border-color: @gb_accent_hi;
+}
+
+
+/* =============================================================================
+ * Authentication messages
+ * ============================================================================= */
+
+#greeter_infobar {
+    background-color: transparent;
+    color: @gb_urgent;
+
+    border: none;
+
+    font-weight: bold;
+}
+
+
+#greeter_infobar label {
+    color: @gb_urgent;
+}
+
+
+/* =============================================================================
+ * Power dialogs
+ * ============================================================================= */
+
+#shutdown_dialog,
+#restart_dialog {
+    background-color: @gb_surface;
+    color: @gb_fg;
+
+    border: 1px solid @gb_border;
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 38px rgba(0, 0, 0, 0.40);
+}
+
+
+/*
+ * Destructive shutdown action.
+ */
+
+#shutdown_button {
+    background-image: none;
+    background-color: @gb_urgent;
+
+    color: @gb_bg;
+
+    border-color: @gb_urgent;
+
+    border-radius: 10px;
+}
+
+
+#shutdown_button:hover {
+    background-color: #F07882;
+}
+
+
+/*
+ * Restart is intentionally less aggressive than shutdown.
+ */
+
+#restart_button {
+    background-image: none;
+    background-color: @gb_accent;
+
+    color: @gb_bg;
+
+    border-color: @gb_accent;
+
+    border-radius: 10px;
+}
+
+
+#restart_button:hover {
+    background-color: @gb_accent_hi;
+}
+
+
+/* =============================================================================
+ * Tooltips
+ * ============================================================================= */
+
+tooltip {
+    background-color: @gb_surface_alt;
+    color: @gb_fg;
+
+    border: 1px solid @gb_border;
+    border-radius: 7px;
+}
+
+
+tooltip label {
+    color: @gb_fg;
+}
+
+
+/* =============================================================================
+ * Selection
+ * ============================================================================= */
+
+selection {
+    background-color: @gb_accent;
+    color: @gb_bg;
+}
