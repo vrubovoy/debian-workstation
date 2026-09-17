@@ -13,3 +13,23 @@ kitty
 # Display manager
 lightdm
 lightdm-gtk-greeter
+
+# Main font
+fonts-ubuntu
+
+# Application launcher
+rofi
+
+# Notifications
+dunst
+libnotify-bin
+
+# X11 compositor
+picom
+
+# Wallpaper
+feh
+
+# Screen locking
+i3lock
+xss-lock
