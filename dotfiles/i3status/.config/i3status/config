@@ -1,0 +1,348 @@
+# =============================================================================
+# i3status configuration
+# =============================================================================
+#
+# Debian workstation status configuration.
+#
+# Design goals:
+#   - Show only information that is useful at a glance.
+#   - Avoid hardware-specific configuration wherever possible.
+#   - Keep the bar visually quiet during normal operation.
+#   - Highlight only conditions which may require attention.
+#   - Stay readable and maintainable for many years.
+#
+# Theme:
+#   Graphite Blue
+#
+# The visual background, font, workspace colors and separator symbol are
+# configured by i3bar in ~/.config/i3/config.
+#
+# i3status is responsible only for the status blocks on the right side.
+#
+# =============================================================================
+
+
+# =============================================================================
+# General
+# =============================================================================
+
+general {
+    # Native i3bar JSON protocol.
+    output_format = "i3bar"
+
+    # Enable warning/critical colors.
+    colors = true
+
+    # Update system information every two seconds.
+    #
+    # This is frequent enough for CPU/network state while remaining extremely
+    # lightweight.
+    interval = 2
+
+    # Graphite Blue status colors.
+    #
+    # Normal values inherit the regular i3bar foreground color.
+    # Only notable states receive explicit colors.
+    color_good = "#7AA2F7"
+    color_degraded = "#E5C07B"
+    color_bad = "#E06C75"
+}
+
+
+# =============================================================================
+# Module order
+# =============================================================================
+#
+# Blocks are displayed from left to right in this exact order.
+#
+# Network interfaces which are unavailable are hidden automatically.
+# Battery is also hidden automatically on desktop systems.
+
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+
+order += "wireless _first_"
+order += "ethernet _first_"
+
+order += "battery all"
+
+order += "tztime local"
+
+
+# =============================================================================
+# CPU
+# =============================================================================
+#
+# Displays total CPU utilization.
+#
+# Normal:
+#   CPU 17%
+#
+# Warning:
+#   >= 70%
+#
+# Critical:
+#   >= 90%
+#
+# The value is calculated from /proc/stat by i3status.
+
+cpu_usage {
+    format = "CPU %usage"
+
+    # Keep the block width stable so the rest of the bar does not move when
+    # CPU usage changes from e.g. 9% to 100%.
+    min_width = "CPU 100%"
+
+    degraded_threshold = 70
+    max_threshold = 90
+
+    format_above_degraded_threshold = "CPU %usage"
+    format_above_threshold = "CPU %usage"
+}
+
+
+# =============================================================================
+# Memory
+# =============================================================================
+#
+# Shows the percentage of RAM currently in use.
+#
+# memory_used_method=memavailable matches the modern interpretation used by
+# tools such as `free`: filesystem cache which can readily be reclaimed is not
+# treated as genuinely unavailable memory.
+#
+# Warning colors are based on AVAILABLE memory:
+#
+#   <= 20% available  warning
+#   <= 10% available  critical
+
+memory {
+    format = "RAM %percentage_used"
+    format_degraded = "RAM %percentage_used"
+
+    memory_used_method = "memavailable"
+
+    threshold_degraded = "20%"
+    threshold_critical = "10%"
+
+    min_width = "RAM 100%"
+}
+
+
+# =============================================================================
+# Root filesystem
+# =============================================================================
+#
+# Shows space still available on the root filesystem.
+#
+# Because /home is intentionally part of the same filesystem, this value
+# represents the available space for both the operating system and user data.
+#
+# The block turns red when less than 10% remains.
+
+disk "/" {
+    format = "SSD %avail"
+    format_below_threshold = "SSD %avail"
+
+    prefix_type = "binary"
+
+    low_threshold = 10
+    threshold_type = "percentage_avail"
+
+    min_width = "SSD 999.9 GiB"
+}
+
+
+# =============================================================================
+# Wireless network
+# =============================================================================
+#
+# `_first_` selects the first wireless network interface automatically.
+#
+# This avoids hard-coding hardware-specific interface names such as:
+#
+#   wlan0
+#   wlp2s0
+#   wlp3s0
+#
+# Example:
+#
+#   Wi-Fi HomeNetwork 82%
+#
+# If no wireless connection exists, this block disappears entirely.
+
+wireless _first_ {
+    format_up = "Wi-Fi %essid %quality"
+    format_down = ""
+
+    # Avoid zero-padded quality values such as 082%.
+    format_quality = "%d%s"
+}
+
+
+# =============================================================================
+# Ethernet
+# =============================================================================
+#
+# `_first_` selects the first non-wireless network interface automatically.
+#
+# Example:
+#
+#   LAN 192.168.1.42
+#
+# We intentionally do not display link speed because obtaining it may require
+# additional capabilities and it provides little value during normal use.
+#
+# If Ethernet is disconnected, this block disappears entirely.
+
+ethernet _first_ {
+    format_up = "LAN %ip"
+    format_down = ""
+}
+
+
+# =============================================================================
+# Battery
+# =============================================================================
+#
+# `battery all` aggregates all batteries reported by the system.
+#
+# This makes the same configuration usable on both:
+#
+#   - desktop PCs, where the block disappears;
+#   - laptops, where battery information is displayed.
+#
+# Examples:
+#
+#   BAT 73% 03:24
+#   AC  92% 00:31
+#
+# The value becomes critical below 15%.
+
+battery all {
+    format = "%status %percentage %remaining"
+    format_down = ""
+
+    status_chr = "AC"
+    status_bat = "BAT"
+    status_unk = "BAT"
+    status_full = "AC"
+    status_idle = "AC"
+
+    low_threshold = 15
+    threshold_type = "percentage"
+
+    hide_seconds = true
+    format_percentage = "%.0f%s"
+}
+
+
+# =============================================================================
+# Date and time
+# =============================================================================
+#
+# Numeric date format is deliberately locale-independent and remains compact:
+#
+#   17.09.2026  09:06
+#
+# Seconds are intentionally omitted because they create constant visual
+# movement without providing useful information in a desktop status bar.
+
+tztime local {
+    format = "%d.%m.%Y  %H:%M"
+
+    min_width = "00.00.0000  00:00"
+}
+
+
+# =============================================================================
+# Audio — enable after PipeWire configuration
+# =============================================================================
+#
+# i3status supports PulseAudio-compatible volume reporting. Once we configure
+# PipeWire + pipewire-pulse, this block can be enabled.
+#
+# Add this line to the module order before the network blocks:
+#
+#   order += "volume master"
+#
+# Then uncomment:
+#
+# volume master {
+#     format = "VOL %volume"
+#     format_muted = "VOL muted"
+#
+#     device = "pulse"
+#
+#     min_width = "VOL muted"
+# }
+
+
+# =============================================================================
+# CPU temperature — hardware-specific, intentionally disabled
+# =============================================================================
+#
+# Unlike CPU usage, temperature requires a hardware-specific sensor path.
+# We therefore do NOT guess one in the portable base configuration.
+#
+# Find available sensors with:
+#
+#   find /sys/class/hwmon -name 'temp*_input' -print
+#
+# or, after installing lm-sensors:
+#
+#   sensors
+#
+# A machine-specific configuration can then add:
+#
+#   order += "cpu_temperature 0"
+#
+# Example:
+#
+# cpu_temperature 0 {
+#     format = "TEMP %degrees°C"
+#     max_threshold = 85
+#
+#     path = "/sys/class/hwmon/hwmonX/tempY_input"
+# }
+#
+# Do not copy the example path blindly: hwmon numbering may differ between
+# machines and kernels.
+
+
+# =============================================================================
+# Deliberately omitted information
+# =============================================================================
+#
+# LOAD AVERAGE
+#   CPU percentage is easier to understand at a glance and more useful on a
+#   personal workstation.
+#
+# IPv6 ADDRESS
+#   Having an IPv6 address is normal and does not deserve permanent screen
+#   space.
+#
+# UPTIME
+#   Useful diagnostically, not useful enough to display continuously.
+#
+# SWAP
+#   Memory pressure is already represented by the RAM block.
+#
+# CPU FREQUENCY
+#   Modern CPUs change frequency too quickly for such a value to be meaningful
+#   in a status bar.
+#
+# IP ADDRESS ON WI-FI
+#   The connected SSID and link quality are more useful during everyday use.
+#   `ip addr` or `nmcli` can provide details when needed.
+#
+# BACKLIGHT
+#   Brightness is something we change, not something we need to constantly
+#   monitor. Its controls will be implemented through keyboard shortcuts.
+#
+# PACKAGE UPDATES
+#   Debian Stable does not require a permanently polling update counter.
+#   Updates belong to normal system maintenance rather than the status bar.
+#
+# =============================================================================
