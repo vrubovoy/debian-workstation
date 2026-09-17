@@ -1,3 +1,7 @@
+# =============================================================================
+# Desktop packages
+# =============================================================================
+
 # X11
 xserver-xorg
 xinit
@@ -14,7 +18,7 @@ kitty
 lightdm
 lightdm-gtk-greeter
 
-# Main font
+# Fonts
 fonts-ubuntu
 
 # Application launcher
@@ -24,7 +28,7 @@ rofi
 dunst
 libnotify-bin
 
-# X11 compositor
+# Compositor
 picom
 
 # Wallpaper
