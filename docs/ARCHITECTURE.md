@@ -60,6 +60,21 @@ Principles:
 | Brightness control | brightnessctl | Hardware backlight control |
 | Media control | playerctl | MPRIS media control |
 
+## Userland
+
+| Component | Implementation | Purpose |
+|---|---|---|
+| Terminal editor | Neovim | General-purpose terminal text editing |
+| Terminal file manager | Yazi | Keyboard-driven file management |
+| Graphical file manager | Thunar | GUI file and removable-media management |
+| Archive manager | Xarchiver | Graphical archive integration for Thunar |
+| Browser | Firefox ESR | Web browsing |
+| CLI listing | eza | Human-friendly directory listing |
+| Interactive filtering | fzf | Fuzzy selection for shell workflows |
+| File preview | bat | Syntax-highlighted text viewing |
+| Disk overview | duf | Human-friendly filesystem usage |
+| Search | ripgrep + fd | Fast content and filesystem search |
+
 ### Session security
 
 Screen locking is intentionally split into two components:
