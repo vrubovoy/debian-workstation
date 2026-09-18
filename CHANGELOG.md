@@ -72,3 +72,12 @@
 - Added Rofi session and power menu.
 - Added guarded logout, reboot and power-off actions.
 - Replaced direct Ctrl+Alt+Delete logout with the session menu.
+- Added reproducible Git workstation configuration.
+- Added machine-local Git identity separation.
+- Added fast-forward-only pull policy.
+- Added Lazygit.
+- Added OpenSSH client configuration.
+- Replaced Fish-managed SSH agents with Debian Xsession integration.
+- Added automatic SSH key loading into the session agent.
+- Added optional GnuPG signing infrastructure.
+- Added graphical GPG pinentry.

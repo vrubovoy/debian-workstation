@@ -89,6 +89,12 @@ Principles:
 | Screenshots | maim + slop | X11 screenshot capture and region selection |
 | X11 window discovery | xdotool | Focused-window queries for desktop helpers |
 | Session menu | Rofi + systemd | Session and power controls |
+| Version control | Git | Source-control client |
+| Git TUI | Lazygit | Interactive Git workflow |
+| Secure remote access | OpenSSH | SSH authentication and Git transport |
+| SSH key agent | Debian Xsession / ssh-agent | Session-wide private-key agent |
+| Signing | GnuPG | Optional Git commit/tag signing |
+| Passphrase UI | pinentry-gtk2 | Graphical GPG passphrase entry |
 
 ### Session security
 
@@ -152,3 +158,16 @@ Window-manager bindings invoke stable `workstation-*` commands rather than
 embedding implementation logic into the i3 configuration.
 
 This keeps desktop actions independently testable and replaceable.
+
+### Secrets and identity
+
+The workstation repository contains reproducible configuration but never
+cryptographic secrets or personal credentials.
+
+The following remain machine/user state:
+
+- SSH private keys;
+- GPG private keys;
+- Git name/email/signing key;
+- known-host databases;
+- authentication tokens.
