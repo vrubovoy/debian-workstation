@@ -44,3 +44,11 @@ Principles:
 | Wallpaper | Feh | Desktop background |
 | Screen locker | i3lock | Session locking |
 | Lock coordinator | xss-lock | Automatic lock integration |
+
+### Session helpers
+
+Desktop operations which require logic beyond a single application command are
+implemented as small standalone scripts under `scripts/session/`.
+
+The window manager only invokes these helpers and does not contain their
+implementation details.

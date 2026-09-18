@@ -16,3 +16,6 @@
 - Picom compositor.
 - Feh wallpaper manager.
 - i3lock and xss-lock screen locking.
+- Added repository-managed desktop wallpaper with Feh.
+- Added Graphite Blue fallback background.
+- Added reusable session helper architecture.
