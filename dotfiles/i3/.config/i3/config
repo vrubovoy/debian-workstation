@@ -473,16 +473,34 @@ bindsym $mod+l exec --no-startup-id ~/.local/bin/workstation-lock
 
 
 # =============================================================================
-# Screenshot
+# Screenshots
 # =============================================================================
 #
-# Reserved shortcut:
+# Screenshot results are saved to:
 #
-#   Super + P
+#   ~/Pictures/Screenshots
 #
-# Screenshot tooling will be selected separately.
-#
-# bindsym $mod+p exec --no-startup-id ...
+# and simultaneously copied to the X11 clipboard.
+
+
+# Interactive rectangular selection.
+bindsym $mod+p \
+    exec --no-startup-id ~/.local/bin/workstation-screenshot area
+
+
+# Standard PrintScreen behaviour: entire desktop.
+bindsym Print \
+    exec --no-startup-id ~/.local/bin/workstation-screenshot screen
+
+
+# Explicit region selection.
+bindsym Shift+Print \
+    exec --no-startup-id ~/.local/bin/workstation-screenshot area
+
+
+# Focused window only.
+bindsym Mod1+Print \
+    exec --no-startup-id ~/.local/bin/workstation-screenshot window
 
 
 # =============================================================================

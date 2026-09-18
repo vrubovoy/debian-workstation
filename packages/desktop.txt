@@ -80,3 +80,12 @@ libglib2.0-bin
 # Qt integration with the GTK desktop theme
 qt5-gtk-platformtheme
 qt6-gtk-platformtheme
+
+# =============================================================================
+# Desktop utilities
+# =============================================================================
+
+# Screenshots
+maim
+slop
+xdotool
