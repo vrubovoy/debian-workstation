@@ -1,0 +1,14 @@
+# =============================================================================
+# Debian network interfaces
+# =============================================================================
+#
+# Physical network interfaces are managed by NetworkManager.
+#
+# Only the loopback interface is configured through ifupdown.
+#
+# =============================================================================
+
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback

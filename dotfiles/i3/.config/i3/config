@@ -606,6 +606,17 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 
 # -----------------------------------------------------------------------------
+# NetworkManager
+# -----------------------------------------------------------------------------
+#
+# Network status and connection control applet.
+#
+# The icon is embedded into the i3bar system tray.
+
+exec --no-startup-id nm-applet
+
+
+# -----------------------------------------------------------------------------
 # Notifications
 # -----------------------------------------------------------------------------
 

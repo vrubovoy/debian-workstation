@@ -37,3 +37,29 @@ feh
 # Screen locking
 i3lock
 xss-lock
+
+# =============================================================================
+# Desktop infrastructure
+# =============================================================================
+
+# Networking
+network-manager
+network-manager-applet
+nm-connection-editor
+
+# Audio
+pipewire-audio
+pavucontrol
+alsa-utils
+playerctl
+
+# Bluetooth
+bluez
+blueman
+
+# Privilege authentication
+mate-polkit
+
+# Hardware controls
+brightnessctl
+brightness-udev
