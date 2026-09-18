@@ -67,8 +67,7 @@ abbr --add lt \
 
 abbr --add g git
 
-# Keep the existing shortcut. It simply remains unusable until Lazygit is
-# installed intentionally later.
+# Lazygit TUI.
 abbr --add lg lazygit
 
 
@@ -88,7 +87,3 @@ abbr --add mc 'make clean'
 # point it at the explicit Debian interpreter name.
 
 abbr --add p python3
-
-
-# Human-friendly filesystem overview.
-abbr --add disk duf

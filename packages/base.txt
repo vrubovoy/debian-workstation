@@ -1,3 +1,12 @@
+# =============================================================================
+# Base workstation packages
+# =============================================================================
+
+# Bootstrap / repository management
+ca-certificates
+curl
+stow
+
 # Shell
 fish
 starship

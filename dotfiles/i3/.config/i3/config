@@ -221,16 +221,9 @@ bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
 # =============================================================================
 # File manager
 # =============================================================================
-#
-# The file manager has not been selected yet.
-#
-# Reserved shortcut:
-#
-#   Super + E
-#
-# Add the final command here after choosing the file manager.
-#
-# bindsym $mod+e exec --no-startup-id <file-manager>
+
+# Open the graphical file manager.
+bindsym $mod+e exec --no-startup-id thunar
 
 
 # =============================================================================
@@ -563,9 +556,6 @@ bindsym $mod+Control+r reload
 #
 # Existing windows remain open.
 bindsym $mod+Shift+r restart
-
-# End the graphical i3 session.
-bindsym Control+Mod1+Delete exit
 
 
 # =============================================================================

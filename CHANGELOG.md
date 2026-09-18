@@ -4,80 +4,33 @@
 
 ### Added
 
-- Debian 13 base workstation.
-- Xorg graphical environment.
-- i3 window manager configuration.
-- i3status configuration.
-- Kitty terminal configuration.
-- Graphite Blue visual theme.
-- LightDM GTK greeter configuration and theme.
-- Rofi application launcher.
-- Dunst notification daemon.
-- Picom compositor.
-- Feh wallpaper manager.
-- i3lock and xss-lock screen locking.
-- Added repository-managed desktop wallpaper with Feh.
-- Added Graphite Blue fallback background.
-- Added reusable session helper architecture.
-- Added Graphite Blue i3lock integration.
-- Added automatic session locking after inactivity.
-- Added display DPMS idle policy.
-- Added xss-lock integration with systemd-logind.
-- Added lock-before-suspend protection.
-- Added PipeWire volume and microphone controls.
-- Added Dunst volume and brightness OSD.
-- Added hardware brightness controls.
-- Added MPRIS media-key support through Playerctl.
-- Added playerctld active-player tracking.
-- Added PipeWire volume display to i3status.
-- Added Neovim as the workstation terminal editor.
-- Added modular Lua-based Neovim configuration.
-- Added native Graphite Blue Neovim colorscheme.
-- Added X11 clipboard integration.
-- Added persistent undo and editing-safety defaults.
-- Added native EditorConfig-based project formatting.
-- Added Fish as the default interactive shell.
-- Added modular Fish environment and abbreviation configuration.
-- Preserved workstation development abbreviations.
-- Added Graphite Blue Fish syntax colors.
-- Added minimal Starship prompt without right-side information.
-- Added Fastfetch shell greeting with Kitty image rendering.
-- Added Onefetch for Git repository summaries.
-- Added Yazi as the primary terminal file manager.
-- Added official Yazi stable APT repository.
-- Added Yazi Graphite Blue theme.
-- Added native Kitty image previews.
-- Added PDF, video, archive, JSON and SVG preview dependencies.
-- Added Fish Yazi CWD wrapper.
-- Added Zoxide integration.
-- Added Debian fd compatibility shim.
-- Added Firefox ESR as the default web browser.
-- Added reproducible Firefox enterprise policies.
-- Disabled Firefox telemetry and studies.
-- Removed sponsored and recommendation content from Firefox Home.
-- Added minimal Firefox onboarding and messaging policy.
-- Added Super+W browser shortcut.
-- Added unified GTK/Qt desktop appearance layer.
-- Added Graphite Blue GTK 3 theme overrides.
-- Added Graphite Blue GTK 4 semantic colors.
-- Added Adwaita icon theme.
-- Added Ubuntu Bold GUI typography.
-- Added GTK-based Qt5 and Qt6 desktop integration.
-- Added persistent X11 session environment.
-- Added reproducible desktop GSettings configuration.
-- Added X11 screenshot subsystem using maim.
-- Added region, active-window and full-desktop screenshot modes.
-- Added automatic screenshot clipboard integration.
-- Added Graphite Blue screenshot selection and Dunst feedback.
-- Added Rofi session and power menu.
-- Added guarded logout, reboot and power-off actions.
-- Replaced direct Ctrl+Alt+Delete logout with the session menu.
-- Added reproducible Git workstation configuration.
-- Added machine-local Git identity separation.
-- Added fast-forward-only pull policy.
-- Added Lazygit.
-- Added OpenSSH client configuration.
-- Replaced Fish-managed SSH agents with Debian Xsession integration.
-- Added automatic SSH key loading into the session agent.
-- Added optional GnuPG signing infrastructure.
-- Added graphical GPG pinentry.
+- Debian 13 / X11 / i3 workstation architecture.
+- Graphite Blue desktop appearance across i3, LightDM, Kitty, Rofi, Dunst,
+  GTK/Qt, Neovim and Yazi.
+- i3bar/i3status system status, PipeWire audio, NetworkManager, Bluetooth and
+  Polkit desktop infrastructure.
+- Repository-managed wallpaper, lock/idle policy, hardware/media controls,
+  screenshot workflow and Rofi session/power menu.
+- Fish + Starship shell environment with FZF/Zoxide helpers and preserved
+  workstation navigation workflows.
+- Neovim terminal editor and Yazi/Thunar file-management stack.
+- Firefox ESR with reproducible system policies.
+- Git, OpenSSH, Lazygit and optional GnuPG signing infrastructure with secrets
+  kept outside version control.
+- GNU Stow dotfile deployment with directory folding explicitly disabled.
+- Repository helpers for Yazi repository setup, Stow deployment and stable
+  `workstation-*` user commands.
+
+### Changed
+
+- Replaced legacy CachyOS/Noctalia/Wayland-specific components with explicit
+  Debian/X11 equivalents.
+- Replaced independent Qt theming with GTK platform-theme integration.
+- Separated reproducible Git behaviour from machine-local identity/signing data.
+
+### Fixed
+
+- Removed duplicate i3 `Ctrl+Alt+Delete` bindings.
+- Enabled the selected Thunar `Super+E` binding.
+- Removed duplicate package and Fish-abbreviation entries.
+- Corrected Yazi theme TOML syntax.
