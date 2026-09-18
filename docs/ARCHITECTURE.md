@@ -45,6 +45,15 @@ Principles:
 | Screen locker | i3lock | Session locking |
 | Lock coordinator | xss-lock | Automatic lock integration |
 
+### Session security
+
+Screen locking is intentionally split into two components:
+
+- `i3lock` provides the actual authentication screen.
+- `xss-lock` coordinates idle events and system sleep.
+
+The window manager does not directly implement suspend locking.
+
 ### Session helpers
 
 Desktop operations which require logic beyond a single application command are

@@ -19,3 +19,8 @@
 - Added repository-managed desktop wallpaper with Feh.
 - Added Graphite Blue fallback background.
 - Added reusable session helper architecture.
+- Added Graphite Blue i3lock integration.
+- Added automatic session locking after inactivity.
+- Added display DPMS idle policy.
+- Added xss-lock integration with systemd-logind.
+- Added lock-before-suspend protection.
