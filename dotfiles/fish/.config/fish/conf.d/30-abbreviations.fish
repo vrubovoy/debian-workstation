@@ -31,6 +31,15 @@ abbr --add mkdir 'mkdir -p'
 
 
 # =============================================================================
+# Filesystem overview
+# =============================================================================
+#
+# Keep the real POSIX/GNU `df` command untouched.
+
+abbr --add disk duf
+
+
+# =============================================================================
 # eza
 # =============================================================================
 #
@@ -79,3 +88,7 @@ abbr --add mc 'make clean'
 # point it at the explicit Debian interpreter name.
 
 abbr --add p python3
+
+
+# Human-friendly filesystem overview.
+abbr --add disk duf

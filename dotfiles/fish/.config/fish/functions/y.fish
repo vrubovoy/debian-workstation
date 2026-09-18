@@ -2,39 +2,61 @@
 # Yazi shell wrapper
 # =============================================================================
 #
-# Start Yazi and update the Fish working directory when leaving it.
+# Start Yazi, synchronize its final directory back to Fish and automatically
+# list the resulting directory.
 #
-# Example:
+#   q
+#       quit Yazi, change Fish CWD and show directory contents;
 #
-#   ~/Projects ❯ y
-#
-# Navigate inside Yazi to:
-#
-#   ~/Documents
-#
-# Press q.
-#
-# Fish now continues in:
-#
-#   ~/Documents ❯
-#
-# Pressing Q in Yazi quits without changing the shell directory.
+#   Q
+#       quit without changing Fish CWD, but still show the current directory.
 #
 # =============================================================================
 
-function y
+function y --description "Open Yazi and follow its final directory"
 
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    set -l cwd_file (
+        mktemp -t "yazi-cwd.XXXXXX"
+    )
 
-    command yazi $argv --cwd-file="$tmp"
+    command yazi \
+        $argv \
+        --cwd-file="$cwd_file"
 
-    if read -z cwd < "$tmp"
-        and test "$cwd" != "$PWD"
-        and test -d "$cwd"
+    if test -f "$cwd_file"
 
-        builtin cd -- "$cwd"
+        set -l cwd (
+            command cat -- "$cwd_file"
+        )
+
+        if test -n "$cwd"
+            and test "$cwd" != "$PWD"
+            and test -d "$cwd"
+
+            builtin cd -- "$cwd"
+
+        end
+
     end
 
-    command rm -f -- "$tmp"
+    command rm -f -- "$cwd_file"
+
+
+    # Preserve the old workflow: after leaving Yazi immediately show where
+    # we ended up and what is in the directory.
+
+    if type -q eza
+
+        command eza \
+            -lah \
+            --git \
+            --group-directories-first \
+            --icons=auto
+
+    else
+
+        command ls -lah
+
+    end
 
 end
