@@ -454,14 +454,9 @@ bindsym $mod+Shift+equal resize grow height 10 px or 10 ppt
 # Lock screen
 # =============================================================================
 #
-# Reserved shortcut:
-#
-#   Super + L
-#
-# We will configure the lock screen as its own component instead of hiding its
-# implementation inside the i3 configuration.
-#
-# bindsym $mod+l exec --no-startup-id ...
+# Immediately lock the current graphical session.
+
+bindsym $mod+l exec --no-startup-id ~/.local/bin/workstation-lock
 
 
 # =============================================================================
@@ -563,6 +558,38 @@ bindsym Control+Mod1+Delete exit
 # Graphite Blue base color (#111318).
 
 exec --no-startup-id ~/.local/bin/workstation-wallpaper
+
+
+# -----------------------------------------------------------------------------
+# Idle policy
+# -----------------------------------------------------------------------------
+#
+# Configures:
+#
+#   10 min idle -> screen lock
+#   15 min idle -> displays off
+
+exec --no-startup-id ~/.local/bin/workstation-idle
+
+
+# -----------------------------------------------------------------------------
+# Screen locking
+# -----------------------------------------------------------------------------
+#
+# xss-lock integrates i3lock with:
+#
+#   - X11 inactivity;
+#   - systemd-logind;
+#   - loginctl lock-session;
+#   - suspend / hibernate.
+#
+# --transfer-sleep-lock ensures that system suspend is delayed until i3lock has
+# actually secured the display.
+
+exec --no-startup-id xss-lock \
+    --transfer-sleep-lock \
+    -- ~/.local/bin/workstation-lock
+
 
 
 # -----------------------------------------------------------------------------
