@@ -551,12 +551,9 @@ bindsym Control+Mod1+Delete exit
 # =============================================================================
 # Startup
 # =============================================================================
-#
-# Keep this section intentionally small.
-#
-# Persistent desktop services such as notification daemons, compositors,
-# wallpaper tools, NetworkManager applets and lock helpers will be added only
-# when their respective components are installed and configured.
+
+# Notification daemon.
+exec --no-startup-id dunst
 
 
 # =============================================================================
