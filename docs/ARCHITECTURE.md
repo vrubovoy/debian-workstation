@@ -82,6 +82,10 @@ Principles:
 | Terminal file manager | Yazi | Keyboard-first file management and previews |
 | Directory history | Zoxide | Fuzzy historical directory navigation |
 | Web browser | Firefox ESR | Primary web browser |
+| GTK theme | Adwaita + Graphite Blue overrides | Common GTK visual layer |
+| Icon theme | Adwaita | System application and action icons |
+| Qt integration | Qt GTK platform theme | GTK-consistent Qt5/Qt6 appearance |
+| Desktop settings | GSettings | Desktop-wide color/font/icon preferences |
 
 ### Session security
 
@@ -121,3 +125,20 @@ Graphite Blue colorscheme.
 
 IDE-like functionality belongs to dedicated development tooling and is not a
 requirement for editing or maintaining the operating system.
+
+### GUI appearance
+
+GTK is the canonical desktop appearance source.
+
+GTK 3 uses Debian's Adwaita-dark theme with a minimal Graphite Blue user
+stylesheet.
+
+GTK 4 uses Adwaita with Graphite Blue semantic-color overrides.
+
+Qt 5 and Qt 6 applications use their respective GTK 3 platform-theme plugins
+through:
+
+`QT_QPA_PLATFORMTHEME=gtk3`
+
+This prevents GTK and Qt from developing independent visual configurations and
+avoids additional theme engines such as Kvantum.
