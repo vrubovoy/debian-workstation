@@ -86,6 +86,9 @@ Principles:
 | Icon theme | Adwaita | System application and action icons |
 | Qt integration | Qt GTK platform theme | GTK-consistent Qt5/Qt6 appearance |
 | Desktop settings | GSettings | Desktop-wide color/font/icon preferences |
+| Screenshots | maim + slop | X11 screenshot capture and region selection |
+| X11 window discovery | xdotool | Focused-window queries for desktop helpers |
+| Session menu | Rofi + systemd | Session and power controls |
 
 ### Session security
 
@@ -142,3 +145,10 @@ through:
 
 This prevents GTK and Qt from developing independent visual configurations and
 avoids additional theme engines such as Kvantum.
+
+### Desktop actions
+
+Window-manager bindings invoke stable `workstation-*` commands rather than
+embedding implementation logic into the i3 configuration.
+
+This keeps desktop actions independently testable and replaceable.
