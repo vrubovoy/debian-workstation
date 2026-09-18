@@ -74,6 +74,7 @@ Principles:
 | File preview | bat | Syntax-highlighted text viewing |
 | Disk overview | duf | Human-friendly filesystem usage |
 | Search | ripgrep + fd | Fast content and filesystem search |
+| Terminal editor | Neovim | General-purpose terminal text editing |
 
 ### Session security
 
@@ -102,3 +103,14 @@ implementation and optional desktop OSD.
 
 This keeps the window-manager configuration declarative and allows the
 underlying implementation to change independently.
+
+### Terminal editor
+
+Neovim is deliberately kept independent of external plugins in the base
+workstation.
+
+The base configuration provides editing behaviour, key mappings and the native
+Graphite Blue colorscheme.
+
+IDE-like functionality belongs to dedicated development tooling and is not a
+requirement for editing or maintaining the operating system.

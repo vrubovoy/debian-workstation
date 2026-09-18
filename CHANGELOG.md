@@ -30,3 +30,9 @@
 - Added MPRIS media-key support through Playerctl.
 - Added playerctld active-player tracking.
 - Added PipeWire volume display to i3status.
+- Added Neovim as the workstation terminal editor.
+- Added modular Lua-based Neovim configuration.
+- Added native Graphite Blue Neovim colorscheme.
+- Added X11 clipboard integration.
+- Added persistent undo and editing-safety defaults.
+- Added native EditorConfig-based project formatting.
