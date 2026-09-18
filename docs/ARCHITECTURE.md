@@ -45,6 +45,21 @@ Principles:
 | Screen locker | i3lock | Session locking |
 | Lock coordinator | xss-lock | Automatic lock integration |
 
+## Desktop infrastructure
+
+| Component | Implementation | Purpose |
+|---|---|---|
+| Networking | NetworkManager | Wired/Wi-Fi network management |
+| Network UI | nm-applet | i3bar tray network control |
+| Audio server | PipeWire | Audio routing and processing |
+| Audio session manager | WirePlumber | PipeWire device/session policy |
+| Audio control | Pavucontrol | Graphical audio routing/control |
+| Bluetooth stack | BlueZ | Bluetooth daemon and protocol stack |
+| Bluetooth UI | Blueman | Tray applet and device management |
+| Authorization | Polkit + mate-polkit | Graphical privilege authentication |
+| Brightness control | brightnessctl | Hardware backlight control |
+| Media control | playerctl | MPRIS media control |
+
 ### Session security
 
 Screen locking is intentionally split into two components:
