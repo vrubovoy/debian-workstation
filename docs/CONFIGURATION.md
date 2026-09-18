@@ -22,3 +22,26 @@ not managed through GNU Stow.
 |---|---|---|
 | LightDM greeter | `system/lightdm/lightdm-gtk-greeter.conf` | `/etc/lightdm/lightdm-gtk-greeter.conf` |
 | LightDM theme | `system/lightdm/themes/GraphiteBlue-LightDM/` | `/usr/share/themes/GraphiteBlue-LightDM/` |
+
+## Session helpers
+
+Small desktop operations that do not belong directly to an application
+configuration are implemented as standalone scripts.
+
+| Purpose | Repository path | User command |
+|---|---|---|
+| Wallpaper | `scripts/session/wallpaper.sh` | `~/.local/bin/workstation-wallpaper` |
+
+### Wallpaper
+
+The default wallpaper is stored at:
+
+`assets/wallpapers/default.jpg`
+
+At session startup, `workstation-wallpaper` applies it using Feh.
+
+If the asset is unavailable, the script falls back to the Graphite Blue base
+color `#111318`.
+
+Feh is invoked with `--no-fehbg`; therefore `~/.fehbg` is intentionally not
+used or managed.
