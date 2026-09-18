@@ -56,3 +56,7 @@ tumbler
 
 xdg-user-dirs
 xdg-utils
+
+# Terminal utilities
+fastfetch
+less
