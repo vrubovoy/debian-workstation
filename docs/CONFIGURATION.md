@@ -116,3 +116,33 @@ Blueman provides the graphical device manager and i3bar tray applet.
 
 `mate-polkit` provides the graphical authentication agent required by
 applications running under i3.
+
+### Neovim
+
+Neovim is the default terminal text editor.
+
+Configuration:
+
+`dotfiles/nvim/.config/nvim/`
+
+The configuration intentionally uses only built-in Neovim functionality.
+
+No external plugin manager or plugin dependencies are required by the base
+workstation.
+
+Structure:
+
+- `init.lua` — configuration entrypoint.
+- `lua/workstation/options.lua` — editor behaviour and defaults.
+- `lua/workstation/keymaps.lua` — workstation-specific mappings.
+- `lua/workstation/autocmds.lua` — automatic editor behaviour.
+- `colors/graphite-blue.lua` — native Graphite Blue colorscheme.
+
+Default indentation is four spaces.
+
+Project-specific formatting is controlled through Neovim's built-in
+EditorConfig support whenever a `.editorconfig` file is present.
+
+The X11 clipboard is exposed to Neovim through `xclip`.
+
+Persistent undo and swap files remain enabled for editing safety.
