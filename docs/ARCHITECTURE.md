@@ -76,3 +76,14 @@ implemented as small standalone scripts under `scripts/session/`.
 
 The window manager only invokes these helpers and does not contain their
 implementation details.
+
+### Hardware controls
+
+Hardware and media key bindings do not contain implementation logic directly in
+the i3 configuration.
+
+i3 calls stable `workstation-*` helper commands which provide the actual
+implementation and optional desktop OSD.
+
+This keeps the window-manager configuration declarative and allows the
+underlying implementation to change independently.

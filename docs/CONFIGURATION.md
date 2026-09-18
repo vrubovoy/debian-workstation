@@ -33,6 +33,9 @@ are implemented as standalone scripts.
 | Wallpaper | `scripts/session/wallpaper.sh` | `workstation-wallpaper` |
 | Screen locking | `scripts/session/lock.sh` | `workstation-lock` |
 | Idle policy | `scripts/session/idle.sh` | `workstation-idle` |
+| Audio control | `scripts/session/volume.sh` | `workstation-volume` |
+| Brightness control | `scripts/session/brightness.sh` | `workstation-brightness` |
+| Media control | `scripts/session/media.sh` | `workstation-media` |
 
 ### Screen locking
 
@@ -65,6 +68,20 @@ color `#111318`.
 
 Feh is invoked with `--no-fehbg`; therefore `~/.fehbg` is intentionally not
 used or managed.
+
+### Desktop OSD
+
+Volume, microphone and brightness changes are displayed through Dunst.
+
+The helper scripts use Dunst stack tags so repeated hardware-key presses update
+the current notification rather than creating multiple notifications.
+
+Volume is controlled through WirePlumber `wpctl`.
+
+Brightness is controlled through `brightnessctl`.
+
+Media keys are handled through Playerctl and MPRIS. `playerctld` runs during the
+i3 session so commands are directed to the most recently active media player.
 
 ## Desktop infrastructure
 
