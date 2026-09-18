@@ -207,3 +207,38 @@ directory selected when Yazi exits.
 On Debian, `fd-find` provides `/usr/bin/fdfind`, while Yazi expects `fd`.
 The workstation therefore exposes `~/.local/bin/fd` as a compatibility symlink
 to `/usr/bin/fdfind`.
+
+### Firefox
+
+Firefox ESR is installed from Debian Stable and used as the default web
+browser.
+
+System-wide reproducible settings are stored in:
+
+`system/firefox/policies.json`
+
+and installed to:
+
+`/etc/firefox/policies/policies.json`
+
+The policy configuration:
+
+- disables telemetry uploads;
+- disables Firefox Studies;
+- removes sponsored Firefox Home content;
+- removes feature and extension recommendations;
+- skips onboarding messages;
+- disables built-in generative-AI features by default.
+
+Policies deliberately avoid controlling personal browser behaviour such as:
+
+- saved passwords;
+- session restoration;
+- download location;
+- Firefox Sync;
+- search engine;
+- browsing history;
+- extensions.
+
+Firefox profiles under `~/.mozilla/firefox/` are user data and are never
+tracked by the workstation repository.

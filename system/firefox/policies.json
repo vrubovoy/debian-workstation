@@ -1,0 +1,42 @@
+{
+    "policies": {
+        "DisableTelemetry": true,
+
+        "DisableFirefoxStudies": true,
+
+        "DontCheckDefaultBrowser": true,
+
+        "FirefoxHome": {
+            "Search": true,
+            "TopSites": false,
+            "SponsoredTopSites": false,
+            "Highlights": false,
+            "Pocket": false,
+            "SponsoredPocket": false,
+            "Snippets": false,
+            "Locked": false
+        },
+
+        "FirefoxSuggest": {
+            "SponsoredSuggestions": false,
+            "ImproveSuggest": false,
+            "Locked": false
+        },
+
+        "UserMessaging": {
+            "ExtensionRecommendations": false,
+            "FeatureRecommendations": false,
+            "UrlbarInterventions": false,
+            "SkipOnboarding": true,
+            "MoreFromMozilla": false,
+            "FirefoxLabs": false,
+            "Locked": false
+        },
+
+        "GenerativeAI": {
+            "Enabled": false,
+            "Chatbot": false,
+            "Locked": false
+        }
+    }
+}
