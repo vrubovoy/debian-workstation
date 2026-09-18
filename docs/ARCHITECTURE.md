@@ -75,6 +75,10 @@ Principles:
 | Disk overview | duf | Human-friendly filesystem usage |
 | Search | ripgrep + fd | Fast content and filesystem search |
 | Terminal editor | Neovim | General-purpose terminal text editing |
+| Interactive shell | Fish | Interactive command-line environment |
+| Prompt | Starship | Minimal directory/Git shell prompt |
+| System fetch | Fastfetch | Visual system-information summary |
+| Repository fetch | Onefetch | Git repository information and statistics |
 
 ### Session security
 

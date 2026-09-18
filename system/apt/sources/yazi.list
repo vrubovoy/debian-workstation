@@ -1,0 +1,2 @@
+# Official Yazi stable repository.
+deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main
