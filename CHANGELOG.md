@@ -43,3 +43,11 @@
 - Added minimal Starship prompt without right-side information.
 - Added Fastfetch shell greeting with Kitty image rendering.
 - Added Onefetch for Git repository summaries.
+- Added Yazi as the primary terminal file manager.
+- Added official Yazi stable APT repository.
+- Added Yazi Graphite Blue theme.
+- Added native Kitty image previews.
+- Added PDF, video, archive, JSON and SVG preview dependencies.
+- Added Fish Yazi CWD wrapper.
+- Added Zoxide integration.
+- Added Debian fd compatibility shim.

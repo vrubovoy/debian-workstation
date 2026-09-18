@@ -79,6 +79,8 @@ Principles:
 | Prompt | Starship | Minimal directory/Git shell prompt |
 | System fetch | Fastfetch | Visual system-information summary |
 | Repository fetch | Onefetch | Git repository information and statistics |
+| Terminal file manager | Yazi | Keyboard-first file management and previews |
+| Directory history | Zoxide | Fuzzy historical directory navigation |
 
 ### Session security
 
