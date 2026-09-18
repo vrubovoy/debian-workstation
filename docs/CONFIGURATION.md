@@ -171,3 +171,39 @@ The right-side prompt and command duration are intentionally disabled.
 
 Fastfetch is displayed as the Fish greeting. Kitty uses its native graphics
 protocol to render `~/.config/fastfetch/logo.png`.
+
+### Yazi
+
+Yazi is the primary terminal file manager.
+
+Configuration:
+
+`dotfiles/yazi/.config/yazi/`
+
+Files:
+
+- `yazi.toml` — file-manager behaviour and preview settings.
+- `keymap.toml` — workstation-specific bindings layered over Yazi defaults.
+- `theme.toml` — Graphite Blue UI.
+
+Yazi is installed from its official stable APT repository.
+
+Preview support is provided by:
+
+- Kitty graphics protocol — images;
+- FFmpeg — video thumbnails;
+- Poppler — PDF previews;
+- 7-Zip — archive previews;
+- jq — JSON;
+- resvg — SVG;
+- ImageMagick — additional image formats.
+
+The workstation deliberately disables Yazi's built-in Nerd Font icons because
+the terminal font is Ubuntu Mono Bold.
+
+The Fish `y` wrapper starts Yazi and changes the shell working directory to the
+directory selected when Yazi exits.
+
+On Debian, `fd-find` provides `/usr/bin/fdfind`, while Yazi expects `fd`.
+The workstation therefore exposes `~/.local/bin/fd` as a compatibility symlink
+to `/usr/bin/fdfind`.
