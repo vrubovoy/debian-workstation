@@ -451,26 +451,29 @@ bindsym $mod+Shift+equal resize grow height 10 px or 10 ppt
 
 
 # =============================================================================
-# Lock screen
+# Session controls
 # =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# Lock screen
+# -----------------------------------------------------------------------------
 #
 # Immediately lock the current graphical session.
 
-bindsym $mod+l exec --no-startup-id ~/.local/bin/workstation-lock
+bindsym $mod+l \
+    exec --no-startup-id ~/.local/bin/workstation-lock
 
 
-# =============================================================================
-# Session / power menu
-# =============================================================================
-#
-# Reserved shortcut:
-#
-#   Super + Backspace
-#
-# The final implementation will use a small standalone power-menu script.
-#
-# bindsym $mod+BackSpace exec --no-startup-id ...
+# -----------------------------------------------------------------------------
+# Power / session menu
+# -----------------------------------------------------------------------------
 
+bindsym $mod+BackSpace \
+    exec --no-startup-id ~/.local/bin/workstation-power-menu
+
+bindsym Control+Mod1+Delete \
+    exec --no-startup-id ~/.local/bin/workstation-power-menu
 
 # =============================================================================
 # Screenshots
