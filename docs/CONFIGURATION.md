@@ -65,3 +65,37 @@ color `#111318`.
 
 Feh is invoked with `--no-fehbg`; therefore `~/.fehbg` is intentionally not
 used or managed.
+
+## Desktop infrastructure
+
+### NetworkManager
+
+Physical network interfaces are managed by NetworkManager.
+
+`/etc/network/interfaces` contains only the loopback interface.
+
+Network connection profiles and credentials are deliberately not tracked by
+Git.
+
+### Audio
+
+The workstation uses the Debian `pipewire-audio` stack:
+
+- PipeWire
+- PipeWire PulseAudio compatibility server
+- PipeWire ALSA plugin
+- WirePlumber
+- PipeWire Bluetooth support
+
+No custom PipeWire or WirePlumber configuration is currently required.
+
+### Bluetooth
+
+BlueZ provides the Bluetooth stack.
+
+Blueman provides the graphical device manager and i3bar tray applet.
+
+### PolicyKit
+
+`mate-polkit` provides the graphical authentication agent required by
+applications running under i3.
