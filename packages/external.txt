@@ -1,11 +1,20 @@
-# Packages not provided by Debian Stable.
+# =============================================================================
+# External packages
+# =============================================================================
+#
+# Packages listed here are intentionally not installed from Debian Stable.
+# Their installation is handled separately from the normal APT manifests.
+
+# -----------------------------------------------------------------------------
+# Upstream release packages
+# -----------------------------------------------------------------------------
 #
 # NAME      VERSION   SOURCE
 onefetch    2.28.1    https://github.com/o2sh/onefetch
 
-# =============================================================================
-# Packages from explicitly configured external APT repositories
-# =============================================================================
+# -----------------------------------------------------------------------------
+# Explicit external APT repositories
+# -----------------------------------------------------------------------------
 
-# Official Yazi repository
+# Official Yazi stable repository.
 yazi

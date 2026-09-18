@@ -1,33 +1,19 @@
 # Architecture
 
-Base system: Debian 13 Stable  
-Display server: X11  
-Window manager: i3  
-Terminal: Kitty  
-Launcher: Rofi  
-Notifications: Dunst  
-Compositor: Picom  
-Status bar: i3bar + i3status  
-Shell: Fish  
-Prompt: Starship  
-Login manager: LightDM  
-Network: NetworkManager  
-Audio: PipeWire + WirePlumber  
-Dotfiles management: GNU Stow  
-Automation: Bash  
-Package manager: APT  
+The workstation is built around Debian 13 Stable, X11 and i3. Its design
+prioritizes long-term stability, explicit configuration, replaceable
+components and reproducibility.
 
-Fonts:
-- UI: Ubuntu Bold
-- Monospace: Ubuntu Mono Bold
+## Principles
 
-Principles:
-- No Flatpak.
-- No Snap.
-- No desktop environments.
-- No rolling-release components for the desktop.
-- Old configs are references only.
-- Every persistent configuration change must be represented in this repository.
+- Debian Stable provides the operating-system base.
+- X11 and i3 form a deliberately small graphical environment.
+- No Flatpak or Snap is required by the base workstation.
+- No full desktop environment is installed.
+- Persistent configuration changes are represented in this repository.
+- Old workstation configurations are references, not sources to copy blindly.
+- Hardware-specific settings are excluded from the portable base when possible.
+- Secrets and personal runtime state are never version-controlled.
 
 ## Desktop stack
 
@@ -38,136 +24,107 @@ Principles:
 | Window manager | i3 | Window and workspace management |
 | Status bar | i3bar + i3status | Workspaces and system status |
 | Terminal | Kitty | Terminal emulator |
-| Launcher | Rofi | Application launcher |
-| Notifications | Dunst | Desktop notification daemon |
-| Compositor | Picom | Shadows, fading and visual effects |
-| Wallpaper | Feh | Desktop background |
-| Screen locker | i3lock | Session locking |
-| Lock coordinator | xss-lock | Automatic lock integration |
+| Launcher | Rofi | Application launcher and desktop menus |
+| Notifications | Dunst | Desktop notification daemon and OSD |
+| Compositor | Picom | VSync, shadows, rounded corners and fading |
+| Wallpaper | Feh | X11 desktop background |
+| Screen locker | i3lock | Session authentication screen |
+| Lock coordinator | xss-lock | Idle and systemd-logind lock integration |
+| Screenshots | maim + slop | X11 screenshots and region selection |
 
 ## Desktop infrastructure
 
 | Component | Implementation | Purpose |
 |---|---|---|
-| Networking | NetworkManager | Wired/Wi-Fi network management |
-| Network UI | nm-applet | i3bar tray network control |
+| Networking | NetworkManager | Wired and Wi-Fi network management |
+| Network UI | nm-applet | Tray network control |
 | Audio server | PipeWire | Audio routing and processing |
-| Audio session manager | WirePlumber | PipeWire device/session policy |
-| Audio control | Pavucontrol | Graphical audio routing/control |
-| Bluetooth stack | BlueZ | Bluetooth daemon and protocol stack |
+| Session manager | WirePlumber | PipeWire policy and default-device management |
+| Audio UI | Pavucontrol | Graphical audio routing and control |
+| Bluetooth stack | BlueZ | Bluetooth services |
 | Bluetooth UI | Blueman | Tray applet and device management |
 | Authorization | Polkit + mate-polkit | Graphical privilege authentication |
-| Brightness control | brightnessctl | Hardware backlight control |
+| Brightness | brightnessctl | Hardware backlight control |
 | Media control | playerctl | MPRIS media control |
 
 ## Userland
 
 | Component | Implementation | Purpose |
 |---|---|---|
-| Terminal editor | Neovim | General-purpose terminal text editing |
-| Terminal file manager | Yazi | Keyboard-driven file management |
+| Interactive shell | Fish | Daily interactive shell |
+| Prompt | Starship | Minimal directory/Git prompt |
+| Terminal editor | Neovim | General-purpose terminal editing |
+| Terminal file manager | Yazi | Keyboard-first file management and previews |
 | Graphical file manager | Thunar | GUI file and removable-media management |
-| Archive manager | Xarchiver | Graphical archive integration for Thunar |
-| Browser | Firefox ESR | Web browsing |
-| CLI listing | eza | Human-friendly directory listing |
-| Interactive filtering | fzf | Fuzzy selection for shell workflows |
-| File preview | bat | Syntax-highlighted text viewing |
+| Archive UI | Xarchiver | Graphical archive integration for Thunar |
+| Browser | Firefox ESR | Primary web browser |
+| Directory listing | eza | Human-friendly directory listing |
+| Fuzzy filtering | fzf | Shell selection and navigation workflows |
+| Text preview | bat | Syntax-highlighted file viewing |
 | Disk overview | duf | Human-friendly filesystem usage |
 | Search | ripgrep + fd | Fast content and filesystem search |
-| Terminal editor | Neovim | General-purpose terminal text editing |
-| Interactive shell | Fish | Interactive command-line environment |
-| Prompt | Starship | Minimal directory/Git shell prompt |
-| System fetch | Fastfetch | Visual system-information summary |
-| Repository fetch | Onefetch | Git repository information and statistics |
-| Terminal file manager | Yazi | Keyboard-first file management and previews |
 | Directory history | Zoxide | Fuzzy historical directory navigation |
-| Web browser | Firefox ESR | Primary web browser |
-| GTK theme | Adwaita + Graphite Blue overrides | Common GTK visual layer |
-| Icon theme | Adwaita | System application and action icons |
-| Qt integration | Qt GTK platform theme | GTK-consistent Qt5/Qt6 appearance |
-| Desktop settings | GSettings | Desktop-wide color/font/icon preferences |
-| Screenshots | maim + slop | X11 screenshot capture and region selection |
-| X11 window discovery | xdotool | Focused-window queries for desktop helpers |
-| Session menu | Rofi + systemd | Session and power controls |
-| Version control | Git | Source-control client |
-| Git TUI | Lazygit | Interactive Git workflow |
-| Secure remote access | OpenSSH | SSH authentication and Git transport |
-| SSH key agent | Debian Xsession / ssh-agent | Session-wide private-key agent |
-| Signing | GnuPG | Optional Git commit/tag signing |
-| Passphrase UI | pinentry-gtk2 | Graphical GPG passphrase entry |
+| System summary | Fastfetch | Visual system-information summary |
+| Repository summary | Onefetch | Git repository information and statistics |
 
-### Session security
+## Appearance
 
-Screen locking is intentionally split into two components:
+GTK is the canonical source of GUI appearance. GTK 3 uses Adwaita-dark with
+Graphite Blue overrides; GTK 4 uses Adwaita with Graphite Blue semantic colors.
+Qt 5 and Qt 6 use their GTK platform-theme plugins through
+`QT_QPA_PLATFORMTHEME=gtk3` rather than maintaining independent Qt themes.
 
-- `i3lock` provides the actual authentication screen.
-- `xss-lock` coordinates idle events and system sleep.
+The base typography is Ubuntu Bold for UI text and Ubuntu Mono Bold for
+terminal/code text. Adwaita is the base icon and cursor theme.
 
-The window manager does not directly implement suspend locking.
+## Session security
 
-### Session helpers
+Screen locking is split into two components:
 
-Desktop operations which require logic beyond a single application command are
-implemented as small standalone scripts under `scripts/session/`.
+- `i3lock` provides the authentication screen;
+- `xss-lock` coordinates X11 idle events and systemd-logind sleep requests.
 
-The window manager only invokes these helpers and does not contain their
-implementation details.
+`xss-lock --transfer-sleep-lock` prevents suspend from completing before the
+session has been secured.
 
-### Hardware controls
+## Session helpers
 
-Hardware and media key bindings do not contain implementation logic directly in
-the i3 configuration.
+Desktop actions that need logic beyond a single command live under
+`scripts/session/`. i3 invokes stable `workstation-*` commands instead of
+embedding shell pipelines in the window-manager configuration.
 
-i3 calls stable `workstation-*` helper commands which provide the actual
-implementation and optional desktop OSD.
+This keeps desktop actions independently testable and allows implementations to
+change without rewriting key bindings.
 
-This keeps the window-manager configuration declarative and allows the
-underlying implementation to change independently.
+## Shell and editor
 
-### Terminal editor
+Fish is the interactive shell and Starship owns the prompt. The shell retains a
+small set of deliberate workstation conveniences, including automatic `eza`
+listing after `cd`, Yazi CWD synchronization, and FZF-based navigation/search
+helpers.
 
-Neovim is deliberately kept independent of external plugins in the base
-workstation.
+Neovim intentionally uses only built-in functionality in the base workstation.
+IDE-like development tooling is not required for operating-system maintenance.
 
-The base configuration provides editing behaviour, key mappings and the native
-Graphite Blue colorscheme.
+## Version control and identity
 
-IDE-like functionality belongs to dedicated development tooling and is not a
-requirement for editing or maintaining the operating system.
+Git, OpenSSH and GnuPG configuration is reproducible, but personal identity and
+cryptographic secrets remain local machine/user state.
 
-### GUI appearance
-
-GTK is the canonical desktop appearance source.
-
-GTK 3 uses Debian's Adwaita-dark theme with a minimal Graphite Blue user
-stylesheet.
-
-GTK 4 uses Adwaita with Graphite Blue semantic-color overrides.
-
-Qt 5 and Qt 6 applications use their respective GTK 3 platform-theme plugins
-through:
-
-`QT_QPA_PLATFORMTHEME=gtk3`
-
-This prevents GTK and Qt from developing independent visual configurations and
-avoids additional theme engines such as Kvantum.
-
-### Desktop actions
-
-Window-manager bindings invoke stable `workstation-*` commands rather than
-embedding implementation logic into the i3 configuration.
-
-This keeps desktop actions independently testable and replaceable.
-
-### Secrets and identity
-
-The workstation repository contains reproducible configuration but never
-cryptographic secrets or personal credentials.
-
-The following remain machine/user state:
+The repository never contains:
 
 - SSH private keys;
-- GPG private keys;
-- Git name/email/signing key;
-- known-host databases;
-- authentication tokens.
+- GPG private keys or trust databases;
+- Git name, email or signing-key identifiers;
+- authentication tokens;
+- browser profiles or credentials.
+
+The Debian X11 session owns the lifetime of the SSH agent; Fish does not spawn
+per-terminal agents.
+
+## Configuration deployment
+
+User configuration is deployed through GNU Stow with directory folding disabled.
+System configuration is copied explicitly to privileged locations. This
+separation prevents mutable system/user state from being accidentally redirected
+into the repository.
