@@ -24,3 +24,9 @@
 - Added display DPMS idle policy.
 - Added xss-lock integration with systemd-logind.
 - Added lock-before-suspend protection.
+- Added PipeWire volume and microphone controls.
+- Added Dunst volume and brightness OSD.
+- Added hardware brightness controls.
+- Added MPRIS media-key support through Playerctl.
+- Added playerctld active-player tracking.
+- Added PipeWire volume display to i3status.
