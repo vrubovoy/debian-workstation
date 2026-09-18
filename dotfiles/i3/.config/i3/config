@@ -552,6 +552,15 @@ bindsym Control+Mod1+Delete exit
 # Startup
 # =============================================================================
 
+# X11 compositor.
+#
+# Provides:
+#   - rounded corners;
+#   - subtle window shadows;
+#   - VSync;
+#   - short fade transitions.
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
 # Notification daemon.
 exec --no-startup-id dunst
 
