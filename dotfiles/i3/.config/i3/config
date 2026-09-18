@@ -593,19 +593,6 @@ exec --no-startup-id xss-lock \
 
 
 # -----------------------------------------------------------------------------
-# X11 compositor
-# -----------------------------------------------------------------------------
-#
-# Provides:
-#   - rounded corners;
-#   - subtle shadows;
-#   - VSync;
-#   - short fade transitions.
-
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
-
-
-# -----------------------------------------------------------------------------
 # Polkit authentication agent
 # -----------------------------------------------------------------------------
 #
@@ -633,6 +620,19 @@ exec --no-startup-id nm-applet
 # Bluetooth tray applet and graphical device manager.
 
 exec --no-startup-id blueman-applet
+
+
+# -----------------------------------------------------------------------------
+# X11 compositor
+# -----------------------------------------------------------------------------
+#
+# Provides:
+#   - rounded corners;
+#   - subtle shadows;
+#   - VSync;
+#   - short fade transitions.
+
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 
 # -----------------------------------------------------------------------------
