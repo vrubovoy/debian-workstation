@@ -361,3 +361,141 @@ Actual GPG keys and trust databases are private user data.
 
 Git commit signing is enabled only through machine-local Git configuration
 after a signing key has been created.
+
+## Dotfiles
+
+User configuration files are stored under `dotfiles/` and deployed into the
+home directory with GNU Stow.
+
+Each top-level directory inside `dotfiles/` is an independent Stow package.
+
+Examples:
+
+- `dotfiles/i3/`
+- `dotfiles/kitty/`
+- `dotfiles/fish/`
+- `dotfiles/nvim/`
+- `dotfiles/yazi/`
+- `dotfiles/git/`
+- `dotfiles/ssh/`
+
+A package mirrors the target directory structure below `$HOME`.
+
+For example:
+
+    dotfiles/i3/.config/i3/config
+
+is deployed as:
+
+    ~/.config/i3/config
+
+
+### GNU Stow
+
+All workstation Stow packages must be installed with `--no-folding`.
+
+The standard command is:
+
+    cd ~/Projects/debian-workstation/dotfiles
+    stow --no-folding -t "$HOME" <package>
+
+Directory folding is deliberately disabled.
+
+Without `--no-folding`, GNU Stow may replace an entire target directory with a
+single symbolic link. For example:
+
+    ~/.config/i3
+        -> ~/Projects/debian-workstation/dotfiles/i3/.config/i3
+
+This repository instead expects normal directories to remain real directories
+and only managed files to become symbolic links:
+
+    ~/.config/i3/
+    └── config
+        -> ~/Projects/debian-workstation/dotfiles/i3/.config/i3/config
+
+This makes the resulting home directory easier to inspect and prevents
+application-generated files from being written into the workstation
+repository unintentionally.
+
+The rule is particularly important for directories which can contain private
+or mutable user data.
+
+For example, `~/.ssh` may contain:
+
+- private keys;
+- public keys;
+- `known_hosts`;
+- control sockets.
+
+The repository manages only:
+
+    ~/.ssh/config
+
+Similarly, `~/.gnupg` contains private keys and runtime state. The repository
+may manage selected configuration files, but the directory itself must never
+become a symbolic link into the repository.
+
+
+### Updating managed files
+
+Managed configuration files should normally be edited directly in the
+repository.
+
+For example:
+
+    ~/Projects/debian-workstation/dotfiles/i3/.config/i3/config
+
+Because the corresponding file under `$HOME` is a symbolic link, changes are
+immediately visible to the application.
+
+Application-specific reload or restart procedures are documented in the
+corresponding sections of this document.
+
+
+### Adding a new Stow package
+
+A new package should reproduce the final path relative to `$HOME`.
+
+For example, to manage:
+
+    ~/.config/example/config.toml
+
+create:
+
+    dotfiles/example/.config/example/config.toml
+
+and deploy it with:
+
+    cd ~/Projects/debian-workstation/dotfiles
+    stow --no-folding -t "$HOME" example
+
+
+### Removing a Stow package
+
+To remove links created by a package:
+
+    cd ~/Projects/debian-workstation/dotfiles
+    stow -D -t "$HOME" <package>
+
+Removing a Stow package removes its managed symbolic links but does not remove
+unrelated user files from the target directories.
+
+
+### Private and runtime data
+
+The workstation repository contains reproducible configuration only.
+
+Private credentials, cryptographic keys, caches and application runtime state
+must never be stored under `dotfiles/`.
+
+Examples of data which must remain outside the repository include:
+
+- SSH private keys;
+- GPG private keys and trust databases;
+- Git credentials and authentication tokens;
+- browser profiles;
+- application caches;
+- logs;
+- temporary files;
+- generated sockets and lock files.

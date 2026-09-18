@@ -19,7 +19,7 @@
 
         "FirefoxSuggest": {
             "SponsoredSuggestions": false,
-            "ImproveSuggest": false,
+            "OnlineEnabled": false,
             "Locked": false
         },
 

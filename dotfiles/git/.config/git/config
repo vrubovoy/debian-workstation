@@ -64,9 +64,6 @@
     # the remote repository.
     prune = true
 
-    # Also remove stale remote tags.
-    pruneTags = true
-
 
 # =============================================================================
 # Push
