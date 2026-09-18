@@ -81,6 +81,7 @@ Principles:
 | Repository fetch | Onefetch | Git repository information and statistics |
 | Terminal file manager | Yazi | Keyboard-first file management and previews |
 | Directory history | Zoxide | Fuzzy historical directory navigation |
+| Web browser | Firefox ESR | Primary web browser |
 
 ### Session security
 

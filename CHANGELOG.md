@@ -51,3 +51,9 @@
 - Added Fish Yazi CWD wrapper.
 - Added Zoxide integration.
 - Added Debian fd compatibility shim.
+- Added Firefox ESR as the default web browser.
+- Added reproducible Firefox enterprise policies.
+- Disabled Firefox telemetry and studies.
+- Removed sponsored and recommendation content from Firefox Home.
+- Added minimal Firefox onboarding and messaging policy.
+- Added Super+W browser shortcut.

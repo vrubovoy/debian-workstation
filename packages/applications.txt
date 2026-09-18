@@ -68,3 +68,6 @@ poppler-utils
 zoxide
 resvg
 imagemagick
+
+# Web browser
+firefox-esr
