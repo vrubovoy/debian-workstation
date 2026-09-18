@@ -606,6 +606,16 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 
 # -----------------------------------------------------------------------------
+# Polkit authentication agent
+# -----------------------------------------------------------------------------
+#
+# Provides graphical authentication dialogs for desktop applications which
+# request elevated privileges through PolicyKit.
+
+exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1
+
+
+# -----------------------------------------------------------------------------
 # NetworkManager
 # -----------------------------------------------------------------------------
 #
