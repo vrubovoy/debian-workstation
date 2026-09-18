@@ -552,16 +552,36 @@ bindsym Control+Mod1+Delete exit
 # Startup
 # =============================================================================
 
-# X11 compositor.
+
+# -----------------------------------------------------------------------------
+# Wallpaper
+# -----------------------------------------------------------------------------
+#
+# Loads the repository-managed wallpaper through Feh.
+#
+# If the wallpaper asset is unavailable, the helper falls back to the
+# Graphite Blue base color (#111318).
+
+exec --no-startup-id ~/.local/bin/workstation-wallpaper
+
+
+# -----------------------------------------------------------------------------
+# X11 compositor
+# -----------------------------------------------------------------------------
 #
 # Provides:
 #   - rounded corners;
-#   - subtle window shadows;
+#   - subtle shadows;
 #   - VSync;
 #   - short fade transitions.
+
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-# Notification daemon.
+
+# -----------------------------------------------------------------------------
+# Notifications
+# -----------------------------------------------------------------------------
+
 exec --no-startup-id dunst
 
 
