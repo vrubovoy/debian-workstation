@@ -63,3 +63,20 @@ mate-polkit
 # Hardware controls
 brightnessctl
 brightness-udev
+
+# =============================================================================
+# Desktop appearance
+# =============================================================================
+
+# GTK themes and icons
+gnome-themes-extra
+adwaita-icon-theme
+adwaita-icon-theme-legacy
+
+# GTK / desktop settings
+gsettings-desktop-schemas
+libglib2.0-bin
+
+# Qt integration with the GTK desktop theme
+qt5-gtk-platformtheme
+qt6-gtk-platformtheme
