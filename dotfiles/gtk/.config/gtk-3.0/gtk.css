@@ -1,0 +1,253 @@
+/* =============================================================================
+ * Graphite Blue — GTK 3
+ * =============================================================================
+ *
+ * Lightweight user stylesheet layered over Adwaita-dark.
+ *
+ * The purpose is NOT to reimplement an entire GTK theme.
+ *
+ * We only establish:
+ *   - workstation colors;
+ *   - blue accent;
+ *   - consistent surfaces;
+ *   - subtle rounded widgets;
+ *   - readable selected/focused states.
+ *
+ * =============================================================================
+ */
+
+
+/* =============================================================================
+ * Palette
+ * ============================================================================= */
+
+@define-color graphite_bg          #111318;
+@define-color graphite_surface     #1A1D24;
+@define-color graphite_surface_alt #222630;
+@define-color graphite_border      #303744;
+
+@define-color graphite_fg          #E6E9EF;
+@define-color graphite_muted       #8E98A8;
+@define-color graphite_subtle      #5C6370;
+
+@define-color graphite_accent      #7AA2F7;
+@define-color graphite_accent_hi   #89B4FA;
+
+@define-color graphite_red         #E06C75;
+@define-color graphite_green       #98C379;
+@define-color graphite_yellow      #E5C07B;
+
+
+/* Standard Adwaita color names. */
+
+@define-color theme_bg_color          @graphite_bg;
+@define-color theme_fg_color          @graphite_fg;
+
+@define-color theme_base_color        @graphite_surface;
+@define-color theme_text_color        @graphite_fg;
+
+@define-color theme_selected_bg_color @graphite_accent;
+@define-color theme_selected_fg_color @graphite_bg;
+
+@define-color insensitive_bg_color    @graphite_surface;
+@define-color insensitive_fg_color    @graphite_subtle;
+
+@define-color borders                 @graphite_border;
+
+@define-color warning_color           @graphite_yellow;
+@define-color error_color             @graphite_red;
+@define-color success_color           @graphite_green;
+
+
+/* =============================================================================
+ * Windows
+ * ============================================================================= */
+
+window,
+.background {
+    color: @graphite_fg;
+    background-color: @graphite_bg;
+}
+
+
+/* =============================================================================
+ * Header bars
+ * ============================================================================= */
+
+headerbar,
+.titlebar {
+    color: @graphite_fg;
+
+    background-image: none;
+    background-color: @graphite_surface;
+
+    border-color: @graphite_border;
+}
+
+
+/* =============================================================================
+ * Inputs
+ * ============================================================================= */
+
+entry,
+spinbutton {
+    color: @graphite_fg;
+
+    background-image: none;
+    background-color: @graphite_surface;
+
+    border: 1px solid @graphite_border;
+    border-radius: 8px;
+}
+
+entry:focus,
+spinbutton:focus {
+    border-color: @graphite_accent;
+}
+
+
+/* =============================================================================
+ * Buttons
+ * ============================================================================= */
+
+button {
+    color: @graphite_fg;
+
+    background-image: none;
+    background-color: @graphite_surface_alt;
+
+    border: 1px solid @graphite_border;
+    border-radius: 8px;
+}
+
+button:hover {
+    border-color: @graphite_accent;
+    background-color: @graphite_surface_alt;
+}
+
+button:active,
+button:checked {
+    color: @graphite_bg;
+    background-color: @graphite_accent;
+    border-color: @graphite_accent;
+}
+
+
+/* Primary / suggested actions. */
+
+button.suggested-action {
+    color: @graphite_bg;
+
+    background-image: none;
+    background-color: @graphite_accent;
+
+    border-color: @graphite_accent;
+}
+
+button.suggested-action:hover {
+    background-color: @graphite_accent_hi;
+}
+
+
+/* Destructive actions. */
+
+button.destructive-action {
+    color: @graphite_bg;
+
+    background-image: none;
+    background-color: @graphite_red;
+
+    border-color: @graphite_red;
+}
+
+
+/* =============================================================================
+ * Selection
+ * ============================================================================= */
+
+selection {
+    color: @graphite_bg;
+    background-color: @graphite_accent;
+}
+
+row:selected,
+treeview.view:selected {
+    color: @graphite_bg;
+    background-color: @graphite_accent;
+}
+
+
+/* =============================================================================
+ * Lists and views
+ * ============================================================================= */
+
+treeview.view,
+textview text {
+    color: @graphite_fg;
+    background-color: @graphite_surface;
+}
+
+
+/* =============================================================================
+ * Menus / popovers
+ * ============================================================================= */
+
+menu,
+popover {
+    color: @graphite_fg;
+    background-color: @graphite_surface;
+
+    border: 1px solid @graphite_border;
+}
+
+
+/* =============================================================================
+ * Scrollbars
+ * ============================================================================= */
+
+scrollbar {
+    background-color: transparent;
+}
+
+scrollbar slider {
+    min-width: 8px;
+    min-height: 8px;
+
+    background-color: @graphite_border;
+
+    border-radius: 8px;
+}
+
+scrollbar slider:hover {
+    background-color: @graphite_muted;
+}
+
+scrollbar slider:active {
+    background-color: @graphite_accent;
+}
+
+
+/* =============================================================================
+ * Tooltips
+ * ============================================================================= */
+
+tooltip {
+    color: @graphite_fg;
+    background-color: @graphite_surface_alt;
+
+    border: 1px solid @graphite_border;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @graphite_fg;
+}
+
+
+/* =============================================================================
+ * Disabled widgets
+ * ============================================================================= */
+
+*:disabled {
+    color: @graphite_subtle;
+}
