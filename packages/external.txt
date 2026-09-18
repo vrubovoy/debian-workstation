@@ -2,3 +2,10 @@
 #
 # NAME      VERSION   SOURCE
 onefetch    2.28.1    https://github.com/o2sh/onefetch
+
+# =============================================================================
+# Packages from explicitly configured external APT repositories
+# =============================================================================
+
+# Official Yazi repository
+yazi

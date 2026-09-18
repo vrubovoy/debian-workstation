@@ -36,3 +36,10 @@
 - Added X11 clipboard integration.
 - Added persistent undo and editing-safety defaults.
 - Added native EditorConfig-based project formatting.
+- Added Fish as the default interactive shell.
+- Added modular Fish environment and abbreviation configuration.
+- Preserved workstation development abbreviations.
+- Added Graphite Blue Fish syntax colors.
+- Added minimal Starship prompt without right-side information.
+- Added Fastfetch shell greeting with Kitty image rendering.
+- Added Onefetch for Git repository summaries.

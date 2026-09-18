@@ -60,3 +60,11 @@ xdg-utils
 # Terminal utilities
 fastfetch
 less
+
+# Terminal file-management dependencies
+ffmpeg
+7zip
+poppler-utils
+zoxide
+resvg
+imagemagick

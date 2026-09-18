@@ -146,3 +146,28 @@ EditorConfig support whenever a `.editorconfig` file is present.
 The X11 clipboard is exposed to Neovim through `xclip`.
 
 Persistent undo and swap files remain enabled for editing safety.
+
+### Shell
+
+Fish is the default interactive shell.
+
+Configuration is split into:
+
+- `config.fish` — shell initialization.
+- `conf.d/10-environment.fish` — environment and PATH.
+- `conf.d/20-colors.fish` — Graphite Blue shell colors.
+- `conf.d/30-abbreviations.fish` — general abbreviations.
+- `conf.d/90-development-abbreviations.fish` — optional development shortcuts.
+- `functions/` — reusable Fish functions.
+
+Starship provides a deliberately minimal one-line prompt containing only:
+
+- current directory;
+- Git branch;
+- Git working-tree state;
+- command prompt character.
+
+The right-side prompt and command duration are intentionally disabled.
+
+Fastfetch is displayed as the Fish greeting. Kitty uses its native graphics
+protocol to render `~/.config/fastfetch/logo.png`.
