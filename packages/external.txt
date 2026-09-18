@@ -1,0 +1,4 @@
+# Packages not provided by Debian Stable.
+#
+# NAME      VERSION   SOURCE
+onefetch    2.28.1    https://github.com/o2sh/onefetch
