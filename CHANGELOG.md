@@ -57,3 +57,11 @@
 - Removed sponsored and recommendation content from Firefox Home.
 - Added minimal Firefox onboarding and messaging policy.
 - Added Super+W browser shortcut.
+- Added unified GTK/Qt desktop appearance layer.
+- Added Graphite Blue GTK 3 theme overrides.
+- Added Graphite Blue GTK 4 semantic colors.
+- Added Adwaita icon theme.
+- Added Ubuntu Bold GUI typography.
+- Added GTK-based Qt5 and Qt6 desktop integration.
+- Added persistent X11 session environment.
+- Added reproducible desktop GSettings configuration.

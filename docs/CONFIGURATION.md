@@ -242,3 +242,40 @@ Policies deliberately avoid controlling personal browser behaviour such as:
 
 Firefox profiles under `~/.mozilla/firefox/` are user data and are never
 tracked by the workstation repository.
+
+### GTK
+
+User configuration:
+
+- `~/.gtkrc-2.0`
+- `~/.config/gtk-3.0/settings.ini`
+- `~/.config/gtk-3.0/gtk.css`
+- `~/.config/gtk-4.0/settings.ini`
+- `~/.config/gtk-4.0/gtk.css`
+
+The system uses:
+
+- Adwaita as the icon theme;
+- Adwaita-dark as the GTK 3 base theme;
+- Ubuntu Bold as the UI font;
+- Graphite Blue user CSS for workstation colors.
+
+### Qt
+
+Qt does not maintain a separate workstation color scheme.
+
+Qt 5 and Qt 6 applications use the GTK platform-theme plugins.
+
+The graphical X11 session exports:
+
+`QT_QPA_PLATFORMTHEME=gtk3`
+
+through `~/.xsessionrc`.
+
+This setting deliberately lives outside Fish so applications launched directly
+from i3 or Rofi receive it as well.
+
+### Desktop settings
+
+`scripts/configure/appearance.sh` applies equivalent GSettings values for
+applications which use desktop-wide GNOME interface settings.
