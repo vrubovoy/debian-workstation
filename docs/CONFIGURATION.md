@@ -36,6 +36,8 @@ are implemented as standalone scripts.
 | Audio control | `scripts/session/volume.sh` | `workstation-volume` |
 | Brightness control | `scripts/session/brightness.sh` | `workstation-brightness` |
 | Media control | `scripts/session/media.sh` | `workstation-media` |
+| Screenshots | `scripts/session/screenshot.sh` | `workstation-screenshot` |
+| Session/power menu | `scripts/session/power-menu.sh` | `workstation-power-menu` |
 
 ### Screen locking
 
@@ -82,6 +84,39 @@ Brightness is controlled through `brightnessctl`.
 
 Media keys are handled through Playerctl and MPRIS. `playerctld` runs during the
 i3 session so commands are directed to the most recently active media player.
+
+### Screenshots
+
+Screenshots are captured using the X11-native `maim` utility.
+
+Supported modes:
+
+- `area` — interactive rectangular selection;
+- `window` — currently focused X11 window;
+- `screen` — complete X11 desktop.
+
+Screenshots are simultaneously:
+
+- written to `~/Pictures/Screenshots`;
+- copied to the X11 clipboard as PNG;
+- reported through Dunst.
+
+### Power menu
+
+Session and power operations are exposed through a Rofi menu.
+
+Available actions:
+
+- lock;
+- suspend;
+- logout;
+- reboot;
+- power off.
+
+Logout, reboot and power-off operations require explicit confirmation.
+
+Suspend relies on the existing `xss-lock` / systemd-logind integration to
+secure the session before sleeping.
 
 ## Desktop infrastructure
 

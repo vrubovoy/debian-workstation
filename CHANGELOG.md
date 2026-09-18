@@ -65,3 +65,10 @@
 - Added GTK-based Qt5 and Qt6 desktop integration.
 - Added persistent X11 session environment.
 - Added reproducible desktop GSettings configuration.
+- Added X11 screenshot subsystem using maim.
+- Added region, active-window and full-desktop screenshot modes.
+- Added automatic screenshot clipboard integration.
+- Added Graphite Blue screenshot selection and Dunst feedback.
+- Added Rofi session and power menu.
+- Added guarded logout, reboot and power-off actions.
+- Replaced direct Ctrl+Alt+Delete logout with the session menu.
