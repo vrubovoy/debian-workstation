@@ -314,3 +314,50 @@ from i3 or Rofi receive it as well.
 
 `scripts/configure/appearance.sh` applies equivalent GSettings values for
 applications which use desktop-wide GNOME interface settings.
+
+## Git
+
+Git behaviour is configured through:
+
+`~/.config/git/config`
+
+Personal identity is stored separately in:
+
+`~/.gitconfig.local`
+
+The local file is deliberately not part of the workstation repository.
+
+The base configuration provides:
+
+- `main` as the default branch;
+- Neovim as Git editor;
+- fast-forward-only pulls;
+- automatic upstream setup on first push;
+- automatic remote pruning;
+- histogram diffs;
+- `zdiff3` conflict markers;
+- rerere conflict-resolution reuse.
+
+## SSH
+
+OpenSSH client configuration is tracked through:
+
+`~/.ssh/config`
+
+Private keys and `known_hosts` are never tracked.
+
+Debian Xsession owns the lifecycle of the SSH agent. Fish does not start an
+SSH agent.
+
+`AddKeysToAgent yes` allows successfully used keys to enter the session agent.
+
+## GnuPG
+
+GnuPG uses `gpg-agent` with graphical GTK pinentry.
+
+The public workstation configuration controls only agent behaviour.
+
+Actual GPG keys and trust databases are private user data.
+
+Git commit signing is enabled only through machine-local Git configuration
+after a signing key has been created.
