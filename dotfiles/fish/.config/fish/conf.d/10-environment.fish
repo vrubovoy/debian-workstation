@@ -43,6 +43,18 @@ set -gx BAT_THEME ansi
 
 
 # =============================================================================
+# GnuPG
+# =============================================================================
+#
+# Required when GnuPG falls back to terminal-based interaction and useful for
+# tools invoking GPG from the interactive shell.
+
+if status is-interactive
+    set -gx GPG_TTY (tty)
+end
+
+
+# =============================================================================
 # Locale
 # =============================================================================
 #
