@@ -1,0 +1,385 @@
+# =============================================================================
+# Dunst configuration
+# =============================================================================
+#
+# Debian workstation notification daemon.
+#
+# Design goals:
+#   - Minimal, quiet notifications.
+#   - Large, readable typography.
+#   - Consistent Graphite Blue appearance.
+#   - Notifications follow keyboard focus on multi-monitor systems.
+#   - Critical notifications never disappear automatically.
+#   - Actions and URLs remain accessible through Rofi.
+#   - No dependencies on external theme frameworks.
+#
+# Theme:
+#   Graphite Blue
+#
+# =============================================================================
+
+
+[global]
+
+
+# =============================================================================
+# Monitor placement
+# =============================================================================
+
+# Show notifications on the monitor containing the keyboard-focused window.
+#
+# This matches the keyboard-first nature of the i3 workflow better than
+# following the mouse pointer.
+follow = keyboard
+
+# Used only when follow=none.
+monitor = 0
+
+# Place notifications in the upper-right corner.
+origin = top-right
+
+# Margin from the monitor edges.
+offset = (16, 16)
+
+# Let Dunst detect HiDPI scale automatically.
+scale = 0
+
+
+# =============================================================================
+# Geometry
+# =============================================================================
+
+# Notifications may grow between 360 and 460 pixels depending on their content.
+width = (360, 460)
+
+# Dynamic height up to 300 pixels.
+#
+# Dunst 1.12 introduced the (min,max) height syntax.
+height = (0, 300)
+
+# Keep the desktop usable during notification storms.
+#
+# With indicate_hidden=true, one slot can be used to indicate queued
+# notifications.
+notification_limit = 6
+indicate_hidden = true
+
+
+# =============================================================================
+# Spacing
+# =============================================================================
+
+# Vertical spacing inside each notification.
+padding = 14
+
+# Horizontal spacing between content and notification edges.
+horizontal_padding = 16
+
+# Space between icons and text.
+text_icon_padding = 14
+
+# Separate independent notification cards.
+#
+# This looks best once Picom is running.
+gap_size = 8
+
+# Separators are unnecessary when notifications have physical gaps.
+separator_height = 0
+
+
+# =============================================================================
+# Frame and shape
+# =============================================================================
+
+# Thin border consistent with i3 and Rofi.
+frame_width = 2
+
+# Rounded notification cards.
+corner_radius = 14
+corners = all
+
+# Rounded application icons.
+icon_corner_radius = 10
+icon_corners = all
+
+
+# =============================================================================
+# Transparency
+# =============================================================================
+
+# Keep notifications opaque.
+#
+# Picom will provide shadows, but readability should not depend on transparency.
+transparency = 0
+
+
+# =============================================================================
+# Typography
+# =============================================================================
+
+# Same UI font family and size as i3/i3bar.
+font = Ubuntu Bold 15
+
+# Additional spacing between wrapped lines.
+line_height = 4
+
+# Notification summary on the first line and body below.
+format = "<b>%s</b>\n%b"
+
+# Allow basic Pango markup sent by applications.
+markup = full
+
+alignment = left
+vertical_alignment = center
+
+# Preserve explicit newlines from applications.
+ignore_newline = false
+
+# Long lines wrap instead of stretching the notification.
+word_wrap = true
+
+# If text still cannot fit inside the maximum height, truncate at the end.
+ellipsize = end
+
+
+# =============================================================================
+# Icons
+# =============================================================================
+
+# Use the icon theme already available in the base GTK environment.
+icon_theme = Adwaita
+
+# Modern recursive Freedesktop icon-theme lookup.
+enable_recursive_icon_lookup = true
+
+icon_position = left
+
+# Keep application icons visually consistent.
+min_icon_size = 48
+max_icon_size = 64
+
+
+# =============================================================================
+# Progress bars
+# =============================================================================
+#
+# Notifications can provide an integer "value" hint.
+#
+# We will later use this for:
+#   - volume;
+#   - microphone level;
+#   - brightness.
+#
+# Example test:
+#
+#   notify-send -h int:value:67 "Volume" "67%"
+
+progress_bar = true
+
+progress_bar_height = 8
+progress_bar_min_width = 180
+progress_bar_max_width = 360
+
+progress_bar_frame_width = 0
+
+progress_bar_corner_radius = 4
+progress_bar_corners = all
+
+progress_bar_horizontal_alignment = left
+
+
+# =============================================================================
+# Notification ordering
+# =============================================================================
+
+# Critical notifications first, then normal, then low.
+sort = urgency_descending
+
+# Merge identical notifications instead of filling the screen with duplicates.
+stack_duplicates = true
+
+# Show how many duplicates have been combined.
+hide_duplicate_count = false
+
+
+# =============================================================================
+# Fullscreen behaviour
+# =============================================================================
+#
+# Do not interrupt fullscreen applications with normal notifications.
+#
+# Notifications remain queued and are displayed after fullscreen is left.
+fullscreen = delay
+
+
+# =============================================================================
+# Notification age
+# =============================================================================
+
+# Display the age only after a notification has been waiting for one minute.
+show_age_threshold = 60
+
+
+# =============================================================================
+# History
+# =============================================================================
+
+# Keep recent notifications in memory.
+history_length = 50
+
+# Recalled notifications remain visible until explicitly dismissed.
+sticky_history = true
+
+
+# =============================================================================
+# Actions and URLs
+# =============================================================================
+
+# Rofi acts as Dunst's context/action menu.
+dmenu = rofi -dmenu -p "Notification"
+
+# Use the Freedesktop default application for URLs.
+browser = /usr/bin/xdg-open
+
+# Indicate notifications which contain an action or URL.
+show_indicators = true
+
+
+# =============================================================================
+# Mouse behaviour
+# =============================================================================
+#
+# Left:
+#   execute the default notification action and close it.
+#
+# Middle:
+#   simply dismiss the notification.
+#
+# Right:
+#   open the action / URL context menu through Rofi.
+
+mouse_left_click = do_action, close_current
+mouse_middle_click = close_current
+mouse_right_click = context
+
+
+# =============================================================================
+# Miscellaneous
+# =============================================================================
+
+# Applications are allowed to explicitly close their own notifications.
+ignore_dbusclose = false
+
+# POSIX regular expressions provide predictable and powerful rules below.
+enable_posix_regex = true
+
+# Use XRandR rather than legacy Xinerama.
+force_xinerama = false
+
+
+# =============================================================================
+# Graphite Blue — low urgency
+# =============================================================================
+#
+# Quiet informational events.
+#
+# Examples:
+#   background task completed;
+#   unimportant status message.
+
+[urgency_low]
+
+background = "#111318"
+foreground = "#8E98A8"
+
+frame_color = "#303744"
+highlight = "#7AA2F7"
+
+timeout = 4s
+
+
+# =============================================================================
+# Graphite Blue — normal urgency
+# =============================================================================
+#
+# Ordinary interactive notifications.
+
+[urgency_normal]
+
+background = "#1A1D24"
+foreground = "#E6E9EF"
+
+frame_color = "#7AA2F7"
+highlight = "#7AA2F7"
+
+timeout = 6s
+
+
+# =============================================================================
+# Graphite Blue — critical urgency
+# =============================================================================
+#
+# Critical notifications remain visible until the user explicitly handles them.
+
+[urgency_critical]
+
+background = "#1A1D24"
+foreground = "#E6E9EF"
+
+frame_color = "#E06C75"
+highlight = "#E06C75"
+
+timeout = 0
+
+
+# =============================================================================
+# Future desktop OSD rules
+# =============================================================================
+#
+# When PipeWire and brightness controls are configured, volume and brightness
+# notifications will use stack tags so that rapidly changing values replace
+# each other instead of generating many independent notifications.
+#
+# The future helper scripts will send notifications approximately like:
+#
+#   dunstify \
+#       -a "Desktop OSD" \
+#       -u low \
+#       -h string:x-dunst-stack-tag:volume \
+#       -h int:value:55 \
+#       "Volume" \
+#       "55%"
+#
+# No rules are required yet; the section exists here to document the intended
+# architecture.
+
+
+# =============================================================================
+# Deliberately omitted configuration
+# =============================================================================
+#
+# TRANSPARENCY
+#
+#   Notifications stay opaque. Picom provides visual depth via shadows rather
+#   than sacrificing text readability.
+#
+#
+# APPLICATION-SPECIFIC RULES
+#
+#   Firefox, Telegram, IDEs, etc. are not special-cased until there is a real
+#   reason to do so. Generic Freedesktop notifications should behave uniformly.
+#
+#
+# HARDCODED ICON PATHS
+#
+#   Icons are resolved through the normal Freedesktop icon theme instead of
+#   storing application-specific paths in the workstation configuration.
+#
+#
+# GLOBAL DUNST HOTKEYS
+#
+#   Dunst no longer needs to own global keyboard shortcuts. If notification
+#   history/control shortcuts are ever desired, they will be implemented in
+#   i3 through dunstctl.
+#
+# =============================================================================
