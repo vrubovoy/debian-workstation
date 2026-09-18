@@ -62,6 +62,8 @@ order += "cpu_usage"
 order += "memory"
 order += "disk /"
 
+order += "volume master"
+
 order += "wireless _first_"
 order += "ethernet _first_"
 
@@ -257,26 +259,20 @@ tztime local {
 
 
 # =============================================================================
-# Audio — enable after PipeWire configuration
+# Audio
 # =============================================================================
 #
-# i3status supports PulseAudio-compatible volume reporting. Once we configure
-# PipeWire + pipewire-pulse, this block can be enabled.
-#
-# Add this line to the module order before the network blocks:
-#
-#   order += "volume master"
-#
-# Then uncomment:
-#
-# volume master {
-#     format = "VOL %volume"
-#     format_muted = "VOL muted"
-#
-#     device = "pulse"
-#
-#     min_width = "VOL muted"
-# }
+# pipewire-pulse exposes the normal PulseAudio API, so i3status can read the
+# current default PipeWire sink through its native PulseAudio backend.
+
+volume master {
+    format = "VOL %volume"
+    format_muted = "VOL muted"
+
+    device = "pulse"
+
+    min_width = "VOL muted"
+}
 
 
 # =============================================================================
