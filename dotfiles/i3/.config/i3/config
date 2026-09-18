@@ -210,12 +210,12 @@ bindsym $mod+c exec --no-startup-id sh -c \
 # Application launcher
 # =============================================================================
 #
-# Reserved for Rofi.
+# Rofi application launcher.
 #
-# Enable these bindings after Rofi is installed and configured.
-#
-# bindsym $mod+space exec --no-startup-id rofi -show drun
-# bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
+# Both shortcuts are intentionally retained as aliases for the same action.
+
+bindsym $mod+space exec --no-startup-id rofi -show drun
+bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
 
 
 # =============================================================================

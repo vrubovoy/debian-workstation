@@ -1,0 +1,345 @@
+/* =============================================================================
+ * Graphite Blue — Rofi
+ * =============================================================================
+ *
+ * Minimal application launcher theme for Debian Workstation.
+ *
+ * Palette shared with:
+ *   - i3
+ *   - i3status
+ *   - Kitty
+ *   - LightDM
+ *
+ * =============================================================================
+ */
+
+
+/* =============================================================================
+ * Palette
+ * ============================================================================= */
+
+* {
+    bg:             #111318;
+    surface:        #1A1D24;
+    surface-alt:    #222630;
+    border:         #303744;
+
+    fg:             #E6E9EF;
+    muted:          #8E98A8;
+
+    accent:         #7AA2F7;
+    accent-hover:   #89B4FA;
+
+    urgent:         #E06C75;
+
+
+    /* -------------------------------------------------------------------------
+     * Default widget properties
+     * ---------------------------------------------------------------------- */
+
+    background-color: transparent;
+    text-color: @fg;
+
+    font: "Ubuntu Bold 16";
+}
+
+
+/* =============================================================================
+ * Main window
+ * ============================================================================= */
+
+window {
+    /*
+     * A launcher should occupy enough width for application names without
+     * feeling like a full-screen shell.
+     */
+    width: 42%;
+
+    /*
+     * Keep height driven by the contents rather than fixing it to the screen.
+     */
+    height: auto;
+
+    location: center;
+    anchor: center;
+
+    background-color: @bg;
+
+    border: 2px;
+    border-color: @border;
+    border-radius: 16px;
+
+    padding: 18px;
+
+    /*
+     * No fake screenshot transparency.
+     *
+     * When Picom is configured later we can use real ARGB transparency if we
+     * actually decide it improves readability.
+     */
+    transparency: "real";
+}
+
+
+/* =============================================================================
+ * Main container
+ * ============================================================================= */
+
+mainbox {
+    background-color: transparent;
+
+    spacing: 14px;
+
+    children: [
+        inputbar,
+        listview,
+        message
+    ];
+}
+
+
+/* =============================================================================
+ * Search field
+ * ============================================================================= */
+
+inputbar {
+    background-color: @surface;
+
+    border: 1px;
+    border-color: @border;
+    border-radius: 11px;
+
+    padding: 12px 14px;
+
+    spacing: 10px;
+
+    children: [
+        prompt,
+        entry
+    ];
+}
+
+
+/* Mode label: Apps / Run / Windows */
+
+prompt {
+    background-color: transparent;
+    text-color: @accent;
+
+    padding: 0px;
+
+    vertical-align: 0.5;
+}
+
+
+/* Actual search entry */
+
+entry {
+    background-color: transparent;
+    text-color: @fg;
+
+    placeholder: "Search…";
+    placeholder-color: @muted;
+
+    cursor: text;
+
+    vertical-align: 0.5;
+}
+
+
+/* =============================================================================
+ * Result list
+ * ============================================================================= */
+
+listview {
+    background-color: transparent;
+
+    /*
+     * Eight entries keep the launcher compact while avoiding excessive
+     * scrolling in normal usage.
+     */
+    lines: 8;
+
+    columns: 1;
+
+    fixed-height: false;
+
+    dynamic: true;
+
+    cycle: true;
+
+    scrollbar: false;
+
+    spacing: 5px;
+}
+
+
+/* =============================================================================
+ * Result entries
+ * ============================================================================= */
+
+element {
+    background-color: transparent;
+    text-color: @fg;
+
+    border: 0px;
+    border-radius: 10px;
+
+    padding: 9px 11px;
+
+    spacing: 12px;
+
+    orientation: horizontal;
+
+    cursor: pointer;
+}
+
+
+/* Normal entry */
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+
+/* Alternate rows deliberately look identical. */
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+
+/* Selected result */
+
+element selected.normal {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+
+/* Active window/application state */
+
+element normal.active,
+element alternate.active {
+    background-color: @surface-alt;
+    text-color: @accent;
+}
+
+
+/* Selected active entry */
+
+element selected.active {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+
+/* Urgent X11 window */
+
+element normal.urgent,
+element alternate.urgent {
+    background-color: transparent;
+    text-color: @urgent;
+}
+
+
+/* Selected urgent entry */
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @bg;
+}
+
+
+/* =============================================================================
+ * Application icons
+ * ============================================================================= */
+
+element-icon {
+    background-color: transparent;
+
+    /*
+     * Large enough to identify applications immediately while remaining
+     * subordinate to the application name.
+     */
+    size: 34px;
+
+    vertical-align: 0.5;
+}
+
+
+/* =============================================================================
+ * Result text
+ * ============================================================================= */
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+
+    vertical-align: 0.5;
+
+    /*
+     * Highlight the matching portion of a result in bold.
+     *
+     * Color remains inherited so selected rows stay readable.
+     */
+    highlight: bold;
+}
+
+
+/* =============================================================================
+ * Error / informational messages
+ * ============================================================================= */
+
+message {
+    background-color: @surface;
+
+    border: 1px;
+    border-color: @border;
+    border-radius: 10px;
+
+    padding: 10px;
+}
+
+
+textbox {
+    background-color: transparent;
+    text-color: @muted;
+}
+
+
+/* =============================================================================
+ * Scrollbar
+ * =============================================================================
+ *
+ * Disabled in the normal listview, but styled anyway so scripted Rofi menus
+ * can enable it later without looking foreign.
+ */
+
+scrollbar {
+    width: 4px;
+
+    border: 0px;
+    border-radius: 2px;
+
+    background-color: @surface-alt;
+
+    handle-color: @accent;
+}
+
+
+/* =============================================================================
+ * Mode switcher
+ * =============================================================================
+ *
+ * Hidden intentionally.
+ *
+ * Rofi modes remain accessible through keyboard mode switching, but permanent
+ * buttons would add visual noise to an application launcher.
+ */
+
+mode-switcher {
+    enabled: false;
+}
