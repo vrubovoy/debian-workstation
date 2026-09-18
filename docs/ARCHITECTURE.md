@@ -31,6 +31,8 @@ components and reproducibility.
 | Screen locker | i3lock | Session authentication screen |
 | Lock coordinator | xss-lock | Idle and systemd-logind lock integration |
 | Screenshots | maim + slop | X11 screenshots and region selection |
+| Clipboard history | CopyQ | Persistent X11 clipboard-history backend |
+| Clipboard interface | Rofi | Searchable clipboard-history frontend |
 
 ## Desktop infrastructure
 
@@ -128,3 +130,17 @@ User configuration is deployed through GNU Stow with directory folding disabled.
 System configuration is copied explicitly to privileged locations. This
 separation prevents mutable system/user state from being accidentally redirected
 into the repository.
+
+### Clipboard history
+
+CopyQ provides persistent clipboard monitoring and storage.
+
+Its native window and tray interface are not part of the normal workstation
+workflow. Rofi acts as the primary clipboard-history frontend.
+
+The regular X11 clipboard is monitored, while the X11 PRIMARY selection is
+deliberately ignored so merely selecting text with the mouse does not create
+history entries.
+
+Selecting an entry in Rofi restores it to the clipboard but does not
+automatically paste it into the focused application.

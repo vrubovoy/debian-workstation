@@ -89,3 +89,7 @@ qt6-gtk-platformtheme
 maim
 slop
 xdotool
+
+# Clipboard history
+copyq
+copyq-plugins

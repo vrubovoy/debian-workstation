@@ -127,6 +127,7 @@ Session helpers live in `scripts/session/` and are exposed through
 | Media control | `scripts/session/media.sh` | `workstation-media` |
 | Screenshots | `scripts/session/screenshot.sh` | `workstation-screenshot` |
 | Session/power menu | `scripts/session/power-menu.sh` | `workstation-power-menu` |
+| `workstation-clipboard` | `scripts/session/clipboard.sh` | Search and restore CopyQ history through Rofi |
 
 The same deployment script creates `~/.local/bin/fd -> /usr/bin/fdfind` when
 Debian's `fd-find` package is installed and an upstream-named `fd` command is
@@ -257,3 +258,36 @@ Xsession owns the session-wide SSH agent; Fish does not start one. GitHub uses
 `gpg-agent.conf` configures the graphical GTK pinentry and passphrase cache.
 Actual key material and trust databases remain private user state. Git signing
 is enabled only in machine-local Git configuration after a signing key exists.
+
+## Clipboard history
+
+CopyQ is used as the X11 clipboard-history backend.
+
+It monitors the regular clipboard used by standard copy/paste shortcuts while
+the X11 PRIMARY selection is intentionally excluded.
+
+CopyQ configuration is applied by:
+
+    scripts/configure/copyq.sh
+
+The workstation configuration:
+
+- monitors the regular X11 clipboard;
+- ignores PRIMARY-selection changes;
+- keeps up to 200 clipboard items;
+- disables the CopyQ tray icon;
+- disables CopyQ clipboard notifications;
+- disables CopyQ's own autostart.
+
+CopyQ itself is started explicitly by i3.
+
+Clipboard history is opened with:
+
+    Super+V
+
+The visible history is provided by Rofi through:
+
+    ~/.local/bin/workstation-clipboard
+
+Selecting an entry restores the complete CopyQ item to the clipboard.
+Pasting remains an explicit separate action performed normally with Ctrl+V.

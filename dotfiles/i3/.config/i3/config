@@ -219,6 +219,19 @@ bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
 
 
 # =============================================================================
+# Clipboard history
+# =============================================================================
+#
+# Open the searchable X11 clipboard history.
+#
+# CopyQ stores the history while Rofi provides the visible user interface.
+# Selecting an item restores it to the clipboard; paste normally with Ctrl+V.
+
+bindsym $mod+v \
+    exec --no-startup-id ~/.local/bin/workstation-clipboard
+
+
+# =============================================================================
 # File manager
 # =============================================================================
 
@@ -658,6 +671,18 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 # which was used most recently.
 
 exec --no-startup-id playerctld daemon
+
+
+# -----------------------------------------------------------------------------
+# Clipboard history
+# -----------------------------------------------------------------------------
+#
+# CopyQ monitors the regular X11 clipboard and stores recent items.
+#
+# Its own tray interface is disabled. Clipboard history is accessed through
+# Rofi with Super+V.
+
+exec --no-startup-id copyq
 
 
 # -----------------------------------------------------------------------------

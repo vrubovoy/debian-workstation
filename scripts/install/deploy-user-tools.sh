@@ -36,6 +36,7 @@ link_command "$ROOT_DIR/scripts/session/volume.sh"     "$BIN_DIR/workstation-vol
 link_command "$ROOT_DIR/scripts/session/brightness.sh" "$BIN_DIR/workstation-brightness"
 link_command "$ROOT_DIR/scripts/session/media.sh"      "$BIN_DIR/workstation-media"
 link_command "$ROOT_DIR/scripts/session/screenshot.sh" "$BIN_DIR/workstation-screenshot"
+link_command "$ROOT_DIR/scripts/session/clipboard.sh"  "$BIN_DIR/workstation-clipboard"
 link_command "$ROOT_DIR/scripts/session/power-menu.sh" "$BIN_DIR/workstation-power-menu"
 
 # Debian ships fd-find as /usr/bin/fdfind, while Yazi and the Fish helpers

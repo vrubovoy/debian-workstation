@@ -20,6 +20,7 @@
 - GNU Stow dotfile deployment with directory folding explicitly disabled.
 - Repository helpers for Yazi repository setup, Stow deployment and stable
   `workstation-*` user commands.
+- Added persistent X11 clipboard history using CopyQ with a Rofi frontend.
 
 ### Changed
 
