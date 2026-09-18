@@ -25,12 +25,32 @@ not managed through GNU Stow.
 
 ## Session helpers
 
-Small desktop operations that do not belong directly to an application
-configuration are implemented as standalone scripts.
+Small desktop operations that require logic beyond a single application command
+are implemented as standalone scripts.
 
 | Purpose | Repository path | User command |
 |---|---|---|
-| Wallpaper | `scripts/session/wallpaper.sh` | `~/.local/bin/workstation-wallpaper` |
+| Wallpaper | `scripts/session/wallpaper.sh` | `workstation-wallpaper` |
+| Screen locking | `scripts/session/lock.sh` | `workstation-lock` |
+| Idle policy | `scripts/session/idle.sh` | `workstation-idle` |
+
+### Screen locking
+
+The workstation uses `i3lock` as the X11 screen locker and `xss-lock` as the
+integration layer between i3lock, XScreenSaver and systemd-logind.
+
+Manual locking:
+
+`Super + L`
+
+Automatic policy:
+
+- 10 minutes idle: lock session.
+- 15 minutes idle: power displays off.
+- Suspend/hibernate: lock before entering sleep.
+
+`xss-lock --transfer-sleep-lock` is used so that system sleep cannot occur
+before the graphical session is secured.
 
 ### Wallpaper
 
