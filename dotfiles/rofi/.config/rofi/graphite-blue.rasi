@@ -55,11 +55,6 @@ window {
      */
     width: 42%;
 
-    /*
-     * Keep height driven by the contents rather than fixing it to the screen.
-     */
-    height: auto;
-
     location: center;
     anchor: center;
 
