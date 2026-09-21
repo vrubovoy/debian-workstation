@@ -103,7 +103,7 @@ while IFS= read -r extension || [[ -n "$extension" ]]; do
     fi
 
 
-    read -r -p "Install this extension? [Y/n] " answer
+    read -r -p "Install this extension? [Y/n] " answer </dev/tty
 
     case "${answer,,}" in
         ""|y|yes)
