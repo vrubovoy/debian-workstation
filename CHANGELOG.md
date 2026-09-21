@@ -21,6 +21,7 @@
 - Repository helpers for Yazi repository setup, Stow deployment and stable
   `workstation-*` user commands.
 - Added persistent X11 clipboard history using CopyQ with a Rofi frontend.
+- Added VSCodium with Graphite Blue styling and interactive extension setup.
 
 ### Changed
 

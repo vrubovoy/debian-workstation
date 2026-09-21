@@ -96,6 +96,7 @@ browser profiles, authentication tokens, caches, logs, sockets and lock files.
 | Starship | `dotfiles/starship/.config/starship.toml` | `~/.config/starship.toml` |
 | X session | `dotfiles/xsession/.xsessionrc` | `~/.xsessionrc` |
 | Yazi | `dotfiles/yazi/.config/yazi/` | `~/.config/yazi/` |
+| VSCodium | `dotfiles/codium/.config/VSCodium/User/settings.json` | `~/.config/VSCodium/User/settings.json` |
 
 ## Managed system configuration
 
@@ -108,6 +109,7 @@ System configuration is copied explicitly rather than managed with Stow.
 | Network interfaces | `system/network/interfaces` | `/etc/network/interfaces` |
 | Firefox policies | `system/firefox/policies.json` | `/etc/firefox/policies/policies.json` |
 | Yazi APT source | `system/apt/sources/yazi.list` | `/etc/apt/sources.list.d/yazi.list` |
+| VSCodium APT source | `system/apt/sources/vscodium.sources` | `/etc/apt/sources.list.d/vscodium.sources` |
 
 The Yazi signing key is installed separately by
 `scripts/install/setup-yazi-repository.sh`.
@@ -291,3 +293,35 @@ The visible history is provided by Rofi through:
 
 Selecting an entry restores the complete CopyQ item to the clipboard.
 Pasting remains an explicit separate action performed normally with Ctrl+V.
+
+## VSCodium
+
+VSCodium is installed from its official APT repository.
+
+Repository configuration is applied by:
+
+    scripts/install/setup-vscodium-repository.sh
+
+User settings are managed through GNU Stow:
+
+    dotfiles/codium/.config/VSCodium/User/settings.json
+
+The editor uses the Graphite Blue workstation palette directly instead of an
+external theme extension.
+
+Its editor syntax colors intentionally mirror the native Neovim Graphite Blue
+colorscheme.
+
+Extensions are listed separately in:
+
+    packages/vscodium-extensions.txt
+
+They are installed interactively through:
+
+    scripts/configure/vscodium-extensions.sh
+
+The script asks separately before installing every extension.
+
+VSCodium uses Open VSX as its default extension registry, so individual
+extensions may occasionally be unavailable even if they existed in the
+previous Code - OSS setup.

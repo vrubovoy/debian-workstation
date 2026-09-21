@@ -1,0 +1,544 @@
+{
+    // =========================================================================
+    // VSCodium — Graphite Blue
+    // =========================================================================
+    //
+    // Workstation editor configuration.
+    //
+    // The UI and syntax palette intentionally follow the native Graphite Blue
+    // Neovim colorscheme instead of depending on an external theme extension.
+    //
+    // Palette:
+    //
+    //   bg          #111318
+    //   surface     #1A1D24
+    //   surfaceAlt  #222630
+    //   border      #303744
+    //
+    //   fg          #E6E9EF
+    //   muted       #8E98A8
+    //   subtle      #5C6370
+    //
+    //   blue        #7AA2F7
+    //   blueBright  #89B4FA
+    //   red         #E06C75
+    //   green       #98C379
+    //   yellow      #E5C07B
+    //   magenta     #C678DD
+    //   cyan        #56B6C2
+    //   orange      #D19A66
+    //
+    // =========================================================================
+
+
+    // =========================================================================
+    // Window
+    // =========================================================================
+
+    "window.titleBarStyle": "custom",
+
+    "window.menuBarVisibility": "toggle",
+
+    // Open files from untrusted workspaces in a separate window instead of
+    // silently granting workspace trust.
+    "security.workspace.trust.untrustedFiles": "newWindow",
+
+
+    // =========================================================================
+    // Startup
+    // =========================================================================
+
+    "workbench.startupEditor": "none",
+
+    "workbench.tips.enabled": false,
+
+    "workbench.welcomePage.walkthroughs.openOnInstall": false,
+
+
+    // =========================================================================
+    // Appearance
+    // =========================================================================
+
+    // Use a built-in dark theme as the structural base.
+    //
+    // All important colors are explicitly overridden below, so no external
+    // theme extension is required.
+    "workbench.colorTheme": "Default Dark Modern",
+
+    "workbench.iconTheme": null,
+
+
+    // =========================================================================
+    // Graphite Blue — interface
+    // =========================================================================
+
+    "workbench.colorCustomizations": {
+
+        // ---------------------------------------------------------------------
+        // Main surfaces
+        // ---------------------------------------------------------------------
+
+        "editor.background": "#111318",
+        "editor.foreground": "#E6E9EF",
+
+        "sideBar.background": "#1A1D24",
+        "sideBar.foreground": "#E6E9EF",
+
+        "activityBar.background": "#111318",
+        "activityBar.foreground": "#E6E9EF",
+        "activityBar.inactiveForeground": "#5C6370",
+
+        "activityBarBadge.background": "#7AA2F7",
+        "activityBarBadge.foreground": "#111318",
+
+        "panel.background": "#1A1D24",
+
+        "statusBar.background": "#1A1D24",
+        "statusBar.foreground": "#E6E9EF",
+
+        "statusBar.noFolderBackground": "#1A1D24",
+
+        "titleBar.activeBackground": "#111318",
+        "titleBar.activeForeground": "#E6E9EF",
+
+        "titleBar.inactiveBackground": "#111318",
+        "titleBar.inactiveForeground": "#8E98A8",
+
+
+        // ---------------------------------------------------------------------
+        // Borders
+        // ---------------------------------------------------------------------
+
+        "sideBar.border": "#303744",
+        "panel.border": "#303744",
+
+        "editorGroup.border": "#303744",
+
+        "editorWidget.border": "#303744",
+        "editorSuggestWidget.border": "#303744",
+
+        "input.border": "#303744",
+
+        "focusBorder": "#7AA2F7",
+
+
+        // ---------------------------------------------------------------------
+        // Tabs
+        // ---------------------------------------------------------------------
+
+        "editorGroupHeader.tabsBackground": "#111318",
+
+        "tab.activeBackground": "#1A1D24",
+        "tab.activeForeground": "#E6E9EF",
+
+        "tab.inactiveBackground": "#111318",
+        "tab.inactiveForeground": "#8E98A8",
+
+        "tab.activeBorderTop": "#7AA2F7",
+
+        "tab.border": "#303744",
+
+
+        // ---------------------------------------------------------------------
+        // Lists / explorer
+        // ---------------------------------------------------------------------
+
+        "list.activeSelectionBackground": "#303744",
+        "list.activeSelectionForeground": "#E6E9EF",
+
+        "list.inactiveSelectionBackground": "#222630",
+        "list.inactiveSelectionForeground": "#E6E9EF",
+
+        "list.hoverBackground": "#222630",
+
+        "list.focusOutline": "#7AA2F7",
+
+        "sideBarSectionHeader.background": "#1A1D24",
+        "sideBarSectionHeader.foreground": "#E6E9EF",
+
+
+        // ---------------------------------------------------------------------
+        // Editor
+        // ---------------------------------------------------------------------
+
+        "editor.lineHighlightBackground": "#1A1D24",
+
+        "editorLineNumber.foreground": "#5C6370",
+        "editorLineNumber.activeForeground": "#7AA2F7",
+
+        "editorCursor.foreground": "#89B4FA",
+
+        "editor.selectionBackground": "#303744",
+
+        "editor.inactiveSelectionBackground": "#222630",
+
+        "editor.findMatchBackground": "#E5C07B",
+        "editor.findMatchForeground": "#111318",
+
+        "editor.findMatchHighlightBackground": "#303744",
+
+        "editor.wordHighlightBackground": "#222630",
+
+        "editorBracketMatch.background": "#222630",
+        "editorBracketMatch.border": "#89B4FA",
+
+        "editorWhitespace.foreground": "#303744",
+
+        "editorIndentGuide.background1": "#303744",
+        "editorIndentGuide.activeBackground1": "#5C6370",
+
+
+        // ---------------------------------------------------------------------
+        // Widgets
+        // ---------------------------------------------------------------------
+
+        "editorWidget.background": "#1A1D24",
+
+        "editorSuggestWidget.background": "#1A1D24",
+        "editorSuggestWidget.foreground": "#E6E9EF",
+
+        "editorSuggestWidget.selectedBackground": "#303744",
+
+        "quickInput.background": "#1A1D24",
+        "quickInput.foreground": "#E6E9EF",
+
+        "input.background": "#222630",
+        "input.foreground": "#E6E9EF",
+
+        "input.placeholderForeground": "#8E98A8",
+
+
+        // ---------------------------------------------------------------------
+        // Scrollbars
+        // ---------------------------------------------------------------------
+
+        "scrollbar.shadow": "#00000000",
+
+        "scrollbarSlider.background": "#30374480",
+        "scrollbarSlider.hoverBackground": "#5C637080",
+        "scrollbarSlider.activeBackground": "#7AA2F780",
+
+
+        // ---------------------------------------------------------------------
+        // Git
+        // ---------------------------------------------------------------------
+
+        "gitDecoration.addedResourceForeground": "#98C379",
+        "gitDecoration.modifiedResourceForeground": "#E5C07B",
+        "gitDecoration.deletedResourceForeground": "#E06C75",
+        "gitDecoration.untrackedResourceForeground": "#56B6C2",
+        "gitDecoration.ignoredResourceForeground": "#5C6370",
+
+
+        // ---------------------------------------------------------------------
+        // Diagnostics
+        // ---------------------------------------------------------------------
+
+        "editorError.foreground": "#E06C75",
+        "editorWarning.foreground": "#E5C07B",
+        "editorInfo.foreground": "#7AA2F7",
+        "editorHint.foreground": "#56B6C2",
+
+
+        // ---------------------------------------------------------------------
+        // Terminal
+        // ---------------------------------------------------------------------
+
+        "terminal.background": "#111318",
+        "terminal.foreground": "#E6E9EF",
+
+        "terminalCursor.foreground": "#89B4FA",
+
+        "terminal.ansiBlack": "#1A1D24",
+        "terminal.ansiRed": "#E06C75",
+        "terminal.ansiGreen": "#98C379",
+        "terminal.ansiYellow": "#E5C07B",
+        "terminal.ansiBlue": "#7AA2F7",
+        "terminal.ansiMagenta": "#C678DD",
+        "terminal.ansiCyan": "#56B6C2",
+        "terminal.ansiWhite": "#C8CCD4",
+
+        "terminal.ansiBrightBlack": "#5C6370",
+        "terminal.ansiBrightRed": "#F07178",
+        "terminal.ansiBrightGreen": "#B5E890",
+        "terminal.ansiBrightYellow": "#FFD580",
+        "terminal.ansiBrightBlue": "#89B4FA",
+        "terminal.ansiBrightMagenta": "#D2A6FF",
+        "terminal.ansiBrightCyan": "#7DCFFF",
+        "terminal.ansiBrightWhite": "#E6E9EF"
+    },
+
+
+    // =========================================================================
+    // Graphite Blue — syntax
+    // =========================================================================
+    //
+    // These values intentionally mirror the native Neovim colorscheme.
+    //
+    // Neovim:
+    //
+    //   Comment       subtle
+    //   String        green
+    //   Number        orange
+    //   Function      blue
+    //   Keyword       magenta
+    //   Operator      cyan
+    //   Preprocessor  cyan
+    //   Type          yellow
+
+    "editor.tokenColorCustomizations": {
+        "comments": "#5C6370",
+
+        "strings": "#98C379",
+
+        "numbers": "#D19A66",
+
+        "keywords": "#C678DD",
+
+        "functions": "#7AA2F7",
+
+        "types": "#E5C07B",
+
+        "variables": "#E6E9EF",
+
+        "textMateRules": [
+            {
+                "scope": [
+                    "comment",
+                    "punctuation.definition.comment"
+                ],
+                "settings": {
+                    "foreground": "#5C6370",
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    "keyword",
+                    "storage.type",
+                    "storage.modifier"
+                ],
+                "settings": {
+                    "foreground": "#C678DD"
+                }
+            },
+            {
+                "scope": [
+                    "keyword.operator",
+                    "punctuation.separator",
+                    "punctuation.accessor"
+                ],
+                "settings": {
+                    "foreground": "#56B6C2"
+                }
+            },
+            {
+                "scope": [
+                    "entity.name.function",
+                    "support.function"
+                ],
+                "settings": {
+                    "foreground": "#7AA2F7"
+                }
+            },
+            {
+                "scope": [
+                    "entity.name.type",
+                    "entity.name.class",
+                    "support.type",
+                    "support.class"
+                ],
+                "settings": {
+                    "foreground": "#E5C07B"
+                }
+            },
+            {
+                "scope": [
+                    "constant.numeric",
+                    "constant.language.boolean"
+                ],
+                "settings": {
+                    "foreground": "#D19A66"
+                }
+            },
+            {
+                "scope": [
+                    "string",
+                    "string.quoted"
+                ],
+                "settings": {
+                    "foreground": "#98C379"
+                }
+            },
+            {
+                "scope": [
+                    "meta.preprocessor",
+                    "entity.name.function.preprocessor",
+                    "keyword.control.directive"
+                ],
+                "settings": {
+                    "foreground": "#56B6C2"
+                }
+            }
+        ]
+    },
+
+
+    // =========================================================================
+    // Editor
+    // =========================================================================
+
+    "editor.fontFamily": "'Ubuntu Mono', monospace",
+
+    "editor.fontWeight": "bold",
+
+    // Start conservatively; visual sizing will be tuned after the first real
+    // workstation run.
+    "editor.fontSize": 16,
+
+    "editor.fontLigatures": false,
+
+    "editor.lineHeight": 1.25,
+
+    "editor.cursorStyle": "block",
+
+    "editor.cursorBlinking": "blink",
+
+    "editor.minimap.enabled": false,
+
+    "editor.renderWhitespace": "selection",
+
+    "editor.rulers": [
+        100
+    ],
+
+    "editor.tabSize": 4,
+
+    "editor.insertSpaces": true,
+
+    "editor.detectIndentation": true,
+
+    "editor.wordWrap": "off",
+
+    "editor.scrollBeyondLastLine": false,
+
+    "editor.smoothScrolling": true,
+
+
+    // =========================================================================
+    // Explorer
+    // =========================================================================
+
+    "explorer.confirmDelete": false,
+
+    "explorer.confirmDragAndDrop": false,
+
+    "explorer.autoReveal": true,
+
+
+    // =========================================================================
+    // Git
+    // =========================================================================
+
+    "git.autofetch": true,
+
+    // Avoid automatically searching parent directories for another repository.
+    "git.openRepositoryInParentFolders": "never",
+
+    "git.confirmSync": false,
+
+
+    // =========================================================================
+    // Terminal
+    // =========================================================================
+
+    "terminal.integrated.defaultProfile.linux": "fish",
+
+    "terminal.integrated.fontFamily": "'Ubuntu Mono'",
+
+    "terminal.integrated.fontWeight": "bold",
+
+    "terminal.integrated.fontSize": 15,
+
+    "terminal.integrated.cursorStyle": "block",
+
+    "terminal.integrated.cursorBlinking": true,
+
+    "terminal.explorerKind": "both",
+
+    "terminal.sourceControlRepositoriesKind": "both",
+
+    "terminal.external.linuxExec": "kitty",
+
+
+    // =========================================================================
+    // Extensions
+    // =========================================================================
+
+    // Extension installation is managed explicitly by the workstation setup.
+    "extensions.autoUpdate": false,
+
+    "extensions.autoCheckUpdates": true,
+
+
+    // =========================================================================
+    // Telemetry / recommendations
+    // =========================================================================
+
+    "telemetry.telemetryLevel": "off",
+
+    "extensions.ignoreRecommendations": true,
+
+
+    // =========================================================================
+    // Unicode
+    // =========================================================================
+    //
+    // Preserve the old workstation behaviour.
+    //
+    // Source code in this environment frequently contains non-ASCII text and
+    // intentionally does not treat ambiguous/invisible Unicode as warnings.
+
+    "editor.unicodeHighlight.invisibleCharacters": false,
+
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+
+
+    // =========================================================================
+    // Files
+    // =========================================================================
+
+    "files.trimTrailingWhitespace": true,
+
+    "files.insertFinalNewline": true,
+
+    "files.trimFinalNewlines": true,
+
+    "files.autoSave": "off",
+
+
+    // =========================================================================
+    // C / C++
+    // =========================================================================
+    //
+    // clangd is the primary C/C++ language server.
+    //
+    // Project compilation databases are expected to come from CMake, Bear or
+    // the project's own build system.
+
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--header-insertion=never"
+    ],
+
+    "clangd.checkUpdates": false,
+
+
+    // =========================================================================
+    // CMake
+    // =========================================================================
+
+    "cmake.configureOnOpen": false
+}

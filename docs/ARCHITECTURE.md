@@ -68,6 +68,7 @@ components and reproducibility.
 | Directory history | Zoxide | Fuzzy historical directory navigation |
 | System summary | Fastfetch | Visual system-information summary |
 | Repository summary | Onefetch | Git repository information and statistics |
+| Graphical code editor | VSCodium | VS Code-compatible editor without Microsoft branding/telemetry defaults |
 
 ## Appearance
 
@@ -144,3 +145,19 @@ history entries.
 
 Selecting an entry in Rofi restores it to the clipboard but does not
 automatically paste it into the focused application.
+
+### VSCodium
+
+VSCodium is the workstation's graphical code editor.
+
+It is installed from the official VSCodium APT repository rather than from
+Snap, Flatpak or manually downloaded packages.
+
+The editor uses the built-in dark theme as a structural base, while the
+Graphite Blue workstation palette is applied explicitly through user settings.
+
+No external color-theme extension is required.
+
+C/C++ language intelligence is provided primarily by clangd.
+
+VSCodium uses Open VSX as its default extension registry.

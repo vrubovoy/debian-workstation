@@ -198,12 +198,12 @@ bindsym $mod+Return exec $terminal
 # It will begin working automatically once `firefox` is available in PATH.
 bindsym $mod+w exec --no-startup-id firefox
 
-# Code editor.
-#
-# Prefer Code - OSS. Fall back to the `code` executable when Code - OSS is not
-# available.
-bindsym $mod+c exec --no-startup-id sh -c \
-    'command -v code-oss >/dev/null 2>&1 && exec code-oss || exec code'
+# =============================================================================
+# Code editor
+# =============================================================================
+
+# Open VSCodium.
+bindsym $mod+c exec --no-startup-id codium
 
 
 # =============================================================================

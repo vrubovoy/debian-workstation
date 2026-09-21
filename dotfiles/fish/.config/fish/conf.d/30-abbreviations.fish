@@ -87,3 +87,6 @@ abbr --add mc 'make clean'
 # point it at the explicit Debian interpreter name.
 
 abbr --add p python3
+
+# Open VSCodium.
+abbr --add vc codium
