@@ -109,7 +109,6 @@ System configuration is copied explicitly rather than managed with Stow.
 | Network interfaces | `system/network/interfaces` | `/etc/network/interfaces` |
 | Firefox policies | `system/firefox/policies.json` | `/etc/firefox/policies/policies.json` |
 | Yazi APT source | `system/apt/sources/yazi.list` | `/etc/apt/sources.list.d/yazi.list` |
-| VSCodium APT source | `system/apt/sources/vscodium.sources` | `/etc/apt/sources.list.d/vscodium.sources` |
 
 The Yazi signing key is installed separately by
 `scripts/install/setup-yazi-repository.sh`.
@@ -296,11 +295,21 @@ Pasting remains an explicit separate action performed normally with Ctrl+V.
 
 ## VSCodium
 
-VSCodium is installed from its official APT repository.
+VSCodium is installed from an explicitly pinned official GitHub release.
 
-Repository configuration is applied by:
+The installation script is:
 
-    scripts/install/setup-vscodium-repository.sh
+    scripts/install/install-vscodium.sh
+
+The script:
+
+- detects the Debian architecture;
+- downloads the matching `.deb` package;
+- downloads the corresponding SHA-256 checksum;
+- verifies the package before installation;
+- installs it through APT so package dependencies are resolved normally.
+
+The VSCodium version is explicitly pinned inside the installation script.
 
 User settings are managed through GNU Stow:
 
@@ -319,9 +328,3 @@ Extensions are listed separately in:
 They are installed interactively through:
 
     scripts/configure/vscodium-extensions.sh
-
-The script asks separately before installing every extension.
-
-VSCodium uses Open VSX as its default extension registry, so individual
-extensions may occasionally be unavailable even if they existed in the
-previous Code - OSS setup.

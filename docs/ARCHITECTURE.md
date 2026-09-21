@@ -150,8 +150,15 @@ automatically paste it into the focused application.
 
 VSCodium is the workstation's graphical code editor.
 
-It is installed from the official VSCodium APT repository rather than from
-Snap, Flatpak or manually downloaded packages.
+It is installed from an explicitly pinned official GitHub release as a Debian
+package.
+
+The workstation does not depend on the VSCodium APT repository. This avoids
+an additional package source and keeps the installed editor version tied to
+the workstation repository state.
+
+Package integrity is verified using the SHA-256 checksum published with the
+VSCodium release.
 
 The editor uses the built-in dark theme as a structural base, while the
 Graphite Blue workstation palette is applied explicitly through user settings.
