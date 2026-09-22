@@ -13,29 +13,33 @@ source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
 YAZI_KEY_URL="https://yazi-rs.github.io/builds/yazi-keyring.gpg"
 
-deploy() {
-    local source="$1" target="$2"
-
-    if [[ -e "$target" && ! -e "$target$BACKUP_SUFFIX" ]]; then
-        cp -a -- "$target" "$target$BACKUP_SUFFIX"
+backup_once() {
+    if [[ -e "$1" && ! -e "$1$BACKUP_SUFFIX" ]]; then
+        cp -a -- "$1" "$1$BACKUP_SUFFIX"
     fi
+}
 
-    install -Dm644 -- "$source" "$target"
+deploy() {
+    backup_once "$2"
+    install -Dm644 -- "$1" "$2"
 }
 
 setup_repositories() {
     local sources="$ROOT_DIR/system/etc/apt/sources.list.d"
-
-    # debian.sources replaces the Debian entries; keeping both would duplicate them.
-    if grep -Eqs '^[[:space:]]*deb[[:space:]].*(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)' \
-        /etc/apt/sources.list; then
-        die 'Comment out the Debian entries in /etc/apt/sources.list, then run the installer again.'
-    fi
+    local legacy=/etc/apt/sources.list
+    local debian_entry='^[[:space:]]*deb(-src)?[[:space:]].*(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)'
 
     # The managed sources use HTTPS, so APT needs CA certificates first; get
     # them from the sources the system was installed with.
     apt-get update
     apt-get install -y ca-certificates curl
+
+    # debian.sources replaces the Debian entries of an old one-line
+    # sources.list; comment them out so APT does not read both. Other entries stay.
+    if grep -Eqs "$debian_entry" "$legacy"; then
+        backup_once "$legacy"
+        sed -Ei "/$debian_entry/s/^/# /" "$legacy"
+    fi
 
     deploy "$sources/debian.sources" /etc/apt/sources.list.d/debian.sources
     curl -fsSL -o /usr/share/keyrings/yazi-keyring.gpg "$YAZI_KEY_URL"

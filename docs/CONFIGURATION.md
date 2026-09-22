@@ -35,8 +35,9 @@ After changing one, run `./install.sh` (or `sudo scripts/install/system.sh`).
 The original of every replaced file is kept once as `*.debian-workstation.bak`.
 
 - `/etc/apt/sources.list.d/debian.sources`: Debian 13 with contrib, non-free
-  and non-free-firmware. The installer stops if `/etc/apt/sources.list` still
-  has active Debian entries.
+  and non-free-firmware. Debian entries in an old one-line
+  `/etc/apt/sources.list` are commented out (after a backup); other entries
+  there are left alone.
 - `/etc/network/interfaces`: loopback only; NetworkManager owns everything else.
 - `/etc/default/keyboard`: US/RU layouts, `Alt+Space` to switch and Compose on
   Right Alt, for the console, LightDM and X alike.

@@ -3,13 +3,6 @@
 Problems met while installing and running the workstation, with fixes. New
 entries are added as they come up.
 
-## The installer stops at "Comment out the Debian entries"
-
-`/etc/apt/sources.list` still has active `deb` lines for the Debian archive,
-usually after an upgrade from Debian 12. The installer manages the same
-archive in `/etc/apt/sources.list.d/debian.sources` and refuses to duplicate
-it. Put `#` in front of those lines and run `./install.sh` again.
-
 ## The installer stops at "… is in the way and ….debian-workstation.bak already exists"
 
 A configuration file had been replaced before and a backup from that time
