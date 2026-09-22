@@ -4,9 +4,10 @@
 # the checksum from `curl -fsSL URL | sha256sum`.
 #
 # package: the Debian package name, or for a .run installer its directory
-# under /opt.
+# under /opt. depends: APT packages installed first (comma-separated, - for
+# none); a .deb declares its own.
 #
-# package     version       sha256                                                            url
-onefetch      2.28.1-1      e46550280b5c37e98152243115ccd9e5858f34b8a12f137aa6da37fed9dd8bd5  https://github.com/o2sh/onefetch/releases/download/2.28.1/onefetch_amd64.deb
-codium        1.135.06055   5f5c00a9da9d232e4c84e9eee68bbdeb4d8737462022626ce3bdb6948f3d8649  https://github.com/VSCodium/vscodium/releases/download/1.135.06055/codium_1.135.06055_amd64.deb
-AmneziaVPN    5.0.3.0       0335f2643f58c4d7494be4c6d47582574fa7e5a463450e9a47b0c5c2eda797c2  https://github.com/amnezia-vpn/amnezia-client/releases/download/5.0.3.0/AmneziaVPN_5.0.3.0_linux_x64.run
+# package     version       sha256                                                            url                                                                                                   depends
+onefetch      2.28.1-1      e46550280b5c37e98152243115ccd9e5858f34b8a12f137aa6da37fed9dd8bd5  https://github.com/o2sh/onefetch/releases/download/2.28.1/onefetch_amd64.deb                             -
+codium        1.135.06055   5f5c00a9da9d232e4c84e9eee68bbdeb4d8737462022626ce3bdb6948f3d8649  https://github.com/VSCodium/vscodium/releases/download/1.135.06055/codium_1.135.06055_amd64.deb      -
+AmneziaVPN    5.0.3.0       0335f2643f58c4d7494be4c6d47582574fa7e5a463450e9a47b0c5c2eda797c2  https://github.com/amnezia-vpn/amnezia-client/releases/download/5.0.3.0/AmneziaVPN_5.0.3.0_linux_x64.run  libxcb-cursor0,libxcb-xinerama0,libxcb-icccm4,libxcb-keysyms1,libopengl0,libxkbcommon-x11-0

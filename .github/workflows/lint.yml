@@ -173,6 +173,8 @@ jobs:
           source scripts/install/system.sh
           setup_repositories
           install_packages --simulate >/dev/null
+          manifest packages/external.txt | awk '$5 != "-" { print $5 }' | tr , '\n' |
+            xargs -r apt-get install --simulate >/dev/null
 
       - name: Check for duplicate packages
         shell: bash

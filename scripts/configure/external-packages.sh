@@ -22,8 +22,13 @@ installed_version() {
 }
 
 install_release() {
-    local package="$1" version="$2" sha256="$3" url="$4" current="$5"
-    local file="$TMP_DIR/${url##*/}"
+    local package="$1" version="$2" sha256="$3" url="$4" depends="$5" current="$6"
+    local file="$TMP_DIR/${url##*/}" deps=()
+
+    if [[ "$depends" != - ]]; then
+        IFS=, read -ra deps <<< "$depends"
+        sudo apt-get install -y "${deps[@]}"
+    fi
 
     info "Downloading $package $version"
     curl -fL --retry 3 -o "$file" "$url"
@@ -40,7 +45,8 @@ install_release() {
     chmod +x "$file"
 
     if [[ -n "$current" && -x "/opt/$package/maintenancetool" ]]; then
-        sudo "/opt/$package/maintenancetool" purge --confirm-command
+        sudo env QT_QPA_PLATFORM=offscreen "/opt/$package/maintenancetool" purge \
+            --accept-licenses --accept-messages --confirm-command
     fi
 
     sudo env QT_QPA_PLATFORM=offscreen "$file" install --root "/opt/$package" \
@@ -64,7 +70,7 @@ chmod 755 "$TMP_DIR"
 mapfile -t releases < <(manifest "$ROOT_DIR/packages/external.txt")
 
 for release in "${releases[@]}"; do
-    read -r package version sha256 url <<< "$release"
+    read -r package version sha256 url depends <<< "$release"
     current="$(installed_version "$package" "$url")"
 
     if [[ "$current" == "$version" ]]; then
@@ -76,5 +82,5 @@ for release in "${releases[@]}"; do
         continue
     fi
 
-    install_release "$package" "$version" "$sha256" "$url" "$current"
+    install_release "$package" "$version" "$sha256" "$url" "$depends" "$current"
 done
