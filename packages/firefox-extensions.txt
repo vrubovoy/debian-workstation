@@ -1,0 +1,18 @@
+# =============================================================================
+# Firefox extensions
+# =============================================================================
+#
+# Recommended extensions carried over from the previous workstation.
+#
+# Installation remains interactive. The setup script opens the selected
+# extension in addons.mozilla.org and Firefox performs the actual installation.
+#
+# Format:
+#
+#   NAME|URL
+#
+# =============================================================================
+
+AdGuard AdBlocker|https://addons.mozilla.org/firefox/addon/adguard-adblocker/
+FoxyProxy Standard|https://addons.mozilla.org/firefox/addon/foxyproxy-standard/
+TWP - Translate Web Pages|https://addons.mozilla.org/firefox/addon/traduzir-paginas-web/

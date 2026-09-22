@@ -168,3 +168,19 @@ No external color-theme extension is required.
 C/C++ language intelligence is provided primarily by clangd.
 
 VSCodium uses Open VSX as its default extension registry.
+
+### Firefox
+
+Firefox ESR is installed from Debian Stable.
+
+System-wide browser defaults are managed through Firefox enterprise policies
+rather than a profile-local `user.js`.
+
+This avoids coupling the workstation configuration to a particular Firefox
+profile and keeps browser configuration reproducible across fresh profiles.
+
+The policy configuration controls telemetry, studies, recommendations,
+Firefox Home content, DNS over HTTPS and selected privacy-related behaviour.
+
+User-installed browser extensions remain optional and are offered
+interactively during workstation setup.

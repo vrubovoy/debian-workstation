@@ -224,11 +224,49 @@ final Yazi directory back to the shell.
 
 ## Firefox
 
-Firefox ESR is installed from Debian Stable and used as the default browser.
-System-wide reproducible preferences live in `system/firefox/policies.json`.
-The policy disables telemetry/studies, sponsored/recommendation content and
-built-in generative-AI features by default without attempting to version the
-Firefox profile.
+Firefox ESR is provided by Debian Stable.
+
+System-wide configuration is stored in:
+
+    system/firefox/policies.json
+
+and installed as:
+
+    /etc/firefox/policies/policies.json
+
+The workstation deliberately does not manage a profile-local `user.js`.
+
+Firefox policies provide stable configuration without depending on the name
+or location of an individual Firefox profile.
+
+The current policy configuration:
+
+- disables telemetry and Firefox Studies;
+- removes sponsored and recommendation-oriented Firefox Home content;
+- disables Firefox Suggest online suggestions;
+- disables Firefox promotional messaging;
+- disables built-in generative-AI features by default;
+- disables form/search history;
+- enables DNS over HTTPS using Cloudflare with system-DNS fallback.
+
+Browser profiles under:
+
+    ~/.mozilla/firefox/
+
+remain private mutable user data and are never stored in the workstation
+repository.
+
+Optional Firefox extensions are listed in:
+
+    packages/firefox-extensions.txt
+
+They are offered interactively by:
+
+    scripts/configure/firefox-extensions.sh
+
+The setup script opens the selected extension pages on addons.mozilla.org.
+Firefox itself performs the final installation and displays the requested
+extension permissions.
 
 `~/.mozilla/firefox/` remains private user state.
 
