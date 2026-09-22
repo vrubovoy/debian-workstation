@@ -67,6 +67,43 @@ set_default_applications() {
     xdg-mime default firefox-esr.desktop text/html x-scheme-handler/http x-scheme-handler/https
 }
 
+# Rofi would list applications whose icon is missing with a blank icon; hide
+# them for this user with Hidden=true entries in ~/.local/share/applications.
+hide_iconless_applications() {
+    local dir="$HOME/.local/share/applications" marker="X-Workstation-Hidden=true"
+    local file name icon
+    local -A icons=()
+
+    mkdir -p "$dir"
+
+    # Entries hidden by an earlier run; the icon may have appeared since.
+    for file in "$dir"/*.desktop; do
+        if [[ -f "$file" ]] && grep -qxF "$marker" "$file"; then
+            rm -f -- "$file"
+        fi
+    done
+
+    while IFS= read -r name; do
+        icons["${name%.*}"]=1
+    done < <(find /usr/share/icons/Adwaita /usr/share/icons/AdwaitaLegacy /usr/share/icons/hicolor \
+        /usr/share/pixmaps -type f -printf '%f\n' 2>/dev/null)
+
+    for file in /usr/share/applications/*.desktop; do
+        # The user's own entry wins; entries already hidden need nothing.
+        if [[ -e "$dir/${file##*/}" ]] || grep -qE '^(NoDisplay|Hidden)=true' "$file"; then
+            continue
+        fi
+
+        icon="$(sed -n 's/^Icon=//p' "$file" | head -n 1)"
+
+        if [[ "$icon" == /* && -f "$icon" ]] || [[ -n "$icon" && -n "${icons[$icon]:-}" ]]; then
+            continue
+        fi
+
+        printf '[Desktop Entry]\nHidden=true\n%s\n' "$marker" > "$dir/${file##*/}"
+    done
+}
+
 apply_gsettings() {
     local schema="org.gnome.desktop.interface"
 
@@ -89,6 +126,7 @@ link_commands
 
 step 'Default applications'
 set_default_applications
+hide_iconless_applications
 
 step 'GSettings'
 # dconf needs a session bus; on a TTY there may be none yet.
