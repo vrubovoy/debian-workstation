@@ -33,6 +33,6 @@ sudo mkdir -p "$(dirname -- "$FIREFOX_SELECTION")"
 printf '%s' "${selected[@]/%/$'\n'}" | sudo tee "$FIREFOX_SELECTION" >/dev/null
 
 render_firefox_policies > "$tmp"
-sudo install -Dm644 "$tmp" /etc/firefox/policies/policies.json
+sudo install -Dm644 "$tmp" /etc/firefox-esr/policies/policies.json
 
 info 'Restart Firefox to apply the selection.'

@@ -107,7 +107,7 @@ deploy_files() {
                 continue
                 ;;
             # Also carries the extensions selected on this machine.
-            /etc/firefox/policies/policies.json)
+            /etc/firefox-esr/policies/policies.json)
                 source="$TMP_DIR/policies.json"
                 render_firefox_policies > "$source"
                 ;;

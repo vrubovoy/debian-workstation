@@ -65,5 +65,5 @@ render_firefox_policies() {
 
     jq --argjson settings "$settings" \
         'if $settings == {} then . else .policies.ExtensionSettings = $settings end' \
-        "$ROOT_DIR/system/etc/firefox/policies/policies.json"
+        "$ROOT_DIR/system/etc/firefox-esr/policies/policies.json"
 }
