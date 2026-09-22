@@ -32,7 +32,10 @@ the way when the installer runs is moved to `*.debian-workstation.bak`.
 
 Files under `system/` are copied, not linked, because they belong to root.
 After changing one, run `./install.sh` (or `sudo scripts/install/system.sh`).
-The original of every replaced file is kept once as `*.debian-workstation.bak`.
+The first time the installer replaces a file, it keeps the system's version as
+`*.debian-workstation.bak` and records the path in
+`/etc/debian-workstation/managed-files`; later runs overwrite it without new
+backups.
 
 - `/etc/apt/sources.list.d/debian.sources`: Debian 13 with contrib, non-free
   and non-free-firmware. Debian entries in an old one-line

@@ -3,8 +3,8 @@
 #
 #   sudo scripts/install/system.sh [USER]
 #
-# Files under system/ are copied to the same path under /. A replaced file is
-# kept once as *.debian-workstation.bak.
+# Files under system/ are copied to the same path under /. The system's own
+# version of a replaced file is kept as *.debian-workstation.bak.
 
 set -Eeuo pipefail
 
@@ -12,6 +12,7 @@ set -Eeuo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
 YAZI_KEY_URL="https://yazi-rs.github.io/builds/yazi-keyring.gpg"
+MANAGED_FILES="/etc/debian-workstation/managed-files"
 
 backup_once() {
     if [[ -e "$1" && ! -e "$1$BACKUP_SUFFIX" ]]; then
@@ -19,9 +20,19 @@ backup_once() {
     fi
 }
 
+# Only the first deployment of a path backs it up and records it in
+# $MANAGED_FILES, so a backup is always the system's own version, never an
+# earlier copy from this repository.
 deploy() {
-    backup_once "$2"
-    install -Dm644 -- "$1" "$2"
+    local source="$1" target="$2"
+
+    if ! grep -qxF -- "$target" "$MANAGED_FILES" 2>/dev/null; then
+        backup_once "$target"
+        mkdir -p "$(dirname -- "$MANAGED_FILES")"
+        printf '%s\n' "$target" >> "$MANAGED_FILES"
+    fi
+
+    install -Dm644 -- "$source" "$target"
 }
 
 setup_repositories() {
@@ -85,15 +96,25 @@ install_releases() {
 }
 
 deploy_files() {
-    local source
+    local source target
 
     while IFS= read -r -d '' source; do
-        deploy "$source" "/${source#"$ROOT_DIR/system/"}"
-    done < <(find "$ROOT_DIR/system" -type f -print0)
+        target="/${source#"$ROOT_DIR/system/"}"
 
-    # The deployed policies also carry the extensions selected on this machine.
-    render_firefox_policies > "$TMP_DIR/policies.json"
-    install -m644 "$TMP_DIR/policies.json" /etc/firefox/policies/policies.json
+        case "$target" in
+            # Deployed before the packages by setup_repositories.
+            /etc/apt/*)
+                continue
+                ;;
+            # Also carries the extensions selected on this machine.
+            /etc/firefox/policies/policies.json)
+                source="$TMP_DIR/policies.json"
+                render_firefox_policies > "$source"
+                ;;
+        esac
+
+        deploy "$source" "$target"
+    done < <(find "$ROOT_DIR/system" -type f -print0)
 }
 
 # Enabled for the next boot only: restarting networking or the display
