@@ -32,10 +32,12 @@ setup_repositories() {
         die 'Comment out the Debian entries in /etc/apt/sources.list, then run the installer again.'
     fi
 
-    deploy "$sources/debian.sources" /etc/apt/sources.list.d/debian.sources
+    # The managed sources use HTTPS, so APT needs CA certificates first; get
+    # them from the sources the system was installed with.
     apt-get update
     apt-get install -y ca-certificates curl
 
+    deploy "$sources/debian.sources" /etc/apt/sources.list.d/debian.sources
     curl -fsSL -o /usr/share/keyrings/yazi-keyring.gpg "$YAZI_KEY_URL"
     deploy "$sources/yazi.list" /etc/apt/sources.list.d/yazi.list
     apt-get update
