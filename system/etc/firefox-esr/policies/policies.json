@@ -46,6 +46,13 @@
             "Enabled": false,
             "Chatbot": false,
             "Locked": false
+        },
+
+        "Preferences": {
+            "extensions.activeThemeID": {
+                "Value": "firefox-compact-dark@mozilla.org",
+                "Status": "default"
+            }
         }
     }
 }

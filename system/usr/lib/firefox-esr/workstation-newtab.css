@@ -1,0 +1,7 @@
+/* With every Firefox Home section turned off (policies.json) only the search
+ * field is left on a new tab; move it down to the middle of the page. */
+@-moz-document url("about:home"), url("about:newtab") {
+    .search-wrapper {
+        padding-block-start: calc(50vh - 150px) !important;
+    }
+}
