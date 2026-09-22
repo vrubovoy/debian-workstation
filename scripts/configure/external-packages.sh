@@ -22,7 +22,7 @@ installed_version() {
 }
 
 install_release() {
-    local package="$1" version="$2" sha256="$3" url="$4" depends="$5" current="$6"
+    local package="$1" version="$2" sha256="$3" url="$4" depends="$5"
     local file="$TMP_DIR/${url##*/}" deps=()
 
     if [[ "$depends" != - ]]; then
@@ -40,11 +40,12 @@ install_release() {
         return
     fi
 
-    # A Qt installer (AmneziaVPN): the old version goes with its own
-    # maintenance tool, then the new one installs headless into /opt.
+    # A Qt installer (AmneziaVPN) will not install into a non-empty directory.
+    # A copy already there, older or installed by hand, goes with its own
+    # maintenance tool; then the new one installs headless into /opt.
     chmod +x "$file"
 
-    if [[ -n "$current" && -x "/opt/$package/maintenancetool" ]]; then
+    if [[ -x "/opt/$package/maintenancetool" ]]; then
         sudo env QT_QPA_PLATFORM=offscreen "/opt/$package/maintenancetool" purge \
             --accept-licenses --accept-messages --confirm-command
     fi
@@ -82,5 +83,5 @@ for release in "${releases[@]}"; do
         continue
     fi
 
-    install_release "$package" "$version" "$sha256" "$url" "$depends" "$current"
+    install_release "$package" "$version" "$sha256" "$url" "$depends"
 done
