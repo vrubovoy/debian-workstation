@@ -1,11 +1,19 @@
 {
-    // VSCodium — Graphite Blue, applied over the built-in dark theme, so no theme
-    // extension is needed. Syntax colors match the Neovim colorscheme.
+    // =========================================================================
+    // VSCodium — Graphite Blue
+    // =========================================================================
+    //
+    // User settings. The colors are applied over the built-in dark theme, so
+    // no theme extension is needed; syntax colors match the Neovim
+    // colorscheme.
     //
     // bg #111318  surface #1A1D24  surfaceAlt #222630  border #303744
     // fg #E6E9EF  muted #8E98A8    subtle #5C6370
     // blue #7AA2F7  blueBright #89B4FA  red #E06C75  green #98C379
     // yellow #E5C07B  magenta #C678DD  cyan #56B6C2  orange #D19A66
+    //
+    // Path:  ~/.config/VSCodium/User/settings.json
+    // Apply: on save
 
 
     // =========================================================================

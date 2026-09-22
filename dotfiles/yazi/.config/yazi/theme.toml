@@ -1,5 +1,11 @@
-# Graphite Blue — Yazi. File icons come from Kitty's Nerd Font fallback. No
-# bold: the font is already bold, and Kitty would draw bold as italic.
+# =============================================================================
+# Graphite Blue — Yazi theme
+# =============================================================================
+#
+# File icons come from Kitty's Nerd Font fallback. No bold: the font is already
+# bold, and Kitty would draw bold as italic.
+#
+# Path:  ~/.config/yazi/theme.toml
 
 [app]
 overall = { bg = "#111318" }

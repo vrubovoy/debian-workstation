@@ -1,3 +1,11 @@
+# =============================================================================
+# Packages — development
+# =============================================================================
+#
+# Git and commit signing, the C/C++ language server and the linters of this
+# repository. Installed from Debian by scripts/install/system.sh, one package
+# per line.
+
 # Version control and signing
 git
 openssh-client

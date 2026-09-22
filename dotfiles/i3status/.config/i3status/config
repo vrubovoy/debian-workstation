@@ -1,6 +1,13 @@
-# i3status — the right side of i3bar. The bar's font and colors are set in
+# =============================================================================
+# i3status — status bar
+# =============================================================================
+#
+# The right side of i3bar; the bar's font and colors are set in
 # ~/.config/i3/config. Missing hardware (Wi-Fi, Ethernet, battery) hides its
 # block, so the same file works on laptops and desktops.
+#
+# Path:  ~/.config/i3status/config
+# Apply: Super+Shift+R
 
 general {
     output_format = "i3bar"

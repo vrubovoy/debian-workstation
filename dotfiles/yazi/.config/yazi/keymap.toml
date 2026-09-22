@@ -1,5 +1,11 @@
+# =============================================================================
+# Yazi — key bindings
+# =============================================================================
+#
 # Yazi keeps its default keys (F1 lists them). With the Fish `y` wrapper, q
 # quits into the last directory and Q quits without changing it.
+#
+# Path:  ~/.config/yazi/keymap.toml
 
 [[mgr.prepend_keymap]]
 on = "!"

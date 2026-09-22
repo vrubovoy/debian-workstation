@@ -1,5 +1,12 @@
-# Debian 13 (trixie). contrib and non-free are needed for fonts-ubuntu among
-# others.
+# =============================================================================
+# APT — Debian sources
+# =============================================================================
+#
+# Debian 13 (trixie) with its updates and security suites. contrib and non-free
+# are needed for fonts-ubuntu among others.
+#
+# Path:  /etc/apt/sources.list.d/debian.sources
+# Apply: sudo apt update
 
 Types: deb
 URIs: https://deb.debian.org/debian

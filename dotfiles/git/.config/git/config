@@ -1,5 +1,11 @@
-# Git behaviour shared by every machine. Name, email and the signing key are
+# =============================================================================
+# Git
+# =============================================================================
+#
+# Behaviour shared by every machine. Name, email and the signing key are
 # machine-local in ~/.gitconfig.local (scripts/configure/git.sh).
+#
+# Path:  ~/.config/git/config
 
 [include]
     path = ~/.gitconfig.local

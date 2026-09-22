@@ -1,4 +1,11 @@
--- Graphite Blue — native Neovim colorscheme, no plugin required.
+-- =============================================================================
+-- Graphite Blue — Neovim colorscheme
+-- =============================================================================
+--
+-- A native colorscheme, no plugin required.
+--
+-- Path:  ~/.config/nvim/colors/graphite-blue.lua
+-- Apply: :colorscheme graphite-blue
 
 vim.cmd("highlight clear")
 

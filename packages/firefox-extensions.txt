@@ -1,5 +1,11 @@
-# Optional Firefox extensions, offered by scripts/configure/firefox-extensions.sh.
+# =============================================================================
+# Firefox extensions
+# =============================================================================
 #
+# Optional extensions, offered one by one by
+# scripts/configure/firefox-extensions.sh. The selected ones are installed from
+# addons.mozilla.org through the Firefox policies.
+
 # extension id                              addons.mozilla.org slug   name
 adguardadblocker@adguard.com                adguard-adblocker         AdGuard AdBlocker
 foxyproxy@eric.h.jung                       foxyproxy-standard        FoxyProxy Standard

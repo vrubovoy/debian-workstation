@@ -1,7 +1,12 @@
-/* Graphite Blue — GTK 3.
+/* =============================================================================
+ * Graphite Blue — GTK 3
+ * =============================================================================
  *
- * A small layer over Adwaita-dark: palette, accent, surfaces and rounding.
- * It does not try to be a complete theme.
+ * A small layer over Adwaita-dark: palette, accent, surfaces and rounding. It
+ * does not try to be a complete theme.
+ *
+ * Path:  ~/.config/gtk-3.0/gtk.css
+ * Apply: restart the application
  */
 
 

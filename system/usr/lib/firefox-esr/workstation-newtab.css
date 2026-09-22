@@ -1,5 +1,15 @@
-/* With every Firefox Home section turned off (policies.json) only the search
- * field is left on a new tab; move it down to the middle of the page. */
+/* =============================================================================
+ * Firefox — new tab
+ * =============================================================================
+ *
+ * With every Firefox Home section turned off (policies.json) only the search
+ * field is left on a new tab; this moves it down to the middle of the page.
+ * Registered by workstation.cfg.
+ *
+ * Path:  /usr/lib/firefox-esr/workstation-newtab.css
+ * Apply: restart Firefox
+ */
+
 @-moz-document url("about:home"), url("about:newtab") {
     .search-wrapper {
         padding-block-start: calc(50vh - 150px) !important;

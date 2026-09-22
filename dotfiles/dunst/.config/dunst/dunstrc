@@ -1,5 +1,13 @@
-# Dunst — Graphite Blue. Also draws the volume, brightness and screenshot OSD
-# sent by scripts/session (stack tags make repeated OSDs replace each other).
+# =============================================================================
+# Dunst — notifications
+# =============================================================================
+#
+# Graphite Blue notifications. Dunst also draws the volume, brightness and
+# screenshot OSD sent by scripts/session; stack tags make repeated OSDs replace
+# each other.
+#
+# Path:  ~/.config/dunst/dunstrc
+# Apply: dunstctl reload
 
 [global]
 

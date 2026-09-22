@@ -1,4 +1,11 @@
-/* Graphite Blue — Rofi theme, used by the launcher and every Rofi menu. */
+/* =============================================================================
+ * Graphite Blue — Rofi theme
+ * =============================================================================
+ *
+ * Used by the launcher and every Rofi menu.
+ *
+ * Path:  ~/.config/rofi/graphite-blue.rasi
+ */
 
 * {
     bg:             #111318;

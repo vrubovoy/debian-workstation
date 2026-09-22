@@ -1,5 +1,12 @@
-/* Rofi — application launcher (Super+Space) and the menus of the
- * workstation-* scripts. Appearance lives in graphite-blue.rasi. */
+/* =============================================================================
+ * Rofi — launcher
+ * =============================================================================
+ *
+ * The application launcher (Super+Space) and the menus of the workstation-*
+ * scripts. Appearance lives in graphite-blue.rasi.
+ *
+ * Path:  ~/.config/rofi/config.rasi
+ */
 
 configuration {
     modes: [ drun, run, window ];

@@ -1,4 +1,10 @@
+-- =============================================================================
+-- Neovim — autocommands
+-- =============================================================================
+--
 -- Autocommands that apply to every file type.
+--
+-- Path:  ~/.config/nvim/lua/workstation/autocmds.lua
 
 local group = vim.api.nvim_create_augroup("WorkstationConfig", { clear = true })
 

@@ -1,5 +1,12 @@
-# Keyboard for the console, LightDM and the X session: US/RU, Alt+Space
+# =============================================================================
+# Keyboard
+# =============================================================================
+#
+# The layout for the console, LightDM and the X session: US/RU, Alt+Space
 # switches, Right Alt is Compose. See keyboard(5).
+#
+# Path:  /etc/default/keyboard
+# Apply: reboot
 
 XKBMODEL="pc105"
 XKBLAYOUT="us,ru"

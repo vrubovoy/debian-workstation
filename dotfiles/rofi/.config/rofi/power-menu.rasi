@@ -1,5 +1,12 @@
-/* Session menu of workstation-power-menu: one row of tiles on a dimmed screen.
- * The window padding centres a card sized for five 150 px tiles. */
+/* =============================================================================
+ * Rofi — power menu
+ * =============================================================================
+ *
+ * The session menu of workstation-power-menu: one row of tiles on a dimmed
+ * screen. The window padding centres a card sized for five 150 px tiles.
+ *
+ * Path:  ~/.config/rofi/power-menu.rasi
+ */
 
 @import "graphite-blue"
 

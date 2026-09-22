@@ -1,3 +1,11 @@
+# =============================================================================
+# yamllint
+# =============================================================================
+#
+# Rules for `yamllint --strict` in CI: the default set without the `---`
+# document marker and the line-length limit. `on` stays allowed as the GitHub
+# Actions trigger key.
+
 extends: default
 
 rules:

@@ -1,3 +1,11 @@
+# =============================================================================
+# Packages — desktop
+# =============================================================================
+#
+# X11, i3 and the desktop session: login, networking, audio, Bluetooth,
+# brightness and appearance. Installed from Debian by
+# scripts/install/system.sh, one package per line.
+
 # X11 and i3
 xserver-xorg
 xserver-xorg-input-libinput

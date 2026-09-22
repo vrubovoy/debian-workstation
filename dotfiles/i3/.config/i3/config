@@ -1,8 +1,13 @@
-# i3 — Graphite Blue.
+# =============================================================================
+# i3 — window manager
+# =============================================================================
 #
-# Modifier: Super. Keyboard layouts (US/RU, Alt+Space, Compose on Right Alt)
-# come from /etc/default/keyboard. workstation-* commands live in
+# Graphite Blue. Modifier: Super. Keyboard layouts (US/RU, Alt+Space, Compose
+# on Right Alt) come from /etc/default/keyboard. workstation-* commands live in
 # scripts/session/ and are linked into ~/.local/bin by the installer.
+#
+# Path:  ~/.config/i3/config
+# Apply: Super+Ctrl+R reloads, Super+Shift+R restarts i3
 
 
 # =============================================================================

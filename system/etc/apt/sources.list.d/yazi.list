@@ -1,2 +1,11 @@
-# Official Yazi repository; the key is fetched by scripts/install/system.sh.
+# =============================================================================
+# APT — Yazi repository
+# =============================================================================
+#
+# The official Yazi repository; its key is fetched by
+# scripts/install/system.sh.
+#
+# Path:  /etc/apt/sources.list.d/yazi.list
+# Apply: sudo apt update
+
 deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main

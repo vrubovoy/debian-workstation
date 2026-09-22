@@ -1,3 +1,10 @@
+# =============================================================================
+# Packages — applications
+# =============================================================================
+#
+# Command-line utilities, archives, the editor, file managers and the browser.
+# Installed from Debian by scripts/install/system.sh, one package per line.
+
 # CLI utilities
 bat
 duf

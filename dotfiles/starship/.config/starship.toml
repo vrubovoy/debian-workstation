@@ -1,5 +1,11 @@
-# Starship — the current directory on its own line, then only ❯ where the
-# command is typed. Git state stays out of the prompt.
+# =============================================================================
+# Starship — prompt
+# =============================================================================
+#
+# The current directory on its own line, then only ❯ where the command is
+# typed. Git state stays out of the prompt.
+#
+# Path:  ~/.config/starship.toml
 
 add_newline = false
 

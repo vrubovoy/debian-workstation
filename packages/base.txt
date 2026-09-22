@@ -1,3 +1,10 @@
+# =============================================================================
+# Packages — base
+# =============================================================================
+#
+# What the installer and the shell need. Installed from Debian by
+# scripts/install/system.sh, one package per line.
+
 # Bootstrap
 ca-certificates
 curl

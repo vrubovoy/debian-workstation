@@ -1,4 +1,10 @@
-# Graphite Blue syntax colors, matching Kitty and Neovim.
+# =============================================================================
+# Fish — syntax colors
+# =============================================================================
+#
+# Graphite Blue, matching Kitty and Neovim.
+#
+# Path:  ~/.config/fish/conf.d/20-colors.fish
 
 set -g fish_color_normal E6E9EF
 set -g fish_color_command 7AA2F7 --bold

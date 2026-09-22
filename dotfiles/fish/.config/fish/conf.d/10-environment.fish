@@ -1,3 +1,11 @@
+# =============================================================================
+# Fish — environment
+# =============================================================================
+#
+# ~/.local/bin comes first in PATH; Neovim is the editor, less the pager.
+#
+# Path:  ~/.config/fish/conf.d/10-environment.fish
+
 fish_add_path --prepend "$HOME/.local/bin"
 
 set -gx EDITOR nvim

@@ -1,5 +1,12 @@
+# =============================================================================
+# Fish — y
+# =============================================================================
+#
 # Yazi that leaves the shell in its last directory: quit with q to follow it,
 # with Q to stay. The directory is listed either way.
+#
+# Path:  ~/.config/fish/functions/y.fish
+
 function y --description "Open Yazi and follow its last directory"
     set -l cwd_file (mktemp -t yazi-cwd.XXXXXX)
 

@@ -1,4 +1,10 @@
-# fzf key bindings: Ctrl+R history, Ctrl+T files, Alt+C directories.
+# =============================================================================
+# Fish — fzf
+# =============================================================================
+#
+# Key bindings: Ctrl+R history, Ctrl+T files, Alt+C directories.
+#
+# Path:  ~/.config/fish/conf.d/50-fzf.fish
 
 if status is-interactive; and type -q fzf
     set -gx FZF_CTRL_T_COMMAND 'fd --type f --hidden --follow --exclude .git'

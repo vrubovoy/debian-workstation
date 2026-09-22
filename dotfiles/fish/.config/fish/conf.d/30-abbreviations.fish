@@ -1,4 +1,10 @@
+# =============================================================================
+# Fish — abbreviations
+# =============================================================================
+#
 # Abbreviations expand in place, so history keeps the full command.
+#
+# Path:  ~/.config/fish/conf.d/30-abbreviations.fish
 
 abbr --add ..  'cd ..'
 abbr --add ... 'cd ../..'

@@ -1,12 +1,18 @@
-# Optional upstream releases, offered by scripts/configure/external-packages.sh.
-# A download must match its SHA-256 or it is refused. To pin another release,
-# update all three: the version (as dpkg reports it for a .deb), the URL, and
-# the checksum from `curl -fsSL URL | sha256sum`.
+# =============================================================================
+# Packages — upstream releases
+# =============================================================================
 #
-# package: the Debian package name, or for a .run installer its directory
-# under /opt. depends: APT packages installed first (comma-separated, - for
-# none); a .deb declares its own.
+# Optional packages from upstream releases, offered one by one by
+# scripts/configure/external-packages.sh. A download must match its SHA-256 or
+# it is refused.
 #
+# To pin another release, update the version (as dpkg reports it for a .deb),
+# the URL and the checksum from `curl -fsSL URL | sha256sum`.
+#
+# package: the Debian package name, or for a .run installer its directory under
+# /opt. depends: APT packages installed first (comma-separated, - for none); a
+# .deb declares its own.
+
 # package     version       sha256                                                            url                                                                                                   depends
 onefetch      2.28.1-1      e46550280b5c37e98152243115ccd9e5858f34b8a12f137aa6da37fed9dd8bd5  https://github.com/o2sh/onefetch/releases/download/2.28.1/onefetch_amd64.deb                             -
 codium        1.135.06055   5f5c00a9da9d232e4c84e9eee68bbdeb4d8737462022626ce3bdb6948f3d8649  https://github.com/VSCodium/vscodium/releases/download/1.135.06055/codium_1.135.06055_amd64.deb      -

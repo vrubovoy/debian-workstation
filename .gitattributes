@@ -1,4 +1,10 @@
-# Store every text file with LF endings, whatever platform commits it.
+# =============================================================================
+# Git attributes
+# =============================================================================
+#
+# Text files are stored with LF endings, whatever platform commits them; images
+# and compiled translations are binary.
+
 * text=auto eol=lf
 
 *.png  binary

@@ -1,3 +1,16 @@
+# =============================================================================
+# Lint — CI workflow
+# =============================================================================
+#
+# Runs on every push and pull request.
+#
+# Repository: whitespace, line endings and final newlines, then the validator
+# of each file type: ShellCheck, Fish, JSON, JSONC, TOML, yamllint, actionlint,
+# Rofi and i3.
+#
+# Debian packages: resolves every package list against the APT sources in a
+# debian:trixie container.
+
 name: Lint
 
 on:

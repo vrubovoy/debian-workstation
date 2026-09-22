@@ -1,3 +1,9 @@
+# =============================================================================
+# Git ignore rules
+# =============================================================================
+#
+# Editor and OS leftovers, and release packages downloaded by hand.
+
 # OS / editors
 .DS_Store
 .idea/

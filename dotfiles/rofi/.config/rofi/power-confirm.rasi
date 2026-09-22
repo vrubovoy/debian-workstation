@@ -1,5 +1,12 @@
-/* Confirmation of workstation-power-menu: the chosen action goes ahead by
- * itself after five seconds unless Cancel or Esc is picked. */
+/* =============================================================================
+ * Rofi — power menu confirmation
+ * =============================================================================
+ *
+ * The chosen action goes ahead by itself after five seconds unless Cancel or
+ * Esc is picked.
+ *
+ * Path:  ~/.config/rofi/power-confirm.rasi
+ */
 
 @import "power-menu"
 

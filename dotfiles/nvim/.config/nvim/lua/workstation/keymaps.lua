@@ -1,4 +1,10 @@
--- Key mappings: a few additions on top of standard Vim behaviour.
+-- =============================================================================
+-- Neovim — key mappings
+-- =============================================================================
+--
+-- A few additions on top of standard Vim behaviour. Leader: Space.
+--
+-- Path:  ~/.config/nvim/lua/workstation/keymaps.lua
 
 local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })

@@ -1,4 +1,11 @@
+# =============================================================================
+# Fish — ffe
+# =============================================================================
+#
 # Fuzzy-find files (Tab selects several) and open them in $EDITOR.
+#
+# Path:  ~/.config/fish/functions/ffe.fish
+
 function ffe --description "Fuzzy-find files and open them in the editor"
     set -l root .
     set -q argv[1]; and set root $argv[1]

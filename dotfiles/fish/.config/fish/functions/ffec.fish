@@ -1,5 +1,12 @@
+# =============================================================================
+# Fish — ffec
+# =============================================================================
+#
 # Search file contents with ripgrep, pick a match in fzf and open Neovim at
 # that line and column.
+#
+# Path:  ~/.config/fish/functions/ffec.fish
+
 function ffec --description "Search file contents and open the selected match"
     set -l query (string join " " -- $argv)
 

@@ -1,3 +1,11 @@
+# =============================================================================
+# EditorConfig
+# =============================================================================
+#
+# Formatting for every file in this repository: UTF-8, LF, a final newline,
+# 4-space indents (2 in YAML) and no trailing whitespace. Neovim applies it
+# natively.
+
 root = true
 
 [*]

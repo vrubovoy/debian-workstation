@@ -1,4 +1,10 @@
--- Editor options. Only values that differ from Neovim's defaults are set.
+-- =============================================================================
+-- Neovim — options
+-- =============================================================================
+--
+-- Only values that differ from Neovim's defaults are set.
+--
+-- Path:  ~/.config/nvim/lua/workstation/options.lua
 
 local opt = vim.opt
 

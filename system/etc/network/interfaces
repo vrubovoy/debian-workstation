@@ -1,5 +1,12 @@
+# =============================================================================
+# Network interfaces
+# =============================================================================
+#
 # NetworkManager manages every physical interface; ifupdown keeps only
 # loopback.
+#
+# Path:  /etc/network/interfaces
+# Apply: reboot
 
 source /etc/network/interfaces.d/*
 

@@ -1,5 +1,12 @@
+# =============================================================================
+# Fish — ffcd
+# =============================================================================
+#
 # Fuzzy-find a directory below the current one (or below the argument) and
 # enter it. Unlike `z`, this searches the tree, not the history.
+#
+# Path:  ~/.config/fish/functions/ffcd.fish
+
 function ffcd --description "Fuzzy-find and enter a directory"
     set -l root .
     set -q argv[1]; and set root $argv[1]
