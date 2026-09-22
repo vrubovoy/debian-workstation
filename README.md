@@ -55,7 +55,8 @@ cd debian-workstation
 
 Keep the clone where it is: your configuration files become symlinks into it.
 
-The installer asks for the sudo password once and then:
+The installer asks for your sudo password at the start (sudo may ask again
+near the end if its timeout ran out during a long install) and then:
 
 1. **As root:** sets up the Debian (with contrib and non-free) and Yazi APT
    sources, installs the packages from `packages/`, installs the pinned
