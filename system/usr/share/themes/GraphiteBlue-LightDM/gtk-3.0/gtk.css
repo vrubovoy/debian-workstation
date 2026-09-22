@@ -1,39 +1,13 @@
-/* =============================================================================
- * Graphite Blue — LightDM GTK Greeter
- * =============================================================================
- *
- * Minimal GTK3 theme used exclusively by lightdm-gtk-greeter.
- *
- * Palette:
- *
- *   background   #111318
- *   surface      #1A1D24
- *   surface-alt  #222630
- *   border       #303744
- *   foreground   #E6E9EF
- *   muted        #8E98A8
- *   accent       #7AA2F7
- *   accent-hover #89B4FA
- *   urgent       #E06C75
- *
- * =============================================================================
- */
+/* Graphite Blue — lightdm-gtk-greeter theme, installed as GraphiteBlue-LightDM. */
 
 
 /* =============================================================================
  * Base
  * ============================================================================= */
 
-/*
- * Start from GTK's built-in Adwaita theme.
- *
- * This gives generic GTK widgets sane defaults while the rules below override
- * everything visually important for the greeter.
- */
+/* Adwaita supplies defaults for everything not styled below. */
 @import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
 
-
-/* Shared palette */
 
 @define-color gb_bg          #111318;
 @define-color gb_surface     #1A1D24;
@@ -45,8 +19,6 @@
 @define-color gb_accent_hi   #89B4FA;
 @define-color gb_urgent      #E06C75;
 
-
-/* Entire greeter */
 
 .lightdm-gtk-greeter {
     background-color: @gb_bg;
@@ -69,9 +41,7 @@
 }
 
 
-/*
- * The greeter implements its indicators as menu items.
- */
+/* The greeter draws its indicators as menu items. */
 
 #panel_window menubar,
 #panel_window .menubar {
@@ -82,8 +52,6 @@
     box-shadow: none;
 }
 
-
-/* Individual panel items */
 
 #panel_window menubar > menuitem,
 #panel_window .menubar > .menuitem {
@@ -101,16 +69,12 @@
 }
 
 
-/* Hovered panel items */
-
 #panel_window menubar > menuitem:hover,
 #panel_window .menubar > .menuitem:hover {
     background-color: @gb_surface_alt;
     color: @gb_accent_hi;
 }
 
-
-/* Disabled items */
 
 #panel_window menuitem:disabled,
 #panel_window .menuitem:insensitive {
@@ -133,8 +97,6 @@ menu,
     padding: 5px;
 }
 
-
-/* Menu entries */
 
 menuitem,
 .menuitem {
@@ -222,9 +184,7 @@ menuitem:hover,
 }
 
 
-/*
- * Remove the excessive button styling inherited by the ComboBox.
- */
+/* The user ComboBox would otherwise inherit full button styling. */
 
 #login_window combobox button,
 #login_window GtkComboBox .button {
@@ -261,15 +221,11 @@ menuitem:hover,
 }
 
 
-/* Hover */
-
 #login_window entry:hover,
 #login_window .entry:hover {
     border-color: #465064;
 }
 
-
-/* Keyboard focus */
 
 #login_window entry:focus,
 #login_window .entry:focus,
@@ -283,8 +239,6 @@ menuitem:hover,
         0 0 0 1px rgba(122, 162, 247, 0.18);
 }
 
-
-/* Placeholder / insensitive text */
 
 #login_window entry:disabled {
     color: @gb_muted;
@@ -315,8 +269,6 @@ menuitem:hover,
 }
 
 
-/* Hover */
-
 #login_window button:hover,
 #login_window .button:hover,
 #shutdown_dialog button:hover,
@@ -327,11 +279,7 @@ menuitem:hover,
 }
 
 
-/*
- * The default/focused button is normally the Login button.
- *
- * Make it the only strongly accented control on the card.
- */
+/* The default button is Log In: the only strongly accented control. */
 
 #login_window button:default,
 #login_window button:focus,
@@ -392,9 +340,7 @@ menuitem:hover,
 }
 
 
-/*
- * Destructive shutdown action.
- */
+/* Shutdown. */
 
 #shutdown_button {
     background-image: none;
@@ -413,9 +359,7 @@ menuitem:hover,
 }
 
 
-/*
- * Restart is intentionally less aggressive than shutdown.
- */
+/* Restart, deliberately quieter than shutdown. */
 
 #restart_button {
     background-image: none;

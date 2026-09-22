@@ -1,46 +1,30 @@
-# =============================================================================
-# Desktop packages
-# =============================================================================
-
-# X11
+# X11 and i3
 xserver-xorg
+xserver-xorg-input-libinput
 xinit
 x11-xserver-utils
-
-# Window manager
+xinput
 i3-wm
 i3status
-
-# Terminal
-kitty
-
-# Display manager
-lightdm
-lightdm-gtk-greeter
-
-# Fonts
-fonts-ubuntu
-
-# Application launcher
-rofi
-
-# Notifications
-dunst
-libnotify-bin
-
-# Compositor
-picom
-
-# Wallpaper
-feh
-
-# Screen locking
 i3lock
 xss-lock
 
-# =============================================================================
-# Desktop infrastructure
-# =============================================================================
+# Login
+lightdm
+lightdm-gtk-greeter
+
+# Session
+kitty
+rofi
+dunst
+libnotify-bin
+picom
+feh
+maim
+slop
+xdotool
+copyq
+copyq-plugins
 
 # Networking
 network-manager
@@ -57,43 +41,19 @@ playerctl
 bluez
 blueman
 
-# Privilege authentication
+# Privilege prompts
 mate-polkit
 
-# Hardware controls
+# Backlight
 brightnessctl
 brightness-udev
 
-# =============================================================================
-# Desktop appearance
-# =============================================================================
-
-# GTK themes and icons
+# Appearance
+fonts-ubuntu
 gnome-themes-extra
 adwaita-icon-theme
 adwaita-icon-theme-legacy
-
-# GTK / desktop settings
 gsettings-desktop-schemas
 libglib2.0-bin
-
-# Qt integration with the GTK desktop theme
 qt5-gtk-platformtheme
 qt6-gtk-platformtheme
-
-# =============================================================================
-# Desktop utilities
-# =============================================================================
-
-# Screenshots
-maim
-slop
-xdotool
-
-# Clipboard history
-copyq
-copyq-plugins
-
-# X11 input
-xserver-xorg-input-libinput
-xinput

@@ -1,90 +1,38 @@
 #!/usr/bin/env bash
-
-# =============================================================================
-# Firefox extensions
-# =============================================================================
+# Choose the optional Firefox extensions listed in packages/firefox-extensions.txt.
 #
-# Offers the workstation's recommended Firefox extensions one by one.
-#
-# The script does not silently install browser extensions.
-#
-# When an extension is accepted, its addons.mozilla.org page is opened in
-# Firefox ESR and Firefox performs the normal interactive installation.
-#
-# =============================================================================
+# The choice is kept in /etc/debian-workstation/firefox-extensions and written
+# into the Firefox policies: selected extensions are installed on the next
+# Firefox start, deselected ones become ordinary removable extensions.
 
 set -Eeuo pipefail
 
+# shellcheck source=scripts/lib/common.sh
+source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-# =============================================================================
-# Repository
-# =============================================================================
+command -v jq >/dev/null || die 'jq is not installed; run install.sh first.'
 
-SCRIPT_DIR="$(
-    cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
-    pwd
-)"
+selected=()
 
-ROOT_DIR="$(
-    cd -- "$SCRIPT_DIR/../.."
-    pwd
-)"
+while read -r id _ name; do
+    default=yes
 
-EXTENSIONS_FILE="$ROOT_DIR/packages/firefox-extensions.txt"
+    if [[ -e "$FIREFOX_SELECTION" ]] && ! grep -qxF -- "$id" "$FIREFOX_SELECTION"; then
+        default=no
+    fi
 
+    if ask "Install the Firefox extension $name?" "$default"; then
+        selected+=("$id")
+    fi
+done < <(manifest "$ROOT_DIR/packages/firefox-extensions.txt")
 
-# =============================================================================
-# Dependencies
-# =============================================================================
+tmp="$(mktemp)"
+trap 'rm -f "$tmp"' EXIT
 
-if ! command -v firefox-esr >/dev/null 2>&1; then
-    printf 'Firefox ESR is not installed.\n' >&2
-    exit 1
-fi
+sudo mkdir -p "$(dirname -- "$FIREFOX_SELECTION")"
+printf '%s' "${selected[@]/%/$'\n'}" | sudo tee "$FIREFOX_SELECTION" >/dev/null
 
-if [[ ! -f "$EXTENSIONS_FILE" ]]; then
-    printf 'Firefox extension list is missing:\n\n' >&2
-    printf '  %s\n' "$EXTENSIONS_FILE" >&2
-    exit 1
-fi
+render_firefox_policies > "$tmp"
+sudo install -Dm644 "$tmp" /etc/firefox/policies/policies.json
 
-
-# =============================================================================
-# Interactive setup
-# =============================================================================
-#
-# File descriptor 3 is used for the extension list so normal stdin remains
-# connected to the terminal.
-#
-# This avoids the classic shell bug where read() consumes the next line of the
-# input file instead of the user's answer.
-
-while IFS='|' read -r name url <&3 || [[ -n "$name" ]]; do
-
-    name="${name%$'\r'}"
-    url="${url%$'\r'}"
-
-    # Skip comments and blank lines.
-    [[ -z "$name" ]] && continue
-    [[ "$name" == \#* ]] && continue
-
-    printf '\n%s\n' "$name"
-
-    read -r -p "Open this extension for installation? [Y/n] " answer
-
-    case "${answer,,}" in
-        ""|y|yes)
-            firefox-esr --new-tab "$url" >/dev/null 2>&1 &
-            printf 'Opened in Firefox.\n'
-            ;;
-
-        *)
-            printf 'Skipped.\n'
-            ;;
-    esac
-
-done 3< "$EXTENSIONS_FILE"
-
-
-printf '\nFirefox extension setup complete.\n'
-printf 'Complete installation from the opened Firefox tabs.\n'
+info 'Restart Firefox to apply the selection.'

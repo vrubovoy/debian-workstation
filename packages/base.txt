@@ -1,8 +1,4 @@
-# =============================================================================
-# Base workstation packages
-# =============================================================================
-
-# Bootstrap / repository management
+# Bootstrap
 ca-certificates
 curl
 stow

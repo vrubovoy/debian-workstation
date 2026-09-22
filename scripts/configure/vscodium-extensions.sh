@@ -1,128 +1,35 @@
 #!/usr/bin/env bash
-
-# =============================================================================
-# VSCodium extensions
-# =============================================================================
-#
-# Installs extensions listed in:
-#
-#   packages/vscodium-extensions.txt
-#
-# Each extension is offered individually.
-#
-# This intentionally preserves the interactive behaviour of the previous
-# workstation bootstrap instead of installing every extension automatically.
-#
-# VSCodium uses Open VSX as its default extension registry.
-#
-# =============================================================================
+# Offer the extensions from packages/vscodium-extensions.txt that are not
+# installed yet, one by one. VSCodium installs them from Open VSX.
 
 set -Eeuo pipefail
 
+# shellcheck source=scripts/lib/common.sh
+source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-# =============================================================================
-# Repository
-# =============================================================================
+command -v codium >/dev/null || die 'VSCodium is not installed; run install.sh first.'
 
-SCRIPT_DIR="$(
-    cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
-    pwd
-)"
+declare -A installed=()
+missing=()
 
-ROOT_DIR="$(
-    cd -- "$SCRIPT_DIR/../.."
-    pwd
-)"
+while read -r extension; do
+    installed["${extension,,}"]=1
+done < <(codium --list-extensions 2>/dev/null)
 
-EXTENSIONS_FILE="$ROOT_DIR/packages/vscodium-extensions.txt"
+while read -r extension; do
+    [[ -n "${installed["${extension,,}"]:-}" ]] || missing+=("$extension")
+done < <(manifest "$ROOT_DIR/packages/vscodium-extensions.txt")
 
-
-# =============================================================================
-# Dependencies
-# =============================================================================
-
-if ! command -v codium >/dev/null 2>&1; then
-    printf 'VSCodium is not installed.\n' >&2
-    exit 1
+if (( ${#missing[@]} == 0 )); then
+    info 'VSCodium extensions are installed.'
+    exit 0
 fi
 
-if [[ ! -f "$EXTENSIONS_FILE" ]]; then
-    printf 'Extension list is missing:\n\n'
-    printf '  %s\n' "$EXTENSIONS_FILE" >&2
-    exit 1
-fi
+ask "Review ${#missing[@]} VSCodium extensions that are not installed?" || exit 0
 
+for extension in "${missing[@]}"; do
+    ask "Install $extension?" || continue
 
-# =============================================================================
-# Existing extensions
-# =============================================================================
-
-mapfile -t installed_extensions < <(
-    codium --list-extensions 2>/dev/null |
-        tr '[:upper:]' '[:lower:]'
-)
-
-
-is_installed()
-{
-    local extension="$1"
-    local installed
-
-    extension="${extension,,}"
-
-    for installed in "${installed_extensions[@]}"; do
-        if [[ "$installed" == "$extension" ]]; then
-            return 0
-        fi
-    done
-
-    return 1
-}
-
-
-# =============================================================================
-# Installation
-# =============================================================================
-
-while IFS= read -r extension || [[ -n "$extension" ]]; do
-
-    # Remove CR in case the file was edited on another platform.
-    extension="${extension%$'\r'}"
-
-    # Skip comments and blank lines.
-    [[ -z "$extension" ]] && continue
-    [[ "$extension" == \#* ]] && continue
-
-
-    printf '\n%s\n' "$extension"
-
-
-    if is_installed "$extension"; then
-        printf 'Already installed.\n'
-        continue
-    fi
-
-
-    read -r -p "Install this extension? [Y/n] " answer </dev/tty
-
-    case "${answer,,}" in
-        ""|y|yes)
-            if codium --install-extension "$extension"; then
-                printf 'Installed: %s\n' "$extension"
-
-                installed_extensions+=("${extension,,}")
-            else
-                printf '\nWARNING: Failed to install: %s\n' "$extension" >&2
-                printf 'The extension may not be available from Open VSX.\n' >&2
-            fi
-            ;;
-
-        *)
-            printf 'Skipped.\n'
-            ;;
-    esac
-
-done < "$EXTENSIONS_FILE"
-
-
-printf '\nVSCodium extension setup complete.\n'
+    codium --install-extension "$extension" ||
+        warn "$extension failed to install; it may be missing from Open VSX."
+done

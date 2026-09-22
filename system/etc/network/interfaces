@@ -1,0 +1,7 @@
+# NetworkManager manages every physical interface; ifupdown keeps only
+# loopback.
+
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback

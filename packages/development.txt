@@ -1,19 +1,14 @@
-# =============================================================================
-# Version control and authentication
-# =============================================================================
-
+# Version control and signing
 git
 openssh-client
-
 gnupg
 pinentry-gtk2
-
 lazygit
 pwgen
 
-# =============================================================================
-# Repository quality
-# =============================================================================
+# C/C++ language server used by VSCodium
+clangd
 
+# Repository linting
 shellcheck
 yamllint

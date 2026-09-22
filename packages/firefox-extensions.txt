@@ -1,18 +1,6 @@
-# =============================================================================
-# Firefox extensions
-# =============================================================================
+# Optional Firefox extensions, offered by scripts/configure/firefox-extensions.sh.
 #
-# Recommended extensions carried over from the previous workstation.
-#
-# Installation remains interactive. The setup script opens the selected
-# extension in addons.mozilla.org and Firefox performs the actual installation.
-#
-# Format:
-#
-#   NAME|URL
-#
-# =============================================================================
-
-AdGuard AdBlocker|https://addons.mozilla.org/firefox/addon/adguard-adblocker/
-FoxyProxy Standard|https://addons.mozilla.org/firefox/addon/foxyproxy-standard/
-TWP - Translate Web Pages|https://addons.mozilla.org/firefox/addon/traduzir-paginas-web/
+# extension id                              addons.mozilla.org slug   name
+adguardadblocker@adguard.com                adguard-adblocker         AdGuard AdBlocker
+foxyproxy@eric.h.jung                       foxyproxy-standard        FoxyProxy Standard
+{036a55b4-5e72-4d05-a06c-cba2dfcc134a}      traduzir-paginas-web      TWP - Translate Web Pages

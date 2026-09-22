@@ -1,6 +1,5 @@
-# KEYBOARD CONFIGURATION FILE
-
-# Consult the keyboard(5) manual page.
+# Keyboard for the console, LightDM and the X session: US/RU, Alt+Space
+# switches, Right Alt is Compose. See keyboard(5).
 
 XKBMODEL="pc105"
 XKBLAYOUT="us,ru"

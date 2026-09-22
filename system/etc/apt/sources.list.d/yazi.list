@@ -1,0 +1,2 @@
+# Official Yazi repository; the key is fetched by scripts/install/system.sh.
+deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main
