@@ -11,6 +11,7 @@
 
     accent:         #7AA2F7;
     accent-hover:   #89B4FA;
+    ring:           rgba(122, 162, 247, 0.18);
 
     urgent:         #E06C75;
 
@@ -25,19 +26,19 @@
  * Main window
  * ============================================================================= */
 
+/* The faint outer ring and the accent border inside it look like a focused
+ * text field: Rofi has the keyboard while it is open. */
 window {
     width: 42%;
 
     location: center;
     anchor: center;
 
-    background-color: @bg;
+    background-color: transparent;
 
-    border: 2px;
-    border-color: @border;
-    border-radius: 16px;
-
-    padding: 18px;
+    border: 1px;
+    border-color: @ring;
+    border-radius: 17px;
 
     /* Real ARGB window (Picom), not a screenshot-based fake. */
     transparency: "real";
@@ -49,8 +50,13 @@ window {
  * ============================================================================= */
 
 mainbox {
-    background-color: transparent;
+    background-color: @bg;
 
+    border: 2px;
+    border-color: @accent;
+    border-radius: 16px;
+
+    padding: 18px;
     spacing: 14px;
 
     children: [
