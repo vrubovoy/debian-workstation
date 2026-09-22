@@ -37,6 +37,7 @@ sudo "$ROOT_DIR/scripts/install/system.sh" "$(id -un)"
 step 'Personal setup'
 "$ROOT_DIR/scripts/configure/git.sh"
 "$ROOT_DIR/scripts/configure/ssh.sh"
+"$ROOT_DIR/scripts/configure/external-packages.sh"
 [[ -e "$FIREFOX_SELECTION" ]] || "$ROOT_DIR/scripts/configure/firefox-extensions.sh"
 "$ROOT_DIR/scripts/configure/vscodium-extensions.sh"
 

@@ -7,7 +7,10 @@ set -Eeuo pipefail
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-command -v codium >/dev/null || die 'VSCodium is not installed; run install.sh first.'
+if ! command -v codium >/dev/null; then
+    info 'VSCodium is not installed; no extensions to offer.'
+    exit 0
+fi
 
 declare -A installed=()
 missing=()
