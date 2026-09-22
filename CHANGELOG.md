@@ -1,44 +1,29 @@
 # Changelog
 
-## Unreleased
+All notable changes to this project are documented in this file. The format
+follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions
+follow [Semantic Versioning](https://semver.org/).
+
+## [Unreleased]
 
 ### Added
 
-- Added an idempotent two-phase workstation installer with interactive identity setup.
+- Installer that sets up Debian 13 in one run: APT sources, packages, pinned
+  Onefetch and VSCodium releases, system files, services and dotfiles, plus
+  optional personal setup (Git identity, GPG signing, SSH key, Firefox and
+  VSCodium extensions).
+- X11 and i3 desktop with LightDM, i3bar and i3status, Rofi, Dunst, Picom,
+  screen locking and idle policy, screenshots, a power menu and CopyQ
+  clipboard history.
+- Graphite Blue theme for i3, LightDM, GTK 2/3/4, Qt, Kitty, Rofi, Dunst, Fish,
+  Starship, Neovim, Yazi, Fastfetch and VSCodium.
+- NetworkManager, PipeWire, Bluetooth and Polkit, with on-screen displays for
+  the volume and brightness keys.
+- Fish and Starship with fzf, zoxide and Yazi helpers; Neovim with no plugins.
+- Firefox ESR configured through enterprise policies.
+- Git, SSH and GnuPG configuration that keeps identities and keys out of the
+  repository.
+- libinput settings for touchpads and mice.
+- CI checks for scripts, configuration syntax and package lists.
 
-- Debian 13 / X11 / i3 workstation architecture.
-- Graphite Blue desktop appearance across i3, LightDM, Kitty, Rofi, Dunst,
-  GTK/Qt, Neovim and Yazi.
-- i3bar/i3status system status, PipeWire audio, NetworkManager, Bluetooth and
-  Polkit desktop infrastructure.
-- Repository-managed wallpaper, lock/idle policy, hardware/media controls,
-  screenshot workflow and Rofi session/power menu.
-- Fish + Starship shell environment with FZF/Zoxide helpers and preserved
-  workstation navigation workflows.
-- Neovim terminal editor and Yazi/Thunar file-management stack.
-- Firefox ESR with reproducible system policies.
-- Git, OpenSSH, Lazygit and optional GnuPG signing infrastructure with secrets
-  kept outside version control.
-- GNU Stow dotfile deployment with directory folding explicitly disabled.
-- Repository helpers for Yazi repository setup, Stow deployment and stable
-  `workstation-*` user commands.
-- Added persistent X11 clipboard history using CopyQ with a Rofi frontend.
-- Added VSCodium with Graphite Blue styling and interactive extension setup.
-- Added interactive Firefox extension setup and migrated remaining portable browser preferences to enterprise policies.
-- Added hardware-independent X11/libinput mouse and touchpad configuration.
-- Finalized Fastfetch Kitty image rendering and terminal Nerd Font symbol fallback.
-- Added repository formatting rules and automated configuration linting.
-
-### Changed
-
-- Replaced legacy CachyOS/Noctalia/Wayland-specific components with explicit
-  Debian/X11 equivalents.
-- Replaced independent Qt theming with GTK platform-theme integration.
-- Separated reproducible Git behaviour from machine-local identity/signing data.
-
-### Fixed
-
-- Removed duplicate i3 `Ctrl+Alt+Delete` bindings.
-- Enabled the selected Thunar `Super+E` binding.
-- Removed duplicate package and Fish-abbreviation entries.
-- Corrected Yazi theme TOML syntax.
+[Unreleased]: https://github.com/vrubovoy/debian-workstation/commits/main

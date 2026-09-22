@@ -1,55 +1,44 @@
 # Troubleshooting
 
-This document records problems reproduced while building or deploying the
-workstation and their verified solutions. It will grow during real-machine and
-clean-VM integration testing.
+Problems met while installing and running the workstation, with fixes. New
+entries are added as they come up.
 
-## Stow did not create a symlink for a configuration file
+## The installer stops at "Comment out the Debian entries"
 
-### Symptom
+`/etc/apt/sources.list` still has active `deb` lines for the Debian archive,
+usually after an upgrade from Debian 12. The installer manages the same
+archive in `/etc/apt/sources.list.d/debian.sources` and refuses to duplicate
+it. Put `#` in front of those lines and run `./install.sh` again.
 
-A managed file such as `~/.config/i3status/config` looks like a regular file,
-or Stow appears not to create the expected per-file symlink.
+## The installer stops at "… is in the way and ….debian-workstation.bak already exists"
 
-### Cause
+A configuration file had been replaced before and a backup from that time
+already exists. Compare the two, keep what you need, remove one of them and run
+the installer again.
 
-GNU Stow may use directory folding and create a link for the parent directory
-instead, for example:
+## A configuration file in `$HOME` is not a symlink
 
-    ~/.config/i3status -> <repository>/dotfiles/i3status/.config/i3status
+Check whether the parent directory is itself a symlink into the repository:
 
-Files inside that directory then appear regular because the directory itself is
-the symbolic link.
+```bash
+ls -ld ~/.config/i3
+```
 
-### Fix
+That is Stow's directory folding from a run without `--no-folding`. Running
+`./install.sh` again unfolds it: the installer always restows with
+`--no-folding`.
 
-This repository deliberately disables directory folding:
+## No network after the first reboot
 
-    stow --no-folding -t "$HOME" <package>
+`/etc/network/interfaces` now leaves physical interfaces to NetworkManager, so a
+Wi-Fi connection configured during the Debian installation is gone. Connect
+again from the network icon in the bar or with `nmtui`.
 
-To convert an already-folded package, remove its Stow links first and redeploy:
+## `workstation-…: Permission denied`
 
-    stow -D -t "$HOME" <package>
-    stow --no-folding -t "$HOME" <package>
+The script lost its executable bit, for example after copying the repository
+without Git. Restore it with:
 
-Never allow `~/.ssh` or `~/.gnupg` to become directory-level links into the
-repository.
-
-## `workstation-*`: permission denied
-
-Session helpers must be executable in the repository. Check:
-
-    find scripts -name '*.sh' -printf '%m %p\n'
-
-Expected mode for executable scripts is `755`. The archive/repository should
-preserve these executable bits.
-
-## Yazi/Fish cannot find `fd`
-
-Debian's `fd-find` package installs `/usr/bin/fdfind`, while upstream tools often
-expect `fd`. Run:
-
-    scripts/install/deploy-user-tools.sh
-
-It creates `~/.local/bin/fd -> /usr/bin/fdfind` when an upstream-named `fd`
-command is not already available.
+```bash
+chmod +x scripts/session/*.sh
+```
