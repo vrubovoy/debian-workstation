@@ -44,9 +44,10 @@ blueman
 # Privilege prompts
 mate-polkit
 
-# Backlight
+# Brightness: laptop backlight, desktop monitors over DDC/CI
 brightnessctl
 brightness-udev
+ddcutil
 
 # Appearance
 fonts-ubuntu
