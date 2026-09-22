@@ -1,41 +1,44 @@
-# Graphite Blue — Yazi. File icons come from Kitty's Nerd Font fallback.
+# Graphite Blue — Yazi. File icons come from Kitty's Nerd Font fallback. No
+# bold: the font is already bold, and Kitty would draw bold as italic.
 
 [app]
 overall = { bg = "#111318" }
 
 [mgr]
-cwd = { fg = "#7AA2F7", bold = true }
-find_keyword = { fg = "#111318", bg = "#E5C07B", bold = true }
+cwd = { fg = "#7AA2F7" }
+find_keyword = { fg = "#111318", bg = "#E5C07B" }
 find_position = { fg = "#8E98A8", bg = "#111318" }
 symlink_target = { fg = "#56B6C2", italic = true }
 marker_copied = { fg = "#98C379", bg = "#98C379" }
 marker_cut = { fg = "#E06C75", bg = "#E06C75" }
 marker_marked = { fg = "#E5C07B", bg = "#E5C07B" }
 marker_selected = { fg = "#7AA2F7", bg = "#7AA2F7" }
-count_copied = { fg = "#111318", bg = "#98C379", bold = true }
-count_cut = { fg = "#111318", bg = "#E06C75", bold = true }
-count_selected = { fg = "#111318", bg = "#7AA2F7", bold = true }
+count_copied = { fg = "#111318", bg = "#98C379" }
+count_cut = { fg = "#111318", bg = "#E06C75" }
+count_selected = { fg = "#111318", bg = "#7AA2F7" }
 border_symbol = "│"
 border_style = { fg = "#303744" }
 
+# The hovered row keeps its file color on a gray band. The padding spaces keep
+# it as wide as the other rows; empty padding shifts it by a cell.
 [indicator]
-parent = { fg = "#303744", bg = "#111318" }
-current = { fg = "#7AA2F7", bg = "#111318", bold = true }
-preview = { fg = "#303744", bg = "#111318" }
-padding = { open = "", close = "" }
+parent = { bg = "#222630" }
+current = { bg = "#303744" }
+preview = { bg = "#222630" }
+padding = { open = " ", close = " " }
 
 [tabs]
-active = { fg = "#111318", bg = "#7AA2F7", bold = true }
+active = { fg = "#111318", bg = "#7AA2F7" }
 inactive = { fg = "#8E98A8", bg = "#1A1D24" }
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = "", close = "" }
 
 [mode]
-normal_main = { fg = "#111318", bg = "#7AA2F7", bold = true }
+normal_main = { fg = "#111318", bg = "#7AA2F7" }
 normal_alt = { fg = "#7AA2F7", bg = "#1A1D24" }
-select_main = { fg = "#111318", bg = "#E5C07B", bold = true }
+select_main = { fg = "#111318", bg = "#E5C07B" }
 select_alt = { fg = "#E5C07B", bg = "#1A1D24" }
-unset_main = { fg = "#111318", bg = "#E06C75", bold = true }
+unset_main = { fg = "#111318", bg = "#E06C75" }
 unset_alt = { fg = "#E06C75", bg = "#1A1D24" }
 
 [status]
@@ -47,7 +50,7 @@ perm_read = { fg = "#98C379" }
 perm_write = { fg = "#E5C07B" }
 perm_exec = { fg = "#E06C75" }
 perm_sep = { fg = "#5C6370" }
-progress_label = { fg = "#E6E9EF", bold = true }
+progress_label = { fg = "#E6E9EF" }
 progress_normal = { fg = "#7AA2F7", bg = "#303744" }
 progress_error = { fg = "#E06C75", bg = "#303744" }
 
@@ -55,7 +58,7 @@ progress_error = { fg = "#E06C75", bg = "#303744" }
 border = { fg = "#7AA2F7" }
 cols = 2
 mask = { bg = "#111318" }
-cand = { fg = "#7AA2F7", bold = true }
+cand = { fg = "#7AA2F7" }
 rest = { fg = "#8E98A8" }
 desc = { fg = "#E6E9EF" }
 separator = " → "
@@ -63,55 +66,55 @@ separator_style = { fg = "#303744" }
 
 [confirm]
 border = { fg = "#E5C07B" }
-title = { fg = "#E5C07B", bold = true }
+title = { fg = "#E5C07B" }
 body = { fg = "#E6E9EF" }
 list = { fg = "#8E98A8" }
-btn_yes = { fg = "#111318", bg = "#E06C75", bold = true }
-btn_no = { fg = "#111318", bg = "#7AA2F7", bold = true }
+btn_yes = { fg = "#111318", bg = "#E06C75" }
+btn_no = { fg = "#111318", bg = "#7AA2F7" }
 btn_labels = [ "Yes", "No" ]
 
 [spot]
 border = { fg = "#7AA2F7" }
-title = { fg = "#7AA2F7", bold = true }
+title = { fg = "#7AA2F7" }
 tbl_col = { fg = "#8E98A8" }
 tbl_cell = { fg = "#E6E9EF" }
 
 [notify]
-title_info = { fg = "#7AA2F7", bold = true }
-title_warn = { fg = "#E5C07B", bold = true }
-title_error = { fg = "#E06C75", bold = true }
+title_info = { fg = "#7AA2F7" }
+title_warn = { fg = "#E5C07B" }
+title_error = { fg = "#E06C75" }
 
 [pick]
 border = { fg = "#7AA2F7" }
-active = { fg = "#111318", bg = "#7AA2F7", bold = true }
+active = { fg = "#111318", bg = "#7AA2F7" }
 inactive = { fg = "#8E98A8" }
 
 [input]
 border = { fg = "#7AA2F7" }
-title = { fg = "#7AA2F7", bold = true }
+title = { fg = "#7AA2F7" }
 value = { fg = "#E6E9EF" }
 selected = { fg = "#111318", bg = "#7AA2F7" }
 
 [cmp]
 border = { fg = "#7AA2F7" }
-active = { fg = "#111318", bg = "#7AA2F7", bold = true }
+active = { fg = "#111318", bg = "#7AA2F7" }
 inactive = { fg = "#E6E9EF" }
 
 [tasks]
 border = { fg = "#7AA2F7" }
-title = { fg = "#7AA2F7", bold = true }
+title = { fg = "#7AA2F7" }
 hovered = { fg = "#111318", bg = "#7AA2F7" }
 
 [help]
 border = { fg = "#7AA2F7" }
-chord = { fg = "#7AA2F7", bold = true }
+chord = { fg = "#7AA2F7" }
 action = { fg = "#E6E9EF" }
 hovered = { fg = "#111318", bg = "#7AA2F7" }
 
 [filetype]
 rules = [
-    { url = "*", is = "orphan", fg = "#E06C75", bold = true },
-    { url = "*/", fg = "#7AA2F7", bold = true },
+    { url = "*", is = "orphan", fg = "#E06C75" },
+    { url = "*/", fg = "#7AA2F7" },
     { url = "*", is = "link", fg = "#56B6C2" },
     { url = "*", is = "exec", fg = "#98C379" },
     { mime = "image/*", fg = "#E5C07B" },
