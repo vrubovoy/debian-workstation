@@ -7,9 +7,9 @@ if status is-interactive
         status is-command-substitution; and return
 
         if type -q eza
-            eza -lah --git --group-directories-first --icons=auto
+            eza -1 --icons=auto
         else
-            ls -lah
+            ls -1
         end
     end
 end
