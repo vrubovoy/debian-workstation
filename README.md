@@ -18,7 +18,7 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | Session | Xorg, i3, i3bar + i3status, LightDM |
 | Desktop | Rofi, Dunst, Picom, i3lock + xss-lock, CopyQ clipboard history |
 | Terminal | Kitty, Fish + Starship, Neovim, Yazi |
-| Applications | Firefox ESR, Thunar, VSCodium |
+| Applications | Firefox ESR, Thunar; optional VSCodium, Onefetch, AmneziaVPN |
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
 | Development | Git, Lazygit, OpenSSH, GnuPG, clangd |
 
@@ -39,8 +39,8 @@ terminal. There is no full desktop environment, Flatpak or Snap.
   ```
 
   With an empty root password the Debian installer sets up sudo already.
-- An amd64 machine. On other architectures the pinned Onefetch and VSCodium
-  releases are skipped, and nothing else has been tested.
+- An amd64 machine. On other architectures the optional upstream releases
+  are not offered, and nothing else has been tested.
 
 ## Installation
 
@@ -59,15 +59,16 @@ The installer asks for your sudo password at the start (sudo may ask again
 near the end if its timeout ran out during a long install) and then:
 
 1. **As root:** sets up the Debian (with contrib and non-free) and Yazi APT
-   sources, installs the packages from `packages/`, installs the pinned
-   Onefetch and VSCodium releases, copies `system/` to `/`, enables
-   NetworkManager, Bluetooth and LightDM, and makes Fish your login shell.
+   sources, installs the packages from `packages/`, copies `system/` to `/`,
+   puts the wallpaper behind the GRUB menu, enables NetworkManager, Bluetooth
+   and LightDM, and makes Fish your login shell.
 2. **As you:** links `dotfiles/` into your home directory with GNU Stow, adds
    the `workstation-*` commands to `~/.local/bin`, and sets default
    applications and GTK settings.
 3. **Personal setup**, each step optional and skipped once done: Git name and
-   email with optional GPG signing, an SSH key, Firefox extensions and
-   VSCodium extensions.
+   email with optional GPG signing, an SSH key, the upstream releases
+   (VSCodium, Onefetch, AmneziaVPN), Firefox extensions and VSCodium
+   extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
 upgrade the system (`apt full-upgrade` stays your call) and is safe to run again.
@@ -123,7 +124,7 @@ change lists the new directory.
 
 ```text
 install.sh     the installer
-packages/      APT package lists, pinned releases, optional extensions
+packages/      APT package lists, optional releases and extensions
 system/        files copied to the same path under /
 dotfiles/      Stow packages linked into $HOME
 scripts/       installer steps, personal setup, workstation-* commands

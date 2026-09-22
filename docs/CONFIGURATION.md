@@ -11,7 +11,7 @@ change it.
 | `system/…` | `/…` | copied as root |
 | `scripts/session/<name>.sh` | `~/.local/bin/workstation-<name>` | symlink |
 | `packages/{base,desktop,applications,development}.txt` | installed | APT |
-| `packages/external.txt` | installed | pinned `.deb` from GitHub |
+| `packages/external.txt` | offered one by one | pinned release from GitHub |
 
 For example, `dotfiles/i3/.config/i3/config` becomes `~/.config/i3/config`,
 and `system/etc/lightdm/lightdm-gtk-greeter.conf` becomes
@@ -46,8 +46,14 @@ backups.
   Right Alt, for the console, LightDM and X alike.
 - `/etc/X11/xorg.conf.d/90-workstation-input.conf`: tap to click and natural
   scrolling on touchpads, slightly slower adaptive acceleration for mice.
-- `/etc/firefox/policies/policies.json`: generated from the repository file
-  plus the extensions chosen on this machine (see below).
+- `/etc/firefox-esr/policies/policies.json`: generated from the repository
+  file plus the extensions chosen on this machine (see below).
+- `/usr/lib/firefox-esr/workstation.cfg` with `defaults/pref/autoconfig.js`:
+  Firefox's AutoConfig, which applies `workstation-newtab.css` next to it to
+  every profile.
+- `/etc/default/grub.d/workstation.cfg`: the GRUB menu over the wallpaper.
+  The installer writes the image to `/boot/grub/workstation.jpg` (GRUB reads
+  only baseline JPEGs) and runs `update-grub`.
 - `/usr/share/locale/en/LC_MESSAGES/lightdm-gtk-greeter.mo`: turns the login
   form's hints into `login` and `password`. It applies with an English system
   locale; other languages keep the greeter's own translation.
@@ -61,7 +67,7 @@ backups.
 | `workstation-screenshot area\|window\|screen` | Save to `~/Pictures/Screenshots` and copy to the clipboard |
 | `workstation-clipboard` | Pick from the clipboard history (`start`: start CopyQ) |
 | `workstation-volume up\|down\|mute\|mic-mute` | Volume with an on-screen display |
-| `workstation-brightness up\|down` | Backlight with an on-screen display |
+| `workstation-brightness up\|down` | Laptop backlight, or the monitors over DDC/CI on a desktop, with an on-screen display |
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by
@@ -70,11 +76,13 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 
 ## Design
 
-- **Debian stable first.** Only three things come from upstream: Yazi from its
-  official APT repository, and Onefetch and VSCodium as `.deb` releases pinned
-  in `packages/external.txt` by URL and SHA-256. A download that does not match
-  its checksum stops the installer, so a release is exactly what the
-  repository says it is.
+- **Debian stable first.** Yazi comes from its official APT repository. The
+  other upstream software is optional: VSCodium, Onefetch and AmneziaVPN are
+  offered one by one by `scripts/configure/external-packages.sh`, pinned in
+  `packages/external.txt` by URL and SHA-256. A download that does not match
+  its checksum is refused, so a release is exactly what the repository says
+  it is. AmneziaVPN has no `.deb`; its own installer runs headless into
+  `/opt/AmneziaVPN`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
@@ -83,8 +91,9 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 - **Firefox through policies**, not a profile `user.js`. The policies turn off
   telemetry, studies, sponsored content, online Firefox Suggest and the AI
   features, and turn on DNS over HTTPS (Cloudflare, falling back to system
-  DNS). Optional extensions are picked with
-  `scripts/configure/firefox-extensions.sh`; the choice is kept in
+  DNS). The dark theme is the default, and with Firefox Home emptied the
+  search field sits in the middle of a new tab. Optional extensions are
+  picked with `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start.
 - **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
