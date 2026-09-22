@@ -1,63 +1,18 @@
-# =============================================================================
-# i3 configuration
-# =============================================================================
+# i3 — Graphite Blue.
 #
-# Debian workstation configuration.
-#
-# Design goals:
-#   - Simple and predictable window management.
-#   - Keyboard-first workflow.
-#   - Minimal external dependencies.
-#   - Clear, heavily documented configuration.
-#   - Stable behaviour suitable for a long-lived Debian workstation.
-#
-# Modifier:
-#   Super / Windows key (Mod4)
-#
-# Keyboard layouts:
-#   US / RU
-#   Alt + Space     switch layout
-#   Right Alt       Compose key
-#
-# Theme:
-#   Graphite Blue
-#
-# =============================================================================
+# Modifier: Super. Keyboard layouts (US/RU, Alt+Space, Compose on Right Alt)
+# come from /etc/default/keyboard. workstation-* commands live in
+# scripts/session/ and are linked into ~/.local/bin by the installer.
 
 
 # =============================================================================
 # Core
 # =============================================================================
 
-# Super / Windows key.
 set $mod Mod4
-
-# Main terminal.
 set $terminal kitty
 
-# Main UI font.
-#
-# Ubuntu Bold is intentionally used instead of a monospace font for the window
-# manager UI. Kitty will use Ubuntu Mono Bold independently.
 font pango:Ubuntu Bold 15
-
-
-# =============================================================================
-# Theme — Graphite Blue
-# =============================================================================
-#
-# A restrained dark palette:
-#
-#   bg       main background
-#   surface  raised/secondary background
-#   border   inactive borders and separators
-#   fg       primary text
-#   muted    secondary text
-#   accent   focused state
-#   urgent   urgent state
-#
-# Colors are defined as variables so that the whole theme can be adjusted from
-# this single section later.
 
 set $bg       #111318
 set $surface  #1A1D24
@@ -69,300 +24,115 @@ set $urgent   #E06C75
 
 
 # =============================================================================
-# Window appearance
+# Windows
 # =============================================================================
 
-# Remove normal title bars and use thin colored borders instead.
-#
-# Tabbed/stacking layouts still display their title bars because those titles
-# are part of the layout itself.
+# Thin borders instead of title bars; tabbed/stacked layouts keep their titles.
 default_border pixel 2
 default_floating_border pixel 2
-
-# Keep borders on screen edges.
 hide_edge_borders none
-
-# Center titles when a layout actually displays them (tabbed/stacking).
 title_align center
 
-# Space between adjacent windows.
+# Screen edge distance is outer + inner: 15 px.
 gaps inner 10px
-
-# Additional space around the outer edge of a workspace.
-#
-# i3 adds outer gaps on top of inner gaps, therefore the effective distance
-# between a window and the edge of the display is 15 px.
 gaps outer 5px
-
-# Keep the same spacing even when a workspace contains only one window.
 smart_gaps off
 
-
-# =============================================================================
-# Window colors
-# =============================================================================
-#
-# Syntax:
-#
 # class                     border     background  text      indicator  child_border
-
 client.focused              $accent    $surface    $fg       $accent    $accent
 client.focused_inactive     $border    $surface    $muted    $border    $border
 client.unfocused            $border    $bg         $muted    $border    $border
 client.urgent               $urgent    $urgent     $bg       $urgent    $urgent
 client.placeholder          $border    $bg         $fg       $border    $border
-
 client.background           $bg
 
-
-# =============================================================================
-# Focus behaviour
-# =============================================================================
-
-# Focus a window automatically when the pointer enters it.
 focus_follows_mouse yes
-
-# Do not move the mouse pointer automatically when focus changes to another
-# monitor.
 mouse_warping none
-
-# Allow directional focus to wrap when appropriate.
 focus_wrapping yes
 
-# Pressing the shortcut for the currently active workspace should do nothing.
-# Super+Tab is used explicitly for returning to the previous workspace.
+# Super+Tab returns to the previous workspace; pressing the current
+# workspace's key does nothing.
 workspace_auto_back_and_forth no
 
-# Only allow sensible application popups over fullscreen windows.
 popup_during_fullscreen smart
 
-# Applications requesting focus on another workspace become urgent instead of
-# unexpectedly stealing focus.
+# A window asking for focus on another workspace is marked urgent instead.
 focus_on_window_activation smart
 
-
-# =============================================================================
-# Mouse behaviour
-# =============================================================================
-
-# Super + left mouse:
-#   move a floating window
-#
-# Super + right mouse:
-#   resize a floating window
+# Super + left/right drag moves/resizes floating windows; tiled windows are
+# dragged only while Super is held (add Shift to swap).
 floating_modifier $mod
-
-# Allow tiled containers to be dragged only while Super is held.
-#
-# Super + Shift + drag swaps containers when dropping directly on another
-# container (i3 default swap modifier is Shift).
 tiling_drag modifier
-
-
-# =============================================================================
-# Keyboard
-# =============================================================================
-#
-# Configure XKB directly when i3 starts.
-#
-# Layout order:
-#   1. English (US)
-#   2. Russian
-#
-# Alt+Space:
-#   switch layout
-#
-# Right Alt:
-#   Compose key
-#
-# The empty -option first clears inherited XKB options, making the resulting
-# keyboard configuration deterministic.
-
-exec_always --no-startup-id setxkbmap \
-    -layout us,ru \
-    -option '' \
-    -option 'grp:alt_space_toggle' \
-    -option 'compose:ralt'
 
 
 # =============================================================================
 # Applications
 # =============================================================================
 
-# Terminal.
 bindsym $mod+Return exec $terminal
-
-# Browser.
-#
-# This binding is already defined even if Firefox has not yet been installed.
-# It will begin working automatically once `firefox` is available in PATH.
 bindsym $mod+w exec --no-startup-id firefox
-
-# =============================================================================
-# Code editor
-# =============================================================================
-
-# Open VSCodium.
 bindsym $mod+c exec --no-startup-id codium
-
-
-# =============================================================================
-# Application launcher
-# =============================================================================
-#
-# Rofi application launcher.
-#
-# Both shortcuts are intentionally retained as aliases for the same action.
+bindsym $mod+e exec --no-startup-id thunar
 
 bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
 
-
-# =============================================================================
-# Clipboard history
-# =============================================================================
-#
-# Open the searchable X11 clipboard history.
-#
-# CopyQ stores the history while Rofi provides the visible user interface.
-# Selecting an item restores it to the clipboard; paste normally with Ctrl+V.
-
-bindsym $mod+v \
-    exec --no-startup-id ~/.local/bin/workstation-clipboard
-
-
-# =============================================================================
-# File manager
-# =============================================================================
-
-# Open the graphical file manager.
-bindsym $mod+e exec --no-startup-id thunar
+# Clipboard history; the chosen item is restored for Ctrl+V.
+bindsym $mod+v exec --no-startup-id workstation-clipboard
 
 
 # =============================================================================
 # Window management
 # =============================================================================
 
-# Close the focused window.
-#
-# i3 first asks applications to close normally through WM_DELETE_WINDOW.
-# Applications which do not support it may be terminated by X11.
 bindsym $mod+q kill
-
-
-# -----------------------------------------------------------------------------
-# Fullscreen
-# -----------------------------------------------------------------------------
 
 bindsym $mod+f fullscreen toggle
 bindsym Mod1+Return fullscreen toggle
 
-
-# -----------------------------------------------------------------------------
-# Floating
-# -----------------------------------------------------------------------------
-
-# Toggle the focused window between tiled and floating mode.
 bindsym $mod+t floating toggle
-
-
-# -----------------------------------------------------------------------------
-# Layout
-# -----------------------------------------------------------------------------
-
-# Toggle between the normal split layout and tabbed layout.
 bindsym $mod+Shift+w layout toggle split tabbed
 
-
-# =============================================================================
-# Focus
-# =============================================================================
-#
-# Arrow keys are always available.
-#
-# H / J / K are also provided for fast keyboard navigation.
-#
-# Super+L is intentionally used by the lock screen, therefore Right Arrow is
-# the keyboard shortcut for focusing to the right.
-
-# Left.
-bindsym $mod+Left focus left
-bindsym $mod+h    focus left
-
-# Right.
+# Focus: arrows or H/J/K. Super+L is the lock screen, so right is arrow-only.
+bindsym $mod+Left  focus left
+bindsym $mod+h     focus left
 bindsym $mod+Right focus right
+bindsym $mod+Up    focus up
+bindsym $mod+k     focus up
+bindsym $mod+Down  focus down
+bindsym $mod+j     focus down
 
-# Up.
-bindsym $mod+Up focus up
-bindsym $mod+k  focus up
-
-# Down.
-bindsym $mod+Down focus down
-bindsym $mod+j    focus down
-
-
-# =============================================================================
-# Move windows
-# =============================================================================
-#
-# Ctrl distinguishes window movement from focus movement.
-
-# Left.
-bindsym $mod+Control+Left move left
-bindsym $mod+Control+h    move left
-
-# Right.
+# Move: Ctrl added to the focus keys.
+bindsym $mod+Control+Left  move left
+bindsym $mod+Control+h     move left
 bindsym $mod+Control+Right move right
 bindsym $mod+Control+l     move right
+bindsym $mod+Control+Up    move up
+bindsym $mod+Control+k     move up
+bindsym $mod+Control+Down  move down
+bindsym $mod+Control+j     move down
 
-# Up.
-bindsym $mod+Control+Up move up
-bindsym $mod+Control+k  move up
-
-# Down.
-bindsym $mod+Control+Down move down
-bindsym $mod+Control+j    move down
-
-
-# =============================================================================
-# Monitor navigation
-# =============================================================================
-#
-# Super + Shift + Arrow:
-#   move focus between monitors.
-
+# Monitors: Shift focuses, Shift+Ctrl moves the window.
 bindsym $mod+Shift+Left  focus output left
 bindsym $mod+Shift+Right focus output right
 bindsym $mod+Shift+Up    focus output up
 bindsym $mod+Shift+Down  focus output down
-
-
-# =============================================================================
-# Move windows between monitors
-# =============================================================================
-#
-# Super + Shift + Ctrl + Arrow:
-#   move the focused container to another monitor.
 
 bindsym $mod+Shift+Control+Left  move container to output left
 bindsym $mod+Shift+Control+Right move container to output right
 bindsym $mod+Shift+Control+Up    move container to output up
 bindsym $mod+Shift+Control+Down  move container to output down
 
+# Resize: 10% for tiled windows, 10 px for floating ones.
+bindsym $mod+minus       resize shrink width 10 px or 10 ppt
+bindsym $mod+equal       resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+minus resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+equal resize grow height 10 px or 10 ppt
+
 
 # =============================================================================
 # Workspaces
 # =============================================================================
-#
-# Ten numbered workspaces.
-#
-# Super + N:
-#   switch to workspace N
-#
-# Super + Alt + N:
-#   move the focused container to workspace N
-#
-# Workspace 10 uses the physical 0 key.
 
 set $ws1  1
 set $ws2  2
@@ -375,11 +145,6 @@ set $ws8  8
 set $ws9  9
 set $ws10 10
 
-
-# -----------------------------------------------------------------------------
-# Switch workspaces
-# -----------------------------------------------------------------------------
-
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -390,11 +155,6 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-
-
-# -----------------------------------------------------------------------------
-# Move windows to workspaces
-# -----------------------------------------------------------------------------
 
 bindsym $mod+Mod1+1 move container to workspace number $ws1
 bindsym $mod+Mod1+2 move container to workspace number $ws2
@@ -407,320 +167,88 @@ bindsym $mod+Mod1+8 move container to workspace number $ws8
 bindsym $mod+Mod1+9 move container to workspace number $ws9
 bindsym $mod+Mod1+0 move container to workspace number $ws10
 
-
-# -----------------------------------------------------------------------------
-# Previous workspace
-# -----------------------------------------------------------------------------
-
-# Toggle between the current workspace and the workspace that had focus before
-# it.
 bindsym $mod+Tab workspace back_and_forth
 
-
-# -----------------------------------------------------------------------------
-# Workspace navigation with the mouse wheel
-# -----------------------------------------------------------------------------
-
-# Super + wheel:
-#   move between workspaces.
-#
-# --whole-window makes the binding work while the pointer is over an
-# application window, not only over i3 decorations.
-
+# Super + wheel switches workspaces, Super+Ctrl + wheel takes the window
+# along; --whole-window makes it work over application windows.
 bindsym --whole-window $mod+button4 workspace prev
 bindsym --whole-window $mod+button5 workspace next
-
-
-# -----------------------------------------------------------------------------
-# Move windows between adjacent workspaces with the mouse wheel
-# -----------------------------------------------------------------------------
-
 bindsym --whole-window $mod+Control+button4 move container to workspace prev
 bindsym --whole-window $mod+Control+button5 move container to workspace next
 
 
 # =============================================================================
-# Resize
-# =============================================================================
-#
-# Resize in approximately 10% steps for tiled containers.
-#
-# The pixel value is used when resizing floating windows.
-
-# Width.
-bindsym $mod+minus resize shrink width 10 px or 10 ppt
-bindsym $mod+equal resize grow width 10 px or 10 ppt
-
-# Height.
-bindsym $mod+Shift+minus resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+equal resize grow height 10 px or 10 ppt
-
-
-# =============================================================================
-# Session controls
+# Session and hardware keys
 # =============================================================================
 
+bindsym $mod+l exec --no-startup-id workstation-lock
+bindsym $mod+BackSpace exec --no-startup-id workstation-power-menu
+bindsym Control+Mod1+Delete exec --no-startup-id workstation-power-menu
 
-# -----------------------------------------------------------------------------
-# Lock screen
-# -----------------------------------------------------------------------------
-#
-# Immediately lock the current graphical session.
+# Screenshots go to ~/Pictures/Screenshots and the clipboard.
+bindsym $mod+p      exec --no-startup-id workstation-screenshot area
+bindsym Print       exec --no-startup-id workstation-screenshot screen
+bindsym Shift+Print exec --no-startup-id workstation-screenshot area
+bindsym Mod1+Print  exec --no-startup-id workstation-screenshot window
 
-bindsym $mod+l \
-    exec --no-startup-id ~/.local/bin/workstation-lock
+bindsym XF86AudioRaiseVolume exec --no-startup-id workstation-volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id workstation-volume down
+bindsym XF86AudioMute        exec --no-startup-id workstation-volume mute
+bindsym XF86AudioMicMute     exec --no-startup-id workstation-volume mic-mute
 
+# playerctld (started below) sends these to the most recently active player.
+bindsym XF86AudioNext  exec --no-startup-id playerctl --no-messages next
+bindsym XF86AudioPrev  exec --no-startup-id playerctl --no-messages previous
+bindsym XF86AudioPlay  exec --no-startup-id playerctl --no-messages play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl --no-messages play-pause
 
-# -----------------------------------------------------------------------------
-# Power / session menu
-# -----------------------------------------------------------------------------
+bindsym XF86MonBrightnessUp   exec --no-startup-id workstation-brightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id workstation-brightness down
 
-bindsym $mod+BackSpace \
-    exec --no-startup-id ~/.local/bin/workstation-power-menu
-
-bindsym Control+Mod1+Delete \
-    exec --no-startup-id ~/.local/bin/workstation-power-menu
-
-# =============================================================================
-# Screenshots
-# =============================================================================
-#
-# Screenshot results are saved to:
-#
-#   ~/Pictures/Screenshots
-#
-# and simultaneously copied to the X11 clipboard.
-
-
-# Interactive rectangular selection.
-bindsym $mod+p \
-    exec --no-startup-id ~/.local/bin/workstation-screenshot area
-
-
-# Standard PrintScreen behaviour: entire desktop.
-bindsym Print \
-    exec --no-startup-id ~/.local/bin/workstation-screenshot screen
-
-
-# Explicit region selection.
-bindsym Shift+Print \
-    exec --no-startup-id ~/.local/bin/workstation-screenshot area
-
-
-# Focused window only.
-bindsym Mod1+Print \
-    exec --no-startup-id ~/.local/bin/workstation-screenshot window
-
-
-# =============================================================================
-# Audio
-# =============================================================================
-#
-# PipeWire volume controls with Graphite Blue Dunst OSD.
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/workstation-volume up
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/workstation-volume down
-bindsym XF86AudioMute        exec --no-startup-id ~/.local/bin/workstation-volume mute
-bindsym XF86AudioMicMute     exec --no-startup-id ~/.local/bin/workstation-volume mic-mute
-
-
-# =============================================================================
-# Media
-# =============================================================================
-
-bindsym XF86AudioNext  exec --no-startup-id ~/.local/bin/workstation-media next
-bindsym XF86AudioPrev  exec --no-startup-id ~/.local/bin/workstation-media previous
-
-bindsym XF86AudioPlay  exec --no-startup-id ~/.local/bin/workstation-media play-pause
-bindsym XF86AudioPause exec --no-startup-id ~/.local/bin/workstation-media play-pause
-
-
-# =============================================================================
-# Brightness
-# =============================================================================
-#
-# Hardware backlight controls with Graphite Blue Dunst OSD.
-
-bindsym XF86MonBrightnessUp \
-    exec --no-startup-id ~/.local/bin/workstation-brightness up
-
-bindsym XF86MonBrightnessDown \
-    exec --no-startup-id ~/.local/bin/workstation-brightness down
-
-
-# =============================================================================
-# Display power
-# =============================================================================
-
-# Immediately switch displays off through X11 DPMS.
-#
-# Moving the mouse or pressing a key will normally wake them again.
+# Displays off now; any input wakes them.
 bindsym $mod+Shift+p exec --no-startup-id xset dpms force off
 
-
-# =============================================================================
-# i3 management
-# =============================================================================
-
-# Reload configuration without restarting i3.
 bindsym $mod+Control+r reload
-
-# Restart i3 in-place.
-#
-# Existing windows remain open.
 bindsym $mod+Shift+r restart
 
 
 # =============================================================================
-# Startup
+# Autostart
 # =============================================================================
 
+exec --no-startup-id workstation-wallpaper
 
-# -----------------------------------------------------------------------------
-# Wallpaper
-# -----------------------------------------------------------------------------
-#
-# Loads the repository-managed wallpaper through Feh.
-#
-# If the wallpaper asset is unavailable, the helper falls back to the
-# Graphite Blue base color (#111318).
+# Idle: lock after 10 minutes, displays off after 15.
+exec --no-startup-id xset s 600 0 +dpms dpms 0 0 900
 
-exec --no-startup-id ~/.local/bin/workstation-wallpaper
-
-
-# -----------------------------------------------------------------------------
-# Idle policy
-# -----------------------------------------------------------------------------
-#
-# Configures:
-#
-#   10 min idle -> screen lock
-#   15 min idle -> displays off
-
-exec --no-startup-id ~/.local/bin/workstation-idle
-
-
-# -----------------------------------------------------------------------------
-# Screen locking
-# -----------------------------------------------------------------------------
-#
-# xss-lock integrates i3lock with:
-#
-#   - X11 inactivity;
-#   - systemd-logind;
-#   - loginctl lock-session;
-#   - suspend / hibernate.
-#
-# --transfer-sleep-lock ensures that system suspend is delayed until i3lock has
-# actually secured the display.
-
-exec --no-startup-id xss-lock \
-    --transfer-sleep-lock \
-    -- ~/.local/bin/workstation-lock
-
-
-
-# -----------------------------------------------------------------------------
-# Polkit authentication agent
-# -----------------------------------------------------------------------------
-#
-# Provides graphical authentication dialogs for desktop applications which
-# request elevated privileges through PolicyKit.
+# xss-lock runs the locker on idle and before suspend; --transfer-sleep-lock
+# holds the suspend until the screen is actually locked.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- workstation-lock
 
 exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1
-
-
-# -----------------------------------------------------------------------------
-# NetworkManager
-# -----------------------------------------------------------------------------
-#
-# Network status and connection control applet.
-#
-# The icon is embedded into the i3bar system tray.
-
 exec --no-startup-id nm-applet
-
-
-# -----------------------------------------------------------------------------
-# Bluetooth
-# -----------------------------------------------------------------------------
-#
-# Bluetooth tray applet and graphical device manager.
-
 exec --no-startup-id blueman-applet
-
-
-# -----------------------------------------------------------------------------
-# X11 compositor
-# -----------------------------------------------------------------------------
-#
-# Provides:
-#   - rounded corners;
-#   - subtle shadows;
-#   - VSync;
-#   - short fade transitions.
-
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
-
-
-# -----------------------------------------------------------------------------
-# Media player coordinator
-# -----------------------------------------------------------------------------
-#
-# Tracks MPRIS player activity so Playerctl commands are sent to the player
-# which was used most recently.
-
+exec --no-startup-id picom
 exec --no-startup-id playerctld daemon
-
-
-# -----------------------------------------------------------------------------
-# Clipboard history
-# -----------------------------------------------------------------------------
-#
-# CopyQ monitors the regular X11 clipboard and stores recent items.
-#
-# Its own tray interface is disabled. Clipboard history is accessed through
-# Rofi with Super+V.
-
-exec --no-startup-id copyq
-
-
-# -----------------------------------------------------------------------------
-# Notifications
-# -----------------------------------------------------------------------------
-
+exec --no-startup-id workstation-clipboard start
 exec --no-startup-id dunst
 
 
 # =============================================================================
-# i3bar
+# Bar
 # =============================================================================
-#
-# i3bar stays deliberately simple.
-#
-# i3status is responsible only for the status information on the right.
-# Its own configuration lives separately in:
-#
-#   ~/.config/i3status/config
-#
-# We will configure that file independently.
 
 bar {
     position bottom
     mode dock
-
     status_command i3status
-
-    # Large readable UI.
     font pango:Ubuntu Bold 15
 
-    # Show tray applications only on the primary display.
-    tray_output primary
+    # No tray_output: i3bar then uses the first active output. With
+    # "primary" and no primary output set (common in VMs) the tray vanishes.
     tray_padding 4
 
-    # Prevent one-character workspace buttons from becoming tiny.
     workspace_min_width 44
-
     separator_symbol "│"
 
     colors {
@@ -728,7 +256,7 @@ bar {
         statusline         $fg
         separator          $border
 
-        #                      border    background  text
+        #                     border    background  text
         focused_workspace     $accent   $accent     $bg
         active_workspace      $border   $surface    $fg
         inactive_workspace    $bg       $bg         $muted

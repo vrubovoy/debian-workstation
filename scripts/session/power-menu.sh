@@ -1,120 +1,37 @@
 #!/usr/bin/env bash
-
-# =============================================================================
-# Workstation power menu
-# =============================================================================
-#
-# Graphical session and power controls using Rofi.
-#
-# Actions:
-#
-#   Lock
-#   Suspend
-#   Logout
-#   Reboot
-#   Power off
-#
-# Potentially destructive actions require explicit confirmation.
-#
-# =============================================================================
+# Session and power menu in Rofi. Logout, reboot and power-off ask for
+# confirmation.
 
 set -Eeuo pipefail
 
-
-# =============================================================================
-# Menu
-# =============================================================================
-
-MENU_ITEMS=$(
-    printf '%s\n' \
-        "Lock" \
-        "Suspend" \
-        "Logout" \
-        "Reboot" \
-        "Power off"
-)
-
-
-choice="$(
-    printf '%s\n' "$MENU_ITEMS" |
-        rofi \
-            -dmenu \
-            -i \
-            -p "Session"
-)" || exit 0
-
-
-# =============================================================================
-# Confirmation
-# =============================================================================
-
-confirm() {
-
-    local action="$1"
-    local answer
-
-    answer="$(
-        printf '%s\n' \
-            "No" \
-            "Yes" |
-            rofi \
-                -dmenu \
-                -i \
-                -p "$action?"
-    )" || return 1
-
-    [[ "$answer" == "Yes" ]]
+menu() {
+    rofi -dmenu -i -p "$1"
 }
 
+confirm() {
+    [[ "$(printf 'No\nYes\n' | menu "$1?")" == Yes ]]
+}
 
-# =============================================================================
-# Actions
-# =============================================================================
+choice="$(printf 'Lock\nSuspend\nLogout\nReboot\nPower off\n' | menu Session)" || exit 0
 
 case "$choice" in
-
-    "Lock")
-
-        exec ~/.local/bin/workstation-lock
+    Lock)
+        exec workstation-lock
         ;;
-
-
-    "Suspend")
-
-        # xss-lock receives the systemd-logind sleep request and makes sure
-        # i3lock has secured the session before suspend actually proceeds.
-
+    Suspend)
+        # xss-lock locks the session before the system goes to sleep.
         exec systemctl suspend
         ;;
-
-
-    "Logout")
-
-        confirm "Logout" || exit 0
-
+    Logout)
+        confirm Logout || exit 0
         exec i3-msg exit
         ;;
-
-
-    "Reboot")
-
-        confirm "Reboot" || exit 0
-
+    Reboot)
+        confirm Reboot || exit 0
         exec systemctl reboot
         ;;
-
-
     "Power off")
-
         confirm "Power off" || exit 0
-
         exec systemctl poweroff
         ;;
-
-
-    *)
-        # Escape or an unexpected value simply closes the menu.
-        exit 0
-        ;;
-
 esac

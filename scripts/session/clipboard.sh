@@ -1,157 +1,75 @@
 #!/usr/bin/env bash
-
-# =============================================================================
-# Clipboard history
-# =============================================================================
+# Clipboard history: CopyQ stores it, Rofi shows it.
 #
-# Presents CopyQ clipboard history through Rofi.
+#   workstation-clipboard start   start CopyQ with the workstation settings (i3 runs this)
+#   workstation-clipboard         pick an item; it is restored to the clipboard for Ctrl+V
 #
-# CopyQ is responsible for:
-#
-#   - monitoring the X11 clipboard;
-#   - persistent history storage;
-#   - restoring the complete clipboard item, including non-text MIME data.
-#
-# Rofi is used only as a searchable frontend.
-#
-# Selecting an item restores it to the clipboard. The item is not pasted
-# automatically; paste normally with Ctrl+V afterwards.
-# =============================================================================
+# Only the regular clipboard is recorded, not text merely selected with the
+# mouse (PRIMARY).
 
 set -Eeuo pipefail
 
+HISTORY_SIZE=200
 
-# =============================================================================
-# Dependencies
-# =============================================================================
+notify() {
+    notify-send -h string:x-dunst-stack-tag:clipboard "Clipboard" "$1"
+}
 
-if ! command -v copyq >/dev/null 2>&1; then
-    notify-send \
-        "Clipboard" \
-        "CopyQ is not installed."
+start() {
+    # hide_main_window: without a tray icon CopyQ would otherwise "minimize"
+    # its window, which i3 shows.
+    copyq --start-server config \
+        check_clipboard true \
+        check_selection false \
+        copy_clipboard false \
+        copy_selection false \
+        maxitems "$HISTORY_SIZE" \
+        disable_tray true \
+        hide_main_window true \
+        clipboard_notification_lines 0 \
+        >/dev/null
+}
 
-    exit 1
-fi
+menu() {
+    local items selection index
 
-if ! command -v rofi >/dev/null 2>&1; then
-    notify-send \
-        "Clipboard" \
-        "Rofi is not installed."
+    if ! copyq size >/dev/null 2>&1; then
+        notify "CopyQ is not running."
+        exit 1
+    fi
 
-    exit 1
-fi
-
-
-# =============================================================================
-# CopyQ availability
-# =============================================================================
-
-if ! pgrep -x copyq >/dev/null 2>&1; then
-    notify-send \
-        "Clipboard" \
-        "Clipboard history service is not running."
-
-    exit 1
-fi
-
-
-# =============================================================================
-# Build menu
-# =============================================================================
-#
-# Each Rofi line has the following internal representation:
-#
-#   COPYQ_INDEX<TAB>PREVIEW
-#
-# The numeric index is kept so the selected Rofi entry can be mapped directly
-# back to the original CopyQ item.
-#
-# Embedded newlines and tabs are collapsed because Rofi's dmenu protocol uses
-# one line per selectable item.
-#
-# Non-text clipboard entries remain selectable. CopyQ restores the complete
-# original item even when Rofi can only display a generic textual preview.
-
-items="$(
-    copyq eval -- '
-        var count = size();
-
-        if (count > 200)
-            count = 200;
-
-        for (var i = 0; i < count; ++i) {
-            var text = str(read(i));
-
-            text = text.replace(/[\r\n\t]+/g, " ");
-            text = text.replace(/^ +| +$/g, "");
-
-            if (!text)
-                text = "[non-text clipboard item]";
-
+    # One line per item: "ROW<TAB>preview". Rofi shows only the preview and
+    # returns the whole line, so the row maps back to the CopyQ item, which is
+    # restored with all its formats (images too).
+    items="$(copyq eval -- "
+        for (var i = 0; i < Math.min(size(), $HISTORY_SIZE); ++i) {
+            var text = str(read(i)).replace(/\s+/g, ' ').trim() || '[non-text item]';
             if (text.length > 160)
-                text = text.substring(0, 157) + "...";
-
-            print(i + "\t" + text + "\n");
+                text = text.substring(0, 157) + '...';
+            print(i + '\t' + text + '\n');
         }
-    '
-)"
+    ")"
 
+    if [[ -z "$items" ]]; then
+        notify "History is empty."
+        exit 0
+    fi
 
-# =============================================================================
-# Empty history
-# =============================================================================
+    selection="$(rofi -dmenu -i -matching fuzzy -display-columns 2 -p "Clipboard" <<< "$items")" ||
+        exit 0
 
-if [[ -z "$items" ]]; then
-    notify-send \
-        "Clipboard" \
-        "Clipboard history is empty."
+    index="${selection%%$'\t'*}"
+    [[ "$index" =~ ^[0-9]+$ ]] || exit 1
 
-    exit 0
-fi
+    copyq select "$index"
+    notify "Item restored."
+}
 
-
-# =============================================================================
-# Selection
-# =============================================================================
-
-selection="$(
-    printf '%s' "$items" |
-        rofi \
-            -dmenu \
-            -i \
-            -matching fuzzy \
-            -p "Clipboard"
-)" || exit 0
-
-
-# The CopyQ row number is everything before the first tab.
-index="${selection%%$'\t'*}"
-
-
-# =============================================================================
-# Validation
-# =============================================================================
-
-if [[ ! "$index" =~ ^[0-9]+$ ]]; then
-    notify-send \
-        "Clipboard" \
-        "Invalid clipboard selection."
-
-    exit 1
-fi
-
-
-# =============================================================================
-# Restore
-# =============================================================================
-#
-# select() restores the complete CopyQ item to the clipboard rather than only
-# the textual preview shown by Rofi.
-
-copyq select "$index"
-
-
-notify-send \
-    -h string:x-dunst-stack-tag:clipboard \
-    "Clipboard" \
-    "Clipboard item restored."
+case "${1:-}" in
+    start) start ;;
+    "")    menu ;;
+    *)
+        printf 'Usage: %s [start]\n' "${0##*/}" >&2
+        exit 2
+        ;;
+esac

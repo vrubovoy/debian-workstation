@@ -1,179 +1,67 @@
 #!/usr/bin/env bash
-
-# =============================================================================
-# Workstation volume control
-# =============================================================================
-#
-# Controls PipeWire audio through WirePlumber's `wpctl`.
-#
-# Supported actions:
-#
-#   up         increase output volume by 5%
-#   down       decrease output volume by 5%
-#   mute       toggle output mute
-#   mic-mute   toggle microphone mute
-#
-# Volume is capped at 100%.
-#
-# Every action displays a transient Dunst OSD notification. Notifications with
-# the same stack tag replace each other instead of filling the screen.
-#
-# =============================================================================
+# Speaker and microphone controls through WirePlumber, with a Dunst OSD.
+# Speaker volume is capped at 100%.
 
 set -Eeuo pipefail
 
-
-# =============================================================================
-# Constants
-# =============================================================================
-
 SINK="@DEFAULT_AUDIO_SINK@"
 SOURCE="@DEFAULT_AUDIO_SOURCE@"
-
 STEP="5%"
-VOLUME_LIMIT="1.0"
 
-OSD_TIMEOUT="1200"
+notify() {
+    local target="$1" title="$2" state percent body icon
 
+    state="$(wpctl get-volume "$target")" || return 0
+    percent="$(awk '{ printf "%.0f", $2 * 100 }' <<< "$state")"
+    body="$percent%"
 
-# =============================================================================
-# Helpers
-# =============================================================================
-
-get_audio_state() {
-    local target="$1"
-    local output
-
-    output="$(wpctl get-volume "$target" 2>/dev/null)" || return 1
-
-    AUDIO_PERCENT="$(
-        awk '{ printf "%.0f", $2 * 100 }' <<< "$output"
-    )"
-
-    if grep -q '\[MUTED\]' <<< "$output"; then
-        AUDIO_MUTED=true
-    else
-        AUDIO_MUTED=false
-    fi
-}
-
-
-notify_volume() {
-    get_audio_state "$SINK" || return 0
-
-    local icon
-    local body
-    local progress
-
-    if [[ "$AUDIO_MUTED" == true ]]; then
-        icon="audio-volume-muted-symbolic"
+    if [[ "$state" == *MUTED* ]]; then
+        percent=0
         body="Muted"
-        progress=0
+    fi
 
-    elif (( AUDIO_PERCENT >= 67 )); then
+    if [[ "$title" == Microphone ]]; then
+        icon="audio-input-microphone-symbolic"
+    elif [[ "$body" == Muted ]]; then
+        icon="audio-volume-muted-symbolic"
+    elif (( percent >= 67 )); then
         icon="audio-volume-high-symbolic"
-        body="${AUDIO_PERCENT}%"
-        progress="$AUDIO_PERCENT"
-
-    elif (( AUDIO_PERCENT >= 34 )); then
+    elif (( percent >= 34 )); then
         icon="audio-volume-medium-symbolic"
-        body="${AUDIO_PERCENT}%"
-        progress="$AUDIO_PERCENT"
-
     else
         icon="audio-volume-low-symbolic"
-        body="${AUDIO_PERCENT}%"
-        progress="$AUDIO_PERCENT"
     fi
 
-    dunstify \
-        -a "Desktop OSD" \
-        -u low \
-        -t "$OSD_TIMEOUT" \
-        -i "$icon" \
-        -h string:x-dunst-stack-tag:volume \
-        -h int:value:"$progress" \
-        "Volume" \
-        "$body"
+    dunstify -a "Desktop OSD" -u low -t 1200 -i "$icon" \
+        -h "string:x-dunst-stack-tag:${title,,}" \
+        -h "int:value:$percent" \
+        "$title" "$body"
 }
-
-
-notify_microphone() {
-    get_audio_state "$SOURCE" || return 0
-
-    local body
-    local progress
-
-    if [[ "$AUDIO_MUTED" == true ]]; then
-        body="Muted"
-        progress=0
-    else
-        body="${AUDIO_PERCENT}%"
-        progress="$AUDIO_PERCENT"
-    fi
-
-    dunstify \
-        -a "Desktop OSD" \
-        -u low \
-        -t "$OSD_TIMEOUT" \
-        -i "audio-input-microphone-symbolic" \
-        -h string:x-dunst-stack-tag:microphone \
-        -h int:value:"$progress" \
-        "Microphone" \
-        "$body"
-}
-
-
-refresh_i3status() {
-    # SIGUSR1 interrupts the current i3status sleep interval and forces an
-    # immediate refresh.
-    pkill -USR1 -x i3status 2>/dev/null || true
-}
-
-
-usage() {
-    printf 'Usage: %s {up|down|mute|mic-mute}\n' "$(basename "$0")" >&2
-    exit 2
-}
-
-
-# =============================================================================
-# Action
-# =============================================================================
 
 case "${1:-}" in
-
     up)
-        # Increasing the volume also unmutes the output.
+        # Raising the volume also unmutes.
         wpctl set-mute "$SINK" 0
-        wpctl set-volume "$SINK" "${STEP}+" --limit "$VOLUME_LIMIT"
-
-        notify_volume
+        wpctl set-volume --limit 1.0 "$SINK" "$STEP+"
+        notify "$SINK" Volume
         ;;
-
     down)
-        wpctl set-volume "$SINK" "${STEP}-"
-
-        notify_volume
+        wpctl set-volume "$SINK" "$STEP-"
+        notify "$SINK" Volume
         ;;
-
     mute)
         wpctl set-mute "$SINK" toggle
-
-        notify_volume
+        notify "$SINK" Volume
         ;;
-
     mic-mute)
         wpctl set-mute "$SOURCE" toggle
-
-        notify_microphone
+        notify "$SOURCE" Microphone
         ;;
-
     *)
-        usage
+        printf 'Usage: %s {up|down|mute|mic-mute}\n' "${0##*/}" >&2
+        exit 2
         ;;
-
 esac
 
-
-refresh_i3status
+# SIGUSR1 makes i3status redraw now instead of at its next interval.
+pkill -USR1 -x i3status || true
