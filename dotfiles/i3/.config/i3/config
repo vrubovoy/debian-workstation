@@ -244,6 +244,9 @@ bar {
     status_command i3status
     font pango:Ubuntu Bold 15
 
+    # Space between the screen edges and the workspace buttons / tray.
+    padding 0 16px
+
     # No tray_output: i3bar then uses the first active output. With
     # "primary" and no primary output set (common in VMs) the tray vanishes.
     tray_padding 4

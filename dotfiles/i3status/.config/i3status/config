@@ -22,11 +22,13 @@ order += "ethernet _first_"
 order += "battery all"
 order += "tztime local"
 
-# min_width keeps each block from shifting the bar as values change.
+# min_width keeps each block from shifting the bar as values change; the
+# text is centred in that width.
 
 cpu_usage {
     format = "CPU %usage"
     min_width = "CPU 100%"
+    align = "center"
     degraded_threshold = 70
     max_threshold = 90
     format_above_degraded_threshold = "CPU %usage"
@@ -42,6 +44,7 @@ memory {
     threshold_degraded = "20%"
     threshold_critical = "10%"
     min_width = "RAM 100%"
+    align = "center"
 }
 
 # /home is on the root filesystem, so this is the free space for everything.
@@ -52,6 +55,7 @@ disk "/" {
     low_threshold = 10
     threshold_type = "percentage_avail"
     min_width = "SSD 999.9 GiB"
+    align = "center"
 }
 
 # pipewire-pulse provides the PulseAudio API i3status reads.
@@ -60,6 +64,7 @@ volume master {
     format_muted = "VOL muted"
     device = "pulse"
     min_width = "VOL muted"
+    align = "center"
 }
 
 wireless _first_ {
@@ -90,6 +95,7 @@ battery all {
 tztime local {
     format = "%d.%m.%Y  %H:%M"
     min_width = "00.00.0000  00:00"
+    align = "center"
 }
 
 # CPU temperature needs a machine-specific sensor path, so it is left out.
