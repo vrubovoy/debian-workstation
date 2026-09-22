@@ -8,10 +8,9 @@ follow [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Installer that sets up Debian 13 in one run: APT sources, packages, pinned
-  Onefetch and VSCodium releases, system files, services and dotfiles, plus
-  optional personal setup (Git identity, GPG signing, SSH key, Firefox and
-  VSCodium extensions).
+- Installer that sets up Debian 13 in one run: APT sources, packages,
+  optional pinned upstream releases, system files, services and dotfiles,
+  plus optional personal setup.
 - X11 and i3 desktop with LightDM, i3bar and i3status, Rofi, Dunst, Picom,
   screen locking and idle policy, screenshots, a power menu and CopyQ
   clipboard history.
