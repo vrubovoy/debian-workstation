@@ -1,23 +1,5 @@
-# =============================================================================
-# Starship
-# =============================================================================
-#
-# Minimal prompt for Debian Workstation.
-#
-# Design goals:
-#   - one line;
-#   - no right prompt;
-#   - no command duration;
-#   - no language/runtime versions;
-#   - no package/environment noise;
-#   - only current directory and useful Git state.
-#
-# =============================================================================
-
-
-# =============================================================================
-# Prompt layout
-# =============================================================================
+# Starship — one line: directory, Git branch and status, prompt character.
+# No right prompt, so nothing extra ends up in copied command lines.
 
 add_newline = false
 
@@ -27,57 +9,27 @@ $git_branch\
 $git_status\
 $character"""
 
-# Explicitly keep the right side empty.
-#
-# Nothing is rendered on the right side of the terminal and therefore nothing
-# from a right prompt can accidentally become part of a copied command line.
 right_format = ""
 
-
-# =============================================================================
-# Directory
-# =============================================================================
-
 [directory]
-
 style = "bold #7AA2F7"
-
 format = "[$path]($style) "
-
 truncation_length = 4
 truncate_to_repo = true
-
 read_only = " ro"
 
-
-# =============================================================================
-# Git branch
-# =============================================================================
-
 [git_branch]
-
 symbol = "git:"
-
 style = "bold #8E98A8"
-
 format = "[$symbol$branch]($style) "
 
-
-# =============================================================================
-# Git status
-# =============================================================================
-
 [git_status]
-
 style = "bold #E5C07B"
-
 format = "([$all_status$ahead_behind]($style) )"
-
 conflicted = "!"
 ahead = "↑${count}"
 behind = "↓${count}"
 diverged = "↑${ahead_count}↓${behind_count}"
-
 untracked = "?${count}"
 stashed = "*${count}"
 modified = "~${count}"
@@ -85,25 +37,13 @@ staged = "+${count}"
 renamed = "»${count}"
 deleted = "x${count}"
 
-
-# =============================================================================
-# Prompt character
-# =============================================================================
-
 [character]
-
 success_symbol = "[❯](bold #7AA2F7)"
 error_symbol = "[❯](bold #E06C75)"
-
 vimcmd_symbol = "[❮](bold #7AA2F7)"
 vimcmd_replace_one_symbol = "[❮](bold #C678DD)"
 vimcmd_replace_symbol = "[❮](bold #C678DD)"
 vimcmd_visual_symbol = "[❮](bold #E5C07B)"
-
-
-# =============================================================================
-# Explicitly disabled modules
-# =============================================================================
 
 [cmd_duration]
 disabled = true

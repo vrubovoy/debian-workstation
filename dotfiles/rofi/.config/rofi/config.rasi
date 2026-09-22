@@ -1,166 +1,31 @@
-/* =============================================================================
- * Rofi configuration
- * =============================================================================
- *
- * Debian workstation application launcher.
- *
- * Design goals:
- *   - Fast keyboard-first application launching.
- *   - Large and readable typography.
- *   - Fuzzy search.
- *   - Application icons without additional icon packages.
- *   - Minimal visual noise.
- *   - Behaviour separated from visual theme.
- *
- * Main shortcuts:
- *   Super + Space
- *   Super + Ctrl + Enter
- *
- * Theme:
- *   Graphite Blue
- *
- * =============================================================================
- */
+/* Rofi — application launcher (Super+Space) and the menus of the
+ * workstation-* scripts. Appearance lives in graphite-blue.rasi. */
 
 configuration {
-
-    /* =========================================================================
-     * Modes
-     * =========================================================================
-     *
-     * drun:
-     *   Applications described by .desktop files.
-     *
-     * run:
-     *   Raw executable commands from PATH.
-     *
-     * window:
-     *   Existing X11 windows.
-     *
-     * The normal launcher starts directly in `drun`.
-     * Other modes remain available through Rofi's mode switching.
-     */
-
     modes: [ drun, run, window ];
 
-
-    /* =========================================================================
-     * Applications
-     * ========================================================================= */
-
-    /* Display application icons in drun mode. */
     show-icons: true;
-
-    /*
-     * Adwaita is already part of our GTK/LightDM base and therefore does not
-     * introduce another theming dependency.
-     */
     icon-theme: "Adwaita";
 
-    /*
-     * Only show the application name.
-     *
-     * Avoid generic descriptions such as:
-     *
-     *   Firefox Web Browser (Web Browser)
-     *
-     * when simply:
-     *
-     *   Firefox
-     *
-     * is easier to scan.
-     */
+    /* Show only the name, but still match generic names, categories and
+     * keywords: "browser" finds Firefox. */
     drun-display-format: "{name}";
-
-    /*
-     * Search useful desktop-entry fields even though only the application name
-     * is displayed.
-     *
-     * This means e.g. typing "browser" may still find Firefox.
-     */
     drun-match-fields: "name,generic,exec,categories,keywords";
-
-    /* Do not expose secondary .desktop actions in the normal launcher. */
     drun-show-actions: false;
 
-
-    /* =========================================================================
-     * Search
-     * ========================================================================= */
-
-    /*
-     * Fuzzy matching allows abbreviated input.
-     *
-     * Examples:
-     *
-     *   ffox       -> Firefox
-     *   code       -> Code - OSS
-     *   term       -> Kitty
-     */
     matching: "fuzzy";
-
-    /*
-     * Rank filtered entries using Rofi's fzf-style scorer.
-     */
     sort: true;
     sorting-method: "fzf";
-
-    /*
-     * Search is case-insensitive until uppercase characters are entered.
-     */
     case-smart: true;
-
-    /*
-     * Split the search query into words.
-     *
-     * "code oss" can therefore match an entry containing both terms
-     * independently.
-     */
     tokenize: true;
-
-    /*
-     * Arrow navigation wraps around at the beginning/end of the result list.
-     */
     cycle: true;
 
-
-    /* =========================================================================
-     * Terminal
-     * ========================================================================= */
-
-    /*
-     * Rofi uses this terminal when an operation explicitly needs one.
-     */
     terminal: "kitty";
 
-
-    /* =========================================================================
-     * Window / monitor behaviour
-     * ========================================================================= */
-
-    /*
-     * -4 means: display Rofi on the monitor containing the currently focused
-     * window.
-     *
-     * This is more deterministic for a keyboard-driven workflow than following
-     * the mouse pointer.
-     */
+    /* -4: the monitor with the focused window, not the one under the mouse. */
     monitor: -4;
-
-    /*
-     * Rofi grabs focus while open and returns focus after closing.
-     */
     steal-focus: true;
-
-    /*
-     * Clicking outside the launcher closes it.
-     */
     click-to-exit: true;
-
-
-    /* =========================================================================
-     * Mode names
-     * ========================================================================= */
 
     drun {
         display-name: "Apps";
@@ -174,26 +39,9 @@ configuration {
         display-name: "Windows";
     }
 
-
-    /* =========================================================================
-     * History
-     * ========================================================================= */
-
-    /*
-     * Keep normal Rofi history behaviour.
-     *
-     * Frequently launched applications therefore naturally become easier to
-     * reach over time.
-     */
-
     entry {
         max-history: 30;
     }
 }
-
-
-/* =============================================================================
- * Theme
- * ============================================================================= */
 
 @theme "graphite-blue"

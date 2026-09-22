@@ -1,27 +1,4 @@
--- =============================================================================
--- Graphite Blue — Neovim
--- =============================================================================
---
--- Native Neovim colorscheme for the Debian workstation.
---
--- No external theme plugin is required.
---
--- Palette shared with:
---
---   i3
---   i3status
---   Kitty
---   Rofi
---   Dunst
---   Picom
---   LightDM
---
--- =============================================================================
-
-
--- =============================================================================
--- Initialization
--- =============================================================================
+-- Graphite Blue — native Neovim colorscheme, no plugin required.
 
 vim.cmd("highlight clear")
 
@@ -428,9 +405,6 @@ hl(0, "DiffText", {
 -- =============================================================================
 -- Diagnostics
 -- =============================================================================
---
--- These are already useful for built-in diagnostics and mean the theme is
--- ready if native LSP is enabled later.
 
 hl(0, "DiagnosticError", {
     fg = c.red,
@@ -492,7 +466,7 @@ hl(0, "SpellLocal", {
 
 
 -- =============================================================================
--- Terminal ANSI colors
+-- Terminal ANSI colors (same as Kitty)
 -- =============================================================================
 
 vim.g.terminal_color_0  = "#1A1D24"

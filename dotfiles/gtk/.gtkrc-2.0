@@ -1,11 +1,6 @@
-# =============================================================================
-# GTK 2 compatibility
-# =============================================================================
-
-gtk-theme-name = "Adwaita"
+# GTK 2 (pinentry-gtk2): same dark theme as GTK 3.
+gtk-theme-name = "Adwaita-dark"
 gtk-icon-theme-name = "Adwaita"
-
 gtk-font-name = "Ubuntu Bold 13"
-
 gtk-cursor-theme-name = "Adwaita"
 gtk-cursor-theme-size = 24

@@ -1,46 +1,7 @@
-# =============================================================================
-# Yazi keymap
-# =============================================================================
-#
-# The default Yazi bindings remain enabled.
-#
-# Important built-in bindings:
-#
-#   h / j / k / l   navigation
-#   Enter            open
-#   q                quit and update Fish CWD
-#   Q                quit without changing Fish CWD
-#
-#   Space            select
-#   y                copy
-#   x                cut
-#   p                paste
-#
-#   a                create
-#   r                rename
-#   d                trash
-#   D                permanent delete
-#
-#   .                toggle hidden files
-#
-#   s                search by filename (fd)
-#   S                search by content (ripgrep)
-#
-#   z                fuzzy navigation (fzf)
-#   Z                directory history (zoxide)
-#
-# =============================================================================
-
-
-# =============================================================================
-# Manager
-# =============================================================================
+# Yazi keeps its default keys (F1 lists them). With the Fish `y` wrapper, q
+# quits into the last directory and Q quits without changing it.
 
 [[mgr.prepend_keymap]]
-
-# Temporarily drop into the configured Fish shell in the current directory.
 on = "!"
-
 run = 'shell "$SHELL" --block'
-
 desc = "Open shell here"

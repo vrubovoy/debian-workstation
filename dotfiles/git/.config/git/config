@@ -1,151 +1,45 @@
-# =============================================================================
-# Git configuration
-# =============================================================================
-#
-# Reproducible workstation-wide Git behaviour.
-#
-# Personal identity and cryptographic signing configuration deliberately live
-# outside this repository in:
-#
-#   ~/.gitconfig.local
-#
-# =============================================================================
-
-
-# =============================================================================
-# Personal configuration
-# =============================================================================
+# Git behaviour shared by every machine. Name, email and the signing key are
+# machine-local in ~/.gitconfig.local (scripts/configure/git.sh).
 
 [include]
     path = ~/.gitconfig.local
 
-
-# =============================================================================
-# Repository initialization
-# =============================================================================
-
 [init]
     defaultBranch = main
 
-
-# =============================================================================
-# Editor
-# =============================================================================
-
 [core]
     editor = nvim
-
-    # Preserve normal filesystem permission-bit behaviour.
-    fileMode = true
-
-
-# =============================================================================
-# Pager
-# =============================================================================
-
-[core]
     pager = less -FRX
-
-
-# =============================================================================
-# Color
-# =============================================================================
 
 [color]
     ui = auto
 
-
-# =============================================================================
-# Fetch
-# =============================================================================
-
 [fetch]
-    # Automatically remove remote-tracking branches which disappeared from
-    # the remote repository.
     prune = true
 
-
-# =============================================================================
-# Push
-# =============================================================================
-
 [push]
-    # First push of a new branch automatically creates its upstream tracking
-    # relationship.
     autoSetupRemote = true
 
-    default = simple
-
-
-# =============================================================================
-# Pull
-# =============================================================================
-#
-# Never silently create a merge commit simply because local and remote history
-# diverged.
-#
-# A fast-forward pull is automatic.
-# Diverged history requires an explicit rebase/merge decision.
-
+# Diverged branches need an explicit rebase or merge, never a silent merge commit.
 [pull]
     ff = only
 
-
-# =============================================================================
-# Rebase
-# =============================================================================
-
 [rebase]
     autoStash = true
-
-    # Automatically update branches which point to commits rewritten by a
-    # rebase.
     updateRefs = true
-
-
-# =============================================================================
-# Diff
-# =============================================================================
 
 [diff]
     algorithm = histogram
-
     colorMoved = default
 
-
-# =============================================================================
-# Merge conflicts
-# =============================================================================
-#
-# zdiff3 shows:
-#
-#   current
-#   common ancestor
-#   incoming
-#
-# making conflicts substantially easier to understand than the traditional
-# two-sided display.
-
+# zdiff3 also shows the common ancestor in conflicts.
 [merge]
     conflictStyle = zdiff3
 
-
-# =============================================================================
-# Rerere
-# =============================================================================
-#
-# Remember previous conflict resolutions.
-#
-# This is especially useful during repeated rebases.
-
+# Reuse recorded conflict resolutions, e.g. across repeated rebases.
 [rerere]
     enabled = true
     autoUpdate = true
-
-
-# =============================================================================
-# Sorting
-# =============================================================================
 
 [tag]
     sort = version:refname
@@ -153,28 +47,11 @@
 [branch]
     sort = -committerdate
 
-
-# =============================================================================
-# Help
-# =============================================================================
-
 [help]
     autocorrect = prompt
 
-
-# =============================================================================
-# Whitespace
-# =============================================================================
-
 [apply]
     whitespace = fix
-
-
-# =============================================================================
-# Aliases
-# =============================================================================
-#
-# Keep aliases small. Complex Git interaction belongs to Lazygit.
 
 [alias]
     st = status --short --branch

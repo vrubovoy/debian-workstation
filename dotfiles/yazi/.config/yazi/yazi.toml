@@ -1,138 +1,41 @@
-# =============================================================================
-# Yazi configuration
-# =============================================================================
-#
-# Debian workstation terminal file manager.
-#
-# Design goals:
-#   - Keyboard-first file management.
-#   - Strong preview support.
-#   - Vim-like navigation.
-#   - Natural sorting with directories first.
-#   - No hardware-specific configuration.
-#   - Native Kitty image previews.
-#   - Neovim as text editor.
-#
-# =============================================================================
-
-
-# =============================================================================
-# File manager
-# =============================================================================
+# Yazi — terminal file manager. Images preview through Kitty graphics.
 
 [mgr]
-
-# Layout:
-#
-#   parent | current directory | preview
-#
-# The preview pane intentionally receives significant space because Kitty
-# supports native image rendering.
+# parent | current | preview; the preview is wide for images.
 ratio = [ 1, 4, 3 ]
-
-# Human-friendly ordering:
-#
-#   file2
-#   file10
-#
-# instead of:
-#
-#   file10
-#   file2
 sort_by = "natural"
-
 sort_sensitive = false
 sort_reverse = false
-
-# Always group directories before ordinary files.
 sort_dir_first = true
-
-# Show file sizes on the right side of the current-directory pane.
 linemode = "size"
-
-# Hidden files remain hidden by default.
-#
-# Press "." inside Yazi to toggle them.
 show_hidden = false
-
-# Display symlink targets after symlink names.
 show_symlink = true
-
-# Preserve some context around the current file while navigating.
 scrolloff = 5
 
-
-# =============================================================================
-# Preview
-# =============================================================================
-
 [preview]
-
-# Preserve source-code formatting.
 wrap = "no"
-
-# Match the workstation's default four-space indentation.
 tab_size = 4
-
-# Upper bound for decoded image previews.
-#
-# Yazi will still scale previews down to the actual terminal dimensions.
 max_width = 1200
 max_height = 900
-
-# Small delay prevents expensive previews from being rendered while rapidly
-# scrolling through a directory.
+# Avoids decoding images while scrolling quickly.
 image_delay = 50
-
-# Highest-quality built-in downscaling filter.
 image_filter = "lanczos3"
-
-# Good quality without generating unnecessarily large caches.
 image_quality = 80
 
-
-# =============================================================================
-# Openers
-# =============================================================================
-
 [opener]
-
-# Text files use the configured workstation editor.
 edit = [
     { run = '$EDITOR "$@"', block = true, desc = "Edit", for = "unix" },
 ]
-
-# Graphical/default files use the normal Freedesktop handler.
 open = [
     { run = 'xdg-open "$1"', orphan = true, desc = "Open", for = "linux" },
 ]
 
-
-# =============================================================================
-# Open rules
-# =============================================================================
-#
-# Add explicit workstation preferences ahead of Yazi's built-in rules.
-# Everything else continues to use the defaults shipped by Yazi.
-
+# Checked before Yazi's built-in rules; config formats are not always text/*.
 [open]
-
 prepend_rules = [
-
-    # Text.
     { mime = "text/*", use = "edit" },
-
-    # Common configuration/source formats which may not always be classified
-    # as text/* consistently.
     { url = "*.{json,jsonc,toml,yaml,yml,ini,conf}", use = "edit" },
 ]
 
-
-# =============================================================================
-# Input
-# =============================================================================
-
 [input]
-
-# Keep rename/create/search cursors visually alive.
 cursor_blink = true

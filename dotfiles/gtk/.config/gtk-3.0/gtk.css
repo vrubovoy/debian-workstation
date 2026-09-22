@@ -1,19 +1,7 @@
-/* =============================================================================
- * Graphite Blue — GTK 3
- * =============================================================================
+/* Graphite Blue — GTK 3.
  *
- * Lightweight user stylesheet layered over Adwaita-dark.
- *
- * The purpose is NOT to reimplement an entire GTK theme.
- *
- * We only establish:
- *   - workstation colors;
- *   - blue accent;
- *   - consistent surfaces;
- *   - subtle rounded widgets;
- *   - readable selected/focused states.
- *
- * =============================================================================
+ * A small layer over Adwaita-dark: palette, accent, surfaces and rounding.
+ * It does not try to be a complete theme.
  */
 
 

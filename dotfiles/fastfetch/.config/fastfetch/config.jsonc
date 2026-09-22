@@ -1,43 +1,19 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
 
-    // =========================================================================
-    // Logo
-    // =========================================================================
-    //
-    // The old CachyOS configuration used the distribution logo with a height
-    // of 20 rows.
-    //
-    // Kitty can display a real raster image directly in the terminal, so the
-    // Debian workstation keeps the same approximate logo size while replacing
-    // the distribution logo with a custom image.
-    //
-    // Supported formats include PNG, JPEG, WebP and others supported by the
-    // Fastfetch build.
-
+    // logo.png next to this file, drawn with the Kitty graphics protocol.
+    // hello.fish skips the logo in other terminals.
     "logo": {
-    // Render the PNG directly through the Kitty graphics protocol.
-    //
-    // kitty-direct avoids image conversion inside Fastfetch and does not
-    // depend on ImageMagick support in the Fastfetch build.
-    //
-    // Exact dimensions are intentionally conservative for now and can be
-    // adjusted during the final visual-polish pass.
-    "type": "kitty-direct",
-    "source": "~/.config/fastfetch/logo.png",
-    "width": 28,
-    "height": 16,
-    "padding": {
-        "top": 1,
-        "left": 0,
-        "right": 3
-    }
-},
-
-
-    // =========================================================================
-    // Display
-    // =========================================================================
+        "type": "kitty-direct",
+        "source": "~/.config/fastfetch/logo.png",
+        "width": 28,
+        "height": 16,
+        "padding": {
+            "top": 1,
+            "left": 0,
+            "right": 3
+        }
+    },
 
     "display": {
         "separator": " : "
@@ -66,7 +42,7 @@
 
         {
             "type": "os",
-            "key": "  󰣇 OS",
+            "key": "   OS",
             "format": "{2}",
             "keyColor": "red"
         },

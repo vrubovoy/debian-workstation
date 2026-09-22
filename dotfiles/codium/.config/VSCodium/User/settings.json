@@ -1,34 +1,11 @@
 {
-    // =========================================================================
-    // VSCodium — Graphite Blue
-    // =========================================================================
+    // VSCodium — Graphite Blue, applied over the built-in dark theme, so no theme
+    // extension is needed. Syntax colors match the Neovim colorscheme.
     //
-    // Workstation editor configuration.
-    //
-    // The UI and syntax palette intentionally follow the native Graphite Blue
-    // Neovim colorscheme instead of depending on an external theme extension.
-    //
-    // Palette:
-    //
-    //   bg          #111318
-    //   surface     #1A1D24
-    //   surfaceAlt  #222630
-    //   border      #303744
-    //
-    //   fg          #E6E9EF
-    //   muted       #8E98A8
-    //   subtle      #5C6370
-    //
-    //   blue        #7AA2F7
-    //   blueBright  #89B4FA
-    //   red         #E06C75
-    //   green       #98C379
-    //   yellow      #E5C07B
-    //   magenta     #C678DD
-    //   cyan        #56B6C2
-    //   orange      #D19A66
-    //
-    // =========================================================================
+    // bg #111318  surface #1A1D24  surfaceAlt #222630  border #303744
+    // fg #E6E9EF  muted #8E98A8    subtle #5C6370
+    // blue #7AA2F7  blueBright #89B4FA  red #E06C75  green #98C379
+    // yellow #E5C07B  magenta #C678DD  cyan #56B6C2  orange #D19A66
 
 
     // =========================================================================
@@ -39,8 +16,7 @@
 
     "window.menuBarVisibility": "toggle",
 
-    // Open files from untrusted workspaces in a separate window instead of
-    // silently granting workspace trust.
+    // Files from untrusted workspaces open in a separate window.
     "security.workspace.trust.untrustedFiles": "newWindow",
 
 
@@ -59,10 +35,6 @@
     // Appearance
     // =========================================================================
 
-    // Use a built-in dark theme as the structural base.
-    //
-    // All important colors are explicitly overridden below, so no external
-    // theme extension is required.
     "workbench.colorTheme": "Default Dark Modern",
 
     "workbench.iconTheme": null,
@@ -272,19 +244,6 @@
     // =========================================================================
     // Graphite Blue — syntax
     // =========================================================================
-    //
-    // These values intentionally mirror the native Neovim colorscheme.
-    //
-    // Neovim:
-    //
-    //   Comment       subtle
-    //   String        green
-    //   Number        orange
-    //   Function      blue
-    //   Keyword       magenta
-    //   Operator      cyan
-    //   Preprocessor  cyan
-    //   Type          yellow
 
     "editor.tokenColorCustomizations": {
         "comments": "#5C6370",
@@ -392,8 +351,6 @@
 
     "editor.fontWeight": "bold",
 
-    // Start conservatively; visual sizing will be tuned after the first real
-    // workstation run.
     "editor.fontSize": 16,
 
     "editor.fontLigatures": false,
@@ -475,7 +432,7 @@
     // Extensions
     // =========================================================================
 
-    // Extension installation is managed explicitly by the workstation setup.
+    // Extensions are installed by scripts/configure/vscodium-extensions.sh.
     "extensions.autoUpdate": false,
 
     "extensions.autoCheckUpdates": true,
@@ -493,12 +450,8 @@
     // =========================================================================
     // Unicode
     // =========================================================================
-    //
-    // Preserve the old workstation behaviour.
-    //
-    // Source code in this environment frequently contains non-ASCII text and
-    // intentionally does not treat ambiguous/invisible Unicode as warnings.
 
+    // Non-ASCII text (e.g. Cyrillic) is normal here, not a warning.
     "editor.unicodeHighlight.invisibleCharacters": false,
 
     "editor.unicodeHighlight.ambiguousCharacters": false,
@@ -521,10 +474,8 @@
     // C / C++
     // =========================================================================
     //
-    // clangd is the primary C/C++ language server.
-    //
-    // Project compilation databases are expected to come from CMake, Bear or
-    // the project's own build system.
+    // clangd (installed from Debian) needs a compile_commands.json from the
+    // project's build: CMake, Bear, etc.
 
     "clangd.arguments": [
         "--background-index",

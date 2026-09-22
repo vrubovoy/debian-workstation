@@ -1,22 +1,4 @@
-/* =============================================================================
- * Graphite Blue — Rofi
- * =============================================================================
- *
- * Minimal application launcher theme for Debian Workstation.
- *
- * Palette shared with:
- *   - i3
- *   - i3status
- *   - Kitty
- *   - LightDM
- *
- * =============================================================================
- */
-
-
-/* =============================================================================
- * Palette
- * ============================================================================= */
+/* Graphite Blue — Rofi theme, used by the launcher and every Rofi menu. */
 
 * {
     bg:             #111318;
@@ -32,11 +14,6 @@
 
     urgent:         #E06C75;
 
-
-    /* -------------------------------------------------------------------------
-     * Default widget properties
-     * ---------------------------------------------------------------------- */
-
     background-color: transparent;
     text-color: @fg;
 
@@ -49,10 +26,6 @@
  * ============================================================================= */
 
 window {
-    /*
-     * A launcher should occupy enough width for application names without
-     * feeling like a full-screen shell.
-     */
     width: 42%;
 
     location: center;
@@ -66,12 +39,7 @@ window {
 
     padding: 18px;
 
-    /*
-     * No fake screenshot transparency.
-     *
-     * When Picom is configured later we can use real ARGB transparency if we
-     * actually decide it improves readability.
-     */
+    /* Real ARGB window (Picom), not a screenshot-based fake. */
     transparency: "real";
 }
 
@@ -115,8 +83,6 @@ inputbar {
 }
 
 
-/* Mode label: Apps / Run / Windows */
-
 prompt {
     background-color: transparent;
     text-color: @accent;
@@ -126,8 +92,6 @@ prompt {
     vertical-align: 0.5;
 }
 
-
-/* Actual search entry */
 
 entry {
     background-color: transparent;
@@ -149,10 +113,6 @@ entry {
 listview {
     background-color: transparent;
 
-    /*
-     * Eight entries keep the launcher compact while avoiding excessive
-     * scrolling in normal usage.
-     */
     lines: 8;
 
     columns: 1;
@@ -190,15 +150,11 @@ element {
 }
 
 
-/* Normal entry */
-
 element normal.normal {
     background-color: transparent;
     text-color: @fg;
 }
 
-
-/* Alternate rows deliberately look identical. */
 
 element alternate.normal {
     background-color: transparent;
@@ -206,15 +162,11 @@ element alternate.normal {
 }
 
 
-/* Selected result */
-
 element selected.normal {
     background-color: @accent;
     text-color: @bg;
 }
 
-
-/* Active window/application state */
 
 element normal.active,
 element alternate.active {
@@ -223,15 +175,11 @@ element alternate.active {
 }
 
 
-/* Selected active entry */
-
 element selected.active {
     background-color: @accent;
     text-color: @bg;
 }
 
-
-/* Urgent X11 window */
 
 element normal.urgent,
 element alternate.urgent {
@@ -239,8 +187,6 @@ element alternate.urgent {
     text-color: @urgent;
 }
 
-
-/* Selected urgent entry */
 
 element selected.urgent {
     background-color: @urgent;
@@ -255,10 +201,6 @@ element selected.urgent {
 element-icon {
     background-color: transparent;
 
-    /*
-     * Large enough to identify applications immediately while remaining
-     * subordinate to the application name.
-     */
     size: 34px;
 
     vertical-align: 0.5;
@@ -275,11 +217,7 @@ element-text {
 
     vertical-align: 0.5;
 
-    /*
-     * Highlight the matching portion of a result in bold.
-     *
-     * Color remains inherited so selected rows stay readable.
-     */
+    /* Bold only: an inherited color keeps selected rows readable. */
     highlight: bold;
 }
 
@@ -306,12 +244,8 @@ textbox {
 
 
 /* =============================================================================
- * Scrollbar
- * =============================================================================
- *
- * Disabled in the normal listview, but styled anyway so scripted Rofi menus
- * can enable it later without looking foreign.
- */
+ * Scrollbar (hidden in the listview, styled for menus that enable it)
+ * ============================================================================= */
 
 scrollbar {
     width: 4px;
@@ -326,14 +260,8 @@ scrollbar {
 
 
 /* =============================================================================
- * Mode switcher
- * =============================================================================
- *
- * Hidden intentionally.
- *
- * Rofi modes remain accessible through keyboard mode switching, but permanent
- * buttons would add visual noise to an application launcher.
- */
+ * Mode switcher (hidden; modes still switch from the keyboard)
+ * ============================================================================= */
 
 mode-switcher {
     enabled: false;

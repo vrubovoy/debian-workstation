@@ -1,13 +1,4 @@
-# =============================================================================
-# Graphite Blue — Yazi
-# =============================================================================
-#
-# Minimal theme matching the rest of the workstation.
-#
-# No Nerd Font dependency is required by Yazi itself; icon rules are disabled
-# below because the primary terminal font is Ubuntu Mono Bold.
-#
-# =============================================================================
+# Graphite Blue — Yazi. File icons come from Kitty's Nerd Font fallback.
 
 [app]
 overall = { bg = "#111318" }
@@ -105,9 +96,6 @@ selected = { fg = "#111318", bg = "#7AA2F7" }
 border = { fg = "#7AA2F7" }
 active = { fg = "#111318", bg = "#7AA2F7", bold = true }
 inactive = { fg = "#E6E9EF" }
-icon_file = "F"
-icon_folder = "D"
-icon_command = ">"
 
 [tasks]
 border = { fg = "#7AA2F7" }
@@ -131,10 +119,3 @@ rules = [
     { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd}", fg = "#D19A66" },
     { url = "*", fg = "#E6E9EF" },
 ]
-
-[icon]
-globs = []
-dirs = []
-files = []
-exts = []
-conds = []
