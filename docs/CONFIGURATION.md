@@ -109,6 +109,7 @@ System configuration is copied explicitly rather than managed with Stow.
 | Network interfaces | `system/network/interfaces` | `/etc/network/interfaces` |
 | Firefox policies | `system/firefox/policies.json` | `/etc/firefox/policies/policies.json` |
 | Yazi APT source | `system/apt/sources/yazi.list` | `/etc/apt/sources.list.d/yazi.list` |
+| X11 input | `system/x11/xorg.conf.d/90-workstation-input.conf` | `/etc/X11/xorg.conf.d/90-workstation-input.conf` |
 
 The Yazi signing key is installed separately by
 `scripts/install/setup-yazi-repository.sh`.
@@ -366,3 +367,37 @@ Extensions are listed separately in:
 They are installed interactively through:
 
     scripts/configure/vscodium-extensions.sh
+
+## X11 input
+
+Persistent mouse and touchpad configuration is stored in:
+
+    system/x11/xorg.conf.d/90-workstation-input.conf
+
+and installed as:
+
+    /etc/X11/xorg.conf.d/90-workstation-input.conf
+
+The configuration uses X.Org `InputClass` matching and the libinput driver.
+
+Touchpads use:
+
+- tap-to-click;
+- natural scrolling.
+
+Non-touchpad pointer devices use:
+
+- the adaptive acceleration profile;
+- an acceleration speed of `-0.2`.
+
+No hardware product names or device IDs are stored in the workstation
+configuration.
+
+The configuration is installed by:
+
+    scripts/configure/input.sh
+
+Changes require restarting the graphical X11 session.
+
+`xinput` is installed as a diagnostic utility and can be used to inspect the
+effective runtime properties of connected devices.

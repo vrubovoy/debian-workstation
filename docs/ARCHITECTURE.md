@@ -184,3 +184,23 @@ Firefox Home content, DNS over HTTPS and selected privacy-related behaviour.
 
 User-installed browser extensions remain optional and are offered
 interactively during workstation setup.
+
+### Input
+
+X11 input devices are handled through the libinput X.Org driver.
+
+Persistent input behaviour is configured through X.Org `InputClass`
+definitions rather than device names or runtime `xinput` commands.
+
+This keeps the configuration independent of specific mouse and touchpad
+hardware.
+
+The workstation input policy currently provides:
+
+- tap-to-click on touchpads;
+- natural scrolling on touchpads;
+- adaptive pointer acceleration with a small negative speed adjustment for
+  mouse devices.
+
+Other libinput behaviour remains at upstream/device defaults unless a concrete
+need for overriding it is discovered during workstation testing.

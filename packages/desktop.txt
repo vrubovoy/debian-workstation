@@ -93,3 +93,7 @@ xdotool
 # Clipboard history
 copyq
 copyq-plugins
+
+# X11 input
+xserver-xorg-input-libinput
+xinput
