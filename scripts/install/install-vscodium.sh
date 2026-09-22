@@ -23,10 +23,20 @@ set -Eeuo pipefail
 
 
 # =============================================================================
-# Version
+# Repository / version
 # =============================================================================
 
-VSCODIUM_VERSION="1.135.06055"
+ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+EXTERNAL_MANIFEST="$ROOT_DIR/packages/external.txt"
+
+VSCODIUM_VERSION="$(
+    awk '$1 == "vscodium" { print $2; exit }' "$EXTERNAL_MANIFEST"
+)"
+
+if [[ -z "$VSCODIUM_VERSION" ]]; then
+    printf 'VSCodium version is missing from: %s\n' "$EXTERNAL_MANIFEST" >&2
+    exit 1
+fi
 
 
 # =============================================================================
@@ -152,7 +162,7 @@ sha256sum --check "${package}.sha256"
 
 printf 'Installing VSCodium...\n'
 
-sudo apt install -y "./${package}"
+sudo apt-get install -y "./${package}"
 
 
 # =============================================================================

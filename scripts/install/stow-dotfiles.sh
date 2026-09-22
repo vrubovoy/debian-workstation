@@ -25,6 +25,7 @@ mkdir -p "$HOME/.ssh" "$HOME/.gnupg"
 chmod 700 "$HOME/.ssh" "$HOME/.gnupg"
 
 packages=(
+    codium
     dunst
     fastfetch
     fish

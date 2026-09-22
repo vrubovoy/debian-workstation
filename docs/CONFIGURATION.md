@@ -104,9 +104,11 @@ System configuration is copied explicitly rather than managed with Stow.
 
 | Component | Repository path | Target |
 |---|---|---|
+| Debian APT sources | `system/apt/sources/debian.sources` | `/etc/apt/sources.list.d/debian.sources` |
 | LightDM greeter | `system/lightdm/lightdm-gtk-greeter.conf` | `/etc/lightdm/lightdm-gtk-greeter.conf` |
 | LightDM theme | `system/lightdm/themes/GraphiteBlue-LightDM/` | `/usr/share/themes/GraphiteBlue-LightDM/` |
 | Network interfaces | `system/network/interfaces` | `/etc/network/interfaces` |
+| Keyboard | `system/etc/default/keyboard` | `/etc/default/keyboard` |
 | Firefox policies | `system/firefox/policies.json` | `/etc/firefox/policies/policies.json` |
 | Yazi APT source | `system/apt/sources/yazi.list` | `/etc/apt/sources.list.d/yazi.list` |
 | X11 input | `system/x11/xorg.conf.d/90-workstation-input.conf` | `/etc/X11/xorg.conf.d/90-workstation-input.conf` |

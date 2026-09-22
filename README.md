@@ -6,9 +6,8 @@ X11 and i3.
 > **Status: work in progress.**
 >
 > The configuration is under active development and has not yet been validated
-> end-to-end on a clean Debian 13 installation. The current repository is ready
-> for manual integration testing; `install.sh` is intentionally not implemented
-> yet.
+> end-to-end on a clean Debian 13 VM. The automated installer is implemented and
+> is currently undergoing real-system integration testing.
 
 ## Stack
 
@@ -65,7 +64,8 @@ debian-workstation/
 
 ## Current development stage
 
-The immediate goal is to complete manual integration testing on a real Debian
-13 installation. Visual dimensions such as font sizes, gaps, padding and widget
-widths are intentionally considered polish and will be tuned after functional
-validation.
+The immediate goal is to complete automated installation testing on the real
+Debian 13 workstation, resolve functional issues, and then validate the same
+installer from a clean VM. Visual dimensions such as font sizes, gaps, padding
+and widget widths remain intentionally deferred until functional validation is
+complete.

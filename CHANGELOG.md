@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added an idempotent two-phase workstation installer with interactive identity setup.
+
 - Debian 13 / X11 / i3 workstation architecture.
 - Graphite Blue desktop appearance across i3, LightDM, Kitty, Rofi, Dunst,
   GTK/Qt, Neovim and Yazi.
