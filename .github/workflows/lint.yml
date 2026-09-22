@@ -148,7 +148,9 @@ jobs:
         run: |
           home="$(mktemp -d)"
           stow --no-folding --dir dotfiles --target "$home" rofi
-          HOME="$home" rofi -rasi-validate "$home/.config/rofi/config.rasi"
+          for theme in "$home"/.config/rofi/*.rasi; do
+            HOME="$home" rofi -rasi-validate "$theme"
+          done
 
       - name: Check i3
         run: i3 -C -c dotfiles/i3/.config/i3/config

@@ -1,0 +1,135 @@
+/* Session menu of workstation-power-menu: one row of tiles on a dimmed screen.
+ * The window padding centres a card sized for five 150 px tiles. */
+
+@import "graphite-blue"
+
+window {
+    fullscreen: true;
+
+    padding: calc( 50% - 138px ) calc( 50% - 432px );
+
+    background-color: rgba(10, 11, 14, 0.60);
+
+    border: 0px;
+    border-radius: 0px;
+}
+
+
+/* The ring around the card, as in the other menus. */
+mainbox {
+    background-color: transparent;
+
+    border: 1px;
+    border-color: @ring;
+    border-radius: 17px;
+
+    padding: 0px;
+
+    children: [ card ];
+}
+
+card {
+    background-color: @bg;
+
+    border: 2px;
+    border-color: @accent;
+    border-radius: 16px;
+
+    padding: 28px;
+    spacing: 20px;
+
+    children: [ inputbar, listview ];
+}
+
+
+/* =============================================================================
+ * Header
+ * ============================================================================= */
+
+inputbar {
+    background-color: transparent;
+
+    border: 0px;
+    padding: 0px;
+
+    children: [ prompt, textbox-hint ];
+}
+
+textbox-hint {
+    expand: true;
+
+    horizontal-align: 1.0;
+    vertical-align: 1.0;
+
+    content: "1–5 or Enter · Esc to close";
+    text-color: @muted;
+
+    font: "Ubuntu Bold 12";
+}
+
+
+/* =============================================================================
+ * Tiles
+ * ============================================================================= */
+
+listview {
+    columns: 5;
+    lines: 1;
+
+    spacing: 14px;
+
+    fixed-height: true;
+    dynamic: false;
+    cycle: true;
+    scrollbar: false;
+}
+
+element {
+    orientation: vertical;
+
+    children: [ element-index, element-icon, element-text ];
+
+    padding: 12px 14px 18px 14px;
+    spacing: 10px;
+
+    background-color: @surface;
+
+    border: 2px;
+    border-color: @surface;
+    border-radius: 16px;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: @surface;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @surface-alt;
+    border-color: @accent;
+    text-color: @accent;
+}
+
+element-index {
+    expand: false;
+
+    background-color: transparent;
+    text-color: inherit;
+
+    font: "Ubuntu Bold 12";
+}
+
+element-icon {
+    expand: true;
+
+    size: 56px;
+}
+
+element-text {
+    expand: false;
+
+    horizontal-align: 0.5;
+
+    font: "Ubuntu Bold 14";
+}

@@ -1,0 +1,34 @@
+/* Confirmation of workstation-power-menu: the chosen action goes ahead by
+ * itself after five seconds unless Cancel or Esc is picked. */
+
+@import "power-menu"
+
+configuration {
+    timeout {
+        delay: 5;
+        action: "kb-accept-entry";
+    }
+}
+
+window {
+    padding: calc( 50% - 151px ) calc( 50% - 221px );
+}
+
+inputbar {
+    orientation: vertical;
+    spacing: 4px;
+}
+
+prompt {
+    text-color: @fg;
+}
+
+textbox-hint {
+    horizontal-align: 0.0;
+
+    content: "Enter now · Esc to cancel";
+}
+
+listview {
+    columns: 2;
+}
