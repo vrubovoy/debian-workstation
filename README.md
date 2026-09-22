@@ -39,8 +39,8 @@ terminal. There is no full desktop environment, Flatpak or Snap.
   ```
 
   With an empty root password the Debian installer sets up sudo already.
-- An amd64 machine. On other architectures Onefetch is skipped, and nothing
-  else has been tested.
+- An amd64 machine. On other architectures the pinned Onefetch and VSCodium
+  releases are skipped, and nothing else has been tested.
 
 ## Installation
 

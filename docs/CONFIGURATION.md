@@ -66,9 +66,9 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 
 - **Debian stable first.** Only three things come from upstream: Yazi from its
   official APT repository, and Onefetch and VSCodium as `.deb` releases pinned
-  in `packages/external.txt`. The installer checks each download against its
-  expected package name and version, and against the published SHA-256 file
-  where there is one (VSCodium).
+  in `packages/external.txt` by URL and SHA-256. A download that does not match
+  its checksum stops the installer, so a release is exactly what the
+  repository says it is.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
@@ -100,7 +100,8 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 - **System file:** put it under `system/` at its absolute path.
 - **Command:** add an executable `scripts/session/<name>.sh`; after
   `./install.sh` it is available as `workstation-<name>`.
-- **Pinned release:** change the version in `packages/external.txt`.
+- **Pinned release:** update the version, URL and SHA-256 in
+  `packages/external.txt`; the file header shows how to get each.
 - **Wallpaper:** replace `assets/wallpapers/default.jpg`, then run
   `workstation-wallpaper`.
 - **Firefox extension:** add its ID and addons.mozilla.org slug to

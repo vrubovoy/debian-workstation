@@ -60,37 +60,25 @@ install_packages() {
 }
 
 install_releases() {
-    local arch package version arches url file
+    local package version sha256 url file
 
-    arch="$(dpkg --print-architecture)"
+    if [[ "$(dpkg --print-architecture)" != amd64 ]]; then
+        warn 'The pinned releases are amd64 builds; skipped.'
+        return
+    fi
 
-    while read -r package version arches url; do
-        if [[ ",$arches," != *",$arch,"* ]]; then
-            warn "$package has no $arch build; skipped."
-            continue
-        fi
-
+    while read -r package version sha256 url; do
         if [[ "$(dpkg-query -W -f='${db:Status-Abbrev}${Version}' "$package" 2>/dev/null)" == "ii $version" ]]; then
             info "$package $version is already installed."
             continue
         fi
 
-        url="${url//\{version\}/$version}"
-        url="${url//\{arch\}/$arch}"
         file="$TMP_DIR/${url##*/}"
 
         info "Downloading $package $version"
         curl -fL --retry 3 -o "$file" "$url"
-
-        # VSCodium publishes a checksum next to each package; Onefetch does not.
-        if curl -fsL -o "$file.sha256" "$url.sha256"; then
-            (cd "$TMP_DIR" && sha256sum --check --quiet "${file##*/}.sha256")
-        fi
-
-        if [[ "$(dpkg-deb -f "$file" Package)" != "$package" ||
-              "$(dpkg-deb -f "$file" Version)" != "$version" ]]; then
-            die "$url does not contain $package $version."
-        fi
+        sha256sum --check --quiet <<< "$sha256  $file" ||
+            die "$url does not match the SHA-256 pinned in packages/external.txt."
 
         apt-get install -y "$file"
     done < <(manifest "$ROOT_DIR/packages/external.txt")
