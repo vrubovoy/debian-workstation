@@ -138,4 +138,5 @@ docs/          configuration reference and troubleshooting
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). The wallpaper and the Fastfetch logo were generated for
+this repository and are covered by the same license.
