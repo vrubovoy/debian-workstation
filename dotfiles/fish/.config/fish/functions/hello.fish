@@ -1,29 +1,10 @@
-# =============================================================================
-# Workstation greeting
-# =============================================================================
-#
-# Display the workstation system summary.
-#
-# Kitty supports Fastfetch image rendering through its graphics protocol.
-# Other terminals receive the same information without the graphical logo.
-#
-# =============================================================================
+# System summary. The image logo needs Kitty's graphics protocol.
+function hello --description "Show system information"
+    type -q fastfetch; or return 0
 
-function hello --description "Display workstation system information"
-
-    if not type -q fastfetch
-        return 0
-    end
-
-
-    if test "$TERM" = "xterm-kitty"
-
-        command fastfetch
-
+    if test "$TERM" = xterm-kitty
+        fastfetch
     else
-
-        command fastfetch --logo none
-
+        fastfetch --logo none
     end
-
 end

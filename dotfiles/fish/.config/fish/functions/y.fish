@@ -1,62 +1,16 @@
-# =============================================================================
-# Yazi shell wrapper
-# =============================================================================
-#
-# Start Yazi, synchronize its final directory back to Fish and automatically
-# list the resulting directory.
-#
-#   q
-#       quit Yazi, change Fish CWD and show directory contents;
-#
-#   Q
-#       quit without changing Fish CWD, but still show the current directory.
-#
-# =============================================================================
+# Yazi that leaves the shell in its last directory: quit with q to follow it,
+# with Q to stay. The directory is listed either way.
+function y --description "Open Yazi and follow its last directory"
+    set -l cwd_file (mktemp -t yazi-cwd.XXXXXX)
 
-function y --description "Open Yazi and follow its final directory"
+    command yazi $argv --cwd-file="$cwd_file"
 
-    set -l cwd_file (
-        mktemp -t "yazi-cwd.XXXXXX"
-    )
-
-    command yazi \
-        $argv \
-        --cwd-file="$cwd_file"
-
-    if test -f "$cwd_file"
-
-        set -l cwd (
-            command cat -- "$cwd_file"
-        )
-
-        if test -n "$cwd"
-            and test "$cwd" != "$PWD"
-            and test -d "$cwd"
-
-            builtin cd -- "$cwd"
-
-        end
-
-    end
-
+    set -l cwd (command cat -- "$cwd_file")
     command rm -f -- "$cwd_file"
 
-
-    # Preserve the old workflow: after leaving Yazi immediately show where
-    # we ended up and what is in the directory.
-
-    if type -q eza
-
-        command eza \
-            -lah \
-            --git \
-            --group-directories-first \
-            --icons=auto
-
+    if test -n "$cwd" -a "$cwd" != "$PWD" -a -d "$cwd"
+        cd -- "$cwd"
     else
-
-        command ls -lah
-
+        __workstation_list_directory
     end
-
 end
