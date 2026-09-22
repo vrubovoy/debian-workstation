@@ -19,6 +19,9 @@
 @define-color gb_accent_hi   #89B4FA;
 @define-color gb_urgent      #E06C75;
 
+/* Hints in empty fields; GTK 3 shows them only while a field is unfocused. */
+@define-color placeholder_text_color @gb_muted;
+
 
 .lightdm-gtk-greeter {
     background-color: @gb_bg;
@@ -121,14 +124,16 @@ menuitem:hover,
  * Login card
  * ============================================================================= */
 
+/* Framed like a focused field: accent border and a faint outer ring. */
 #login_window {
     background-color: @gb_surface;
     color: @gb_fg;
 
-    border: 1px solid @gb_border;
+    border: 2px solid @gb_accent;
     border-radius: 16px;
 
     box-shadow:
+        0 0 0 1px rgba(122, 162, 247, 0.18),
         0 12px 38px rgba(0, 0, 0, 0.40);
 
     padding: 0;
@@ -140,7 +145,7 @@ menuitem:hover,
 #content_frame {
     background-color: transparent;
 
-    padding: 26px 30px 14px 30px;
+    padding: 18px 30px 14px 30px;
 
     border: none;
     border-radius: 16px 16px 0 0;
@@ -215,6 +220,10 @@ menuitem:hover,
 
     padding: 10px 13px;
 
+    /* 320 px with padding and border; the margin spaces the two fields. */
+    min-width: 290px;
+    margin-top: 8px;
+
     box-shadow: none;
 
     transition: 120ms ease;
@@ -266,6 +275,12 @@ menuitem:hover,
     box-shadow: none;
 
     transition: 120ms ease;
+}
+
+
+/* Cancel and Log In share the width of the fields with a 12 px gap. */
+#login_window button {
+    min-width: 116px;
 }
 
 
