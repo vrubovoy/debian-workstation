@@ -204,3 +204,17 @@ The workstation input policy currently provides:
 
 Other libinput behaviour remains at upstream/device defaults unless a concrete
 need for overriding it is discovered during workstation testing.
+
+### Terminal fonts
+
+Ubuntu Mono Bold is the primary terminal font.
+
+The workstation deliberately does not use a Nerd Font-patched variant of
+Ubuntu Mono.
+
+Kitty provides built-in Nerd Font symbol fallback for glyphs which are absent
+from the primary font. This allows terminal applications such as eza and
+Fastfetch to display icon glyphs without replacing the workstation's primary
+monospace typeface.
+
+No separate Nerd Font package is required by the base workstation.

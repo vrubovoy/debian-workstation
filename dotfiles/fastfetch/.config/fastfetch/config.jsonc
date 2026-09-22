@@ -16,10 +16,23 @@
     // Fastfetch build.
 
     "logo": {
-        "type": "kitty",
-        "source": "~/.config/fastfetch/logo.png",
-        "height": 20
-    },
+    // Render the PNG directly through the Kitty graphics protocol.
+    //
+    // kitty-direct avoids image conversion inside Fastfetch and does not
+    // depend on ImageMagick support in the Fastfetch build.
+    //
+    // Exact dimensions are intentionally conservative for now and can be
+    // adjusted during the final visual-polish pass.
+    "type": "kitty-direct",
+    "source": "~/.config/fastfetch/logo.png",
+    "width": 28,
+    "height": 16,
+    "padding": {
+        "top": 1,
+        "left": 0,
+        "right": 3
+    }
+},
 
 
     // =========================================================================

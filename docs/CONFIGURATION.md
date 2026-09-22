@@ -205,9 +205,26 @@ Notable workstation behaviour:
 - native `fzf --fish` integration provides history/file/directory selection;
 - Starship owns the prompt and has no right-side prompt or command-duration field.
 
-Fastfetch is invoked through the `hello` function and used by `fish_greeting`.
-Its image logo is intended for Kitty and may be replaced without changing the
-rest of the configuration.
+## Fastfetch
+
+Fastfetch provides the interactive-shell system summary.
+
+Configuration is managed through:
+
+    ~/.config/fastfetch/config.jsonc
+
+A PNG logo is stored alongside the configuration:
+
+    ~/.config/fastfetch/logo.png
+
+Because Kitty is the workstation terminal emulator, Fastfetch renders the
+image using the Kitty direct graphics protocol.
+
+The PNG asset can be replaced independently without changing the Fastfetch
+configuration.
+
+Exact logo dimensions and visual tuning are intentionally deferred until the
+final workstation visual-polish pass.
 
 ## Neovim
 
@@ -401,3 +418,18 @@ Changes require restarting the graphical X11 session.
 
 `xinput` is installed as a diagnostic utility and can be used to inspect the
 effective runtime properties of connected devices.
+
+### Terminal symbol fallback
+
+Kitty uses Ubuntu Mono Bold as its primary font.
+
+Nerd Font icons are provided through Kitty's built-in symbol fallback rather
+than through a patched Ubuntu Mono font.
+
+This is used by terminal applications such as:
+
+- eza;
+- Fastfetch;
+- shell utilities which emit Nerd Font glyphs.
+
+No additional Nerd Font installation is required.
