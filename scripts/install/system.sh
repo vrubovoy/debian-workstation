@@ -117,6 +117,14 @@ deploy_files() {
     done < <(find "$ROOT_DIR/system" -type f -print0)
 }
 
+setup_boot_menu() {
+    command -v update-grub >/dev/null || return 0
+
+    magick "$ROOT_DIR/assets/wallpapers/default.jpg" -resize 1920x1080^ -gravity center \
+        -extent 1920x1080 -interlace none -quality 90 /boot/grub/workstation.jpg
+    update-grub
+}
+
 # Enabled for the next boot only: restarting networking or the display
 # manager here would cut off the running installation.
 enable_services() {
@@ -159,6 +167,9 @@ main() {
 
     step 'System files'
     deploy_files
+
+    step 'Boot menu'
+    setup_boot_menu
 
     step 'Services'
     enable_services
