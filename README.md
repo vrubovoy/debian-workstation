@@ -106,7 +106,7 @@ git pull
 | `Super+Tab` | Previous workspace |
 | `Super+Wheel` | Next / previous workspace (`Ctrl` takes the window along) |
 | `Super+L` | Lock |
-| `Super+Backspace` or `Ctrl+Alt+Delete` | Lock, suspend, log out, reboot, power off |
+| `Super+Backspace` or `Ctrl+Alt+Delete` | Session menu: power off, reboot, suspend, lock, log out (`1`–`5`) |
 | `Print` / `Shift+Print` or `Super+P` / `Alt+Print` | Screenshot of screen / area / window |
 | `Super+Shift+P` | Displays off |
 | `Super+Ctrl+R` / `Super+Shift+R` | Reload / restart i3 |

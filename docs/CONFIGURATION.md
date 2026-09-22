@@ -48,13 +48,16 @@ backups.
   scrolling on touchpads, slightly slower adaptive acceleration for mice.
 - `/etc/firefox/policies/policies.json`: generated from the repository file
   plus the extensions chosen on this machine (see below).
+- `/usr/share/locale/en/LC_MESSAGES/lightdm-gtk-greeter.mo`: turns the login
+  form's hints into `login` and `password`. It applies with an English system
+  locale; other languages keep the greeter's own translation.
 
 ### Commands
 
 | Command | Does |
 |---|---|
-| `workstation-lock` | Lock the screen (i3lock) |
-| `workstation-power-menu` | Lock, suspend, log out, reboot, power off |
+| `workstation-lock` | Lock the screen (i3lock over the wallpaper) |
+| `workstation-power-menu` | Tiles for power off, reboot, suspend, lock and log out; the first, second and last confirm with a 5-second countdown |
 | `workstation-screenshot area\|window\|screen` | Save to `~/Pictures/Screenshots` and copy to the clipboard |
 | `workstation-clipboard` | Pick from the clipboard history (`start`: start CopyQ) |
 | `workstation-volume up\|down\|mute\|mic-mute` | Volume with an on-screen display |
@@ -84,8 +87,17 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
   `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start.
-- **Locking.** `workstation-lock` is the only locker. `xss-lock` runs it after
-  10 minutes idle and before suspend, and displays turn off after 15 minutes.
+- **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
+  fitted to each monitor once and cached in `~/.cache/workstation`. `xss-lock`
+  runs it after 10 minutes idle and before suspend, and displays turn off
+  after 15 minutes.
+- **Focus.** The focused window, the Rofi menus and the LightDM form share the
+  look of a focused text field: an accent border and a faint ring around it.
+  For windows the ring is picom's shadow, drawn only around the focused one.
+- **Launcher.** Rofi would show applications whose icon is missing with a
+  blank icon, so the installer hides them for the user with `Hidden=true`
+  entries in `~/.local/share/applications`. Run `./install.sh` again after
+  installing new software.
 - **Clipboard.** CopyQ keeps the last 200 clipboard items but ignores the
   mouse selection (PRIMARY). `workstation-clipboard start` applies these
   settings at every login, so they always match the repository.
