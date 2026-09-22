@@ -88,3 +88,31 @@ Before declaring a release stable:
 4. verify browser, file managers, shell and editor workflows;
 5. perform a clean Debian 13 VM installation from the documented process;
 6. only then tune cosmetic details and cut the release.
+
+## Repository validation
+
+The repository is statically validated by GitHub Actions.
+
+The lint workflow checks:
+
+- text normalization and trailing whitespace;
+- executable permissions on shell scripts;
+- Bash syntax and ShellCheck diagnostics;
+- Fish syntax;
+- JSON and JSONC syntax;
+- TOML syntax;
+- YAML syntax;
+- GitHub Actions workflow syntax;
+- Rofi theme syntax;
+- i3 configuration syntax;
+- duplicate Debian package entries.
+
+Repository text files are normalized to LF through `.gitattributes`.
+
+Editor defaults are described by `.editorconfig`.
+
+Before committing substantial configuration changes, run:
+
+    git diff --check
+
+and use the relevant application-specific validator where available.

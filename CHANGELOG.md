@@ -25,6 +25,7 @@
 - Added interactive Firefox extension setup and migrated remaining portable browser preferences to enterprise policies.
 - Added hardware-independent X11/libinput mouse and touchpad configuration.
 - Finalized Fastfetch Kitty image rendering and terminal Nerd Font symbol fallback.
+- Added repository formatting rules and automated configuration linting.
 
 ### Changed
 
