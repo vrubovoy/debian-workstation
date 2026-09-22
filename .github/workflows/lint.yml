@@ -8,9 +8,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: lint-${{ github.workflow }}-${{ github.ref }}
+  group: lint-${{ github.ref }}
   cancel-in-progress: true
-
 
 jobs:
   lint:
@@ -19,384 +18,163 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      # =======================================================================
-      # Repository
-      # =======================================================================
-
       - name: Checkout repository
         uses: actions/checkout@v7.0.1
 
-
-      # =======================================================================
-      # Runtime used only for JSONC validation
-      # =======================================================================
-
+      # Node.js is needed only for the JSONC parser.
       - name: Set up Node.js
         uses: actions/setup-node@v7.0.0
         with:
           node-version: "24"
 
-
-      # =======================================================================
-      # Validation tools
-      # =======================================================================
-
       - name: Install validation tools
         run: |
           sudo apt-get update
+          sudo apt-get install --yes fish i3-wm rofi shellcheck stow yamllint
+          npm install --no-save --ignore-scripts --package-lock=false jsonc-parser@3.3.1
 
-          sudo apt-get install --yes \
-            fish \
-            i3-wm \
-            rofi \
-            shellcheck \
-            stow \
-            yamllint
-
-
-      # =======================================================================
-      # actionlint
-      # =======================================================================
-      #
-      # Keep actionlint explicitly pinned instead of downloading "latest".
-      #
-      # The checksum is the checksum published with the upstream v1.7.12
-      # linux_amd64 release.
-
+      # Pinned release, verified against the checksum published for v1.7.12.
       - name: Install actionlint
         env:
           ACTIONLINT_VERSION: "1.7.12"
           ACTIONLINT_SHA256: "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
         run: |
           archive="actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
-
-          curl \
-            --fail \
-            --location \
-            --silent \
-            --show-error \
-            --output "$archive" \
+          curl -fsSL -o "$archive" \
             "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/${archive}"
-
-          printf '%s  %s\n' \
-            "$ACTIONLINT_SHA256" \
-            "$archive" |
-            sha256sum --check -
-
+          printf '%s  %s\n' "$ACTIONLINT_SHA256" "$archive" | sha256sum --check -
           tar -xzf "$archive" actionlint
-
-          sudo install \
-            -m755 \
-            actionlint \
-            /usr/local/bin/actionlint
-
-
-      # =======================================================================
-      # Git / repository hygiene
-      # =======================================================================
+          sudo install -m755 actionlint /usr/local/bin/actionlint
 
       - name: Check whitespace
-        run: |
-          empty_tree="$(git hash-object -t tree /dev/null)"
+        run: git diff --check "$(git hash-object -t tree /dev/null)" HEAD
 
-          git diff \
-            --check \
-            "$empty_tree" \
-            HEAD
-
-
-      - name: Check line-ending normalization
+      - name: Check line endings
         run: |
           git add --renormalize .
+          git diff --cached --exit-code
 
-          git diff \
-            --cached \
-            --exit-code
-
-
-      # =======================================================================
-      # Shell scripts
-      # =======================================================================
-
-      - name: Check Bash syntax
-        shell: bash
-        run: |
-          while IFS= read -r -d '' file; do
-            printf 'Checking %s\n' "$file"
-            bash -n "$file"
-          done < <(git ls-files -z '*.sh')
-
-
-      - name: Check executable script permissions
+      - name: Check final newlines
         shell: bash
         run: |
           failed=false
-
           while IFS= read -r -d '' file; do
-            mode="$(
-              git ls-files \
-                --stage \
-                -- "$file" |
-                awk '{print $1}'
-            )"
-
-            if [[ "$mode" != "100755" ]]; then
-              printf 'Script is not executable: %s (%s)\n' \
-                "$file" \
-                "$mode" >&2
-
+            if [[ -n "$(tail -c1 -- "$file")" ]]; then
+              printf 'Missing final newline: %s\n' "$file" >&2
               failed=true
             fi
-          done < <(git ls-files -z '*.sh')
+          done < <(git grep -zIl '')
+          [[ "$failed" == false ]]
 
-          if [[ "$failed" == true ]]; then
-            exit 1
-          fi
-
-
-      - name: Run ShellCheck
+      - name: Check shell scripts
         shell: bash
         run: |
-          mapfile -d '' files < <(
-            git ls-files -z '*.sh'
-          )
+          mapfile -d '' files < <(git ls-files -z '*.sh')
+          failed=false
+          for file in "${files[@]}"; do
+            bash -n "$file"
+            # scripts/lib is sourced, not executed.
+            if [[ "$file" != scripts/lib/* &&
+                  "$(git ls-files --stage -- "$file" | cut -d' ' -f1)" != 100755 ]]; then
+              printf 'Not executable: %s\n' "$file" >&2
+              failed=true
+            fi
+          done
+          shellcheck --severity=warning --external-sources "${files[@]}"
+          [[ "$failed" == false ]]
 
-          if (( ${#files[@]} > 0 )); then
-            shellcheck \
-              --severity=warning \
-              "${files[@]}"
-          fi
-
-
-      # =======================================================================
-      # Fish
-      # =======================================================================
-
-      - name: Check Fish syntax
+      - name: Check Fish
         shell: bash
         run: |
           while IFS= read -r -d '' file; do
-            printf 'Checking %s\n' "$file"
             fish --no-execute "$file"
-          done < <(
-            git ls-files \
-              -z \
-              'dotfiles/fish/**/*.fish'
-          )
+          done < <(git ls-files -z '*.fish')
 
-
-      # =======================================================================
-      # JSON
-      # =======================================================================
-
+      # VSCodium's settings.json is JSONC despite its extension.
       - name: Check JSON
         shell: bash
         run: |
           while IFS= read -r -d '' file; do
-
-            # VSCodium settings.json is intentionally JSONC despite the .json
-            # extension.
-            if [[ "$file" == \
-              "dotfiles/codium/.config/VSCodium/User/settings.json" ]]; then
-              continue
-            fi
-
-            printf 'Checking %s\n' "$file"
-
-            python3 \
-              -m json.tool \
-              "$file" \
-              >/dev/null
-
+            [[ "$file" == */VSCodium/User/settings.json ]] && continue
+            python3 -m json.tool "$file" >/dev/null
           done < <(git ls-files -z '*.json')
-
-
-      # =======================================================================
-      # JSONC
-      # =======================================================================
-
-      - name: Install JSONC parser
-        run: |
-          npm install \
-            --no-save \
-            --ignore-scripts \
-            --package-lock=false \
-            jsonc-parser@3.3.1
-
 
       - name: Check JSONC
         run: |
           node <<'NODE'
           const fs = require("fs");
-          const childProcess = require("child_process");
+          const { execFileSync } = require("child_process");
           const jsonc = require("jsonc-parser");
 
-          const output = childProcess.execFileSync(
-              "git",
-              [
-                  "ls-files",
-                  "*.jsonc",
-                  "dotfiles/codium/.config/VSCodium/User/settings.json",
-              ],
-              { encoding: "utf8" }
-          );
-
-          const files = output
-              .split("\n")
-              .filter(Boolean);
+          const files = execFileSync(
+            "git",
+            ["ls-files", "*.jsonc", "*/VSCodium/User/settings.json"],
+            { encoding: "utf8" },
+          ).split("\n").filter(Boolean);
 
           let failed = false;
 
           for (const file of files) {
-              const contents = fs.readFileSync(file, "utf8");
-              const errors = [];
+            const errors = [];
+            jsonc.parse(fs.readFileSync(file, "utf8"), errors, { allowTrailingComma: true });
 
-              jsonc.parse(
-                  contents,
-                  errors,
-                  {
-                      allowTrailingComma: true,
-                      disallowComments: false,
-                  }
-              );
-
-              if (errors.length === 0) {
-                  console.log(`Checking ${file}`);
-                  continue;
-              }
-
+            for (const error of errors) {
+              console.error(`${file}: ${jsonc.printParseErrorCode(error.error)} at offset ${error.offset}`);
               failed = true;
-
-              for (const error of errors) {
-                  const name = jsonc.printParseErrorCode(error.error);
-
-                  console.error(
-                      `${file}: ${name} at offset ${error.offset}`
-                  );
-              }
+            }
           }
 
-          if (failed) {
-              process.exit(1);
-          }
+          process.exit(failed ? 1 : 0);
           NODE
-
-
-      # =======================================================================
-      # TOML
-      # =======================================================================
 
       - name: Check TOML
         run: |
           python3 <<'PY'
-          import pathlib
-          import subprocess
-          import tomllib
+          import subprocess, tomllib
 
-          files = subprocess.check_output(
-              ["git", "ls-files", "*.toml"],
-              text=True,
-          ).splitlines()
-
-          for filename in files:
-              print(f"Checking {filename}")
-
-              with pathlib.Path(filename).open("rb") as handle:
+          for name in subprocess.check_output(["git", "ls-files", "*.toml"], text=True).split():
+              with open(name, "rb") as handle:
                   tomllib.load(handle)
           PY
 
-
-      # =======================================================================
-      # YAML
-      # =======================================================================
-
       - name: Check YAML
-        run: |
-          yamllint \
-            --config-file .yamllint.yml \
-            .github/workflows
-
-
-      # =======================================================================
-      # GitHub Actions
-      # =======================================================================
+        run: yamllint --strict .
 
       - name: Check GitHub Actions
         run: actionlint
 
-
-      # =======================================================================
-      # Rofi
-      # =======================================================================
-
-      - name: Check Rofi configuration
+      - name: Check Rofi
         shell: bash
         run: |
-          temporary_home="$(mktemp -d)"
+          home="$(mktemp -d)"
+          stow --no-folding --dir dotfiles --target "$home" rofi
+          HOME="$home" rofi -rasi-validate "$home/.config/rofi/config.rasi"
 
-          trap 'rm -rf "$temporary_home"' EXIT
+      - name: Check i3
+        run: i3 -C -c dotfiles/i3/.config/i3/config
 
-          stow \
-            --no-folding \
-            --dir "$PWD/dotfiles" \
-            --target "$temporary_home" \
-            rofi
+  packages:
+    name: Debian packages
+    runs-on: ubuntu-24.04
+    container: debian:trixie
+    timeout-minutes: 10
 
-          HOME="$temporary_home" \
-            rofi \
-              -rasi-validate \
-              "$temporary_home/.config/rofi/config.rasi"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
 
-
-      # =======================================================================
-      # i3
-      # =======================================================================
-
-      - name: Check i3 configuration
-        run: |
-          i3 \
-            -C \
-            -c dotfiles/i3/.config/i3/config
-
-
-      # =======================================================================
-      # Package manifests
-      # =======================================================================
-
-      - name: Check duplicate Debian packages
+      # Runs the installer's own repository setup, then asks APT to resolve
+      # every manifest without installing anything.
+      - name: Resolve package manifests
         shell: bash
         run: |
-          failed=false
+          source scripts/install/system.sh
+          setup_repositories
+          install_packages --simulate >/dev/null
 
-          files=(
-            packages/base.txt
-            packages/desktop.txt
-            packages/applications.txt
-            packages/development.txt
-          )
-
-          for file in "${files[@]}"; do
-            printf 'Checking %s\n' "$file"
-
-            duplicates="$(
-              awk '
-                /^[[:space:]]*#/ { next }
-                /^[[:space:]]*$/ { next }
-                { print $1 }
-              ' "$file" |
-                sort |
-                uniq -d
-            )"
-
-            if [[ -n "$duplicates" ]]; then
-              printf 'Duplicate packages in %s:\n%s\n' \
-                "$file" \
-                "$duplicates" >&2
-
-              failed=true
-            fi
-          done
-
-          if [[ "$failed" == true ]]; then
-            exit 1
-          fi
+      - name: Check for duplicate packages
+        shell: bash
+        run: |
+          source scripts/lib/common.sh
+          duplicates="$(manifest packages/{base,desktop,applications,development}.txt | sort | uniq -d)"
+          [[ -z "$duplicates" ]] || { printf 'Listed twice:\n%s\n' "$duplicates" >&2; exit 1; }
