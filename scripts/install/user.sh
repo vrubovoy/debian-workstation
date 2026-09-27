@@ -83,10 +83,14 @@ hide_iconless_applications() {
         fi
     done
 
+    # Icon= holds the file name, usually without its extension but sometimes
+    # with it. Hidden files are not icons, and stripping the extension of one
+    # would leave an empty name.
     while IFS= read -r name; do
+        icons["$name"]=1
         icons["${name%.*}"]=1
     done < <(find /usr/share/icons/Adwaita /usr/share/icons/AdwaitaLegacy /usr/share/icons/hicolor \
-        /usr/share/pixmaps -type f -printf '%f\n' 2>/dev/null)
+        /usr/share/pixmaps -type f ! -name '.*' -printf '%f\n' 2>/dev/null)
 
     for file in /usr/share/applications/*.desktop; do
         # The user's own entry wins; entries already hidden need nothing.
