@@ -25,12 +25,13 @@ count_selected = { fg = "#111318", bg = "#7AA2F7" }
 border_symbol = "│"
 border_style = { fg = "#303744" }
 
-# The hovered row keeps its file color on a gray band. The padding spaces keep
-# it as wide as the other rows; empty padding shifts it by a cell.
+# The hovered row keeps its file color on a gray band, in the current and parent
+# panes; nothing is picked in the preview yet. The padding spaces keep it as
+# wide as the other rows; empty padding shifts it by a cell.
 [indicator]
 parent = { bg = "#222630" }
 current = { bg = "#303744" }
-preview = { bg = "#222630" }
+preview = {}
 padding = { open = " ", close = " " }
 
 [tabs]
