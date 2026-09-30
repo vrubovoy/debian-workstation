@@ -1,0 +1,16 @@
+# =============================================================================
+# Packages — NVIDIA driver
+# =============================================================================
+#
+# The proprietary driver, offered by scripts/configure/nvidia.sh on machines
+# with an NVIDIA GPU. Installed from Debian non-free, one package per line.
+
+# Kernel module, built by DKMS
+linux-headers-amd64
+nvidia-kernel-dkms
+
+# X driver and libraries
+nvidia-driver
+
+# Suspend and hibernate: nvidia-suspend, nvidia-resume, nvidia-hibernate
+nvidia-suspend-common
