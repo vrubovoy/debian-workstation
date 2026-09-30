@@ -11,6 +11,7 @@ xserver-xorg
 xserver-xorg-input-libinput
 xinit
 x11-xserver-utils
+x11-utils
 xinput
 i3-wm
 i3status
