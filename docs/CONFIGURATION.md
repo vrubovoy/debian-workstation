@@ -47,15 +47,18 @@ backups.
   Right Alt, for the console, LightDM and X alike.
 - `/etc/X11/xorg.conf.d/90-workstation-input.conf`: tap to click and natural
   scrolling on touchpads, slightly slower adaptive acceleration for mice.
+- `/etc/X11/xorg.conf.d/20-workstation-nvidia.conf`: RGB output with the
+  NVIDIA driver on HDMI monitors that also offer YCbCr 4:2:0.
+- `/etc/udev/rules.d/90-workstation-wakeup.rules`: the graphics card's PCIe
+  port does not wake the system.
 - `/etc/firefox-esr/policies/policies.json`: generated from the repository
   file plus the extensions chosen on this machine (see below).
 - `/usr/lib/firefox-esr/workstation.cfg` with `defaults/pref/autoconfig.js`:
   Firefox's AutoConfig, which applies `workstation-newtab.css` next to it to
   every profile and sets the default zoom to 120% in profiles that have none
   yet (a zoom chosen in *Settings* stays).
-- `/etc/modprobe.d/workstation-nvidia.conf`: lets the proprietary NVIDIA
-  driver keep the video memory across suspend (see below). Without the driver
-  it does nothing.
+- `/etc/modprobe.d/workstation-nvidia.conf`: the NVIDIA driver keeps the
+  video memory across suspend.
 - `/etc/default/grub.d/workstation.cfg`: the GRUB menu over the wallpaper.
   The installer writes the image to `/boot/grub/workstation.jpg` (GRUB reads
   only baseline JPEGs) and runs `update-grub`.
@@ -102,11 +105,9 @@ installer adds `~/.local/bin/fd` and `~/.local/bin/bat` too.
   picked with `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start.
-- **NVIDIA.** Debian's nouveau driver often cannot resume NVIDIA cards from
-  suspend, so on a machine with one `scripts/configure/nvidia.sh` offers the
-  proprietary driver from `packages/nvidia.txt`. Before sleep the
-  `nvidia-suspend` service saves the video memory to `/var/tmp` (`/tmp` is in
-  RAM), and `nvidia-resume` restores it.
+- **NVIDIA.** On a machine with an NVIDIA GPU, `scripts/configure/nvidia.sh`
+  offers the proprietary driver instead of nouveau. Its `nvidia-suspend` and
+  `nvidia-resume` services save and restore the video memory around suspend.
 - **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
   fitted to each monitor once and cached in `~/.cache/workstation`. `xss-lock`
   runs it after 10 minutes idle and before suspend, and displays turn off

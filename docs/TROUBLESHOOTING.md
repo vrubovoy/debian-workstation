@@ -27,44 +27,48 @@ That is Stow's directory folding from a run without `--no-folding`. Running
 Wi-Fi connection configured during the Debian installation is gone. Connect
 again from the network icon in the bar or with `nmtui`.
 
-## Suspend fails or the screen stays black after resume (NVIDIA)
+## The system does not resume from suspend
 
-With nouveau, Debian's default driver for NVIDIA cards, this is expected. Check
-which driver is in use:
-
-```bash
-lspci -k -d 10de::0300 | grep 'driver in use'
-```
-
-If it says `nouveau`, install the proprietary driver with
-`scripts/configure/nvidia.sh` and reboot. If it says `nvidia` and suspend still
-fails, check that the power settings are loaded and the services are enabled:
+Look at the kernel log of the attempt after a forced reboot:
 
 ```bash
-grep PreserveVideoMemoryAllocations /proc/driver/nvidia/params
-systemctl is-enabled nvidia-suspend nvidia-resume
+sudo journalctl -b -1 -k | tail
 ```
 
-The first line must end in `1`. The kernel log of the attempt is in
-`sudo journalctl -b -1 -k` after a forced reboot, or `sudo journalctl -b -k`
-if the system came back.
+If it ends at `PM: suspend entry (deep)`, test how far suspend gets without
+cutting the power; each level resumes after 5 seconds:
+
+```bash
+for level in freezer devices platform processors core; do
+    echo "$level" | sudo tee /sys/power/pm_test
+    sudo systemctl suspend && sleep 15
+done
+echo none | sudo tee /sys/power/pm_test
+```
+
+If every level comes back, the drivers are fine and the firmware fails to
+resume: update the BIOS. With an NVIDIA GPU, also check that
+`/proc/driver/nvidia/params` has `PreserveVideoMemoryAllocations: 1`.
+
+## The system wakes up right after suspend
+
+A wakeup source fires at once. `cat /proc/acpi/wakeup` lists the enabled ones;
+`echo NAME | sudo tee /proc/acpi/wakeup` toggles one until the next boot.
+
+## The picture is green and monochrome (NVIDIA, HDMI)
+
+The driver sends YCbCr 4:2:0. `nvidia-settings -q CurrentColorSpace` shows `3`
+for 4:2:0 and `0` for RGB. `20-workstation-nvidia.conf` in
+`/etc/X11/xorg.conf.d` forces RGB after a reboot.
 
 ## The NVIDIA driver does not load with Secure Boot
 
-The DKMS module is signed with a local key that the firmware does not know
-yet. Enroll it, reboot and choose *Enroll MOK* in the MOK manager:
+Enroll the DKMS signing key, reboot and choose *Enroll MOK*:
 
 ```bash
 sudo apt install mokutil
 sudo mokutil --import /var/lib/dkms/mok.pub
 ```
-
-## Brightness keys stop working on a desktop with the NVIDIA driver
-
-Some cards need software I²C for DDC/CI under the proprietary driver. Check
-with `ddcutil detect`; if no monitor is found, add
-`options nvidia-current NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100` to
-`/etc/modprobe.d/workstation-nvidia.conf` and reboot.
 
 ## `workstation-…: Permission denied`
 

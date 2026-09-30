@@ -24,7 +24,7 @@ follow [Semantic Versioning](https://semver.org/).
   release.
 - Firefox ESR configured through enterprise policies, with a default zoom of
   120%.
-- Optional proprietary NVIDIA driver with working suspend.
+- Optional proprietary NVIDIA driver with suspend support.
 - Git, SSH and GnuPG configuration that keeps identities and keys out of the
   repository.
 - libinput settings for touchpads and mice.

@@ -67,9 +67,8 @@ near the end if its timeout ran out during a long install) and then:
    applications and GTK settings.
 3. **Personal setup**, each step optional and skipped once done: Git name and
    email with optional GPG signing, an SSH key, the proprietary NVIDIA driver
-   (only with an NVIDIA GPU; suspend needs it), the upstream releases
-   (VSCodium, Neovim with its plugins, Onefetch, AmneziaVPN), Firefox
-   extensions and VSCodium extensions.
+   (only with an NVIDIA GPU), the upstream releases (VSCodium, Neovim with its
+   plugins, Onefetch, AmneziaVPN), Firefox extensions and VSCodium extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
 upgrade the system (`apt full-upgrade` stays your call) and is safe to run again.
