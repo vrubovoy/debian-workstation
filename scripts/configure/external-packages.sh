@@ -8,7 +8,7 @@ set -Eeuo pipefail
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-# Versions of the .run installs, which dpkg does not know about.
+# Versions of the .run and .tar.gz installs, which dpkg does not know about.
 STATE_DIR="/etc/debian-workstation/releases"
 
 installed_version() {
@@ -40,18 +40,27 @@ install_release() {
         return
     fi
 
-    # A Qt installer (AmneziaVPN) will not install into a non-empty directory.
-    # A copy already there, older or installed by hand, goes with its own
-    # maintenance tool; then the new one installs headless into /opt.
-    chmod +x "$file"
+    if [[ "$url" == *.tar.gz ]]; then
+        # A release archive (Neovim) replaces the previous one in /opt; its
+        # command goes into /usr/local/bin, ahead of Debian's in PATH.
+        sudo rm -rf "/opt/$package"
+        sudo mkdir -p "/opt/$package"
+        sudo tar -xzf "$file" -C "/opt/$package" --strip-components=1
+        sudo ln -sfn "/opt/$package/bin/$package" "/usr/local/bin/$package"
+    else
+        # A Qt installer (AmneziaVPN) will not install into a non-empty
+        # directory. A copy already there, older or installed by hand, goes
+        # with its own maintenance tool; then the new one installs headless.
+        chmod +x "$file"
 
-    if [[ -x "/opt/$package/maintenancetool" ]]; then
-        sudo env QT_QPA_PLATFORM=offscreen "/opt/$package/maintenancetool" purge \
+        if [[ -x "/opt/$package/maintenancetool" ]]; then
+            sudo env QT_QPA_PLATFORM=offscreen "/opt/$package/maintenancetool" purge \
+                --accept-licenses --accept-messages --confirm-command
+        fi
+
+        sudo env QT_QPA_PLATFORM=offscreen "$file" install --root "/opt/$package" \
             --accept-licenses --accept-messages --confirm-command
     fi
-
-    sudo env QT_QPA_PLATFORM=offscreen "$file" install --root "/opt/$package" \
-        --accept-licenses --accept-messages --confirm-command
 
     sudo mkdir -p "$STATE_DIR"
     printf '%s\n' "$version" | sudo tee "$STATE_DIR/$package" >/dev/null
