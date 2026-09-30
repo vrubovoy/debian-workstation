@@ -41,7 +41,7 @@ link_dotfiles() {
 
 # scripts/session/NAME.sh becomes ~/.local/bin/workstation-NAME.
 link_commands() {
-    local script target
+    local script target name
 
     mkdir -p "$BIN_DIR"
 
@@ -55,10 +55,13 @@ link_commands() {
     # Links to helpers removed from the repository.
     find "$BIN_DIR" -maxdepth 1 -name 'workstation-*' -xtype l -delete
 
-    # Debian ships fd as `fdfind`; Yazi and the Fish functions call `fd`.
-    if ! command -v fd >/dev/null && [[ -x /usr/bin/fdfind ]]; then
-        ln -sfn /usr/bin/fdfind "$BIN_DIR/fd"
-    fi
+    # Debian ships fd as `fdfind` and bat as `batcat`; Yazi and the Fish
+    # functions call them by their usual names.
+    for name in fd:fdfind bat:batcat; do
+        if ! command -v "${name%:*}" >/dev/null && [[ -x "/usr/bin/${name#*:}" ]]; then
+            ln -sfn "/usr/bin/${name#*:}" "$BIN_DIR/${name%:*}"
+        fi
+    done
 }
 
 set_default_applications() {

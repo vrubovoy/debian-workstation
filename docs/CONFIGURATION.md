@@ -71,8 +71,8 @@ backups.
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by
-name. Debian's `fd-find` names its command `fdfind`, so the installer adds
-`~/.local/bin/fd` too.
+name. Debian names the `fd` and `bat` commands `fdfind` and `batcat`, so the
+installer adds `~/.local/bin/fd` and `~/.local/bin/bat` too.
 
 ## Design
 
