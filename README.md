@@ -66,7 +66,8 @@ near the end if its timeout ran out during a long install) and then:
    the `workstation-*` commands to `~/.local/bin`, and sets default
    applications and GTK settings.
 3. **Personal setup**, each step optional and skipped once done: Git name and
-   email with optional GPG signing, an SSH key, the upstream releases
+   email with optional GPG signing, an SSH key, the proprietary NVIDIA driver
+   (only with an NVIDIA GPU; suspend needs it), the upstream releases
    (VSCodium, Neovim with its plugins, Onefetch, AmneziaVPN), Firefox
    extensions and VSCodium extensions.
 

@@ -11,6 +11,7 @@ change it.
 | `system/…` | `/…` | copied as root |
 | `scripts/session/<name>.sh` | `~/.local/bin/workstation-<name>` | symlink |
 | `packages/{base,desktop,applications,development}.txt` | installed | APT |
+| `packages/nvidia.txt` | offered with an NVIDIA GPU | APT |
 | `packages/external.txt` | offered one by one | pinned release from GitHub |
 
 For example, `dotfiles/i3/.config/i3/config` becomes `~/.config/i3/config`,
@@ -52,6 +53,9 @@ backups.
   Firefox's AutoConfig, which applies `workstation-newtab.css` next to it to
   every profile and sets the default zoom to 120% in profiles that have none
   yet (a zoom chosen in *Settings* stays).
+- `/etc/modprobe.d/workstation-nvidia.conf`: lets the proprietary NVIDIA
+  driver keep the video memory across suspend (see below). Without the driver
+  it does nothing.
 - `/etc/default/grub.d/workstation.cfg`: the GRUB menu over the wallpaper.
   The installer writes the image to `/boot/grub/workstation.jpg` (GRUB reads
   only baseline JPEGs) and runs `update-grub`.
@@ -98,6 +102,11 @@ installer adds `~/.local/bin/fd` and `~/.local/bin/bat` too.
   picked with `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start.
+- **NVIDIA.** Debian's nouveau driver often cannot resume NVIDIA cards from
+  suspend, so on a machine with one `scripts/configure/nvidia.sh` offers the
+  proprietary driver from `packages/nvidia.txt`. Before sleep the
+  `nvidia-suspend` service saves the video memory to `/var/tmp` (`/tmp` is in
+  RAM), and `nvidia-resume` restores it.
 - **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
   fitted to each monitor once and cached in `~/.cache/workstation`. `xss-lock`
   runs it after 10 minutes idle and before suspend, and displays turn off

@@ -22,7 +22,9 @@ follow [Semantic Versioning](https://semver.org/).
 - Neovim with a file explorer, fuzzy finder, Git signs, completion and
   language servers per project through Mason, on the optional upstream
   release.
-- Firefox ESR configured through enterprise policies.
+- Firefox ESR configured through enterprise policies, with a default zoom of
+  120%.
+- Optional proprietary NVIDIA driver with working suspend.
 - Git, SSH and GnuPG configuration that keeps identities and keys out of the
   repository.
 - libinput settings for touchpads and mice.
