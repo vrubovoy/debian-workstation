@@ -55,3 +55,11 @@ opt.updatetime = 250
 opt.timeoutlen = 400
 
 opt.termguicolors = true
+
+-- Projects: a trusted .nvim.lua in the current directory or above it (see
+-- lua/workstation/lsp.lua).
+opt.exrc = true
+
+if vim.fn.has("nvim-0.11") == 1 then
+    opt.winborder = "rounded"
+end

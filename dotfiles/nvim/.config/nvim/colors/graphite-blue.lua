@@ -459,6 +459,80 @@ hl(0, "SpellLocal", {
 
 
 -- =============================================================================
+-- Plugins and language servers
+-- =============================================================================
+
+-- Changed lines in the sign column (gitsigns links to these).
+hl(0, "Added", {
+    fg = c.green,
+})
+
+hl(0, "Changed", {
+    fg = c.yellow,
+})
+
+hl(0, "Removed", {
+    fg = c.red,
+})
+
+hl(0, "LspReferenceText", {
+    bg = c.surface_alt,
+})
+
+hl(0, "LspReferenceRead", {
+    bg = c.surface_alt,
+})
+
+hl(0, "LspReferenceWrite", {
+    bg = c.surface_alt,
+})
+
+hl(0, "LspInlayHint", {
+    fg = c.subtle,
+})
+
+hl(0, "NvimTreeFolderIcon", {
+    fg = c.accent,
+})
+
+hl(0, "NvimTreeIndentMarker", {
+    fg = c.border,
+})
+
+hl(0, "NvimTreeGitNewIcon", {
+    link = "Added",
+})
+
+hl(0, "NvimTreeGitStagedIcon", {
+    link = "Added",
+})
+
+hl(0, "NvimTreeGitDirtyIcon", {
+    link = "Changed",
+})
+
+hl(0, "NvimTreeGitRenamedIcon", {
+    link = "Changed",
+})
+
+hl(0, "NvimTreeGitMergeIcon", {
+    link = "Changed",
+})
+
+hl(0, "NvimTreeGitDeletedIcon", {
+    link = "Removed",
+})
+
+hl(0, "NvimTreeGitIgnoredIcon", {
+    link = "Comment",
+})
+
+hl(0, "BlinkCmpLabelMatch", {
+    fg = c.accent_hi,
+})
+
+
+-- =============================================================================
 -- Terminal ANSI colors (same as Kitty)
 -- =============================================================================
 

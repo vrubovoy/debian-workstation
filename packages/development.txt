@@ -14,8 +14,13 @@ pinentry-gtk2
 lazygit
 pwgen
 
-# C/C++ language server used by VSCodium
+# C/C++ language server used by VSCodium and Neovim
 clangd
+
+# Runtimes for the language servers Neovim installs through Mason
+nodejs
+npm
+python3-venv
 
 # Repository linting
 shellcheck
