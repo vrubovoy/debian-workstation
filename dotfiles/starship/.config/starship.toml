@@ -3,7 +3,8 @@
 # =============================================================================
 #
 # The current directory on its own line, then only ❯ where the command is
-# typed. Git state stays out of the prompt.
+# typed. Git state stays out of the prompt. No bold: the font is already bold,
+# and Kitty would draw bold as italic.
 #
 # Path:  ~/.config/starship.toml
 
@@ -14,12 +15,12 @@ $directory
 $character"""
 
 [directory]
-style = "bold #7AA2F7"
+style = "#7AA2F7"
 format = "[$path]($style)[$read_only]($read_only_style)"
 truncation_length = 4
 truncate_to_repo = false
 read_only = " ro"
 
 [character]
-success_symbol = "[❯](bold #7AA2F7)"
-error_symbol = "[❯](bold #E06C75)"
+success_symbol = "[❯](#7AA2F7)"
+error_symbol = "[❯](#E06C75)"

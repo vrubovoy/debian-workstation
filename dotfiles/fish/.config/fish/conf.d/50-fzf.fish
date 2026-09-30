@@ -12,7 +12,7 @@ if status is-interactive; and type -q fzf
 
     set -gx FZF_DEFAULT_OPTS \
         '--height=45% --layout=reverse --border=rounded' \
-        '--info=inline' \
+        '--info=inline --no-bold' \
         '--pointer=> --marker=+' \
         '--color=bg+:#222630,bg:#111318,spinner:#56B6C2,hl:#89B4FA' \
         '--color=fg:#E6E9EF,header:#8E98A8,info:#8E98A8,pointer:#7AA2F7' \

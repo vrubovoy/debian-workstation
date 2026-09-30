@@ -2,7 +2,8 @@
 -- Graphite Blue — Neovim colorscheme
 -- =============================================================================
 --
--- A native colorscheme, no plugin required.
+-- A native colorscheme, no plugin required. No bold: the font is already
+-- bold, and Kitty would draw bold as italic.
 --
 -- Path:  ~/.config/nvim/colors/graphite-blue.lua
 -- Apply: :colorscheme graphite-blue
@@ -92,7 +93,6 @@ hl(0, "LineNr", {
 hl(0, "CursorLineNr", {
     fg = c.accent,
     bg = c.surface,
-    bold = true,
 })
 
 hl(0, "SignColumn", {
@@ -122,19 +122,16 @@ hl(0, "Search", {
 hl(0, "IncSearch", {
     fg = c.bg,
     bg = c.accent,
-    bold = true,
 })
 
 hl(0, "CurSearch", {
     fg = c.bg,
     bg = c.accent_hi,
-    bold = true,
 })
 
 hl(0, "MatchParen", {
     fg = c.accent_hi,
     bg = c.surface_alt,
-    bold = true,
 })
 
 
@@ -145,7 +142,6 @@ hl(0, "MatchParen", {
 hl(0, "StatusLine", {
     fg = c.fg,
     bg = c.surface_alt,
-    bold = true,
 })
 
 hl(0, "StatusLineNC", {
@@ -166,7 +162,6 @@ hl(0, "TabLineFill", {
 hl(0, "TabLineSel", {
     fg = c.bg,
     bg = c.accent,
-    bold = true,
 })
 
 hl(0, "Pmenu", {
@@ -177,7 +172,6 @@ hl(0, "Pmenu", {
 hl(0, "PmenuSel", {
     fg = c.bg,
     bg = c.accent,
-    bold = true,
 })
 
 hl(0, "PmenuSbar", {
@@ -191,7 +185,6 @@ hl(0, "PmenuThumb", {
 hl(0, "WildMenu", {
     fg = c.bg,
     bg = c.accent,
-    bold = true,
 })
 
 
@@ -222,7 +215,6 @@ hl(0, "Number", {
 
 hl(0, "Boolean", {
     fg = c.orange,
-    bold = true,
 })
 
 hl(0, "Float", {
@@ -264,7 +256,6 @@ hl(0, "Operator", {
 
 hl(0, "Keyword", {
     fg = c.magenta,
-    bold = true,
 })
 
 hl(0, "Exception", {
@@ -342,7 +333,6 @@ hl(0, "Underlined", {
 hl(0, "Todo", {
     fg = c.bg,
     bg = c.yellow,
-    bold = true,
 })
 
 
@@ -352,7 +342,6 @@ hl(0, "Todo", {
 
 hl(0, "Directory", {
     fg = c.accent,
-    bold = true,
 })
 
 
@@ -362,7 +351,6 @@ hl(0, "Directory", {
 
 hl(0, "ErrorMsg", {
     fg = c.red,
-    bold = true,
 })
 
 hl(0, "WarningMsg", {
@@ -379,7 +367,6 @@ hl(0, "Question", {
 
 hl(0, "Title", {
     fg = c.accent,
-    bold = true,
 })
 
 
@@ -405,7 +392,6 @@ hl(0, "DiffDelete", {
 hl(0, "DiffText", {
     fg = c.bg,
     bg = c.yellow,
-    bold = true,
 })
 
 
