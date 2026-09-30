@@ -50,7 +50,8 @@ backups.
   file plus the extensions chosen on this machine (see below).
 - `/usr/lib/firefox-esr/workstation.cfg` with `defaults/pref/autoconfig.js`:
   Firefox's AutoConfig, which applies `workstation-newtab.css` next to it to
-  every profile.
+  every profile and sets the default zoom to 120% in profiles that have none
+  yet (a zoom chosen in *Settings* stays).
 - `/etc/default/grub.d/workstation.cfg`: the GRUB menu over the wallpaper.
   The installer writes the image to `/boot/grub/workstation.jpg` (GRUB reads
   only baseline JPEGs) and runs `update-grub`.
