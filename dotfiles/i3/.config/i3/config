@@ -210,6 +210,13 @@ bindsym XF86AudioPause exec --no-startup-id playerctl --no-messages play-pause
 bindsym XF86MonBrightnessUp   exec --no-startup-id workstation-brightness up
 bindsym XF86MonBrightnessDown exec --no-startup-id workstation-brightness down
 
+# The same for keyboards without media keys, laid out like a laptop's F-row.
+bindsym $mod+F1  exec --no-startup-id workstation-brightness down
+bindsym $mod+F2  exec --no-startup-id workstation-brightness up
+bindsym $mod+F10 exec --no-startup-id workstation-volume mute
+bindsym $mod+F11 exec --no-startup-id workstation-volume down
+bindsym $mod+F12 exec --no-startup-id workstation-volume up
+
 # Displays off now; any input wakes them.
 bindsym $mod+Shift+p exec --no-startup-id xset dpms force off
 

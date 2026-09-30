@@ -113,7 +113,9 @@ git pull
 | `Super+Ctrl+R` / `Super+Shift+R` | Reload / restart i3 |
 | `Alt+Space` | Switch keyboard layout (US/RU) |
 
-Volume, microphone, brightness and media keys work as labelled.
+Volume, microphone, brightness and media keys work as labelled. Without
+them: `Super+F1`/`Super+F2` for brightness, `Super+F10` to mute and
+`Super+F11`/`Super+F12` for volume.
 
 In Fish: `y` opens Yazi and follows its last directory, `z` jumps to a
 visited directory, `ffcd`/`ffe` fuzzy-find a directory or file, `ffec`
