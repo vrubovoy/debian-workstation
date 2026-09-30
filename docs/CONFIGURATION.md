@@ -77,12 +77,13 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 ## Design
 
 - **Debian stable first.** Yazi comes from its official APT repository. The
-  other upstream software is optional: VSCodium, Onefetch and AmneziaVPN are
-  offered one by one by `scripts/configure/external-packages.sh`, pinned in
-  `packages/external.txt` by URL and SHA-256. A download that does not match
-  its checksum is refused, so a release is exactly what the repository says
-  it is. AmneziaVPN has no `.deb`; its own installer runs headless into
-  `/opt/AmneziaVPN`.
+  other upstream software is optional: VSCodium, Neovim, Onefetch and
+  AmneziaVPN are offered one by one by
+  `scripts/configure/external-packages.sh`, pinned in `packages/external.txt`
+  by URL and SHA-256. A download that does not match its checksum is refused,
+  so a release is exactly what the repository says it is. AmneziaVPN has no
+  `.deb`; its own installer runs headless into `/opt/AmneziaVPN`. Neovim is a
+  release archive unpacked into `/opt/nvim`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
@@ -113,6 +114,40 @@ name. Debian's `fd-find` names its command `fdfind`, so the installer adds
 - **No secrets in Git.** Name, email and signing key live in
   `~/.gitconfig.local`; SSH and GPG keys, `known_hosts` and browser profiles
   stay on the machine. `scripts/configure/` creates them locally.
+
+## Neovim
+
+Debian 13 ships Neovim 0.10; the plugins need 0.11 or later, so the upstream
+release is offered with the other pinned releases (unpacked into `/opt/nvim`,
+linked as `/usr/local/bin/nvim`). Without it Neovim starts with the built-in
+features only.
+
+The plugins are managed by lazy.nvim and pinned in
+`dotfiles/nvim/.config/nvim/lazy-lock.json`; the installer downloads them in
+advance. `:Lazy update` moves them forward and rewrites that file in the
+repository.
+
+| Plugin | Keys |
+|---|---|
+| nvim-tree: file explorer | `Space e` |
+| fzf-lua: files, text, buffers, recent files, help | `Space f f/g/b/r/h` |
+| gitsigns: changed lines | `]h` / `[h`, `Space h p/s/r/b` preview / stage / reset / blame |
+| blink.cmp: completion | `Tab` accepts |
+| Mason + nvim-lspconfig: language servers | `gd`, `gD`, `Space c f` format, and Neovim's own `K`, `grn`, `gra`, `grr`, `gri`, `gO`, `[d` / `]d` |
+
+No language server is enabled globally. A project lists its own in
+`.nvim.lua` at its root, using the names from `:help lspconfig-all`:
+
+```lua
+vim.lsp.config("clangd", { cmd = { "clangd", "--background-index" } })
+
+require("workstation.lsp").enable({ "clangd", "basedpyright" })
+```
+
+A server that is not on `PATH` is installed through Mason the first time
+(clangd comes from Debian; Node.js, npm and python3-venv cover most of the
+others). Neovim reads `.nvim.lua` from the current directory and the ones
+above it, and asks once whether to trust a new or changed file.
 
 ## Common changes
 

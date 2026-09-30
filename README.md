@@ -18,7 +18,7 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | Session | Xorg, i3, i3bar + i3status, LightDM |
 | Desktop | Rofi, Dunst, Picom, i3lock + xss-lock, CopyQ clipboard history |
 | Terminal | Kitty, Fish + Starship, Neovim, Yazi |
-| Applications | Firefox ESR, Thunar; optional VSCodium, Onefetch, AmneziaVPN |
+| Applications | Firefox ESR, Thunar; optional VSCodium, upstream Neovim, Onefetch, AmneziaVPN |
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
 | Development | Git, Lazygit, OpenSSH, GnuPG, clangd |
 
@@ -67,8 +67,8 @@ near the end if its timeout ran out during a long install) and then:
    applications and GTK settings.
 3. **Personal setup**, each step optional and skipped once done: Git name and
    email with optional GPG signing, an SSH key, the upstream releases
-   (VSCodium, Onefetch, AmneziaVPN), Firefox extensions and VSCodium
-   extensions.
+   (VSCodium, Neovim with its plugins, Onefetch, AmneziaVPN), Firefox
+   extensions and VSCodium extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
 upgrade the system (`apt full-upgrade` stays your call) and is safe to run again.
@@ -121,6 +121,11 @@ In Fish: `y` opens Yazi and follows its last directory, `z` jumps to a
 visited directory, `ffcd`/`ffe` fuzzy-find a directory or file, `ffec`
 searches file contents, `hello` shows the system summary. Every directory
 change lists the new directory.
+
+In Neovim (`Space` is the leader): `Space e` file explorer, `Space f f` /
+`Space f g` / `Space f b` find files / search in files / buffers, `]h` /
+`[h` next / previous Git change, `gd` go to definition. Language servers are
+set per project, see [Configuration](docs/CONFIGURATION.md#neovim).
 
 ## Repository
 

@@ -18,7 +18,10 @@ follow [Semantic Versioning](https://semver.org/).
   Starship, Neovim, Yazi, Fastfetch and VSCodium.
 - NetworkManager, PipeWire, Bluetooth and Polkit, with on-screen displays for
   the volume and brightness keys.
-- Fish and Starship with fzf, zoxide and Yazi helpers; Neovim with no plugins.
+- Fish and Starship with fzf, zoxide and Yazi helpers.
+- Neovim with a file explorer, fuzzy finder, Git signs, completion and
+  language servers per project through Mason, on the optional upstream
+  release.
 - Firefox ESR configured through enterprise policies.
 - Git, SSH and GnuPG configuration that keeps identities and keys out of the
   repository.
