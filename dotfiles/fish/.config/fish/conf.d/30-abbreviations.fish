@@ -15,7 +15,7 @@ abbr --add .5  'cd ../../../../..'
 abbr --add mkdir 'mkdir -p'
 abbr --add disk  duf
 
-abbr --add ls 'eza --group-directories-first --icons=auto'
+abbr --add ls 'eza -1 --group-directories-first --icons=auto'
 abbr --add l  'eza -la --group-directories-first --icons=auto'
 abbr --add ll 'eza -lah --git --group-directories-first --icons=auto'
 abbr --add ld 'eza -lahD --group-directories-first --icons=auto'
