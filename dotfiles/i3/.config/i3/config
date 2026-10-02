@@ -15,7 +15,8 @@
 # =============================================================================
 
 set $mod Mod4
-set $terminal kitty
+# New windows open in the running kitty, which is much faster.
+set $terminal kitty --single-instance
 
 font pango:Ubuntu Bold 15
 
@@ -74,7 +75,7 @@ tiling_drag modifier
 # Applications
 # =============================================================================
 
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec --no-startup-id $terminal
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+c exec --no-startup-id codium
 bindsym $mod+e exec --no-startup-id thunar
