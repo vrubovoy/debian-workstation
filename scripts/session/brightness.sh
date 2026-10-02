@@ -43,8 +43,8 @@ else
         ddc --display "$display" setvcp 10 "$sign" "$STEP" || true
     done
 
-    # "VCP 10 C <current> <max>"
-    percent="$(ddc --display "${displays[0]}" getvcp 10 --terse | awk '$5 > 0 { printf "%d", $4 * 100 / $5 }')"
+    # "VCP 10 C <current> <max>"; ddcutil may print diagnostics before it.
+    percent="$(ddc --display "${displays[0]}" getvcp 10 --terse | awk '$1 == "VCP" && $5 > 0 { printf "%d", $4 * 100 / $5 }')"
     [[ -n "$percent" ]] || exit 0
 fi
 
