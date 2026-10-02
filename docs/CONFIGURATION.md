@@ -80,8 +80,9 @@ backups.
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by
-name. Debian names the `fd` and `bat` commands `fdfind` and `batcat`, so the
-installer adds `~/.local/bin/fd` and `~/.local/bin/bat` too.
+name, and keeps Python bytecode in `~/.cache/python`, which makes Kitty start
+twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
+`batcat`, so the installer adds `~/.local/bin/fd` and `~/.local/bin/bat` too.
 
 ## Design
 

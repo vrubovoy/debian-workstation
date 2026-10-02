@@ -14,3 +14,7 @@ export PATH
 
 # Qt 5 and Qt 6 follow the GTK theme, fonts and dialogs.
 export QT_QPA_PLATFORMTHEME=gtk3
+
+# A writable bytecode cache: Debian ships no .opt-2.pyc files, so Kitty would
+# compile its Python modules on every start.
+export PYTHONPYCACHEPREFIX="$HOME/.cache/python"
