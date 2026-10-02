@@ -222,6 +222,9 @@ bindsym $mod+F10 exec --no-startup-id workstation-volume mute
 bindsym $mod+F11 exec --no-startup-id workstation-volume down
 bindsym $mod+F12 exec --no-startup-id workstation-volume up
 
+# Alt+Space: XKB switches the layout, this shows which one.
+bindsym Mod1+ISO_Next_Group exec --no-startup-id workstation-layout
+
 # Displays off now; any input wakes them.
 bindsym $mod+Shift+p exec --no-startup-id xset dpms force off
 

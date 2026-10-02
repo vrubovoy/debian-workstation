@@ -27,6 +27,7 @@ kitty
 rofi
 dunst
 libnotify-bin
+python3
 picom
 feh
 maim

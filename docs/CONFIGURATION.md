@@ -76,6 +76,7 @@ backups.
 | `workstation-clipboard` | Pick from the clipboard history (`start`: start CopyQ) |
 | `workstation-volume up\|down\|mute\|mic-mute` | Volume with an on-screen display |
 | `workstation-brightness up\|down` | Laptop backlight, or the monitors over DDC/CI on a desktop, with an on-screen display |
+| `workstation-layout` | Show the current keyboard layout on screen |
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by

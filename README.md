@@ -111,7 +111,7 @@ git pull
 | `Print` / `Shift+Print` or `Super+P` / `Alt+Print` | Screenshot of screen / area / window |
 | `Super+Shift+P` | Displays off |
 | `Super+Ctrl+R` / `Super+Shift+R` | Reload / restart i3 |
-| `Alt+Space` | Switch keyboard layout (US/RU) |
+| `Alt+Space` | Switch keyboard layout (US/RU), shown on screen |
 
 Volume, microphone, brightness and media keys work as labelled; the mail and
 home page keys also change the brightness. Without them: `Super+F1`/`Super+F2`
