@@ -78,7 +78,6 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+c exec --no-startup-id codium
 bindsym $mod+e exec --no-startup-id thunar
-bindsym XF86HomePage exec --no-startup-id firefox
 
 bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym $mod+Control+Return exec --no-startup-id rofi -show drun
@@ -211,6 +210,10 @@ bindsym XF86AudioStop  exec --no-startup-id playerctl --no-messages stop
 
 bindsym XF86MonBrightnessUp   exec --no-startup-id workstation-brightness up
 bindsym XF86MonBrightnessDown exec --no-startup-id workstation-brightness down
+
+# The mail and home page keys, for keyboards without brightness keys.
+bindsym XF86Mail     exec --no-startup-id workstation-brightness down
+bindsym XF86HomePage exec --no-startup-id workstation-brightness up
 
 # The same for keyboards without media keys, laid out like a laptop's F-row.
 bindsym $mod+F1  exec --no-startup-id workstation-brightness down
