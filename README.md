@@ -120,7 +120,8 @@ for brightness, `Super+F10` to mute and `Super+F11`/`Super+F12` for volume.
 In Fish: `y` opens Yazi and follows its last directory, `z` jumps to a
 visited directory, `ffcd`/`ffe` fuzzy-find a directory or file, `ffec`
 searches file contents, `hello` shows the system summary. Every directory
-change lists the new directory.
+change lists the new directory. In Kitty `Ctrl+C` copies a selection, and at
+the Fish prompt `Ctrl+V` pastes.
 
 In Neovim (`Space` is the leader): `Space e` file explorer, `Space f f` /
 `Space f g` / `Space f b` find files / search in files / buffers, `]h` /
