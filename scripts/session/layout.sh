@@ -12,8 +12,12 @@ x11 = ctypes.CDLL(ctypes.util.find_library("X11"))
 x11.XOpenDisplay.restype = ctypes.c_void_p
 x11.XkbGetState.argtypes = [ctypes.c_void_p, ctypes.c_uint, ctypes.c_void_p]
 
+display = x11.XOpenDisplay(None)
+if not display:
+    raise SystemExit("cannot open the X display")
+
 state = (ctypes.c_ubyte * 18)()
-x11.XkbGetState(x11.XOpenDisplay(None), 0x100, state)
+x11.XkbGetState(display, 0x100, state)
 print(state[0])
 PY
 )"
