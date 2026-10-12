@@ -43,17 +43,17 @@ done
 
 if (( ${#missing[@]} == 0 )); then
     info 'The NVIDIA driver is installed.'
-else
-    ask 'Install the proprietary NVIDIA driver?' || exit 0
-
-    sudo apt-get install -y "${packages[@]}"
-
-    # The driver blacklists nouveau, which the initramfs would otherwise load.
-    sudo update-initramfs -u
-
-    if secure_boot_enabled; then
-        warn 'Secure Boot is on; enroll the DKMS key, see docs/TROUBLESHOOTING.md.'
-    fi
+    exit 0
 fi
 
+ask 'Install the proprietary NVIDIA driver?' || exit 0
+
+sudo apt-get install -y "${packages[@]}"
 sudo systemctl enable nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service
+
+# The driver blacklists nouveau, which the initramfs would otherwise load.
+sudo update-initramfs -u
+
+if secure_boot_enabled; then
+    warn 'Secure Boot is on; enroll the DKMS key, see docs/TROUBLESHOOTING.md.'
+fi
