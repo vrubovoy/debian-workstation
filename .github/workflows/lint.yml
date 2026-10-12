@@ -194,5 +194,5 @@ jobs:
         shell: bash
         run: |
           source scripts/lib/common.sh
-          duplicates="$(manifest packages/{base,desktop,applications,development}.txt | sort | uniq -d)"
+          duplicates="$(manifest packages/{base,desktop,applications,development,nvidia}.txt | sort | uniq -d)"
           [[ -z "$duplicates" ]] || { printf 'Listed twice:\n%s\n' "$duplicates" >&2; exit 1; }
