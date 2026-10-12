@@ -239,8 +239,9 @@ bindsym $mod+Shift+r restart
 
 exec --no-startup-id workstation-wallpaper
 
-# Idle: lock after 10 minutes, displays off after 15.
+# Idle: lock after 10 minutes, displays off and suspend after 15.
 exec --no-startup-id xset s 600 0 +dpms dpms 0 0 900
+exec --no-startup-id workstation-idle
 
 # xss-lock runs the locker on idle and before suspend; --transfer-sleep-lock
 # holds the suspend until the screen is actually locked.

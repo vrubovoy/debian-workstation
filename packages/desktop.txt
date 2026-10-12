@@ -33,6 +33,7 @@ feh
 maim
 slop
 xdotool
+xprintidle
 copyq
 copyq-plugins
 
