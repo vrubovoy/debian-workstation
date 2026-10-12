@@ -71,7 +71,8 @@ near the end if its timeout ran out during a long install) and then:
    plugins, Onefetch, AmneziaVPN), Firefox extensions and VSCodium extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
-upgrade the system (`apt full-upgrade` stays your call) and is safe to run again.
+upgrade the system (`apt full-upgrade` stays your call) and is safe to run
+again.
 
 Reboot when it finishes and log in to i3. Physical network interfaces now
 belong to NetworkManager: connect to Wi-Fi from the tray icon or with `nmtui`.
