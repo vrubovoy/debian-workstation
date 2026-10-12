@@ -12,6 +12,8 @@ has_nvidia_gpu() {
     local device
 
     for device in /sys/bus/pci/devices/*; do
+        [[ -r "$device/vendor" ]] || continue
+
         if [[ "$(<"$device/vendor")" == 0x10de && "$(<"$device/class")" == 0x03* ]]; then
             return 0
         fi
