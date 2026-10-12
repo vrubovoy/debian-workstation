@@ -24,8 +24,8 @@
 
     "window.menuBarVisibility": "toggle",
 
-    // The whole interface at 120%, fonts included.
-    "window.zoomLevel": 1,
+    // The whole interface at 110%, fonts included.
+    "window.zoomLevel": 0.5,
 
     // Files from untrusted workspaces open in a separate window.
     "security.workspace.trust.untrustedFiles": "newWindow",
@@ -362,7 +362,7 @@
 
     "editor.fontWeight": "bold",
 
-    "editor.fontSize": 26,
+    "editor.fontSize": 22,
 
     "editor.fontLigatures": false,
 
@@ -426,7 +426,7 @@
 
     "terminal.integrated.fontWeight": "bold",
 
-    "terminal.integrated.fontSize": 26,
+    "terminal.integrated.fontSize": 22,
 
     "terminal.integrated.cursorStyle": "block",
 
