@@ -163,8 +163,8 @@ These language servers start by file type in every project:
 
 A server that is not on `PATH` is installed through Mason the first time a
 file of its type is opened (clangd comes from Debian; Node.js, npm and
-python3-venv cover the others). Neovim's own parsers highlight C, Lua and Vim
-script with tree-sitter.
+python3-venv cover the others). Neovim's own parsers highlight C, Lua, Vim
+script, Markdown and help files with tree-sitter.
 
 A project can add other servers or settings in `.nvim.lua` at its root, using
 the names from `:help lspconfig-all`:
@@ -191,7 +191,7 @@ and asks once whether to trust a new or changed file.
 - **Pinned release:** update the version, URL and SHA-256 in
   `packages/external.txt`; the file header shows how to get each.
 - **Wallpaper:** replace `assets/wallpapers/default.jpg`, then run
-  `workstation-wallpaper`.
+  `workstation-wallpaper`, and `./install.sh` for the boot menu.
 - **Firefox extension:** add its ID and addons.mozilla.org slug to
   `packages/firefox-extensions.txt`, then run
   `scripts/configure/firefox-extensions.sh`.
@@ -204,6 +204,7 @@ and asks once whether to trust a new or changed file.
 
 `.github/workflows/lint.yml` runs on every push. It checks shell scripts
 (syntax, ShellCheck, executable bit); Fish, JSON, JSONC, TOML and YAML syntax;
-the Rofi theme and i3 config; whitespace, line endings and final newlines. It
-also resolves every package list in a Debian 13 container with the
-installer's own repository setup.
+the GitHub workflows, the Rofi themes and the i3 config; whitespace, line
+endings and final newlines. It also resolves every package list in a Debian 13
+container with the installer's own repository setup and rejects packages
+listed twice.

@@ -8,9 +8,6 @@
 A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 (Graphite Blue), installed by a single script and kept entirely in Git.
 
-> **Status:** pre-release. The installer is being tested on a virtual machine,
-> a laptop and a desktop PC before 1.0.0.
-
 ## What you get
 
 | | |
