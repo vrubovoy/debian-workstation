@@ -36,9 +36,8 @@ lock_image() {
     printf '%s\n' "$image"
 }
 
-# Already locked, e.g. a manual lock right before suspend. Exiting releases the
-# sleep lock xss-lock handed over, while the running i3lock keeps the session
-# locked.
+# Already locked: exiting releases xss-lock's sleep lock, and the running
+# i3lock keeps the session locked.
 if pgrep -x i3lock >/dev/null; then
     exit 0
 fi

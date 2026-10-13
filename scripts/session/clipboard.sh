@@ -38,9 +38,8 @@ menu() {
         exit 1
     fi
 
-    # One line per item: "ROW<TAB>preview". Rofi shows only the preview and
-    # returns the whole line, so the row maps back to the CopyQ item, which is
-    # restored with all its formats (images too).
+    # "ROW<TAB>preview" lines: Rofi shows the preview and returns the row, so
+    # the item is restored with all its formats.
     items="$(copyq eval -- "
         for (var i = 0; i < Math.min(size(), $HISTORY_SIZE); ++i) {
             var text = str(read(i)).replace(/\s+/g, ' ').trim() || '[non-text item]';

@@ -86,9 +86,7 @@ hide_iconless_applications() {
         fi
     done
 
-    # Icon= holds the file name, usually without its extension but sometimes
-    # with it. Hidden files are not icons, and stripping the extension of one
-    # would leave an empty name.
+    # Icon= may include the extension; hidden files are not icons.
     while IFS= read -r name; do
         icons["$name"]=1
         icons["${name%.*}"]=1

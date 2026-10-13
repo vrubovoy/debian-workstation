@@ -48,9 +48,8 @@ install_release() {
         sudo tar -xzf "$file" -C "/opt/$package" --strip-components=1
         sudo ln -sfn "/opt/$package/bin/$package" "/usr/local/bin/$package"
     else
-        # A Qt installer (AmneziaVPN) will not install into a non-empty
-        # directory. A copy already there, older or installed by hand, goes
-        # with its own maintenance tool; then the new one installs headless.
+        # The Qt installer (AmneziaVPN) needs an empty directory, so an earlier
+        # copy is removed with its own maintenance tool first.
         chmod +x "$file"
 
         if [[ -x "/opt/$package/maintenancetool" ]]; then
