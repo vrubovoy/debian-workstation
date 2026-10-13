@@ -156,7 +156,7 @@ These language servers start by file type in every project:
 | Languages | Server |
 |---|---|
 | C, C++ | clangd |
-| JavaScript, TypeScript, React | ts_ls |
+| JavaScript, TypeScript, React | ts_ls; tsc from the project with TypeScript 7 |
 | Python | basedpyright |
 | Bash | bashls |
 | Lua | lua_ls |

@@ -116,6 +116,23 @@ function M.setup()
         settings = { Lua = {} },
     })
 
+    -- TypeScript 7 has its own server, tsc, taken from the project; ts_ls
+    -- covers older versions.
+    local tsc_root = vim.lsp.config.tsc.root_dir
+    local ts_ls_root = vim.lsp.config.ts_ls.root_dir
+
+    vim.lsp.config("ts_ls", {
+        root_dir = function(bufnr, on_dir)
+            local native = false
+            tsc_root(bufnr, function() native = true end)
+
+            if not native then
+                ts_ls_root(bufnr, on_dir)
+            end
+        end,
+    })
+
+    vim.lsp.enable("tsc")
     M.enable(M.servers)
 end
 
