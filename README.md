@@ -17,7 +17,7 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | Terminal | Kitty, Fish + Starship, Neovim, Yazi |
 | Applications | Firefox ESR, Thunar; optional VSCodium, upstream Neovim, Onefetch, AmneziaVPN |
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
-| Development | Git, Lazygit, OpenSSH, GnuPG, clangd |
+| Development | Git, Lazygit, OpenSSH, GnuPG; language servers for C/C++, TypeScript, Python, Bash and Lua |
 
 Everything uses Ubuntu Bold for the interface and Ubuntu Mono Bold in the
 terminal. There is no full desktop environment, Flatpak or Snap.
