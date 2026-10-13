@@ -28,6 +28,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- Neovim starts tree-sitter only for a few file types; the bundled C parser,
+-- for one, would otherwise go unused.
+vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    desc = "Highlight with tree-sitter where a parser is installed",
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
+
 -- With 'autoread', reloads files changed outside Neovim when there are no
 -- conflicting unsaved edits.
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
