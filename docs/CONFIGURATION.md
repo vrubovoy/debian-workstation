@@ -116,9 +116,10 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   runs it after 10 minutes idle and before suspend. After 15 minutes the
   displays turn off and `workstation-idle` suspends the system, unless sound is
   playing.
-- **Focus.** The focused window, the Rofi menus and the LightDM form share the
-  look of a focused text field: an accent border and a faint ring around it.
-  For windows the ring is picom's shadow, drawn only around the focused one.
+- **Focus.** The focused window, the Rofi menus and the focused LightDM field
+  share the look of a focused text field: an accent border and a faint ring
+  around it. For windows the ring is picom's shadow, drawn only around the
+  focused one.
 - **Launcher.** Rofi would show applications whose icon is missing with a
   blank icon, so the installer hides them for the user with `Hidden=true`
   entries in `~/.local/share/applications`. Run `./install.sh` again after

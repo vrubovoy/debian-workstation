@@ -131,16 +131,15 @@ menuitem:hover,
  * Login card
  * ============================================================================= */
 
-/* Framed like a focused field: accent border and a faint outer ring. */
+/* A plain frame like the power dialogs; only the focused field is accented. */
 #login_window {
     background-color: @gb_surface;
     color: @gb_fg;
 
-    border: 2px solid @gb_accent;
+    border: 1px solid @gb_border;
     border-radius: 16px;
 
     box-shadow:
-        0 0 0 1px rgba(122, 162, 247, 0.18),
         0 12px 38px rgba(0, 0, 0, 0.40);
 
     padding: 0;
