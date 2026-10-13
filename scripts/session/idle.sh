@@ -17,7 +17,10 @@ if ! command -v xprintidle >/dev/null; then
 fi
 
 while sleep "$INTERVAL"; do
-    if (( $(xprintidle) / 1000 >= TIMEOUT )) && ! sound_playing; then
+    # Ends with the X session.
+    idle="$(xprintidle)" || exit 0
+
+    if (( idle / 1000 >= TIMEOUT )) && ! sound_playing; then
         systemctl suspend || continue
 
         # Restart the idle count after resume, so the system does not go back
