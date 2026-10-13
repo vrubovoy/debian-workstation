@@ -111,6 +111,9 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 - **NVIDIA.** On a machine with an NVIDIA GPU, `scripts/configure/nvidia.sh`
   offers the proprietary driver instead of nouveau. Its `nvidia-suspend` and
   `nvidia-resume` services save and restore the video memory around suspend.
+  Next to integrated graphics the answer defaults to no: there nouveau can
+  power an idle NVIDIA card off, which the proprietary driver cannot do for
+  cards older than Turing.
 - **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
   fitted to each monitor once and cached in `~/.cache/workstation`. `xss-lock`
   runs it after 10 minutes idle and before suspend. After 15 minutes the

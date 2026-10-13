@@ -7,19 +7,14 @@ set -Eeuo pipefail
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-# Vendor 0x10de with a display controller class (0x03....).
-has_nvidia_gpu() {
+# The vendor IDs of the display controllers (PCI class 0x03....).
+gpu_vendors() {
     local device
 
     for device in /sys/bus/pci/devices/*; do
-        [[ -r "$device/vendor" ]] || continue
-
-        if [[ "$(<"$device/vendor")" == 0x10de && "$(<"$device/class")" == 0x03* ]]; then
-            return 0
-        fi
+        [[ -r "$device/class" && "$(<"$device/class")" == 0x03* ]] || continue
+        printf '%s\n' "$(<"$device/vendor")"
     done
-
-    return 1
 }
 
 # The fifth byte of the SecureBoot EFI variable is 1 when it is on.
@@ -29,7 +24,9 @@ secure_boot_enabled() {
     [[ -r "${variable[0]}" && "$(od -An -tu1 -j4 -N1 -- "${variable[0]}" | tr -d ' ')" == 1 ]]
 }
 
-if ! has_nvidia_gpu; then
+mapfile -t vendors < <(gpu_vendors)
+
+if [[ " ${vendors[*]} " != *" 0x10de "* ]]; then
     info 'No NVIDIA GPU; driver skipped.'
     exit 0
 fi
@@ -48,7 +45,12 @@ if (( ${#missing[@]} == 0 )); then
     exit 0
 fi
 
-ask 'Install the proprietary NVIDIA driver?' || exit 0
+# Next to integrated graphics, nouveau can power an idle NVIDIA card off; the
+# proprietary driver cannot on cards older than Turing.
+default=yes
+(( ${#vendors[@]} == 1 )) || default=no
+
+ask 'Install the proprietary NVIDIA driver?' "$default" || exit 0
 
 sudo apt-get install -y "${packages[@]}"
 sudo systemctl enable nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service
