@@ -126,8 +126,9 @@ the Fish prompt `Ctrl+V` pastes.
 
 In Neovim (`Space` is the leader): `Space e` file explorer, `Space f f` /
 `Space f g` / `Space f b` find files / search in files / buffers, `]h` /
-`[h` next / previous Git change, `gd` go to definition. Language servers are
-set per project, see [Configuration](docs/CONFIGURATION.md#neovim).
+`[h` next / previous Git change, `gd` go to definition. Language servers for
+C/C++, TypeScript, Python, Bash and Lua start on their own, see
+[Configuration](docs/CONFIGURATION.md#neovim).
 
 ## Repository
 

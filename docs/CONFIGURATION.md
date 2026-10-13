@@ -151,19 +151,32 @@ repository.
 | blink.cmp: completion | `Tab` accepts |
 | Mason + nvim-lspconfig: language servers | `gd`, `gD`, `Space c f` format, and Neovim's own `K`, `grn`, `gra`, `grr`, `gri`, `gO`, `[d` / `]d` |
 
-No language server is enabled globally. A project lists its own in
-`.nvim.lua` at its root, using the names from `:help lspconfig-all`:
+These language servers start by file type in every project:
+
+| Languages | Server |
+|---|---|
+| C, C++ | clangd |
+| JavaScript, TypeScript, React | ts_ls |
+| Python | basedpyright |
+| Bash | bashls |
+| Lua | lua_ls |
+
+A server that is not on `PATH` is installed through Mason the first time a
+file of its type is opened (clangd comes from Debian; Node.js, npm and
+python3-venv cover the others). Neovim's own parsers highlight C, Lua and Vim
+script with tree-sitter.
+
+A project can add other servers or settings in `.nvim.lua` at its root, using
+the names from `:help lspconfig-all`:
 
 ```lua
 vim.lsp.config("clangd", { cmd = { "clangd", "--background-index" } })
 
-require("workstation.lsp").enable({ "clangd", "basedpyright" })
+require("workstation.lsp").enable({ "rust_analyzer" })
 ```
 
-A server that is not on `PATH` is installed through Mason the first time
-(clangd comes from Debian; Node.js, npm and python3-venv cover most of the
-others). Neovim reads `.nvim.lua` from the current directory and the ones
-above it, and asks once whether to trust a new or changed file.
+Neovim reads `.nvim.lua` from the current directory and the ones above it,
+and asks once whether to trust a new or changed file.
 
 ## Common changes
 

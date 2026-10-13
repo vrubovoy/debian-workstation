@@ -20,8 +20,8 @@ follow [Semantic Versioning](https://semver.org/).
   the volume and brightness keys.
 - Fish and Starship with fzf, zoxide and Yazi helpers.
 - Neovim with a file explorer, fuzzy finder, Git signs, completion and
-  language servers per project through Mason, on the optional upstream
-  release.
+  language servers for C/C++, TypeScript, Python, Bash and Lua through Mason,
+  on the optional upstream release.
 - Firefox ESR configured through enterprise policies, with a default zoom of
   120%.
 - Optional proprietary NVIDIA driver with suspend support.
