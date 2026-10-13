@@ -208,7 +208,7 @@ and asks once whether to trust a new or changed file.
 
 `.github/workflows/lint.yml` runs on every push. It checks shell scripts
 (syntax, ShellCheck, executable bit); Fish, JSON, JSONC, TOML and YAML syntax;
-the GitHub workflows, the Rofi themes and the i3 config; whitespace, line
-endings and final newlines. It also resolves every package list in a Debian 13
-container with the installer's own repository setup and rejects packages
-listed twice.
+the GitHub workflows, the Stow packages, the Rofi themes and the i3 config;
+whitespace, line endings and final newlines. It also resolves every package
+list in a Debian 13 container with the installer's own repository setup and
+rejects packages listed twice.

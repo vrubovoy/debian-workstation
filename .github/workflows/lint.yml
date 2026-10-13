@@ -6,7 +6,7 @@
 #
 # Repository: whitespace, line endings and final newlines, then the validator
 # of each file type: ShellCheck, Fish, JSON, JSONC, TOML, yamllint, actionlint,
-# Rofi and i3.
+# Stow packages, Rofi and i3.
 #
 # Debian packages: resolves every package list against the APT sources in a
 # debian:trixie container.
@@ -155,6 +155,14 @@ jobs:
 
       - name: Check GitHub Actions
         run: actionlint
+
+      # Every Stow package links into one home without conflicts.
+      - name: Check dotfiles
+        shell: bash
+        run: |
+          packages=(dotfiles/*/)
+          packages=("${packages[@]#dotfiles/}")
+          stow --no --no-folding --dir dotfiles --target "$(mktemp -d)" "${packages[@]%/}"
 
       - name: Check Rofi
         shell: bash
