@@ -57,5 +57,5 @@ sudo systemctl enable nvidia-suspend.service nvidia-resume.service nvidia-hibern
 sudo update-initramfs -u
 
 if secure_boot_enabled; then
-    warn 'Secure Boot is on; enroll the DKMS key, see docs/TROUBLESHOOTING.md.'
+    warn 'Secure Boot is on; enroll the DKMS key with mokutil --import /var/lib/dkms/mok.pub.'
 fi

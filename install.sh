@@ -11,7 +11,7 @@ case "${1:-}" in
     "")
         ;;
     -h|--help)
-        printf 'Usage: ./install.sh\n\nInstalls and configures the workstation. See README.md.\n'
+        printf 'Usage: ./install.sh\n\nInstalls and configures the workstation.\n'
         exit 0
         ;;
     *)
@@ -29,7 +29,7 @@ if [[ "${ID:-}" != debian || "${VERSION_ID:-}" != 13 ]]; then
     die "Debian 13 is required; this is ${PRETTY_NAME:-an unknown system}."
 fi
 
-command -v sudo >/dev/null || die 'sudo is not installed; see Requirements in README.md.'
+command -v sudo >/dev/null || die 'sudo is not installed; install it as root and add yourself to the sudo group.'
 
 sudo "$ROOT_DIR/scripts/install/system.sh" "$(id -un)"
 "$ROOT_DIR/scripts/install/user.sh"
