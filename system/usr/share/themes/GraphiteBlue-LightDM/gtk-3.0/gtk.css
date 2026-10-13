@@ -87,7 +87,7 @@
 
 
 #panel_window menuitem:disabled,
-#panel_window .menuitem:insensitive {
+#panel_window .menuitem:disabled {
     color: @gb_muted;
 }
 
@@ -302,7 +302,7 @@ menuitem:hover,
 
 /* The default button is Log In: the only strongly accented control. */
 
-#login_window button:default,
+#login_window button.default,
 #login_window button:focus,
 #login_window .button.default,
 #login_window .button:focus {
@@ -317,7 +317,7 @@ menuitem:hover,
 }
 
 
-#login_window button:default:hover,
+#login_window button.default:hover,
 #login_window button:focus:hover,
 #login_window .button.default:hover {
     background-color: @gb_accent_hi;
