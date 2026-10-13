@@ -53,8 +53,7 @@
 
 /* The greeter draws its indicators as menu items. */
 
-#panel_window menubar,
-#panel_window .menubar {
+#panel_window menubar {
     background-color: transparent;
     color: @gb_fg;
 
@@ -63,8 +62,7 @@
 }
 
 
-#panel_window menubar > menuitem,
-#panel_window .menubar > .menuitem {
+#panel_window menubar > menuitem {
     background-color: transparent;
     color: @gb_fg;
 
@@ -79,15 +77,13 @@
 }
 
 
-#panel_window menubar > menuitem:hover,
-#panel_window .menubar > .menuitem:hover {
+#panel_window menubar > menuitem:hover {
     background-color: @gb_surface_alt;
     color: @gb_accent_hi;
 }
 
 
-#panel_window menuitem:disabled,
-#panel_window .menuitem:disabled {
+#panel_window menuitem:disabled {
     color: @gb_muted;
 }
 
@@ -96,8 +92,7 @@
  * Popup menus
  * ============================================================================= */
 
-menu,
-.menu {
+menu {
     background-color: @gb_surface;
     color: @gb_fg;
 
@@ -108,8 +103,7 @@ menu,
 }
 
 
-menuitem,
-.menuitem {
+menuitem {
     color: @gb_fg;
 
     padding: 7px 12px;
@@ -120,8 +114,7 @@ menuitem,
 }
 
 
-menuitem:hover,
-.menuitem:hover {
+menuitem:hover {
     background-color: @gb_accent;
     color: @gb_bg;
 }
@@ -197,8 +190,7 @@ menuitem:hover,
 
 /* The user ComboBox would otherwise inherit full button styling. */
 
-#login_window combobox button,
-#login_window GtkComboBox .button {
+#login_window combobox button {
     background: transparent;
 
     color: @gb_fg;
@@ -213,7 +205,6 @@ menuitem:hover,
  * ============================================================================= */
 
 #login_window entry,
-#login_window .entry,
 #username_entry,
 #password_entry {
     background-color: @gb_bg;
@@ -236,14 +227,12 @@ menuitem:hover,
 }
 
 
-#login_window entry:hover,
-#login_window .entry:hover {
+#login_window entry:hover {
     border-color: #465064;
 }
 
 
 #login_window entry:focus,
-#login_window .entry:focus,
 #username_entry:focus,
 #password_entry:focus {
     background-color: @gb_bg;
@@ -265,7 +254,6 @@ menuitem:hover,
  * ============================================================================= */
 
 #login_window button,
-#login_window .button,
 #shutdown_dialog button,
 #restart_dialog button {
     background-image: none;
@@ -291,7 +279,6 @@ menuitem:hover,
 
 
 #login_window button:hover,
-#login_window .button:hover,
 #shutdown_dialog button:hover,
 #restart_dialog button:hover {
     background-color: #2A3040;
@@ -303,9 +290,7 @@ menuitem:hover,
 /* The default button is Log In: the only strongly accented control. */
 
 #login_window button.default,
-#login_window button:focus,
-#login_window .button.default,
-#login_window .button:focus {
+#login_window button:focus {
     background-image: none;
     background-color: @gb_accent;
 
@@ -318,8 +303,7 @@ menuitem:hover,
 
 
 #login_window button.default:hover,
-#login_window button:focus:hover,
-#login_window .button.default:hover {
+#login_window button:focus:hover {
     background-color: @gb_accent_hi;
     border-color: @gb_accent_hi;
 }
