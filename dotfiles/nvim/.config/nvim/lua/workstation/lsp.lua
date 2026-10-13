@@ -2,34 +2,53 @@
 -- Neovim — language servers
 -- =============================================================================
 --
--- No server is enabled globally. A project lists its own in .nvim.lua at its
--- root, with the names from :help lspconfig-all:
+-- The servers in M.servers start for their file types in every project. A
+-- project can add others in .nvim.lua at its root, with the names from
+-- :help lspconfig-all:
 --
---     require("workstation.lsp").enable({ "clangd", "basedpyright" })
+--     require("workstation.lsp").enable({ "rust_analyzer" })
 --
--- A server that is not on PATH is installed through Mason first. Neovim asks
--- once whether to trust a new or changed .nvim.lua.
+-- A server that is not on PATH is installed through Mason the first time a
+-- file of its type is opened. Neovim asks once whether to trust a new or
+-- changed .nvim.lua.
 --
 -- Path:  ~/.config/nvim/lua/workstation/lsp.lua
 
 local M = {}
+
+M.servers = { "clangd", "ts_ls", "basedpyright", "bashls", "lua_ls" }
 
 local function on_path(server)
     local cmd = (vim.lsp.config[server] or {}).cmd
     return type(cmd) == "table" and vim.fn.executable(cmd[1]) == 1
 end
 
-local function install(server, package)
-    vim.notify(("Installing %s through Mason"):format(package.name))
+local function install(server, name)
+    local registry = require("mason-registry")
 
-    package:install({}, vim.schedule_wrap(function(success, result)
-        if success then
+    registry.refresh(function()
+        local package = registry.get_package(name)
+
+        if package:is_installed() then
             vim.lsp.enable(server)
-        else
-            vim.notify(("Mason could not install %s: %s"):format(package.name, result),
-                vim.log.levels.ERROR)
+            return
         end
-    end))
+
+        if package:is_installing() then
+            return
+        end
+
+        vim.notify(("Installing %s through Mason"):format(name))
+
+        package:install({}, vim.schedule_wrap(function(success, result)
+            if success then
+                vim.lsp.enable(server)
+            else
+                vim.notify(("Mason could not install %s: %s"):format(name, result),
+                    vim.log.levels.ERROR)
+            end
+        end))
+    end)
 end
 
 function M.enable(servers)
@@ -38,7 +57,6 @@ function M.enable(servers)
         return
     end
 
-    local registry = require("mason-registry")
     local packages = require("mason-lspconfig").get_mappings().lspconfig_to_package
 
     for _, server in ipairs(servers) do
@@ -47,21 +65,18 @@ function M.enable(servers)
         if on_path(server) or not name then
             vim.lsp.enable(server)
         else
-            registry.refresh(function()
-                local package = registry.get_package(name)
-
-                if package:is_installed() then
-                    vim.lsp.enable(server)
-                elseif not package:is_installing() then
-                    install(server, package)
-                end
-            end)
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = vim.lsp.config[server].filetypes,
+                once = true,
+                desc = "Install " .. name,
+                callback = function() install(server, name) end,
+            })
         end
     end
 end
 
--- Diagnostics and the mappings Neovim does not already provide (K, grn, gra,
--- grr, gri, gO and [d / ]d are built in).
+-- Diagnostics, the mappings Neovim does not already provide (K, grn, gra, grr,
+-- gri, gO and [d / ]d are built in) and the default servers.
 function M.setup()
     vim.diagnostic.config({
         severity_sort = true,
@@ -82,6 +97,26 @@ function M.setup()
             map("<leader>cf", function() vim.lsp.buf.format({ async = true }) end, "Format buffer")
         end,
     })
+
+    -- Lua in Neovim: LuaJIT and the vim API, unless the project has its own
+    -- .luarc.json.
+    vim.lsp.config("lua_ls", {
+        on_init = function(client)
+            local root = client.workspace_folders and client.workspace_folders[1].name
+
+            if root and (vim.uv.fs_stat(root .. "/.luarc.json") or vim.uv.fs_stat(root .. "/.luarc.jsonc")) then
+                return
+            end
+
+            client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
+                runtime = { version = "LuaJIT" },
+                workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME } },
+            })
+        end,
+        settings = { Lua = {} },
+    })
+
+    M.enable(M.servers)
 end
 
 return M
