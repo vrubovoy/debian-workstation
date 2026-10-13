@@ -6,18 +6,20 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-14
+
 ### Added
 
 - Installer that sets up Debian 13 in one run: APT sources, packages,
   optional pinned upstream releases, system files, services and dotfiles,
   plus optional personal setup.
 - X11 and i3 desktop with LightDM, i3bar and i3status, Rofi, Dunst, Picom,
-  screen locking and idle policy, screenshots, a power menu and CopyQ
-  clipboard history.
+  screen locking, suspend after 15 minutes idle, screenshots, a power menu and
+  CopyQ clipboard history.
 - Graphite Blue theme for i3, LightDM, GTK 2/3/4, Qt, Kitty, Rofi, Dunst, Fish,
   Starship, Neovim, Yazi, Fastfetch and VSCodium.
 - NetworkManager, PipeWire, Bluetooth and Polkit, with on-screen displays for
-  the volume and brightness keys.
+  the volume, brightness and keyboard layout.
 - Fish and Starship with fzf, zoxide and Yazi helpers.
 - Neovim with a file explorer, fuzzy finder, Git signs, completion and
   language servers for C/C++, TypeScript, Python, Bash and Lua through Mason,
@@ -28,6 +30,8 @@ follow [Semantic Versioning](https://semver.org/).
 - Git, SSH and GnuPG configuration that keeps identities and keys out of the
   repository.
 - libinput settings for touchpads and mice.
-- CI checks for scripts, configuration syntax and package lists.
+- CI checks for scripts, configuration syntax and package lists, and GitHub
+  releases from version tags.
 
-[Unreleased]: https://github.com/vrubovoy/debian-workstation/commits/main
+[Unreleased]: https://github.com/vrubovoy/debian-workstation/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/vrubovoy/debian-workstation/releases/tag/v1.0.0
