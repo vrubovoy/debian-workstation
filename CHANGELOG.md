@@ -8,30 +8,34 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [1.0.0] - 2026-10-14
 
+The first release: a Debian 13 desktop on X11 and i3, installed by one script.
+
 ### Added
 
-- Installer that sets up Debian 13 in one run: APT sources, packages,
-  optional pinned upstream releases, system files, services and dotfiles,
-  plus optional personal setup.
-- X11 and i3 desktop with LightDM, i3bar and i3status, Rofi, Dunst, Picom,
-  screen locking, suspend after 15 minutes idle, screenshots, a power menu and
-  CopyQ clipboard history.
-- Graphite Blue theme for i3, LightDM, GTK 2/3/4, Qt, Kitty, Rofi, Dunst, Fish,
-  Starship, Neovim, Yazi, Fastfetch and VSCodium.
-- NetworkManager, PipeWire, Bluetooth and Polkit, with on-screen displays for
-  the volume, brightness and keyboard layout.
-- Fish and Starship with fzf, zoxide and Yazi helpers.
-- Neovim with a file explorer, fuzzy finder, Git signs, completion and
-  language servers for C/C++, TypeScript, Python, Bash and Lua through Mason,
-  on the optional upstream release.
-- Firefox ESR configured through enterprise policies, with a default zoom of
-  120%.
-- Optional proprietary NVIDIA driver with suspend support.
-- Git, SSH and GnuPG configuration that keeps identities and keys out of the
+- **Installer.** One run sets up the APT sources, packages, system files,
+  services and dotfiles. Personal setup is optional and skipped once done: Git
+  identity and signing, an SSH key, the NVIDIA driver, pinned upstream
+  releases, and Firefox and VSCodium extensions.
+- **Desktop.** i3 with i3bar and i3status, LightDM, the Rofi launcher and power
+  menu, Dunst, Picom, screenshots and CopyQ clipboard history.
+- **Power.** The screen locks after 10 minutes; after 15 the displays turn off
+  and the system suspends unless sound is playing. NVIDIA cards keep their
+  video memory across suspend.
+- **Hardware.** NetworkManager, PipeWire, Bluetooth and Polkit; on-screen
+  displays for the volume, the brightness (backlight or DDC/CI) and the
+  keyboard layout; libinput settings for touchpads and mice.
+- **Theme.** Graphite Blue for i3, LightDM, GTK 2/3/4, Qt, Kitty, Rofi, Dunst,
+  Fish, Starship, Neovim, Yazi, Fastfetch and VSCodium.
+- **Terminal.** Kitty and Fish with Starship, fzf, zoxide and Yazi helpers.
+- **Neovim.** A file explorer, fuzzy finder, Git signs, completion, tree-sitter
+  highlighting and language servers for C/C++, TypeScript, Python, Bash and
+  Lua through Mason, on the optional upstream release.
+- **Firefox ESR.** Enterprise policies without telemetry, sponsored content or
+  AI features, DNS over HTTPS, an empty new tab and a default zoom of 120%.
+- **Git, SSH and GnuPG.** Shared settings; identities and keys stay out of the
   repository.
-- libinput settings for touchpads and mice.
-- CI checks for scripts, configuration syntax and package lists, and GitHub
-  releases from version tags.
+- **CI.** Checks for scripts, configuration syntax and package lists, and
+  GitHub releases from version tags.
 
 [Unreleased]: https://github.com/vrubovoy/debian-workstation/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/vrubovoy/debian-workstation/releases/tag/v1.0.0
