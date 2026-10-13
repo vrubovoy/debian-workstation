@@ -1,0 +1,48 @@
+# =============================================================================
+# Release — CI workflow
+# =============================================================================
+#
+# Runs on every pushed version tag (v1.0.0, v1.1.0-rc.1, ...).
+#
+# Publishes a GitHub release whose notes are the version's section of
+# CHANGELOG.md. A tag with a suffix such as -rc.1 becomes a pre-release.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: GitHub release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Extract release notes
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v heading="## [${version%%-*}]" '
+            index($0, heading) == 1 { found = 1; next }
+            found && /^(## )?\[/ { exit }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          [[ -s notes.md ]] || { printf 'No section for %s in CHANGELOG.md\n' "${version%%-*}" >&2; exit 1; }
+
+      - name: Publish release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flags=()
+          [[ "$GITHUB_REF_NAME" == *-* ]] && flags+=(--prerelease)
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md "${flags[@]}"
