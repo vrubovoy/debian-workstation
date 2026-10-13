@@ -20,8 +20,12 @@
             "TopSites": false,
             "SponsoredTopSites": false,
             "Highlights": false,
-            "Pocket": false,
-            "SponsoredPocket": false,
+            "Stories": false,
+            "SponsoredStories": false,
+            "Weather": false,
+            "Widgets": {
+                "Enabled": false
+            },
             "Locked": false
         },
 

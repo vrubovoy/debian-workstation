@@ -103,8 +103,9 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 - **Firefox through policies**, not a profile `user.js`. The policies turn off
   telemetry, studies, sponsored content, online Firefox Suggest and the AI
   features, and turn on DNS over HTTPS (Cloudflare, falling back to system
-  DNS). The dark theme is the default, and with Firefox Home emptied the
-  search field sits in the middle of a new tab. Optional extensions are
+  DNS). The dark theme is the default, and with Firefox Home emptied (no
+  shortcuts, stories, weather or widgets) the search field sits in the middle
+  of a new tab. Optional extensions are
   picked with `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start.
