@@ -77,7 +77,7 @@ backups.
 | `workstation-volume up\|down\|mute\|mic-mute` | Volume with an on-screen display |
 | `workstation-brightness up\|down` | Laptop backlight, or the monitors over DDC/CI on a desktop, with an on-screen display |
 | `workstation-layout` | Show the current keyboard layout on screen |
-| `workstation-idle` | Suspend after 15 minutes without input, unless sound is playing (i3 starts it) |
+| `workstation-idle` | Suspend after 15 minutes without input, unless sound is playing; not in a virtual machine (i3 starts it) |
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by

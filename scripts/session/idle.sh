@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Suspend after 15 minutes without keyboard or mouse input, but not while
-# sound is playing. i3 starts it; xss-lock locks the screen before the sleep.
+# sound is playing or in a virtual machine. i3 starts it; xss-lock locks the
+# screen before the sleep.
 
 set -Eeuo pipefail
 
@@ -10,6 +11,11 @@ INTERVAL=30
 sound_playing() {
     grep -qs RUNNING /proc/asound/card*/pcm*p/sub*/status
 }
+
+# A virtual machine is left to its host.
+if systemd-detect-virt --quiet --vm; then
+    exit 0
+fi
 
 if ! command -v xprintidle >/dev/null; then
     notify-send "Idle suspend is off" "xprintidle is not installed; run install.sh."
