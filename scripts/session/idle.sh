@@ -11,6 +11,11 @@ sound_playing() {
     grep -qs RUNNING /proc/asound/card*/pcm*p/sub*/status
 }
 
+if ! command -v xprintidle >/dev/null; then
+    notify-send "Idle suspend is off" "xprintidle is not installed; run install.sh."
+    exit 1
+fi
+
 while sleep "$INTERVAL"; do
     if (( $(xprintidle) / 1000 >= TIMEOUT )) && ! sound_playing; then
         systemctl suspend || continue
