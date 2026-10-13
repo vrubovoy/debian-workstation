@@ -13,7 +13,6 @@
 
 # Placement: the monitor with the keyboard-focused window, top right.
 follow = keyboard
-monitor = 0
 origin = top-right
 offset = (16, 16)
 scale = 0

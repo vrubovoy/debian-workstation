@@ -254,28 +254,3 @@ textbox {
     background-color: transparent;
     text-color: @muted;
 }
-
-
-/* =============================================================================
- * Scrollbar (hidden in the listview, styled for menus that enable it)
- * ============================================================================= */
-
-scrollbar {
-    width: 4px;
-
-    border: 0px;
-    border-radius: 2px;
-
-    background-color: @surface-alt;
-
-    handle-color: @accent;
-}
-
-
-/* =============================================================================
- * Mode switcher (hidden; modes still switch from the keyboard)
- * ============================================================================= */
-
-mode-switcher {
-    enabled: false;
-}
