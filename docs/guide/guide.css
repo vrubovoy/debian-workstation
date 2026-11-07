@@ -1,0 +1,84 @@
+/*******************************************************************************
+ * @file    guide.css
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Page style of the PDF user guides.
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
+
+@font-face {
+    font-family: "Maple Mono NR NF";
+    src: url("../../system/usr/local/share/fonts/maple-mono/MapleMonoNR-NF-Bold.ttf");
+}
+
+@page {
+    size: A4;
+    margin: 20mm 18mm;
+
+    @bottom-center {
+        content: counter(page);
+        font: 9pt "DejaVu Sans";
+        color: #8E98A8;
+    }
+}
+
+body {
+    font: 10.5pt/1.5 "DejaVu Sans", sans-serif;
+    color: #1A1D24;
+    hyphens: manual;
+}
+
+header {
+    margin-bottom: 8mm;
+    padding-bottom: 4mm;
+    border-bottom: 2px solid #7AA2F7;
+}
+
+h1.title {
+    margin: 0;
+    font-size: 24pt;
+}
+
+p.subtitle {
+    margin: 1mm 0 0;
+    font-size: 13pt;
+    color: #8E98A8;
+}
+
+h1 {
+    margin: 7mm 0 2mm;
+    font-size: 14pt;
+    color: #3D59A1;
+    page-break-after: avoid;
+}
+
+code {
+    font-family: "Maple Mono NR NF", monospace;
+    font-size: 9.5pt;
+}
+
+pre {
+    padding: 3mm 4mm;
+    background: #F2F4F8;
+    border-left: 3px solid #7AA2F7;
+    border-radius: 2mm;
+    page-break-inside: avoid;
+}
+
+table {
+    width: 100%;
+    margin: 3mm 0;
+    border-collapse: collapse;
+    page-break-inside: avoid;
+}
+
+th, td {
+    padding: 1.5mm 2.5mm;
+    border-bottom: 1px solid #D5DAE3;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: #E8EDF7;
+}

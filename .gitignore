@@ -13,5 +13,6 @@
 *.swp
 *~
 
-# Downloaded release packages
+# Downloaded release packages and built guides
 *.deb
+docs/guide/*.pdf
