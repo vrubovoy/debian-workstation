@@ -21,3 +21,5 @@ onefetch                   latest   -       https://github.com/o2sh/onefetch/rel
 codium                     latest   -       https://github.com/VSCodium/vscodium/releases/download/{tag}/codium_{version}_amd64.deb                   -
 nvim                       latest   -       https://github.com/neovim/neovim/releases/download/{tag}/nvim-linux-x86_64.tar.gz                         -
 AmneziaVPN                 latest   -       https://github.com/amnezia-vpn/amnezia-client/releases/download/{tag}/AmneziaVPN_{version}_linux_x64.run  libxcb-cursor0,libxcb-xinerama0,libxcb-icccm4,libxcb-keysyms1,libopengl0,libxkbcommon-x11-0
+onlyoffice-desktopeditors  latest   -       https://github.com/ONLYOFFICE/DesktopEditors/releases/download/{tag}/onlyoffice-desktopeditors_amd64.deb  -
+Telegram                   latest   -       https://github.com/telegramdesktop/tdesktop/releases/download/{tag}/td-setup-linux-x64-{version}.tar.xz   -
