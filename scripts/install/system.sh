@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# System part of the installer; install.sh runs it once through sudo:
-#
-#   sudo scripts/install/system.sh [USER]
-#
-# Files under system/ are copied to the same path under /. The system's own
-# version of a replaced file is kept as *.debian-workstation.bak.
+# ******************************************************************************
+# @file    system.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   System part of the installer, run by install.sh through sudo.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

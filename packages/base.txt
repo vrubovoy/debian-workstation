@@ -1,9 +1,10 @@
-# =============================================================================
-# Packages — base
-# =============================================================================
-#
-# What the installer and the shell need. Installed from Debian by
-# scripts/install/system.sh, one package per line.
+# ******************************************************************************
+# @file    base.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Debian packages the installer and the shell need.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # Bootstrap
 ca-certificates

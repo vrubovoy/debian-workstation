@@ -1,20 +1,10 @@
-# =============================================================================
-# Packages — upstream releases
-# =============================================================================
-#
-# Optional packages from upstream releases, offered one by one by
-# scripts/configure/external-packages.sh. A download must match its SHA-256 or
-# it is refused.
-#
-# With the version "latest" and the checksum "-", the newest GitHub release is
-# used: {tag} in the URL becomes its tag, {version} the tag without a leading
-# "v", and GitHub supplies the checksum. To pin a release instead, give its
-# version and the checksum from `curl -fsSL URL | sha256sum`.
-#
-# package: the Debian package name; for a .run installer or a .tar.gz/.tar.xz
-# archive, its directory under /opt (an archive's bin/<package> or <package> is
-# linked into /usr/local/bin). depends: APT packages installed first
-# (comma-separated, - for none); a .deb declares its own.
+# ******************************************************************************
+# @file    external.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Optional upstream releases; a download must match its SHA-256.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # package                  version  sha256  url                                                                                                       depends
 onefetch                   latest   -       https://github.com/o2sh/onefetch/releases/download/{tag}/onefetch_amd64.deb                               -

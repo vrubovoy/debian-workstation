@@ -1,12 +1,11 @@
-/* =============================================================================
- * Rofi — launcher
- * =============================================================================
- *
- * The application launcher (Super+Space) and the menus of the workstation-*
- * scripts. Appearance lives in graphite-blue.rasi.
- *
- * Path:  ~/.config/rofi/config.rasi
- */
+/*******************************************************************************
+ * @file    config.rasi
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Rofi launcher and the menus of the workstation-* commands.
+ * @path    ~/.config/rofi/config.rasi
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 configuration {
     modes: [ drun, run, window ];

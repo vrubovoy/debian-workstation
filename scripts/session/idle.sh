@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-# Suspend after 15 minutes without keyboard or mouse input, but not while
-# sound is playing or in a virtual machine. i3 starts it; xss-lock locks the
-# screen before the sleep.
+# ******************************************************************************
+# @file    idle.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Suspends after 15 minutes without input, unless sound is playing.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

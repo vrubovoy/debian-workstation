@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-# Neovim plugins at the versions in dotfiles/nvim/.config/nvim/lazy-lock.json,
-# downloaded now so the first start does not. They need Neovim 0.11 or later,
-# the optional upstream release; Debian's 0.10 runs without them.
+# ******************************************************************************
+# @file    neovim.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Downloads the Neovim plugins at their pinned versions.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Session menu as a row of tiles in Rofi; 1–5 pick a tile directly. Power off,
-# reboot and log out ask for confirmation, which goes ahead after five seconds.
+# ******************************************************************************
+# @file    power-menu.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Session menu: power off, reboot, suspend, lock and log out.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

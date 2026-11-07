@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Lock the X session with i3lock over the wallpaper. Used by Super+L, the power
-# menu and xss-lock (idle timeout and suspend).
+# ******************************************************************************
+# @file    lock.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Locks the session with i3lock over the wallpaper.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

@@ -1,10 +1,10 @@
-# =============================================================================
-# Packages — desktop
-# =============================================================================
-#
-# X11, i3 and the desktop session: login, networking, audio, Bluetooth,
-# brightness and appearance. Installed from Debian by
-# scripts/install/system.sh, one package per line.
+# ******************************************************************************
+# @file    desktop.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Debian packages: X11, i3 and the desktop session.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # X11 and i3
 xserver-xorg

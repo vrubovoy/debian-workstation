@@ -1,5 +1,11 @@
-# Shared helpers for install.sh, scripts/install and scripts/configure.
-# Sourced, never executed; the variables below are used by those scripts.
+# ******************************************************************************
+# @file    common.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Helpers shared by the installer scripts; sourced, never run.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
+
 # shellcheck shell=bash disable=SC2034
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"

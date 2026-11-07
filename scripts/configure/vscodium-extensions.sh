@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Offer the extensions from packages/vscodium-extensions.txt that are not
-# installed yet, one by one. VSCodium installs them from Open VSX.
+# ******************************************************************************
+# @file    vscodium-extensions.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Offers the VSCodium extensions that are not installed yet.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

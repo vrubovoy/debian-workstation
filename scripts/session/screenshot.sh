@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Screenshot of a selected area, the focused window or the whole screen.
-# The PNG is saved to ~/Pictures/Screenshots and copied to the clipboard.
+# ******************************************************************************
+# @file    screenshot.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Screenshot of an area, a window or the screen, saved and copied.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

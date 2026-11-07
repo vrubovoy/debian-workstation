@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Brightness up/down with a Dunst OSD: the backlight on a laptop, the monitors
-# over DDC/CI (ddcutil) on a desktop. Does nothing if neither is available.
+# ******************************************************************************
+# @file    brightness.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Brightness up/down with an OSD: backlight or monitors over DDC/CI.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

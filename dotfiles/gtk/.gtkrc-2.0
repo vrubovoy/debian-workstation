@@ -1,10 +1,11 @@
-# =============================================================================
-# GTK 2 — settings
-# =============================================================================
-#
-# Only pinentry-gtk2 uses GTK 2; it gets the same dark theme as GTK 3.
-#
-# Path:  ~/.gtkrc-2.0
+# ******************************************************************************
+# @file    .gtkrc-2.0
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   GTK 2, used only by pinentry-gtk2: the same dark theme as GTK 3.
+# @path    ~/.gtkrc-2.0
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 gtk-theme-name = "Adwaita-dark"
 gtk-icon-theme-name = "Adwaita"

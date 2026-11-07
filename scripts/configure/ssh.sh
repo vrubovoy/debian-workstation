@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-# Ed25519 SSH key for this machine; the managed ~/.ssh/config uses it for GitHub.
+# ******************************************************************************
+# @file    ssh.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Creates the Ed25519 SSH key of this machine.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

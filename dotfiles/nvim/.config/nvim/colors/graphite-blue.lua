@@ -1,12 +1,12 @@
--- =============================================================================
--- Graphite Blue — Neovim colorscheme
--- =============================================================================
---
--- A native colorscheme, no plugin required. No bold: the font is already
--- bold, and Kitty would draw bold as italic.
---
--- Path:  ~/.config/nvim/colors/graphite-blue.lua
--- Apply: :colorscheme graphite-blue
+-- *****************************************************************************
+-- @file    graphite-blue.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Graphite Blue colorscheme for Neovim, without plugins.
+-- @path    ~/.config/nvim/colors/graphite-blue.lua
+-- @apply   :colorscheme graphite-blue
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
 
 vim.cmd("highlight clear")
 

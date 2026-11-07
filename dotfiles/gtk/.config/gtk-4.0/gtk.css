@@ -1,13 +1,12 @@
-/* =============================================================================
- * Graphite Blue — GTK 4
- * =============================================================================
- *
- * Accent and surface colors for GTK 4 and libadwaita, layered over Adwaita in
- * dark mode.
- *
- * Path:  ~/.config/gtk-4.0/gtk.css
- * Apply: restart the application
- */
+/*******************************************************************************
+ * @file    gtk.css
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Graphite Blue accent and surfaces for GTK 4 and libadwaita.
+ * @path    ~/.config/gtk-4.0/gtk.css
+ * @apply   restart the application
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 
 /* =============================================================================

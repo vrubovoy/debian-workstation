@@ -1,11 +1,10 @@
-# =============================================================================
-# Release — CI workflow
-# =============================================================================
-#
-# Runs on every pushed version tag (v1.0.0, v1.1.0-rc.1, ...).
-#
-# Publishes a GitHub release whose notes are the version's section of
-# CHANGELOG.md. A tag with a suffix such as -rc.1 becomes a pre-release.
+# ******************************************************************************
+# @file    release.yml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   CI: GitHub release from a version tag, notes from CHANGELOG.md.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 name: Release
 

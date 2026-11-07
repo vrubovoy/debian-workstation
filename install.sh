@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Debian Workstation installer. Run it as the normal user from a TTY or a
-# terminal; it is safe to run again after `git pull`.
+# ******************************************************************************
+# @file    install.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Installs and configures the workstation; safe to run again.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

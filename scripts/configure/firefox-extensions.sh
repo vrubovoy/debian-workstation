@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Choose the optional Firefox extensions listed in packages/firefox-extensions.txt.
-#
-# The choice is kept in /etc/debian-workstation/firefox-extensions and written
-# into the Firefox policies: selected extensions are installed on the next
-# Firefox start, deselected ones become ordinary removable extensions.
+# ******************************************************************************
+# @file    firefox-extensions.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Picks the Firefox extensions and adds them to the policies.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

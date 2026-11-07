@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# User part of the installer: dotfiles, workstation-* commands, default
-# applications and GSettings. Runs as the normal user.
+# ******************************************************************************
+# @file    user.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   User part of the installer: dotfiles, commands, default applications.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

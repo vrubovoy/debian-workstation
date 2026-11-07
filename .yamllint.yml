@@ -1,10 +1,10 @@
-# =============================================================================
-# yamllint
-# =============================================================================
-#
-# Rules for `yamllint --strict` in CI: the default set without the `---`
-# document marker and the line-length limit. `on` stays allowed as the GitHub
-# Actions trigger key.
+# ******************************************************************************
+# @file    .yamllint.yml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   yamllint rules: defaults without document marker and line length.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 extends: default
 

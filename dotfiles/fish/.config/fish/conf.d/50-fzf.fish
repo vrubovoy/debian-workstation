@@ -1,10 +1,11 @@
-# =============================================================================
-# Fish — fzf
-# =============================================================================
-#
-# Key bindings: Ctrl+R history, Ctrl+T files, Alt+C directories.
-#
-# Path:  ~/.config/fish/conf.d/50-fzf.fish
+# ******************************************************************************
+# @file    50-fzf.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   fzf: Ctrl+R history, Ctrl+T files, Alt+C directories.
+# @path    ~/.config/fish/conf.d/50-fzf.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 if status is-interactive; and type -q fzf
     set -gx FZF_CTRL_T_COMMAND 'fd --type f --hidden --follow --exclude .git'

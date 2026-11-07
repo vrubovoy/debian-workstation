@@ -1,10 +1,10 @@
-# =============================================================================
-# Packages — development
-# =============================================================================
-#
-# Git and commit signing, the C/C++ language server and the linters of this
-# repository. Installed from Debian by scripts/install/system.sh, one package
-# per line.
+# ******************************************************************************
+# @file    development.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Debian packages: Git, signing, language server runtimes and linters.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # Version control and signing
 git

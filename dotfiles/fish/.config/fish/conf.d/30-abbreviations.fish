@@ -1,10 +1,11 @@
-# =============================================================================
-# Fish — abbreviations
-# =============================================================================
-#
-# Abbreviations expand in place, so history keeps the full command.
-#
-# Path:  ~/.config/fish/conf.d/30-abbreviations.fish
+# ******************************************************************************
+# @file    30-abbreviations.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Fish abbreviations; history keeps the full command.
+# @path    ~/.config/fish/conf.d/30-abbreviations.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 abbr --add ..  'cd ..'
 abbr --add ... 'cd ../..'

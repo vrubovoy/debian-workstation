@@ -1,10 +1,11 @@
-# =============================================================================
-# Fish — ffe
-# =============================================================================
-#
-# Fuzzy-find files (Tab selects several) and open them in $EDITOR.
-#
-# Path:  ~/.config/fish/functions/ffe.fish
+# ******************************************************************************
+# @file    ffe.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   ffe: fuzzy-find files and open them in the editor.
+# @path    ~/.config/fish/functions/ffe.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 function ffe --description "Fuzzy-find files and open them in the editor"
     set -l root .

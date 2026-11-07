@@ -1,12 +1,11 @@
--- =============================================================================
--- Neovim — plugins
--- =============================================================================
---
--- Managed by lazy.nvim at the versions in lazy-lock.json next to init.lua.
--- :Lazy update moves them forward and rewrites that file in the repository.
--- The installer downloads them beforehand (scripts/configure/neovim.sh).
---
--- Path:  ~/.config/nvim/lua/workstation/plugins.lua
+-- *****************************************************************************
+-- @file    plugins.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Neovim plugins through lazy.nvim, pinned in lazy-lock.json.
+-- @path    ~/.config/nvim/lua/workstation/plugins.lua
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
 
 local path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

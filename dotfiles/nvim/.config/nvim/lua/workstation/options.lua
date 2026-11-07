@@ -1,10 +1,11 @@
--- =============================================================================
--- Neovim — options
--- =============================================================================
---
--- Only values that differ from Neovim's defaults are set.
---
--- Path:  ~/.config/nvim/lua/workstation/options.lua
+-- *****************************************************************************
+-- @file    options.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Neovim options that differ from the defaults.
+-- @path    ~/.config/nvim/lua/workstation/options.lua
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
 
 local opt = vim.opt
 

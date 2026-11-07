@@ -1,11 +1,11 @@
-# =============================================================================
-# Fish — syntax colors
-# =============================================================================
-#
-# Graphite Blue, matching Kitty and Neovim. No bold: the font is already
-# bold, and Kitty would draw bold as italic.
-#
-# Path:  ~/.config/fish/conf.d/20-colors.fish
+# ******************************************************************************
+# @file    20-colors.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Fish syntax colors in Graphite Blue.
+# @path    ~/.config/fish/conf.d/20-colors.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -g fish_color_normal E6E9EF
 set -g fish_color_command 7AA2F7

@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-# Optional upstream releases from packages/external.txt (amd64 builds), pinned
-# by version and SHA-256 or following the latest GitHub release. Installed ones
-# are brought to that version; the others are offered one by one.
+# ******************************************************************************
+# @file    external-packages.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Installs and updates the releases from packages/external.txt.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

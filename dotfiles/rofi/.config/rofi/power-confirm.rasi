@@ -1,12 +1,11 @@
-/* =============================================================================
- * Rofi — power menu confirmation
- * =============================================================================
- *
- * The chosen action goes ahead by itself after five seconds unless Cancel or
- * Esc is picked.
- *
- * Path:  ~/.config/rofi/power-confirm.rasi
- */
+/*******************************************************************************
+ * @file    power-confirm.rasi
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Power menu confirmation; the action goes ahead after five seconds.
+ * @path    ~/.config/rofi/power-confirm.rasi
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 @import "power-menu"
 

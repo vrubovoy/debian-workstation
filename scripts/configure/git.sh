@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Git identity and optional GPG signing for this machine. Both live in
-# ~/.gitconfig.local, which the managed ~/.config/git/config includes.
+# ******************************************************************************
+# @file    git.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Git identity and optional GPG signing in ~/.gitconfig.local.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

@@ -1,10 +1,11 @@
-# =============================================================================
-# Fish — environment
-# =============================================================================
-#
-# ~/.local/bin comes first in PATH; Neovim is the editor, less the pager.
-#
-# Path:  ~/.config/fish/conf.d/10-environment.fish
+# ******************************************************************************
+# @file    10-environment.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Fish environment: PATH, editor, pager and tool colors.
+# @path    ~/.config/fish/conf.d/10-environment.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 fish_add_path --prepend "$HOME/.local/bin"
 

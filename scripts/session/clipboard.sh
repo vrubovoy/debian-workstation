@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Clipboard history: CopyQ stores it, Rofi shows it.
-#
-#   workstation-clipboard start   start CopyQ with the workstation settings (i3 runs this)
-#   workstation-clipboard         pick an item; it is restored to the clipboard for Ctrl+V
-#
-# Only the regular clipboard is recorded, not text merely selected with the
-# mouse (PRIMARY).
+# ******************************************************************************
+# @file    clipboard.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Clipboard history: `start` runs CopyQ, no argument opens Rofi.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

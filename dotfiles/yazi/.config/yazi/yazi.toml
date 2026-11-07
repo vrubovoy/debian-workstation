@@ -1,10 +1,11 @@
-# =============================================================================
-# Yazi — file manager
-# =============================================================================
-#
-# Terminal file manager. Images preview through Kitty graphics.
-#
-# Path:  ~/.config/yazi/yazi.toml
+# ******************************************************************************
+# @file    yazi.toml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Yazi file manager; images preview through Kitty graphics.
+# @path    ~/.config/yazi/yazi.toml
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 [mgr]
 # parent | current | preview; the preview is wide for images.

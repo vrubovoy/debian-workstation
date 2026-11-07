@@ -1,15 +1,12 @@
-/* =============================================================================
- * Firefox — new tab
- * =============================================================================
- *
- * With every Firefox Home section turned off (policies.json) only the logo and
- * the search field are left on a new tab. The field is centred in the page,
- * whatever padding Firefox adds around it; the logo stays above it without
- * counting towards the centring. Registered by workstation.cfg.
- *
- * Path:  /usr/lib/firefox-esr/workstation-newtab.css
- * Apply: restart Firefox
- */
+/*******************************************************************************
+ * @file    workstation-newtab.css
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Firefox new tab: the search field in the middle of the page.
+ * @path    /usr/lib/firefox-esr/workstation-newtab.css
+ * @apply   restart Firefox
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 @-moz-document url("about:home"), url("about:newtab") {
     .search-wrapper {

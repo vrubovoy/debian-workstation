@@ -1,11 +1,11 @@
-/* =============================================================================
- * Graphite Blue — Rofi theme
- * =============================================================================
- *
- * Used by the launcher and every Rofi menu.
- *
- * Path:  ~/.config/rofi/graphite-blue.rasi
- */
+/*******************************************************************************
+ * @file    graphite-blue.rasi
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Graphite Blue theme for every Rofi menu.
+ * @path    ~/.config/rofi/graphite-blue.rasi
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 * {
     bg:             #111318;

@@ -1,12 +1,11 @@
-# =============================================================================
-# Starship — prompt
-# =============================================================================
-#
-# The current directory on its own line, then only ❯ where the command is
-# typed. Git state stays out of the prompt. No bold: the font is already bold,
-# and Kitty would draw bold as italic.
-#
-# Path:  ~/.config/starship.toml
+# ******************************************************************************
+# @file    starship.toml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Starship prompt: the directory on its own line, then the input line.
+# @path    ~/.config/starship.toml
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 add_newline = false
 

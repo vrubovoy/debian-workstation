@@ -1,12 +1,11 @@
-# =============================================================================
-# Fish — list the directory on cd
-# =============================================================================
-#
-# Lists the new directory after every change: cd, z, y, ffcd, prevd, ... A PWD
-# handler instead of a cd wrapper keeps Fish's own cd, so cd -, prevd, nextd
-# and Alt+Left/Right history keep working.
-#
-# Path:  ~/.config/fish/conf.d/60-list-directory.fish
+# ******************************************************************************
+# @file    60-list-directory.fish
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Lists the new directory after every change of it, however it changed.
+# @path    ~/.config/fish/conf.d/60-list-directory.fish
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 if status is-interactive
     function __workstation_list_directory --on-variable PWD

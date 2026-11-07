@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Desktop background: assets/wallpapers/default.jpg, or the Graphite Blue base
-# color if the image is missing.
+# ******************************************************************************
+# @file    wallpaper.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Sets the desktop background.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

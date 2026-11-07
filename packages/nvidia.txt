@@ -1,9 +1,10 @@
-# =============================================================================
-# Packages — NVIDIA driver
-# =============================================================================
-#
-# The proprietary driver, offered by scripts/configure/nvidia.sh on machines
-# with an NVIDIA GPU. Installed from Debian non-free, one package per line.
+# ******************************************************************************
+# @file    nvidia.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   The proprietary NVIDIA driver, offered with an NVIDIA GPU.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # Kernel module, built by DKMS
 linux-headers-amd64

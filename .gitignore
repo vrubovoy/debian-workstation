@@ -1,8 +1,10 @@
-# =============================================================================
-# Git ignore rules
-# =============================================================================
-#
-# Editor and OS leftovers, and release packages downloaded by hand.
+# ******************************************************************************
+# @file    .gitignore
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Editor and OS leftovers, and release packages downloaded by hand.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # OS / editors
 .DS_Store

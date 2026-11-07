@@ -1,12 +1,12 @@
-# =============================================================================
-# Network interfaces
-# =============================================================================
-#
-# NetworkManager manages every physical interface; ifupdown keeps only
-# loopback.
-#
-# Path:  /etc/network/interfaces
-# Apply: reboot
+# ******************************************************************************
+# @file    interfaces
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Loopback only; NetworkManager manages every other interface.
+# @path    /etc/network/interfaces
+# @apply   reboot
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 source /etc/network/interfaces.d/*
 

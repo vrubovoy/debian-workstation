@@ -1,12 +1,11 @@
--- =============================================================================
--- Neovim
--- =============================================================================
---
--- A file explorer, fuzzy finder, Git signs, completion and language servers
--- per project. Project indentation comes from .editorconfig when present
--- (Neovim reads it natively).
---
--- Path:  ~/.config/nvim/init.lua
+-- *****************************************************************************
+-- @file    init.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Neovim: options, keys, plugins and language servers.
+-- @path    ~/.config/nvim/init.lua
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

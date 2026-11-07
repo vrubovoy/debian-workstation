@@ -1,11 +1,11 @@
-# =============================================================================
-# Git
-# =============================================================================
-#
-# Behaviour shared by every machine. Name, email and the signing key are
-# machine-local in ~/.gitconfig.local (scripts/configure/git.sh).
-#
-# Path:  ~/.config/git/config
+# ******************************************************************************
+# @file    config
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Git settings for every machine; identity is in ~/.gitconfig.local.
+# @path    ~/.config/git/config
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 [include]
     path = ~/.gitconfig.local

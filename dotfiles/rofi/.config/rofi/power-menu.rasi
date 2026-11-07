@@ -1,12 +1,11 @@
-/* =============================================================================
- * Rofi — power menu
- * =============================================================================
- *
- * The session menu of workstation-power-menu: one row of tiles on a dimmed
- * screen. The window padding centres a card sized for five 150 px tiles.
- *
- * Path:  ~/.config/rofi/power-menu.rasi
- */
+/*******************************************************************************
+ * @file    power-menu.rasi
+ * @author  Vrubovoy (github.com/vrubovoy)
+ * @brief   Power menu: one row of tiles on a dimmed screen.
+ * @path    ~/.config/rofi/power-menu.rasi
+ *******************************************************************************
+ * Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+ ******************************************************************************/
 
 @import "graphite-blue"
 

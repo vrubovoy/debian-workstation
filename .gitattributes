@@ -1,9 +1,10 @@
-# =============================================================================
-# Git attributes
-# =============================================================================
-#
-# Text files are stored with LF endings, whatever platform commits them; images,
-# fonts and compiled translations are binary.
+# ******************************************************************************
+# @file    .gitattributes
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   LF endings for text files; images and fonts are binary.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 * text=auto eol=lf
 

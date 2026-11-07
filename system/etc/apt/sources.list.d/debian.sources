@@ -1,12 +1,12 @@
-# =============================================================================
-# APT — Debian sources
-# =============================================================================
-#
-# Debian 13 (trixie) with its updates and security suites. contrib and non-free
-# are needed for the NVIDIA driver among others.
-#
-# Path:  /etc/apt/sources.list.d/debian.sources
-# Apply: sudo apt update
+# ******************************************************************************
+# @file    debian.sources
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Debian 13 sources with contrib and non-free.
+# @path    /etc/apt/sources.list.d/debian.sources
+# @apply   sudo apt update
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 Types: deb
 URIs: https://deb.debian.org/debian

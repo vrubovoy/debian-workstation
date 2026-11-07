@@ -1,11 +1,11 @@
-# =============================================================================
-# udev — wakeup sources
-# =============================================================================
-#
-# The PCIe port of a graphics card may not wake the system: on some boards it
-# wakes it right after suspend.
-#
-# Path:  /etc/udev/rules.d/90-workstation-wakeup.rules
-# Apply: reboot
+# ******************************************************************************
+# @file    90-workstation-wakeup.rules
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   The PCIe port of a graphics card may not wake the system.
+# @path    /etc/udev/rules.d/90-workstation-wakeup.rules
+# @apply   reboot
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 ACTION=="add", SUBSYSTEM=="pci", ATTR{class}=="0x03*", RUN+="/bin/sh -c 'port=/sys%p/../power/wakeup; [ -w $$port ] && echo disabled > $$port || true'"

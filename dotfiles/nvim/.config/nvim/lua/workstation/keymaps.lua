@@ -1,10 +1,11 @@
--- =============================================================================
--- Neovim — key mappings
--- =============================================================================
---
--- A few additions on top of standard Vim behaviour. Leader: Space.
---
--- Path:  ~/.config/nvim/lua/workstation/keymaps.lua
+-- *****************************************************************************
+-- @file    keymaps.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Neovim key mappings on top of the defaults; the leader is Space.
+-- @path    ~/.config/nvim/lua/workstation/keymaps.lua
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
 
 local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })

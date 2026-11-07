@@ -1,13 +1,12 @@
-# =============================================================================
-# Dunst — notifications
-# =============================================================================
-#
-# Graphite Blue notifications. Dunst also draws the volume, brightness and
-# screenshot OSD sent by scripts/session; stack tags make repeated OSDs replace
-# each other.
-#
-# Path:  ~/.config/dunst/dunstrc
-# Apply: dunstctl reload
+# ******************************************************************************
+# @file    dunstrc
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Dunst notifications and the volume, brightness and layout OSD.
+# @path    ~/.config/dunst/dunstrc
+# @apply   dunstctl reload
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 [global]
 

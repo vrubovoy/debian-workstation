@@ -1,18 +1,14 @@
--- =============================================================================
--- Neovim — language servers
--- =============================================================================
---
--- The servers in M.servers start for their file types in every project. A
--- project can add others in .nvim.lua at its root, with the names from
--- :help lspconfig-all:
---
+-- *****************************************************************************
+-- @file    lsp.lua
+-- @author  Vrubovoy (github.com/vrubovoy)
+-- @brief   Neovim language servers by file type, installed through Mason.
+-- @path    ~/.config/nvim/lua/workstation/lsp.lua
+-- *****************************************************************************
+-- Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+-- *****************************************************************************
+
+-- A project adds servers in .nvim.lua at its root:
 --     require("workstation.lsp").enable({ "rust_analyzer" })
---
--- A server that is not on PATH is installed through Mason the first time a
--- file of its type is opened. Neovim asks once whether to trust a new or
--- changed .nvim.lua.
---
--- Path:  ~/.config/nvim/lua/workstation/lsp.lua
 
 local M = {}
 

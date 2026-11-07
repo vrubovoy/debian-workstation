@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Keyboard layout OSD. XKB switches the layout on Alt+Space; i3 runs this on the
-# same key to show the layout it switched to.
+# ******************************************************************************
+# @file    layout.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Shows the keyboard layout that Alt+Space switched to.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

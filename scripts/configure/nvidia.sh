@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# The proprietary NVIDIA driver from packages/nvidia.txt, offered on machines
-# with an NVIDIA GPU.
+# ******************************************************************************
+# @file    nvidia.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Offers the proprietary NVIDIA driver on machines with an NVIDIA GPU.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

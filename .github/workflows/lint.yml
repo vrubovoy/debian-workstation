@@ -1,15 +1,10 @@
-# =============================================================================
-# Lint — CI workflow
-# =============================================================================
-#
-# Runs on every push and pull request.
-#
-# Repository: whitespace, line endings and final newlines, then the validator
-# of each file type: ShellCheck, Fish, JSON, JSONC, TOML, yamllint, actionlint,
-# Stow packages, Rofi and i3.
-#
-# Debian packages: resolves every package list against the APT sources in a
-# debian:trixie container.
+# ******************************************************************************
+# @file    lint.yml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   CI: checks every file type and the package lists on Debian 13.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 name: Lint
 

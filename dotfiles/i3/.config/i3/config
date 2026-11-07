@@ -1,13 +1,12 @@
-# =============================================================================
-# i3 — window manager
-# =============================================================================
-#
-# Graphite Blue. Modifier: Super. Keyboard layouts (US/RU, Alt+Space, Compose
-# on Right Alt) come from /etc/default/keyboard. workstation-* commands live in
-# scripts/session/ and are linked into ~/.local/bin by the installer.
-#
-# Path:  ~/.config/i3/config
-# Apply: Super+Ctrl+R reloads, Super+Shift+R restarts i3
+# ******************************************************************************
+# @file    config
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   i3 window manager: keys, windows, workspaces, autostart and the bar.
+# @path    ~/.config/i3/config
+# @apply   Super+Ctrl+R reloads, Super+Shift+R restarts i3
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 
 # =============================================================================

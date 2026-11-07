@@ -1,11 +1,11 @@
-# =============================================================================
-# APT — Yazi repository
-# =============================================================================
-#
-# The official Yazi repository; its key is fetched by
-# scripts/install/system.sh.
-#
-# Path:  /etc/apt/sources.list.d/yazi.list
-# Apply: sudo apt update
+# ******************************************************************************
+# @file    yazi.list
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   The official Yazi APT repository.
+# @path    /etc/apt/sources.list.d/yazi.list
+# @apply   sudo apt update
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main

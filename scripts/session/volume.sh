@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Speaker and microphone controls through WirePlumber, with a Dunst OSD.
-# Speaker volume is capped at 100%.
+# ******************************************************************************
+# @file    volume.sh
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Speaker and microphone volume with an OSD.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 set -Eeuo pipefail
 

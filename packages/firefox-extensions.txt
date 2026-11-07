@@ -1,10 +1,10 @@
-# =============================================================================
-# Firefox extensions
-# =============================================================================
-#
-# Optional extensions, offered one by one by
-# scripts/configure/firefox-extensions.sh. The selected ones are installed from
-# addons.mozilla.org through the Firefox policies.
+# ******************************************************************************
+# @file    firefox-extensions.txt
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Optional Firefox extensions, installed through the Firefox policies.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
 
 # extension id                              addons.mozilla.org slug   name
 adguardadblocker@adguard.com                adguard-adblocker         AdGuard AdBlocker
