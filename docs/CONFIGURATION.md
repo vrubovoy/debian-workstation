@@ -195,6 +195,8 @@ and asks once whether to trust a new or changed file.
   relative to `$HOME` and run `./install.sh`; a new directory becomes a new
   Stow package automatically.
 - **System file:** put it under `system/` at its absolute path.
+- **New file:** start it with the header of a file of the same type (`@file`,
+  `@author`, `@brief`, and `@path` / `@apply` for configuration files).
 - **Command:** add an executable `scripts/session/<name>.sh`; after
   `./install.sh` it is available as `workstation-<name>`.
 - **Upstream release:** add a line to `packages/external.txt`; its header
