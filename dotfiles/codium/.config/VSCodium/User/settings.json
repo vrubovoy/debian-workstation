@@ -358,13 +358,15 @@
     // Editor
     // =========================================================================
 
-    "editor.fontFamily": "'Ubuntu Mono', monospace",
+    "editor.fontFamily": "'Maple Mono NR NF', monospace",
 
     "editor.fontWeight": "bold",
 
     "editor.fontSize": 22,
 
     "editor.fontLigatures": false,
+
+    "editor.fontVariations": false,
 
     "editor.lineHeight": 1.25,
 
@@ -422,7 +424,7 @@
 
     "terminal.integrated.defaultProfile.linux": "fish",
 
-    "terminal.integrated.fontFamily": "'Ubuntu Mono'",
+    "terminal.integrated.fontFamily": "'Maple Mono NR NF'",
 
     "terminal.integrated.fontWeight": "bold",
 
@@ -437,6 +439,10 @@
     "terminal.sourceControlRepositoriesKind": "both",
 
     "terminal.external.linuxExec": "kitty",
+
+    "debug.console.fontFamily": "'Maple Mono NR NF'",
+
+    "chat.fontFamily": "'Maple Mono NR NF'",
 
 
     // =========================================================================

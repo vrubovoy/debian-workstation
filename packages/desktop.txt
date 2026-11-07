@@ -61,7 +61,7 @@ brightness-udev
 ddcutil
 
 # Appearance
-fonts-ubuntu
+fontconfig
 gnome-themes-extra
 adwaita-icon-theme
 adwaita-icon-theme-legacy

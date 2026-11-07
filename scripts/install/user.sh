@@ -117,8 +117,9 @@ apply_gsettings() {
     gsettings set "$schema" icon-theme 'Adwaita'
     gsettings set "$schema" cursor-theme 'Adwaita'
     gsettings set "$schema" cursor-size 24
-    gsettings set "$schema" font-name 'Ubuntu Bold 13'
-    gsettings set "$schema" monospace-font-name 'Ubuntu Mono Bold 13'
+    gsettings set "$schema" font-name 'Maple Mono NR NF Bold 13'
+    gsettings set "$schema" document-font-name 'Maple Mono NR NF Bold 13'
+    gsettings set "$schema" monospace-font-name 'Maple Mono NR NF Bold 13'
 }
 
 [[ $EUID -ne 0 ]] || die 'Run as the normal user, not root.'

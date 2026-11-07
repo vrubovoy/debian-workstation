@@ -8,6 +8,6 @@
 
 gtk-theme-name = "Adwaita-dark"
 gtk-icon-theme-name = "Adwaita"
-gtk-font-name = "Ubuntu Bold 13"
+gtk-font-name = "Maple Mono NR NF Bold 13"
 gtk-cursor-theme-name = "Adwaita"
 gtk-cursor-theme-size = 24

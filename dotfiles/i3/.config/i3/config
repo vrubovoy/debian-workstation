@@ -18,7 +18,7 @@ set $mod Mod4
 # New windows open in the running kitty, which is much faster.
 set $terminal kitty --single-instance
 
-font pango:Ubuntu Bold 15
+font pango:Maple Mono NR NF Bold 15
 
 set $bg       #111318
 set $surface  #1A1D24
@@ -264,7 +264,7 @@ bar {
     position bottom
     mode dock
     status_command i3status
-    font pango:Ubuntu Bold 15
+    font pango:Maple Mono NR NF Bold 15
 
     # The tray ignores this padding and sits tray_padding from the edge; 6px
     # matches that on the left.

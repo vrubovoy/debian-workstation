@@ -71,7 +71,7 @@ textbox-hint {
     content: "1–5 or Enter · Esc to close";
     text-color: @muted;
 
-    font: "Ubuntu Bold 12";
+    font: "Maple Mono NR NF Bold 12";
 }
 
 
@@ -124,7 +124,7 @@ element-index {
     background-color: transparent;
     text-color: inherit;
 
-    font: "Ubuntu Bold 12";
+    font: "Maple Mono NR NF Bold 12";
 }
 
 element-icon {
@@ -138,5 +138,5 @@ element-text {
 
     horizontal-align: 0.5;
 
-    font: "Ubuntu Bold 14";
+    font: "Maple Mono NR NF Bold 14";
 }

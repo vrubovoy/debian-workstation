@@ -37,7 +37,7 @@ icon_corners = all
 transparency = 0
 
 # Text
-font = Ubuntu Bold 15
+font = Maple Mono NR NF Bold 15
 line_height = 4
 format = "<b>%s</b>\n%b"
 markup = full
