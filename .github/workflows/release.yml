@@ -1,7 +1,7 @@
 # ******************************************************************************
 # @file    release.yml
 # @author  Vrubovoy (github.com/vrubovoy)
-# @brief   CI: GitHub release from a version tag, notes from CHANGELOG.md.
+# @brief   CI: GitHub release from a version tag, with notes and PDF guides.
 # ******************************************************************************
 # Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
 # ******************************************************************************
@@ -37,6 +37,12 @@ jobs:
           ' CHANGELOG.md > notes.md
           [[ -s notes.md ]] || { printf 'No section for %s in CHANGELOG.md\n' "${version%%-*}" >&2; exit 1; }
 
+      - name: Build the PDF guides
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes pandoc weasyprint fonts-dejavu-core
+          docs/guide/build.sh
+
       - name: Publish release
         shell: bash
         env:
@@ -44,4 +50,5 @@ jobs:
         run: |
           flags=()
           [[ "$GITHUB_REF_NAME" == *-* ]] && flags+=(--prerelease)
-          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md "${flags[@]}"
+          gh release create "$GITHUB_REF_NAME" docs/guide/*.pdf --title "$GITHUB_REF_NAME" \
+            --notes-file notes.md "${flags[@]}"
