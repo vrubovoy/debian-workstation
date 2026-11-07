@@ -8,7 +8,7 @@ set -Eeuo pipefail
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-# Versions of the .tar.gz installs, which nothing else records.
+# Versions of the archive installs, which nothing else records.
 STATE_DIR="/etc/debian-workstation/releases"
 
 installed_version() {
@@ -25,15 +25,27 @@ installed_version() {
     fi
 }
 
-# A "latest" entry: the newest GitHub release. Its tag replaces {version} in the
-# URL, and its SHA-256 is the digest GitHub publishes for the file.
+# A version without a leading "v", Debian epoch or revision, so that GitHub tags
+# and dpkg versions compare.
+plain_version() {
+    local version="${1#v}"
+
+    version="${version#*:}"
+    printf '%s\n' "${version%-*}"
+}
+
+# A "latest" entry: the newest GitHub release. Its tag replaces {tag} in the URL
+# and, without a leading "v", {version}; its SHA-256 is the digest GitHub
+# publishes for the file.
 resolve_latest() {
-    local repo release
+    local repo release tag
 
     repo="$(sed -nE 's#^https://github.com/([^/]+/[^/]+)/releases/.*#\1#p' <<< "$url")"
     release="$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest")" || return 1
 
-    version="$(jq -r .tag_name <<< "$release")"
+    tag="$(jq -r .tag_name <<< "$release")"
+    version="${tag#v}"
+    url="${url//\{tag\}/$tag}"
     url="${url//\{version\}/$version}"
     sha256="$(jq -r --arg name "${url##*/}" \
         '.assets[] | select(.name == $name) | .digest // ""' <<< "$release")"
@@ -61,13 +73,17 @@ install_release() {
         return
     fi
 
-    if [[ "$url" == *.tar.gz ]]; then
-        # A release archive (Neovim) replaces the previous one in /opt; its
-        # command goes into /usr/local/bin, ahead of Debian's in PATH.
+    if [[ "$url" == *.tar.gz || "$url" == *.tar.xz ]]; then
+        # A release archive replaces the previous one in /opt; its command, in
+        # bin/ (Neovim) or at the top (Telegram), goes into /usr/local/bin, ahead
+        # of Debian's in PATH.
         sudo rm -rf "/opt/$package"
         sudo mkdir -p "/opt/$package"
-        sudo tar -xzf "$file" -C "/opt/$package" --strip-components=1
-        sudo ln -sfn "/opt/$package/bin/$package" "/usr/local/bin/$package"
+        sudo tar -xf "$file" -C "/opt/$package" --strip-components=1
+
+        local binary="/opt/$package/bin/$package"
+        [[ -x "$binary" ]] || binary="/opt/$package/$package"
+        sudo ln -sfn "$binary" "/usr/local/bin/$package"
 
         sudo mkdir -p "$STATE_DIR"
         printf '%s\n' "$version" | sudo tee "$STATE_DIR/$package" >/dev/null
@@ -109,7 +125,7 @@ for release in "${releases[@]}"; do
 
     current="$(installed_version "$package" "$url")"
 
-    if [[ "$current" == "$version" ]]; then
+    if [[ -n "$current" && "$(plain_version "$current")" == "$(plain_version "$version")" ]]; then
         info "$package $version is installed."
         continue
     fi
