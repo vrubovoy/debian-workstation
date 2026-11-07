@@ -105,9 +105,8 @@ tztime local {
     align = "center"
 }
 
-# CPU temperature needs a machine-specific sensor path, so it is left out.
-# To add it on one machine, find the sensor with
-# `find /sys/class/hwmon -name 'temp*_input'` and add:
+# CPU temperature needs this machine's sensor from
+# `find /sys/class/hwmon -name 'temp*_input'`:
 #
 #   order += "cpu_temperature 0"
 #

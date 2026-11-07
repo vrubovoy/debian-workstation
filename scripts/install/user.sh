@@ -10,9 +10,8 @@ source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 DOTFILES_DIR="$ROOT_DIR/dotfiles"
 BIN_DIR="$HOME/.local/bin"
 
-# Every directory under dotfiles/ is a Stow package. Files already in the way
-# are moved aside once. --no-folding links files, never directories, so
-# private files created in ~/.ssh or ~/.gnupg cannot end up in the repository.
+# Every directory under dotfiles/ is a Stow package. --no-folding links files,
+# not directories, so keys created in ~/.ssh or ~/.gnupg stay out of the repo.
 link_dotfiles() {
     local source target packages=()
 

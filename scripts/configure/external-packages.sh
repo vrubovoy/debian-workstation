@@ -34,9 +34,7 @@ plain_version() {
     printf '%s\n' "${version%-*}"
 }
 
-# A "latest" entry: the newest GitHub release. Its tag replaces {tag} in the URL
-# and, without a leading "v", {version}; its SHA-256 is the digest GitHub
-# publishes for the file.
+# Fills in the newest GitHub release: tag, URL and the SHA-256 GitHub publishes.
 resolve_latest() {
     local repo release tag
 
@@ -74,9 +72,8 @@ install_release() {
     fi
 
     if [[ "$url" == *.tar.gz || "$url" == *.tar.xz ]]; then
-        # A release archive replaces the previous one in /opt; its command, in
-        # bin/ (Neovim) or at the top (Telegram), goes into /usr/local/bin, ahead
-        # of Debian's in PATH.
+        # The command, in bin/ (Neovim) or at the top (Telegram), is linked
+        # into /usr/local/bin, ahead of Debian's in PATH.
         sudo rm -rf "/opt/$package"
         sudo mkdir -p "/opt/$package"
         sudo tar -xf "$file" -C "/opt/$package" --strip-components=1

@@ -20,9 +20,8 @@ backup_once() {
     fi
 }
 
-# Only the first deployment of a path backs it up and records it in
-# $MANAGED_FILES, so a backup is always the system's own version, never an
-# earlier copy from this repository.
+# Only the first deployment backs a file up, so the backup is always the
+# system's own version.
 deploy() {
     local source="$1" target="$2"
 
