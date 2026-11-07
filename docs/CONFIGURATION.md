@@ -12,7 +12,7 @@ change it.
 | `scripts/session/<name>.sh` | `~/.local/bin/workstation-<name>` | symlink |
 | `packages/{base,desktop,applications,development}.txt` | installed | APT |
 | `packages/nvidia.txt` | offered with an NVIDIA GPU | APT |
-| `packages/external.txt` | offered one by one | pinned release from GitHub |
+| `packages/external.txt` | offered one by one | latest release from GitHub |
 
 For example, `dotfiles/i3/.config/i3/config` becomes `~/.config/i3/config`,
 and `system/etc/lightdm/lightdm-gtk-greeter.conf` becomes
@@ -88,15 +88,15 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 ## Design
 
 - **Debian stable first.** Yazi comes from its official APT repository. The
-  other upstream software is optional: VSCodium, Neovim, Onefetch and
-  AmneziaVPN are offered one by one by
-  `scripts/configure/external-packages.sh`, pinned in `packages/external.txt`
-  by URL and SHA-256. A download that does not match its checksum is refused,
-  so a release is exactly what the repository says it is. AmneziaVPN follows
-  its latest GitHub release instead, checked against the SHA-256 GitHub
-  publishes for the file. It has no `.deb`; its own installer runs headless
-  into `/opt/AmneziaVPN`. Neovim is a release archive unpacked into
-  `/opt/nvim`.
+  other upstream software is optional: VSCodium, Neovim, Onefetch, AmneziaVPN,
+  ONLYOFFICE and Telegram are offered one by one by
+  `scripts/configure/external-packages.sh` and follow their latest GitHub
+  releases. Each download is checked against the SHA-256 GitHub publishes for
+  it and refused if it does not match; installed ones are updated on the next
+  run. AmneziaVPN has no `.deb`; its own installer runs headless into
+  `/opt/AmneziaVPN`. Neovim and Telegram are release archives unpacked into
+  `/opt`; Telegram adds itself to the launcher the first time it is started
+  with `Telegram`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
@@ -140,7 +140,7 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 ## Neovim
 
 Debian 13 ships Neovim 0.10; the plugins need 0.11 or later, so the upstream
-release is offered with the other pinned releases (unpacked into `/opt/nvim`,
+release is offered with the other upstream releases (unpacked into `/opt/nvim`,
 linked as `/usr/local/bin/nvim`). Without it Neovim starts with the built-in
 features only.
 
@@ -194,8 +194,8 @@ and asks once whether to trust a new or changed file.
 - **System file:** put it under `system/` at its absolute path.
 - **Command:** add an executable `scripts/session/<name>.sh`; after
   `./install.sh` it is available as `workstation-<name>`.
-- **Pinned release:** update the version, URL and SHA-256 in
-  `packages/external.txt`; the file header shows how to get each.
+- **Upstream release:** add a line to `packages/external.txt`; its header
+  shows the URL placeholders and how to pin a version instead.
 - **Wallpaper:** replace `assets/wallpapers/default.jpg`, then run
   `workstation-wallpaper`, and `./install.sh` for the boot menu.
 - **Firefox extension:** add its ID and addons.mozilla.org slug to

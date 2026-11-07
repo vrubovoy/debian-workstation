@@ -14,8 +14,9 @@ The first release: a Debian 13 desktop on X11 and i3, installed by one script.
 
 - **Installer.** One run sets up the APT sources, packages, system files,
   services and dotfiles. Personal setup is optional and skipped once done: Git
-  identity and signing, an SSH key, the NVIDIA driver, pinned upstream
-  releases, and Firefox and VSCodium extensions.
+  identity and signing, an SSH key, the NVIDIA driver, the latest upstream
+  releases of VSCodium, Neovim, Onefetch, AmneziaVPN, ONLYOFFICE and Telegram,
+  and Firefox and VSCodium extensions.
 - **Desktop.** i3 with i3bar and i3status, LightDM, the Rofi launcher and power
   menu, Dunst, Picom, screenshots and CopyQ clipboard history.
 - **Power.** The screen locks after 10 minutes; after 15 the displays turn off

@@ -15,7 +15,7 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | Session | Xorg, i3, i3bar + i3status, LightDM |
 | Desktop | Rofi, Dunst, Picom, i3lock + xss-lock, CopyQ clipboard history |
 | Terminal | Kitty, Fish + Starship, Neovim, Yazi |
-| Applications | Firefox ESR, Thunar; optional VSCodium, upstream Neovim, Onefetch, AmneziaVPN |
+| Applications | Firefox ESR, Thunar; optional VSCodium, upstream Neovim, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram |
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
 | Development | Git, Lazygit, OpenSSH, GnuPG; language servers for C/C++, TypeScript, Python, Bash and Lua |
 
@@ -65,7 +65,8 @@ near the end if its timeout ran out during a long install) and then:
 3. **Personal setup**, each step optional and skipped once done: Git name and
    email with optional GPG signing, an SSH key, the proprietary NVIDIA driver
    (only with an NVIDIA GPU), the upstream releases (VSCodium, Neovim with its
-   plugins, Onefetch, AmneziaVPN), Firefox extensions and VSCodium extensions.
+   plugins, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram), Firefox extensions and
+   VSCodium extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
 upgrade the system (`apt full-upgrade` stays your call) and is safe to run
