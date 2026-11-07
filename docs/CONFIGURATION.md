@@ -92,9 +92,11 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   AmneziaVPN are offered one by one by
   `scripts/configure/external-packages.sh`, pinned in `packages/external.txt`
   by URL and SHA-256. A download that does not match its checksum is refused,
-  so a release is exactly what the repository says it is. AmneziaVPN has no
-  `.deb`; its own installer runs headless into `/opt/AmneziaVPN`. Neovim is a
-  release archive unpacked into `/opt/nvim`.
+  so a release is exactly what the repository says it is. AmneziaVPN follows
+  its latest GitHub release instead, checked against the SHA-256 GitHub
+  publishes for the file. It has no `.deb`; its own installer runs headless
+  into `/opt/AmneziaVPN`. Neovim is a release archive unpacked into
+  `/opt/nvim`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
