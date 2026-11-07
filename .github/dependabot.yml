@@ -1,0 +1,15 @@
+# ******************************************************************************
+# @file    dependabot.yml
+# @author  Vrubovoy (github.com/vrubovoy)
+# @brief   Monthly pull requests that update the GitHub Actions in workflows.
+# ******************************************************************************
+# Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
+# ******************************************************************************
+
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
