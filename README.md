@@ -8,6 +8,8 @@
 A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 (Graphite Blue), installed by a single script and kept entirely in Git.
 
+![Fastfetch and Yazi on the Graphite Blue desktop](assets/screenshot.png)
+
 ## What you get
 
 | | |
@@ -137,7 +139,7 @@ packages/      APT package lists, optional releases and extensions
 system/        files copied to the same path under /
 dotfiles/      Stow packages linked into $HOME
 scripts/       installer steps, personal setup, workstation-* commands
-assets/        wallpaper
+assets/        wallpaper and screenshot
 docs/          configuration reference, troubleshooting and the user guide
 ```
 
