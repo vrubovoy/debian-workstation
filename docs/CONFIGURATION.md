@@ -12,7 +12,7 @@ change it.
 | `scripts/session/<name>.sh` | `~/.local/bin/workstation-<name>` | symlink |
 | `packages/{base,desktop,applications,development}.txt` | installed | APT |
 | `packages/nvidia.txt` | offered with an NVIDIA GPU | APT |
-| `packages/external.txt` | offered one by one | latest release from GitHub |
+| `packages/external.txt` | offered one by one | pinned or latest release from GitHub |
 
 For example, `dotfiles/i3/.config/i3/config` becomes `~/.config/i3/config`,
 and `system/etc/lightdm/lightdm-gtk-greeter.conf` becomes
@@ -90,16 +90,15 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 
 ## Design
 
-- **Debian stable first.** Yazi comes from its official APT repository. The
-  other upstream software is optional: VSCodium, Neovim, Onefetch, AmneziaVPN,
-  ONLYOFFICE and Telegram are offered one by one by
-  `scripts/configure/external-packages.sh` and follow their latest GitHub
-  releases. Each download is checked against the SHA-256 GitHub publishes for
-  it and refused if it does not match; installed ones are updated on the next
-  run. AmneziaVPN has no `.deb`; its own installer runs headless into
-  `/opt/AmneziaVPN`. Neovim and Telegram are release archives unpacked into
-  `/opt`; Telegram adds itself to the launcher the first time it is started
-  with `Telegram`.
+- **Debian stable first.** Everything else is optional and offered one by one
+  by `scripts/configure/external-packages.sh`. Yazi and Neovim are pinned to a
+  version, because their configuration depends on it; VSCodium, Onefetch,
+  AmneziaVPN, ONLYOFFICE and Telegram follow their latest GitHub releases.
+  Each download is checked against its SHA-256 and refused if it does not
+  match; installed ones are updated on the next run. AmneziaVPN has no
+  `.deb`; its own installer runs headless into `/opt/AmneziaVPN`. Neovim and
+  Telegram are release archives unpacked into `/opt`; Telegram adds itself to
+  the launcher the first time it is started with `Telegram`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
   `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. One

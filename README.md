@@ -56,8 +56,8 @@ Keep the clone where it is: your configuration files become symlinks into it.
 The installer asks for your sudo password at the start (sudo may ask again
 near the end if its timeout ran out during a long install) and then:
 
-1. **As root:** sets up the Debian (with contrib and non-free) and Yazi APT
-   sources, installs the packages from `packages/`, copies `system/` to `/`,
+1. **As root:** sets up the Debian APT sources (with contrib and non-free),
+   installs the packages from `packages/`, copies `system/` to `/`,
    puts the wallpaper behind the GRUB menu, enables NetworkManager, Bluetooth
    and LightDM, and makes Fish your login shell.
 2. **As you:** links `dotfiles/` into your home directory with GNU Stow, adds
@@ -65,9 +65,9 @@ near the end if its timeout ran out during a long install) and then:
    applications and GTK settings.
 3. **Personal setup**, each step optional and skipped once done: Git name and
    email with optional GPG signing, an SSH key, the proprietary NVIDIA driver
-   (only with an NVIDIA GPU), the upstream releases (VSCodium, Neovim with its
-   plugins, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram), Firefox extensions and
-   VSCodium extensions.
+   (only with an NVIDIA GPU), the upstream releases (Yazi, Neovim with its
+   plugins, VSCodium, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram), Firefox
+   extensions and VSCodium extensions.
 
 Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
 upgrade the system (`apt full-upgrade` stays your call) and is safe to run
