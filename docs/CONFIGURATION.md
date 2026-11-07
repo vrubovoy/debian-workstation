@@ -55,8 +55,11 @@ backups.
   file plus the extensions chosen on this machine (see below).
 - `/usr/lib/firefox-esr/workstation.cfg` with `defaults/pref/autoconfig.js`:
   Firefox's AutoConfig, which applies `workstation-newtab.css` next to it to
-  every profile and sets the default zoom to 120% in profiles that have none
-  yet (a zoom chosen in *Settings* stays).
+  every profile, sets Maple Mono for web pages and the default zoom to 120% in
+  profiles that have none yet (a zoom chosen in *Settings* stays).
+- `/usr/local/share/fonts/maple-mono/`: the font, system-wide so that LightDM
+  has it too. `~/.config/fontconfig/conf.d/99-maple-mono.conf` makes it every
+  generic family and its Bold the plain weight.
 - `/etc/modprobe.d/workstation-nvidia.conf`: the NVIDIA driver keeps the
   video memory across suspend.
 - `/etc/default/grub.d/workstation.cfg`: the GRUB menu over the wallpaper.
@@ -99,9 +102,9 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   with `Telegram`.
 - **One theme source.** GTK 3 is Adwaita-dark and GTK 4 is Adwaita, each with a
   Graphite Blue `gtk.css`. Qt 5 and 6 follow GTK through
-  `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. Icon
-  glyphs in the terminal come from Kitty's built-in Nerd Font fallback, so no
-  patched font is needed.
+  `QT_QPA_PLATFORMTHEME=gtk3`, and the same values are set as GSettings. One
+  font serves everything: Maple Mono NR NF in Bold, which also carries the Nerd
+  Font icons.
 - **Firefox through policies**, not a profile `user.js`. The policies turn off
   telemetry, studies, sponsored content, online Firefox Suggest and the AI
   features, and turn on DNS over HTTPS (Cloudflare, falling back to system
@@ -196,6 +199,11 @@ and asks once whether to trust a new or changed file.
   `./install.sh` it is available as `workstation-<name>`.
 - **Upstream release:** add a line to `packages/external.txt`; its header
   shows the URL placeholders and how to pin a version instead.
+- **Font:** rebuild Maple Mono at commit `c08fda9` of
+  [maple-font](https://github.com/subframe7536/maple-font) with
+  `build.py --ttf-only --width narrow --feat cv01,cv02,cv05,cv08,cv31,cv33,cv34,cv35,cv36,cv37,cv38,cv41,cv44,cv61,cv64,cv66,ss03,ss05,ss06,ss09,ss10`,
+  copy `fonts/NF/MapleMonoNR-NF-Bold.ttf` and `-BoldItalic.ttf` to
+  `system/usr/local/share/fonts/maple-mono/` and run `./install.sh`.
 - **Wallpaper:** replace `assets/wallpapers/default.jpg`, then run
   `workstation-wallpaper`, and `./install.sh` for the boot menu.
 - **Firefox extension:** add its ID and addons.mozilla.org slug to

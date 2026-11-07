@@ -19,8 +19,9 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
 | Development | Git, Lazygit, OpenSSH, GnuPG; language servers for C/C++, TypeScript, Python, Bash and Lua |
 
-Everything uses Ubuntu Bold for the interface and Ubuntu Mono Bold in the
-terminal. There is no full desktop environment, Flatpak or Snap.
+Everything, from the terminal to the web pages in Firefox, uses one font:
+Maple Mono NR NF Bold, a narrow build of Maple Mono with Nerd Font icons. There
+is no full desktop environment, Flatpak or Snap.
 
 ## Requirements
 
@@ -148,4 +149,5 @@ docs/          configuration reference and troubleshooting
 ## License
 
 [MIT](LICENSE). The wallpaper and the Fastfetch logo were generated for
-this repository and are covered by the same license.
+this repository and are covered by the same license. Maple Mono is under the
+[SIL Open Font License 1.1](system/usr/local/share/fonts/maple-mono/OFL.txt).

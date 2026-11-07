@@ -26,7 +26,8 @@ The first release: a Debian 13 desktop on X11 and i3, installed by one script.
   displays for the volume, the brightness (backlight or DDC/CI) and the
   keyboard layout; libinput settings for touchpads and mice.
 - **Theme.** Graphite Blue for i3, LightDM, GTK 2/3/4, Qt, Kitty, Rofi, Dunst,
-  Fish, Starship, Neovim, Yazi, Fastfetch and VSCodium.
+  Fish, Starship, Neovim, Yazi, Fastfetch and VSCodium, with Maple Mono NR NF
+  Bold as the one font, also on web pages in Firefox.
 - **Terminal.** Kitty and Fish with Starship, fzf, zoxide and Yazi helpers.
 - **Neovim.** A file explorer, fuzzy finder, Git signs, completion, tree-sitter
   highlighting and language servers for C/C++, TypeScript, Python, Bash and
