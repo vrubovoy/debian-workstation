@@ -31,7 +31,7 @@ jobs:
 
       # Node.js is needed only for the JSONC parser.
       - name: Set up Node.js
-        uses: actions/setup-node@v7.0.0
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
 
