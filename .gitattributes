@@ -2,8 +2,8 @@
 # Git attributes
 # =============================================================================
 #
-# Text files are stored with LF endings, whatever platform commits them; images
-# and compiled translations are binary.
+# Text files are stored with LF endings, whatever platform commits them; images,
+# fonts and compiled translations are binary.
 
 * text=auto eol=lf
 
@@ -14,3 +14,4 @@
 *.gif  binary
 *.ico  binary
 *.mo   binary
+*.ttf  binary

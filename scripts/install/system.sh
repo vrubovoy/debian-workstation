@@ -136,6 +136,7 @@ main() {
 
     step 'System files'
     deploy_files
+    fc-cache -f /usr/local/share/fonts
 
     step 'Boot menu'
     setup_boot_menu
