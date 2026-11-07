@@ -6,6 +6,15 @@
 # Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
 # ******************************************************************************
 
+# Columns: package (the Debian package, or the directory under /opt for a .run
+# installer or an archive), version, sha256, url and depends (APT packages
+# installed first, comma-separated, - for none).
+#
+# A pinned entry has its version and the SHA-256 of the file:
+# `curl -fsSL URL | sha256sum`.
+# With "latest" and "-", the newest GitHub release is used: {tag} in the URL
+# becomes its tag, {version} the tag without a leading "v".
+
 # package                  version  sha256  url                                                                                                       depends
 onefetch                   latest   -       https://github.com/o2sh/onefetch/releases/download/{tag}/onefetch_amd64.deb                               -
 codium                     latest   -       https://github.com/VSCodium/vscodium/releases/download/{tag}/codium_{version}_amd64.deb                   -
