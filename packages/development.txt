@@ -12,6 +12,7 @@ openssh-client
 gnupg
 pinentry-gtk2
 lazygit
+gh
 pwgen
 
 # C/C++ language server used by VSCodium and Neovim

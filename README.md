@@ -17,7 +17,7 @@ A minimal Debian 13 desktop built on X11 and i3, with one dark theme
 | Terminal | Kitty, Fish + Starship, Neovim, Yazi |
 | Applications | Firefox ESR, Thunar; optional VSCodium, upstream Neovim, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram |
 | System | NetworkManager, PipeWire, Bluetooth (BlueZ + Blueman), Polkit |
-| Development | Git, Lazygit, OpenSSH, GnuPG; language servers for C/C++, TypeScript, Python, Bash and Lua |
+| Development | Git, Lazygit, GitHub CLI, OpenSSH, GnuPG; language servers for C/C++, TypeScript, Python, Bash and Lua |
 
 Everything, from the terminal to the web pages in Firefox, uses one font:
 Maple Mono NR NF Bold, a narrow build of Maple Mono with Nerd Font icons. There
