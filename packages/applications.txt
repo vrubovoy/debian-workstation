@@ -42,8 +42,7 @@ tumbler
 xdg-user-dirs
 xdg-utils
 
-# Terminal file manager (from the Yazi APT repository) and its previewers
-yazi
+# Yazi previews and zoxide; Yazi itself is in packages/external.txt
 ffmpeg
 poppler-utils
 zoxide

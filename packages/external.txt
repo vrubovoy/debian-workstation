@@ -13,12 +13,14 @@
 # A pinned entry has its version and the SHA-256 of the file:
 # `curl -fsSL URL | sha256sum`.
 # With "latest" and "-", the newest GitHub release is used: {tag} in the URL
-# becomes its tag, {version} the tag without a leading "v".
+# becomes its tag, {version} the tag without a leading "v". Yazi and Neovim are
+# pinned because their configuration depends on the version.
 
-# package                  version  sha256  url                                                                                                       depends
-onefetch                   latest   -       https://github.com/o2sh/onefetch/releases/download/{tag}/onefetch_amd64.deb                               -
-codium                     latest   -       https://github.com/VSCodium/vscodium/releases/download/{tag}/codium_{version}_amd64.deb                   -
-nvim                       latest   -       https://github.com/neovim/neovim/releases/download/{tag}/nvim-linux-x86_64.tar.gz                         -
-AmneziaVPN                 latest   -       https://github.com/amnezia-vpn/amnezia-client/releases/download/{tag}/AmneziaVPN_{version}_linux_x64.run  libxcb-cursor0,libxcb-xinerama0,libxcb-icccm4,libxcb-keysyms1,libopengl0,libxkbcommon-x11-0
-onlyoffice-desktopeditors  latest   -       https://github.com/ONLYOFFICE/DesktopEditors/releases/download/{tag}/onlyoffice-desktopeditors_amd64.deb  -
-Telegram                   latest   -       https://github.com/telegramdesktop/tdesktop/releases/download/{tag}/td-setup-linux-x64-{version}.tar.xz   -
+# package                  version   sha256                                                            url                                                                                                       depends
+yazi                       26.9.1-1  331d6247c0a0fd549f14cd599a928a529b8b22eded1bb1f61a518376c7621b45  https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-gnu.deb                -
+nvim                       0.12.6    474430d53e6264f6d6dd18db42d6dc9df3a1b56ca9e88a325bbf860e1a811d87  https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz                       -
+codium                     latest    -                                                                 https://github.com/VSCodium/vscodium/releases/download/{tag}/codium_{version}_amd64.deb                   -
+onefetch                   latest    -                                                                 https://github.com/o2sh/onefetch/releases/download/{tag}/onefetch_amd64.deb                               -
+AmneziaVPN                 latest    -                                                                 https://github.com/amnezia-vpn/amnezia-client/releases/download/{tag}/AmneziaVPN_{version}_linux_x64.run  libxcb-cursor0,libxcb-xinerama0,libxcb-icccm4,libxcb-keysyms1,libopengl0,libxkbcommon-x11-0
+onlyoffice-desktopeditors  latest    -                                                                 https://github.com/ONLYOFFICE/DesktopEditors/releases/download/{tag}/onlyoffice-desktopeditors_amd64.deb  -
+Telegram                   latest    -                                                                 https://github.com/telegramdesktop/tdesktop/releases/download/{tag}/td-setup-linux-x64-{version}.tar.xz   -

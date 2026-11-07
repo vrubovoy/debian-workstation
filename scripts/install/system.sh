@@ -12,7 +12,6 @@ set -Eeuo pipefail
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 
-YAZI_KEY_URL="https://yazi-rs.github.io/builds/yazi-keyring.gpg"
 MANAGED_FILES="/etc/debian-workstation/managed-files"
 
 backup_once() {
@@ -53,8 +52,6 @@ setup_repositories() {
     fi
 
     deploy "$sources/debian.sources" /etc/apt/sources.list.d/debian.sources
-    curl -fsSL -o /usr/share/keyrings/yazi-keyring.gpg "$YAZI_KEY_URL"
-    deploy "$sources/yazi.list" /etc/apt/sources.list.d/yazi.list
     apt-get update
 }
 
