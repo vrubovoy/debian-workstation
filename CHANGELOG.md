@@ -36,6 +36,8 @@ The first release: a Debian 13 desktop on X11 and i3, installed by one script.
   AI features, DNS over HTTPS, an empty new tab and a default zoom of 120%.
 - **Git, SSH and GnuPG.** Shared settings; identities and keys stay out of the
   repository.
+- **Guide.** A short user guide in English and Russian, as PDF on every
+  release.
 - **CI.** Checks for scripts, configuration syntax and package lists, and
   GitHub releases from version tags.
 

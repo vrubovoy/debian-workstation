@@ -138,9 +138,13 @@ system/        files copied to the same path under /
 dotfiles/      Stow packages linked into $HOME
 scripts/       installer steps, personal setup, workstation-* commands
 assets/        wallpaper
-docs/          configuration reference and troubleshooting
+docs/          configuration reference, troubleshooting and the user guide
 ```
 
+- User guide in English and Russian: a short PDF attached to every
+  [release](https://github.com/vrubovoy/debian-workstation/releases), built from
+  [docs/guide](docs/guide) with `docs/guide/build.sh` (needs `pandoc` and
+  `weasyprint`).
 - [Configuration](docs/CONFIGURATION.md): what goes where, design choices and
   common changes.
 - [Troubleshooting](docs/TROUBLESHOOTING.md): known problems and fixes.
