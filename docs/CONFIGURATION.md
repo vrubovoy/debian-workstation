@@ -128,7 +128,8 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 - **Focus.** The focused window, the Rofi menus and the focused LightDM field
   share the look of a focused text field: an accent border and a faint ring
   around it. For windows the ring is picom's shadow, drawn only around the
-  focused one.
+  focused one. Kitty leaves window decorations enabled so i3 can draw the
+  same border around it as around Firefox.
 - **Launcher.** Rofi would show applications whose icon is missing with a
   blank icon, so the installer hides them for the user with `Hidden=true`
   entries in `~/.local/share/applications`. Run `./install.sh` again after
