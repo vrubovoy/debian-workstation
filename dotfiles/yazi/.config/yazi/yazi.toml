@@ -35,12 +35,16 @@ edit = [
 open = [
     { run = 'xdg-open "$1"', orphan = true, desc = "Open", for = "linux" },
 ]
+pdf = [
+    { run = 'firefox-esr "$@"', orphan = true, desc = "Open in Firefox", for = "linux" },
+]
 
 # Checked before Yazi's built-in rules; config formats are not always text/*.
 [open]
 prepend_rules = [
     { mime = "text/*", use = "edit" },
     { url = "*.{json,jsonc,toml,yaml,yml,ini,conf}", use = "edit" },
+    { mime = "application/pdf", use = "pdf" },
 ]
 
 [input]

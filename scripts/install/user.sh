@@ -71,7 +71,7 @@ link_commands() {
 set_default_applications() {
     xdg-user-dirs-update
     xdg-mime default thunar.desktop inode/directory
-    xdg-mime default firefox-esr.desktop text/html x-scheme-handler/http x-scheme-handler/https
+    xdg-mime default firefox-esr.desktop text/html application/pdf x-scheme-handler/http x-scheme-handler/https
 }
 
 # Rofi would list applications whose icon is missing with a blank icon; hide
