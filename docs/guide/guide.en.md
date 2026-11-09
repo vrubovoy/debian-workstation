@@ -118,8 +118,8 @@ prompt. Screenshots are saved to
 # 6. Sleep and power
 
 - After 10 minutes without input the screen locks.
-- After 15 minutes the screen turns off and the computer goes to sleep, unless
-  music or a video is playing.
+- After 15 minutes the screen turns off and the computer goes to sleep. While
+  music or a video is playing, it stays awake and unlocked.
 - Move the mouse or press a key to wake it, then type your password.
 
 # 7. Keeping it up to date

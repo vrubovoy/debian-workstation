@@ -80,7 +80,7 @@ backups.
 | `workstation-volume up\|down\|mute\|mic-mute` | Volume with an on-screen display |
 | `workstation-brightness up\|down` | Laptop backlight, or the monitors over DDC/CI on a desktop, with an on-screen display |
 | `workstation-layout` | Show the current keyboard layout on screen |
-| `workstation-idle` | Suspend after 15 minutes without input, unless sound is playing; not in a virtual machine (i3 starts it) |
+| `workstation-idle` | Keep the session awake during media playback; suspend after 15 minutes without input otherwise; not in a virtual machine (i3 starts it) |
 | `workstation-wallpaper` | Set the wallpaper |
 
 `~/.xsessionrc` puts `~/.local/bin` on the session `PATH`, so i3 calls them by
@@ -123,8 +123,9 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
 - **Locking.** `workstation-lock` is the only locker. It shows the wallpaper,
   fitted to each monitor once and cached in `~/.cache/workstation`. `xss-lock`
   runs it after 10 minutes idle and before suspend. After 15 minutes the
-  displays turn off and `workstation-idle` suspends the system, unless sound is
-  playing.
+  displays turn off and `workstation-idle` suspends the system. During media
+  playback (MPRIS or a running PipeWire audio stream), `workstation-idle` resets
+  the X idle timer, so the screen stays unlocked and awake as well.
 - **Focus.** The focused window, the Rofi menus and the focused LightDM field
   share the look of a focused text field: an accent border and a faint ring
   around it. For windows the ring is picom's shadow, drawn only around the

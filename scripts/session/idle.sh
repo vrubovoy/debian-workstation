@@ -2,7 +2,7 @@
 # ******************************************************************************
 # @file    idle.sh
 # @author  Vrubovoy (github.com/vrubovoy)
-# @brief   Suspends after 15 minutes without input, unless sound is playing.
+# @brief   Locks and suspends on idle, but stays awake during media playback.
 # ******************************************************************************
 # Copyright (c) 2026 Vrubovoy. MIT License, see LICENSE.
 # ******************************************************************************
@@ -12,8 +12,18 @@ set -Eeuo pipefail
 TIMEOUT=$(( 15 * 60 ))
 INTERVAL=30
 
-sound_playing() {
-    grep -qs RUNNING /proc/asound/card*/pcm*p/sub*/status
+media_playing() {
+    # MPRIS also covers silent video in Firefox, where there is no audio stream.
+    if playerctl --all-players status 2>/dev/null | grep -qx Playing; then
+        return 0
+    fi
+
+    # PipeWire sees audio from players without MPRIS (and from other sinks).
+    pw-dump 2>/dev/null | jq -e 'any(.[];
+        .type == "PipeWire:Interface:Node" and
+        .info.props["media.class"] == "Stream/Output/Audio" and
+        .info.state == "running"
+    )' >/dev/null 2>&1
 }
 
 # A virtual machine is left to its host.
@@ -27,10 +37,17 @@ if ! command -v xprintidle >/dev/null; then
 fi
 
 while sleep "$INTERVAL"; do
+    if media_playing; then
+        # xss-lock and DPMS use the same X idle timer as xprintidle. Keep all
+        # three from firing while media plays; after it stops, count afresh.
+        xset s reset || exit 0
+        continue
+    fi
+
     # Ends with the X session.
     idle="$(xprintidle)" || exit 0
 
-    if (( idle / 1000 >= TIMEOUT )) && ! sound_playing; then
+    if (( idle / 1000 >= TIMEOUT )); then
         systemctl suspend || continue
 
         # Restart the idle count after resume, so the system does not go back
