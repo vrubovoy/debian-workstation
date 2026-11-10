@@ -113,7 +113,7 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   picked with `scripts/configure/firefox-extensions.sh`; the choice is kept in
   `/etc/debian-workstation/firefox-extensions` and Firefox installs them on
   its next start. Firefox is also the default PDF application; Yazi opens PDFs
-  directly in Firefox.
+  in a tab of the running Firefox, or starts it if it is not running.
 - **NVIDIA.** On a machine with an NVIDIA GPU, `scripts/configure/nvidia.sh`
   offers the proprietary driver instead of nouveau. Its `nvidia-suspend` and
   `nvidia-resume` services save and restore the video memory around suspend.
