@@ -32,9 +32,10 @@ set $urgent   #E06C75
 # Windows
 # =============================================================================
 
-# Thin borders instead of title bars; tabbed/stacked layouts keep their titles.
-default_border pixel 2
-default_floating_border pixel 2
+# Picom rounds window corners; i3's rectangular borders would cut across them.
+# Tabbed/stacked layouts still show their titles.
+default_border pixel 0
+default_floating_border pixel 0
 hide_edge_borders none
 title_align center
 
@@ -44,7 +45,7 @@ gaps outer 5px
 smart_gaps off
 
 # class                     border     background  text      indicator  child_border
-client.focused              $accent    $surface    $fg       $accent    $accent
+client.focused              $border    $surface    $fg       $border    $border
 client.focused_inactive     $border    $surface    $muted    $border    $border
 client.unfocused            $border    $bg         $muted    $border    $border
 client.urgent               $urgent    $urgent     $bg       $urgent    $urgent

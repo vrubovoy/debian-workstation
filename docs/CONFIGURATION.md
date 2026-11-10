@@ -126,11 +126,10 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   displays turn off and `workstation-idle` suspends the system. During media
   playback (MPRIS or a running PipeWire audio stream), `workstation-idle` resets
   the X idle timer, so the screen stays unlocked and awake as well.
-- **Focus.** The focused window, the Rofi menus and the focused LightDM field
-  share the look of a focused text field: an accent border and a faint ring
-  around it. For windows the ring is picom's shadow, drawn only around the
-  focused one. Kitty leaves window decorations enabled so i3 can draw the
-  same border around it as around Firefox.
+- **Focus.** Windows have no bright focus border or glow: i3's rectangular
+  borders clash with Picom's rounded corners. Tabbed and stacked titles still
+  distinguish the active window with brighter text. Rofi menus and the focused
+  LightDM field keep their own accent.
 - **Launcher.** Rofi would show applications whose icon is missing with a
   blank icon, so the installer hides them for the user with `Hidden=true`
   entries in `~/.local/share/applications`. Run `./install.sh` again after
