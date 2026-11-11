@@ -30,7 +30,7 @@ if not vim.uv.fs_stat(path) then
         vim.fn.delete(path, "rf")
         vim.notify("lazy.nvim could not be downloaded; starting without plugins.",
             vim.log.levels.WARN)
-        return
+        return false
     end
 end
 
@@ -124,3 +124,5 @@ require("lazy").setup({
     change_detection = { notify = false },
     rocks = { enabled = false },
 })
+
+return true

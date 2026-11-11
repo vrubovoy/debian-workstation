@@ -53,14 +53,14 @@ memory {
     align = "center"
 }
 
-# /home is on the root filesystem, so this is the free space for everything.
+# Show the free space on the root filesystem.
 disk "/" {
-    format = "SSD %avail"
-    format_below_threshold = "SSD %avail"
+    format = "DISK %avail"
+    format_below_threshold = "DISK %avail"
     prefix_type = "binary"
     low_threshold = 10
     threshold_type = "percentage_avail"
-    min_width = "SSD 999.9 GiB"
+    min_width = "DISK 999.9 GiB"
     align = "center"
 }
 
