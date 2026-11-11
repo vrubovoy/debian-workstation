@@ -75,6 +75,19 @@ jobs:
           done < <(git grep -zIl '')
           [[ "$failed" == false ]]
 
+      - name: Check source headers
+        shell: bash
+        run: |
+          failed=false
+          while IFS= read -r -d '' file; do
+            if ! grep -qF '@author  Vrubovoy' "$file" ||
+               ! grep -qF 'MIT License, see LICENSE.' "$file"; then
+              printf 'Missing source header: %s\n' "$file" >&2
+              failed=true
+            fi
+          done < <(git ls-files -z '*.sh' '*.fish' '*.lua' '*.toml' '*.rasi' '*.cfg' '*.ini' '*.yml' '*.css')
+          [[ "$failed" == false ]]
+
       - name: Check shell scripts
         shell: bash
         run: |
