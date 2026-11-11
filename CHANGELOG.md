@@ -52,6 +52,7 @@ The first release: a Debian 13 desktop on X11 and i3, installed by one script.
 - Skipped Neovim language-server setup when plugins cannot be downloaded.
 - Replaced an SSD-specific label and a copied list of Yazi icons with portable
   defaults; added installer behavior checks before publishing a release.
+- Limited GPG passphrase caching to eight hours instead of roughly 400 days.
 
 [Unreleased]: https://github.com/vrubovoy/debian-workstation/compare/v1.0.0-rc.1...HEAD
 [1.0.0]: https://github.com/vrubovoy/debian-workstation/releases/tag/v1.0.0
