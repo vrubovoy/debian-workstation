@@ -17,8 +17,14 @@ permissions:
   contents: write
 
 jobs:
+  verify:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/lint.yml
+
   release:
     name: GitHub release
+    needs: verify
     runs-on: ubuntu-24.04
     timeout-minutes: 5
 
