@@ -28,8 +28,8 @@ link_dotfiles() {
 
         if [[ -e "$target" || -L "$target" ]] &&
            [[ "$(readlink -f -- "$target")" != "$(readlink -f -- "$source")" ]]; then
-            [[ ! -e "$target$BACKUP_SUFFIX" ]] ||
-                die "$target is in the way and $target$BACKUP_SUFFIX already exists."
+            [[ ! -e "$target$BACKUP_SUFFIX" && ! -L "$target$BACKUP_SUFFIX" ]] ||
+                die "$target differs from the repository; compare it with $target$BACKUP_SUFFIX and move it aside before retrying."
 
             info "Moving $target to $target$BACKUP_SUFFIX"
             mv -- "$target" "$target$BACKUP_SUFFIX"
@@ -52,7 +52,12 @@ link_commands() {
     for script in "$ROOT_DIR"/scripts/session/*.sh; do
         target="$BIN_DIR/workstation-$(basename -- "$script" .sh)"
 
-        [[ ! -e "$target" || -L "$target" ]] || die "$target exists and is not a symlink."
+        if [[ ( -e "$target" || -L "$target" ) &&
+              "$(readlink -f -- "$target")" != "$(readlink -f -- "$script")" ]]; then
+            [[ ! -e "$target$BACKUP_SUFFIX" && ! -L "$target$BACKUP_SUFFIX" ]] ||
+                die "$target differs from the repository; compare it with $target$BACKUP_SUFFIX and move it aside before retrying."
+            mv -- "$target" "$target$BACKUP_SUFFIX"
+        fi
         ln -sfn -- "$script" "$target"
     done
 

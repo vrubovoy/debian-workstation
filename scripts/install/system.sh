@@ -15,7 +15,7 @@ source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 MANAGED_FILES="/etc/debian-workstation/managed-files"
 
 backup_once() {
-    if [[ -e "$1" && ! -e "$1$BACKUP_SUFFIX" ]]; then
+    if [[ ( -e "$1" || -L "$1" ) && ! -e "$1$BACKUP_SUFFIX" && ! -L "$1$BACKUP_SUFFIX" ]]; then
         cp -a -- "$1" "$1$BACKUP_SUFFIX"
     fi
 }
@@ -24,20 +24,34 @@ backup_once() {
 # system's own version.
 deploy() {
     local source="$1" target="$2"
+    local record=false
 
     if ! grep -qxF -- "$target" "$MANAGED_FILES" 2>/dev/null; then
         backup_once "$target"
-        mkdir -p "$(dirname -- "$MANAGED_FILES")"
-        printf '%s\n' "$target" >> "$MANAGED_FILES"
+        record=true
     fi
 
     install -Dm644 -- "$source" "$target"
+
+    if [[ "$record" == true ]]; then
+        mkdir -p "$(dirname -- "$MANAGED_FILES")"
+        printf '%s\n' "$target" >> "$MANAGED_FILES"
+    fi
 }
 
 setup_repositories() {
     local sources="$ROOT_DIR/system/etc/apt/sources.list.d"
     local legacy=/etc/apt/sources.list
+    local file
     local debian_entry='^[[:space:]]*deb(-src)?[[:space:]].*(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)'
+
+    # Do not silently leave a second Debian source active on an existing system.
+    for file in /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+        [[ -f "$file" && "$file" != /etc/apt/sources.list.d/debian.sources ]] || continue
+        if grep -Eq '(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)' "$file"; then
+            die "Review $file for duplicate Debian sources before installing."
+        fi
+    done
 
     # The managed sources use HTTPS, so APT needs CA certificates first; get
     # them from the sources the system was installed with.
@@ -69,6 +83,14 @@ install_packages() {
 
 deploy_files() {
     local source target
+
+    # Retired hardware workaround from rc.1; only remove our deployed copy.
+    target=/etc/udev/rules.d/90-workstation-wakeup.rules
+    if grep -qxF -- "$target" "$MANAGED_FILES" 2>/dev/null &&
+       grep -qF '@author  Vrubovoy (github.com/vrubovoy)' "$target" 2>/dev/null; then
+        rm -- "$target"
+        sed -i '\|^/etc/udev/rules.d/90-workstation-wakeup.rules$|d' "$MANAGED_FILES"
+    fi
 
     while IFS= read -r -d '' source; do
         target="/${source#"$ROOT_DIR/system/"}"
