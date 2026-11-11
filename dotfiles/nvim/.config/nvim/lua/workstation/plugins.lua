@@ -64,6 +64,9 @@ require("lazy").setup({
             },
         },
 
+        -- Insert matching brackets and quotes, leaving the cursor between them.
+        { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+
         {
             "nvim-tree/nvim-tree.lua",
             dependencies = { "nvim-tree/nvim-web-devicons" },

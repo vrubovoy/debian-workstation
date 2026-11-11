@@ -159,6 +159,7 @@ repository.
 | fzf-lua: files, text, buffers, recent files, help | `Space f f/g/b/r/h` |
 | gitsigns: changed lines | `]h` / `[h`, `Space h p/s/r/b` preview / stage / reset / blame |
 | blink.cmp: completion | `Tab` accepts |
+| nvim-autopairs: matching brackets and quotes | Type an opening character; the cursor stays inside the pair |
 | Mason + nvim-lspconfig: language servers | `gd`, `gD`, `Space c f` format, and Neovim's own `K`, `grn`, `gra`, `grr`, `gri`, `gO`, `[d` / `]d` |
 
 These language servers start by file type in every project:
