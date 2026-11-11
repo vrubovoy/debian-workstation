@@ -3,11 +3,18 @@
 Problems met while installing and running the workstation, with fixes. New
 entries are added as they come up.
 
-## The installer stops at "… is in the way and ….debian-workstation.bak already exists"
+## The installer stops because a file differs and its backup already exists
 
 A configuration file had been replaced before and a backup from that time
-already exists. Compare the two, keep what you need, remove one of them and run
-the installer again.
+already exists. Compare the live file, its `.debian-workstation.bak` and the
+repository copy. Preserve any changes you need, move the conflicting live file
+aside and run the installer again. Do not delete the backup without checking it.
+
+## A Debian APT source is listed twice
+
+The installer stops when another file in `/etc/apt/sources.list.d` points to a
+Debian mirror. Review that file and remove or disable the duplicate entries
+before retrying; keep unrelated third-party repositories.
 
 ## A configuration file in `$HOME` is not a symlink
 
@@ -54,6 +61,8 @@ resume: update the BIOS. With an NVIDIA GPU, also check that
 
 A wakeup source fires at once. `cat /proc/acpi/wakeup` lists the enabled ones;
 `echo NAME | sudo tee /proc/acpi/wakeup` toggles one until the next boot.
+Avoid disabling a PCIe wakeup port on every machine: it can prevent a laptop
+or another computer from waking with its normal devices.
 
 ## The picture is green and monochrome (NVIDIA, HDMI)
 

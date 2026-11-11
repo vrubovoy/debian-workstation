@@ -71,9 +71,11 @@ near the end if its timeout ran out during a long install) and then:
    plugins, VSCodium, Onefetch, AmneziaVPN, ONLYOFFICE, Telegram), Firefox
    extensions and VSCodium extensions.
 
-Any file it replaces is kept once as `*.debian-workstation.bak`. It does not
-upgrade the system (`apt full-upgrade` stays your call) and is safe to run
-again.
+Any file it replaces is kept once as `*.debian-workstation.bak`. If a file
+changes again outside the repository while that backup exists, the installer
+stops rather than overwrite your changes: compare the files and move the
+conflicting one aside before retrying. It does not upgrade the system
+(`apt full-upgrade` stays your call).
 
 Reboot when it finishes and log in to i3. Physical network interfaces now
 belong to NetworkManager: connect to Wi-Fi from the tray icon or with `nmtui`.
@@ -151,6 +153,21 @@ docs/          configuration reference, troubleshooting and the user guide
   common changes.
 - [Troubleshooting](docs/TROUBLESHOOTING.md): known problems and fixes.
 - [Changelog](CHANGELOG.md)
+
+## Release testing
+
+The `v1.0.0-rc.1` tag is an early candidate, not the current `main` branch.
+After changes pass CI, create a new prerelease tag and test that exact commit
+on a clean VM, a laptop and a desktop. Test a second installer run and recovery
+from a failed step too. Do not reuse or move an existing tag. Record fixes as
+new commits and, if necessary, tag another candidate.
+
+After a candidate has passed all three machines, set the actual date in
+`CHANGELOG.md`, check both generated PDF guides and run CI on that final
+documentation commit before tagging `v1.0.0`.
+Pushing a version tag runs CI first, then immediately publishes a GitHub
+release with the PDFs. A tag containing a hyphen is marked as a prerelease;
+the workflow does not create a draft.
 
 ## License
 

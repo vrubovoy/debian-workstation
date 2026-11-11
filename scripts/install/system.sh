@@ -48,7 +48,7 @@ setup_repositories() {
     # Do not silently leave a second Debian source active on an existing system.
     for file in /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
         [[ -f "$file" && "$file" != /etc/apt/sources.list.d/debian.sources ]] || continue
-        if grep -Eq '(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)' "$file"; then
+        if grep -Eq '^[[:space:]]*(deb(-src)?[[:space:]]|URIs:[[:space:]]).*(deb\.debian\.org|security\.debian\.org|ftp\.[^[:space:]]*\.debian\.org)' "$file"; then
             die "Review $file for duplicate Debian sources before installing."
         fi
     done

@@ -60,7 +60,9 @@ end it asks a few questions. Press **Enter** to take the suggested answer:
 | Firefox and VSCodium extensions | Pick what you want, one by one. |
 | Reboot now | Yes, to start the desktop. |
 
-You can run `./install.sh` again at any time: it skips what is already done.
+You can run `./install.sh` again: it skips what is already done. If a file was
+changed outside the repository after its first backup, compare the two copies
+and move the conflicting file aside before retrying.
 
 # 3. First login
 
@@ -120,6 +122,7 @@ prompt. Screenshots are saved to
 - After 10 minutes without input the screen locks.
 - After 15 minutes the screen turns off and the computer goes to sleep. While
   music or a video is playing, it stays awake and unlocked.
+- In a virtual machine automatic suspend is disabled; its host controls sleep.
 - Move the mouse or press a key to wake it, then type your password.
 
 # 7. Keeping it up to date
@@ -146,6 +149,7 @@ The same command also updates the extra programs you chose.
 - **No network after the first reboot:** connect again with the network icon
   or `nmtui`. The Wi-Fi set up during the Debian installation is not kept.
 - **A setting looks wrong:** run `./install.sh` again. Files it replaced are
-  kept next to the new ones with the `.debian-workstation.bak` ending.
+  kept next to the new ones with the `.debian-workstation.bak` ending. If the
+  installer reports a conflict, compare these files before moving one aside.
 - **Anything else:** see `docs/TROUBLESHOOTING.md` in the repository, or open
   an issue on GitHub.

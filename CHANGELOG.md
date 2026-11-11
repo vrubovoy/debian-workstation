@@ -6,7 +6,7 @@ follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-10-14
+## [1.0.0]
 
 The first release: a Debian 13 desktop on X11 and i3, installed by one script.
 
@@ -41,5 +41,17 @@ The first release: a Debian 13 desktop on X11 and i3, installed by one script.
 - **CI.** Checks for scripts, configuration syntax and package lists, and
   GitHub releases from version tags.
 
-[Unreleased]: https://github.com/vrubovoy/debian-workstation/compare/v1.0.0...HEAD
+### Fixed since rc.1
+
+- Removed a PCIe wakeup rule that affected every graphics device; existing
+  managed copies are retired on the next install.
+- Prevented duplicate Debian APT sources and stale interface definitions from
+  silently conflicting with the managed network configuration.
+- Preserved existing user command links and checked archive installs before
+  replacing a working application.
+- Skipped Neovim language-server setup when plugins cannot be downloaded.
+- Replaced an SSD-specific label and a copied list of Yazi icons with portable
+  defaults; added installer behavior checks before publishing a release.
+
+[Unreleased]: https://github.com/vrubovoy/debian-workstation/compare/v1.0.0-rc.1...HEAD
 [1.0.0]: https://github.com/vrubovoy/debian-workstation/releases/tag/v1.0.0

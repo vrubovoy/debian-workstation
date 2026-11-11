@@ -27,7 +27,9 @@ directories, so keys created in them can never end up in the repository.
 
 Editing a file in the repository changes the live configuration at once;
 reload the program to see it (`Super+Ctrl+R` for i3). A file that is already in
-the way when the installer runs is moved to `*.debian-workstation.bak`.
+the way when the installer runs is moved to `*.debian-workstation.bak`. If that
+backup already exists and the live file differs, installation stops so you can
+compare the files and move the conflicting one aside yourself.
 
 ### System files
 
@@ -41,16 +43,16 @@ backups.
 - `/etc/apt/sources.list.d/debian.sources`: Debian 13 with contrib, non-free
   and non-free-firmware. Debian entries in an old one-line
   `/etc/apt/sources.list` are commented out (after a backup); other entries
-  there are left alone.
-- `/etc/network/interfaces`: loopback only; NetworkManager owns everything else.
+  there are left alone. Installation stops if another file in
+  `sources.list.d` also points to the Debian mirrors; review it first.
+- `/etc/network/interfaces`: loopback only, without including `interfaces.d`;
+  NetworkManager owns the physical interfaces after reboot.
 - `/etc/default/keyboard`: US/RU layouts, `Alt+Space` to switch and Compose on
   Right Alt, for the console, LightDM and X alike.
 - `/etc/X11/xorg.conf.d/90-workstation-input.conf`: tap to click and natural
   scrolling on touchpads, slightly slower adaptive acceleration for mice.
 - `/etc/X11/xorg.conf.d/20-workstation-nvidia.conf`: RGB output with the
   NVIDIA driver on HDMI monitors that also offer YCbCr 4:2:0.
-- `/etc/udev/rules.d/90-workstation-wakeup.rules`: the graphics card's PCIe
-  port does not wake the system.
 - `/etc/firefox-esr/policies/policies.json`: generated from the repository
   file plus the extensions chosen on this machine (see below).
 - `/usr/lib/firefox-esr/workstation.cfg` with `defaults/pref/autoconfig.js`:
@@ -95,7 +97,8 @@ twice as fast. Debian names the `fd` and `bat` commands `fdfind` and
   version, because their configuration depends on it; VSCodium, Onefetch,
   AmneziaVPN, ONLYOFFICE and Telegram follow their latest GitHub releases.
   Each download is checked against its SHA-256 and refused if it does not
-  match; installed ones are updated on the next run. AmneziaVPN has no
+  match; installed ones are updated on the next run. Archive releases are
+  unpacked and checked before the old copy is replaced. AmneziaVPN has no
   `.deb`; its own installer runs headless into `/opt/AmneziaVPN`. Neovim and
   Telegram are release archives unpacked into `/opt`; Telegram adds itself to
   the launcher the first time it is started with `Telegram`.
@@ -198,7 +201,9 @@ and asks once whether to trust a new or changed file.
   Stow package automatically.
 - **System file:** put it under `system/` at its absolute path.
 - **New file:** start it with the header of a file of the same type (`@file`,
-  `@author`, `@brief`, and `@path` / `@apply` for configuration files).
+  `@author`, `@brief`, and `@path` / `@apply` for configuration files). Strict
+  JSON, binaries, the MIT license and Markdown documents use their native
+  formats; do not put comments into JSON or binary data.
 - **Command:** add an executable `scripts/session/<name>.sh`; after
   `./install.sh` it is available as `workstation-<name>`.
 - **Upstream release:** add a line to `packages/external.txt`; its header
@@ -226,3 +231,5 @@ the GitHub workflows, the Stow packages, the Rofi themes and the i3 config;
 whitespace, line endings and final newlines. It also resolves every package
 list in a Debian 13 container with the installer's own repository setup and
 rejects packages listed twice.
+The release workflow runs these checks again before publishing a tag. A small
+installer test also checks backups, repeated deployment and Firefox policies.
