@@ -59,6 +59,7 @@ resolve_latest() {
 install_release() {
     local package="$1" version="$2" sha256="$3" url="$4" depends="$5"
     local file="$TMP_DIR/${url##*/}" deps=()
+    local stage previous binary
 
     if [[ "$depends" != - ]]; then
         IFS=, read -ra deps <<< "$depends"
@@ -78,16 +79,32 @@ install_release() {
     if [[ "$url" == *.tar.gz || "$url" == *.tar.xz ]]; then
         # The command, in bin/ (Neovim) or at the top (Telegram), is linked
         # into /usr/local/bin, ahead of Debian's in PATH.
-        sudo rm -rf "/opt/$package"
-        sudo mkdir -p "/opt/$package"
-        sudo tar -xf "$file" -C "/opt/$package" --strip-components=1
+        stage="$(sudo mktemp -d "/opt/.${package}.XXXXXX")"
+        previous="${stage}.previous"
+        if ! sudo tar -xf "$file" -C "$stage" --strip-components=1; then
+            sudo rm -rf -- "$stage"
+            die "Could not unpack $package; the installed version was kept."
+        fi
 
-        local binary="/opt/$package/bin/$package"
-        [[ -x "$binary" ]] || binary="/opt/$package/$package"
-        sudo ln -sfn "$binary" "/usr/local/bin/$package"
+        binary="bin/$package"
+        [[ -x "$stage/$binary" ]] || binary="$package"
+        if [[ ! -x "$stage/$binary" ]]; then
+            sudo rm -rf -- "$stage"
+            die "No executable for $package in the release archive."
+        fi
+
+        if [[ -e "/opt/$package" ]]; then
+            sudo mv -- "/opt/$package" "$previous"
+        fi
+        if ! sudo mv -- "$stage" "/opt/$package"; then
+            [[ ! -e "$previous" ]] || sudo mv -- "$previous" "/opt/$package"
+            die "Could not activate $package; the installed version was restored."
+        fi
+        sudo ln -sfn "/opt/$package/$binary" "/usr/local/bin/$package"
 
         sudo mkdir -p "$STATE_DIR"
         printf '%s\n' "$version" | sudo tee "$STATE_DIR/$package" >/dev/null
+        [[ ! -e "$previous" ]] || sudo rm -rf -- "$previous"
     else
         # The Qt installer (AmneziaVPN) needs an empty directory, so an earlier
         # copy is removed with its own maintenance tool first.
